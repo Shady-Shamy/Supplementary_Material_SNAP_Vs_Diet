@@ -1,0 +1,61 @@
+---
+title: "Campus Type Analysis"
+format:
+  html:
+    code-fold: true
+    code-summary: "Show the code"
+---
+
+> Significant associations were found between the campus type (CSU, UC, and CCC) and dependent variables at the bivariate level. However, after controlling for other covariates, there were no more significant associations. Due to the Pilot 2 cohort not including any UC or CCC campuses, both cohort and campus type could not be included as covariates. Because significant associations were found between cohort and fast food intake as well as cohort and SSB intake after controlling for covariates, cohort was included in the final models over campus type. All other associations stay the same regardless of the variable used.
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(error = FALSE,warning = FALSE,message = FALSE,echo = TRUE)
+
+library(dplyr)
+library(mice)
+library(gtsummary)
+
+bns_imputed_mids <- readRDS("clean_data/imp_bns_combined_clean_mids.RData")
+
+bns_combined_imputed_df <- complete(bns_imputed_mids, fill = 3)
+
+```
+
+# Fast Food Vs Campus Type Bivariate Analysis
+
+```{r}
+
+chisq.test(bns_combined_imputed_df$ff_cat, bns_combined_imputed_df$school2)
+
+```
+
+# SSB Vs Campus Type Bivariate Analysis
+
+```{r}
+
+chisq.test(bns_combined_imputed_df$ssb_cat, bns_combined_imputed_df$school2)
+
+```
+
+# F&V Vs Campus Type Bivariate Analysis
+
+```{r}
+
+chisq.test(bns_combined_imputed_df$fruits3, bns_combined_imputed_df$school2)
+
+```
+
+# Ordinal Models
+
+```{r}
+
+
+ff.ordinal.mod <- with(bns_imputed_mids, MASS::polr(ff_cat~calfresh3 + school2 + gender + race_eth + age + physical_activity + storage_room + kitchen_access + health_conscious + cooking_confident + food_insecure_2item + paid_work_hours_tens + living_with_family + homelessness_year, Hess=TRUE)) %>% tbl_regression(exponentiate = TRUE) %>% bold_p()
+
+ssb.ordinal.mod <- with(bns_imputed_mids, MASS::polr(ssb_cat~calfresh3 + school2 + gender + race_eth + age + physical_activity + health_conscious + storage_access + units_four + paid_work_hours_tens + caregiving_hours_tens + homelessness_year, Hess=TRUE)) %>% tbl_regression(exponentiate = TRUE) %>% bold_p()
+
+FV.ordinal.mod <- with(bns_imputed_mids, MASS::polr(fruits3~calfresh3 + school2 + gender + race_eth + age + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item, Hess=TRUE)) %>% tbl_regression(exponentiate = TRUE) %>% bold_p()
+
+tbl_merge(tbls = list(ff.ordinal.mod, ssb.ordinal.mod, FV.ordinal.mod), tab_spanner = c("F&V Model", "**Fast Food Model**", "**SSB Model**"))
+
+```

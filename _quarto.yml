@@ -5,20 +5,25 @@ website:
   title: "CalFresh Vs Diet Quality"
   navbar:
     left:
-      - href: Survey Questions.qmd
+      - href: Survey_Questions.qmd
         text: Survey Questions
-      - href: Data Management.qmd
+      - href: Data_Collection.qmd
+        text: Data Collection        
+      - href: Data_Management.qmd
         text: Data Management
-      - href: Imputations.qmd
-        text: Imputations
-      - href: Variable Selection.qmd
-        text: Variable Selection
-      - href: Clustering Analysis.qmd
-        text: Clustering Analysis
-      - href: Manuscript Files.qmd
+      - text: "Data Analysis"
+        menu:
+          - href: Imputations.qmd
+            text: Imputations
+          - href: Variable_Selection.qmd
+            text: Variable Selection
+          - href: Model_Diagnostics.qmd
+            text: Model Diagnostics 
+          - href: Campus_Type_Analysis.qmd
+            text: Campus Type Analysis              
+      - href: Manuscript_Files.qmd
         text: Manuscript Files    
-          
-        
+       
 
 format:
   html:

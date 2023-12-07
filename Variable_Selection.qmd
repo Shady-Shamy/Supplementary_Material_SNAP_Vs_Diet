@@ -6,8 +6,13 @@ format:
     code-summary: "Show the code"
 ---
 
+> This page shows all steps taken for variable selection. Potentially relevant variables from the survey were identified based on a theoretical approach. A LASSO regression was first used to identify which variables are relevant to each model. A ten-fold cross validation was used to determine the minimum lambda value. General linear regression models were then fit for each dependent variable including all potential covariates using a LASSO penalty.
+
+> Age, gender, and race/ethnicity were included as covariates in all models regardless of the LASSO regression results due to previous literature indicating associations with diet outcomes. Cohort was also included in all models to control for differences between the two cohorts. Covariates that were highly colinear were removed from the models. Covariates with high p-values were then removed from the models if removing them had no major impact on the results, to help prevent overfitting the models.
+
 ::: panel-tabset
 ```{r}
+knitr::opts_chunk$set(error = FALSE,warning = FALSE,message = FALSE,echo = TRUE)
 
 library(nnet)
 library(glmnet)
@@ -138,8 +143,6 @@ vif(ff.linear.model3)
 
 > Academic level had a somewhat high VIF. Removing academic level decreased the VIF in the Cohort variable. This variable was removed because of the VIF improvements after removing the variable and since age was already being controlled for.
 
-
-
 ## Manual Backwards Elimination
 
 ```{r}
@@ -167,7 +170,7 @@ tbl_merge(tbls = list(ff.ordinal.mod, ff.ordinal.mod_storage), tab_spanner = c("
 
 > Storage Access had a high p value in the full model Storage Access can be removed without changing any results
 
-# SSB Intake Variable elimination
+# SSB Model Variable elimination
 
 ## Test Colinearity
 
@@ -260,7 +263,7 @@ tbl_merge(tbls = list(ssb.ordinal.mod.storage, ssb.ordinal.mod.fi), tab_spanner 
 
 > Food security can be removed
 
-# FV intake Variable Elimination
+# F&V Model Variable Elimination
 
 ## Test Colinearity
 
@@ -287,5 +290,5 @@ vif(fv.linear.model)
 
 > Removing income greatly decreased the vif of the calfresh3 variable
 
-> No other variables in FV consumption looked like they can be removed through manual backwards elimination
+> No other variables in F&V consumption looked like they can be removed through manual backwards elimination
 :::

@@ -2,13 +2,44 @@
 title: "Data Management"
 ---
 
+> This page explains all the data management steps taken to clean and create all variables that were not discussed in the methods section of the manuscript. Two clean data sets were used, and all code for any additional data management procedures are shown below as well as a text description of all procedures.
+
 ::: panel-tabset
-# Statewide Data Management
+# Data Management Text Description
+
+> In all questions in the survey, students had the option to decline to answer by selecting "Prefer not to answer." All of these "Prefer not to answer" responses were coded as missing and then later imputed. Race and ethnicity were asked using the US census tool where students were first asked about their ethnicity in a single-selection multiple choice question and then their race in a select all that apply question. Students appeared to be confused between race and ethnicity as there were many students who identified as Hispanic in the ethnicity question and then proceeded to choose "Prefer not to answer" in the race question. Race and ethnicity were coded as the following 5 categories: Hispanic White, Non-Hispanic White, Non-Hispanic Black, Non-Hispanic Asian (having only selected one Asian race), and Other (including two or more races, Hispanic Blacks, Hispanic Asians, American Indian or Alaska Native, Native Hawaiian or Other Pacific Islander, and unknown race or ethnicity).
+
+> Cooking confidence was surveyed on a 5-point Likert scale where those who responded "Not at all confident", "Not very confident", or "Neutral" were coded as "No" (Not confident). Those who chose "Somewhat confident" or "Very Confident" were coded as "Yes" (Confident).
+
+> Living arrangements were asked as a multiple-choice question with 13 options. Those who responded, "I live with parents or other relatives, paying rent with my own money or"I live with parents or other relatives, not paying rent with my own money" were coded as "Yes" (living with parents). All other non-missing options were coded as "No" (Not living with parents).
+
+> Homelessness in the past year was determined using a series of eight questions. Anyone who responded as living in any one of these locations in the past year and/or month were classified as homeless in the past year: "At a shelter", "Temporarily living with a relative, friend, or couch surfing until I find other housing," "Temporarily at a hotel or motel without a permanent home to return to (not on vacation or business travel)", "In a transitional housing or independent living program", "At a group home such as a halfway house or residential program for mental health or substance abuse," "Outdoor location such as street, sidewalk, alley, park, etc.," "In a car, truck, van, RV or camper," and "In a closed area/space with a roof not meant for human habituation such as an abandoned building, garage, tent, etc."
+
+> Housing insecurity was determined based on a series of eight questions. Anyone who answered "Yes" to at least three of these questions were classified as housing insecure: 1) "In the past 12 months, was there a rent or mortgage increase that made it difficult to pay?" 2) "In the past 12 months, have you been unable to pay or underpaid your rent or mortgage?" 3) "In the past 12 months, have you ever been late paying rent or mortgage?" 4) "In the past 12 months, have you been unable to pay or underpaid a utility bill?" 5) "In the past 12 months, have you lived with others beyond the expected capacity of your house or apartment?" 6) "In the past 12 months, have you been asked to leave your home by someone you lived with?" 7) "In the past 12 months, have you been evicted?" and 8) "In the past 12 months, have you had to stay in a hostile housing environment or abusive relationship because you had no other place to live?" Cases with missing values without six "Yes" responses and without six "No" responses were set to missing. For example, someone who responded with six "No" responses and had two missing values will make it impossible to have three "Yes" responses and this person will be marked as "No" (not housing insecure). While someone with two "Yes" responses and one or more missing responses will be marked as missing in the housing insecurity variable since they can possibly still be housing insecure.
+
+> Food insecurity was measured using the 2-item food security assessment which asks: "Within the past 12 months we worried whether our food would run out before we got money to buy more" and "Within the past 12 months the food we bought just didn't last and we didn't have money to get more." Anyone who answered "often true" or "sometimes true" to both questions is deemed food insecure.
+
+> Health consciousness was asked on a 5-point Likert scale. Those who chose "Strongly disagree", or "Disagree" were coded as "Yes" (Regularly think about eating). Those who chose "Neither agree nor disagree", "Agree", or "Strongly agree" were coded as "No" (Doesn't regularly think about eating).
+
+> Kitchen access was asked on a 5-point Likert scale. Those who chose "Strongly disagree", or "Disagree" were coded as "Yes" (Has kitchen access). Those who chose "Neither agree nor disagree", "Agree", or "Strongly agree" were coded as "No" (Doesn't have kitchen access).
+
+> Adequate storage room was asked on a 5-point Likert scale. Those who chose "Strongly disagree", or "Disagree" were coded as "Yes" (Has adequate storage room). Those who chose "Neither agree nor disagree", "Agree", or "Strongly agree" were coded as "No" (Doesn't have adequate storage room).
+
+> Monthly household income was asked in ranges based on CalFresh eligibility income requirements at the time of the surveys. The income ranges slightly differed between the Statewide data and the Pilot 2 data and were collapsed into five levels. Those who chose "Less than \$150" or "\$150 or less" was coded as "Very Low"; "\$151-\$2,148" or "\$151-\$2,082" were coded as "Low"; "\$2,149-\$2,904" or "\$2,083-\$2,820" were coded as "Moderate"; "\$2,905-\$3,660" or "\$2,821-\$3,556" were coded as "High"; and all other responses greater than \$3,661 (in the statewide data set) or \$3,557 (in the pilot 2 data set) were coded as "Very High."
+
+> Physical activity was surveyed in three separate questions asking how many days per week a student engages in moderate exercise, strength training exercise, and vigorous exercise. Students who engaged in any of the three forms of exercise for at least one day per week were coded as "Yes" (engages in physical activity). Students who responded zero days per week in all three questions were coded as "No" (does not engage in physical activity).
+
+> Those who chose "Gender Queer or Gender-Nonconforming," "Gender non-binary," and "Gender Unlisted" were dropped from the analysis. Those who chose "Prefer not to answer" were kept in the data set and imputed.
+
+> CalFresh status was created using five questions, whether they are currently using CalFresh, household size, monthly household income, U.S. citizenship, and lawful permanent residency if not a U.S. citizen. Those that reported currently using CalFresh were coded as "CalFresh". Those that met the CalFresh eligibility criteria discussed in the methods sections and did not receive CalFresh benefits were coded as "No CalFresh but likely eligible." Those that did not meet CalFresh eligibility criteria and did not receive CalFresh benefits were coded as "No CalFresh and likely ineligible."
+
+> Age was rounded down to the nearest whole number. Paid work hours, unpaid work hours, and caregiving hours were divided by 10 and units were divided by 4 to better interpret the results.
+
+# Statewide Data Management Code
 
 ```{r}
 
-knitr::opts_chunk$set(error = FALSE,warning = FALSE,message = FALSE)
-
+knitr::opts_chunk$set(error = FALSE,warning = FALSE,message = FALSE,echo = TRUE)
 bns <- readRDS(here::here("./raw_data/bns3_statewide_clean.rds"))
 
 
@@ -290,7 +321,7 @@ bns_variables <- bns %>%  select(calfresh3, race_eth, eth_PNTA, eth_hispanic, ge
 
 ```
 
-# Pilot 2 Data Management
+# Pilot 2 Data Management Code
 
 ```{r}
 
@@ -593,7 +624,7 @@ BNSp2b <- BNSp2b %>% select(calfresh3, race_eth, eth_PNTA, eth_hispanic, gender,
 
 ```
 
-# Combine Data Sets
+# Additional Code for Combined Data
 
 ```{r}
 

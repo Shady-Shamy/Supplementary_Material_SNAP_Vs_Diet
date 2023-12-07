@@ -6,10 +6,12 @@ format:
     code-summary: "Show the code"
 ---
 
+> This page shows all steps taken for the imputation process. Imputations were conducted using the MICE R package using an M of 5 and 30 maximum iterations. All potential covariates were included in the imputation process as well as variables used to create the derived variables. Some of the variables that were used to create the dependent variables were removed due to too much collinearity with the derived variable and issues with reaching convergence. Some data management was performed to dichotomize variables, change reference values, and create variables used for testing different models. Models using imputed data were compared to models using complete case data.
+
 ::: panel-tabset
 # Impute Values
 
-```{r}
+```{r, include=FALSE}
 knitr::opts_chunk$set(error = FALSE,warning = FALSE,message = FALSE,echo = TRUE)
 
 
@@ -29,7 +31,7 @@ load("clean_data/bns_combined.Rdata")
 ```{r}
 
 
-bns_combined <- bns_combined %>% mutate_at(c("eth_hispanic", "firstgen", "housing_insecure", "q26", "q27", "q28", "q29", "q30", "q31", "q32", "q33", "homelessness_year"), as.factor)
+bns_combined <- bns_combined %>% mutate_at(c("eth_hispanic", "firstgen", "housing_insecure", "homelessness_year"), as.factor)
 
 variables_of_interest <- bns_combined %>% select(calfresh3, race_eth, eth_hispanic, q7, age, cooking_confident, living_with_family, food_insecure_2item, health_conscious, storage_access, storage_room, kitchen_access, ff_cat, ssb_cat, fruits3, household_size, monthly_hh_income, paid_work_hours, unpaid_work_hours, units, caregiving_hours, q64, q65, school, physical_activity, q83_1, q83_2, q83_3, calfresh_eligible, firstgen, academic_level, housing_insecure, homelessness_year)
 
@@ -69,8 +71,9 @@ imp_bns_combined_raw_mids$meth
 ## Check Convergence
 
 ```{r}
-# Check all the variables
-plot(imp_bns_combined_raw_mids, c("calfresh3", "q7", "food_insecure_2item", "fruits3", "household_size", "monthly_hh_income", "paid_work_hours", "unpaid_work_hours", "units", "caregiving_hours", "q64", "q65", "physical_activity", "q83_1", "q83_2", "q83_3", "calfresh_eligible"))
+
+# Check convergence of a few variables. Note: all imputed variables were checked but only a few are displayed 
+plot(imp_bns_combined_raw_mids, c("calfresh3", "calfresh_eligible", "fruits3", "ff_cat", "ssb_cat"))
 
 
 ```
@@ -127,10 +130,6 @@ imp_bns_combined_long$ff_cat3 <- case_when(imp_bns_combined_long$ff_cat == "3-4 
 
 
 
-# Cohort
-
-imp_bns_combined_long$Cohort <- case_when(grepl("Chico State|CSU, Northridge|Fresno State", imp_bns_combined_long$school) ~ "Pilot 2", TRUE ~ "Statewide")
-
 # Change numeric variables to increments
 
 imp_bns_combined_long$paid_work_hours_tens <- (imp_bns_combined_long$paid_work_hours)/10
@@ -163,6 +162,19 @@ imp_bns_combined_long$q77_numeric <- recode(imp_bns_combined_long$fruits3, "0" =
                                               "1-2" = 1, "3 or more" = 3)
 
 
+
+
+
+
+```
+
+```{r, include=FALSE}
+
+# Cohort
+
+imp_bns_combined_long$Cohort <- case_when(grepl("Chico State|CSU, Northridge|Fresno State", imp_bns_combined_long$school) ~ "Pilot 2", TRUE ~ "Statewide")
+
+# School
 imp_bns_combined_long$school2 <- recode(imp_bns_combined_long$school,
                              "Allan Hancock Community College" = "CC",
                              "Butte CC" = "CC", "Mt. SAC CC" = "CC", "Clovis CC" = "CC",
@@ -178,12 +190,15 @@ imp_bns_combined_long$school2 <- recode(imp_bns_combined_long$school,
                              "CSU, Northridge" = "CSU",
                              "UC Berkeley" = "UC")
 
+# Change reference of food insecurity in original data set
+bns_combined$food_insecure_2item <- factor(bns_combined$food_insecure_2item, order = FALSE) %>% relevel(bns_combined$food_insecure_2item, ref = "No")
 
 ```
 
-## Convert back to Mids
+
 
 ```{r}
+## Convert back to Mids
 
 #  imp_bns_combined_clean_mids <- as.mids(imp_bns_combined_long, .imp = ".imp")
 

@@ -115,27 +115,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./Survey Questions.html" rel="" target="">
+    <a class="nav-link" href="./Survey_Questions.html" rel="" target="">
  <span class="menu-text">Survey Questions</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./Data Management.html" rel="" target="">
+    <a class="nav-link" href="./Data_Collection.html" rel="" target="">
+ <span class="menu-text">Data Collection</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Data_Management.html" rel="" target="">
  <span class="menu-text">Data Management</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./Imputations.html" rel="" target="">
- <span class="menu-text">Imputations</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-data-analysis" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Data Analysis</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-data-analysis">    
+        <li>
+    <a class="dropdown-item" href="./Imputations.html" rel="" target="">
+ <span class="dropdown-text">Imputations</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link active" href="./Variable Selection.html" rel="" target="" aria-current="page">
- <span class="menu-text">Variable Selection</span></a>
+        <li>
+    <a class="dropdown-item" href="./Variable_Selection.html" rel="" target="">
+ <span class="dropdown-text">Variable Selection</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./Clustering Analysis.html" rel="" target="">
- <span class="menu-text">Clustering Analysis</span></a>
+        <li>
+    <a class="dropdown-item" href="./Model_Diagnostics.html" rel="" target="">
+ <span class="dropdown-text">Model Diagnostics</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./Campus_Type_Analysis.html" rel="" target="">
+ <span class="dropdown-text">Campus Type Analysis</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
-    <a class="nav-link" href="./Manuscript Files.html" rel="" target="">
+    <a class="nav-link" href="./Manuscript_Files.html" rel="" target="">
  <span class="menu-text">Manuscript Files</span></a>
   </li>  
 </ul>
@@ -172,8 +187,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
+<blockquote class="blockquote">
+<p>This page shows all steps taken for variable selection. Potentially relevant variables from the survey were identified based on a theoretical approach. A LASSO regression was first used to identify which variables are relevant to each model. A ten-fold cross validation was used to determine the minimum lambda value. General linear regression models were then fit for each dependent variable including all potential covariates using a LASSO penalty.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Age, gender, and race/ethnicity were included as covariates in all models regardless of the LASSO regression results due to previous literature indicating associations with diet outcomes. Cohort was also included in all models to control for differences between the two cohorts. Covariates that were highly colinear were removed from the models. Covariates with high p-values were then removed from the models if removing them had no major impact on the results, to help prevent overfitting the models.</p>
+</blockquote>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Fast Food LASSO Regression</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">SSB LASSO Regression</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">F&amp;V LASSO Regression</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">Fast Food Model Variable elimination</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false">SSB Intake Variable elimination</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-6" role="tab" aria-controls="tabset-1-6" aria-selected="false">FV intake Variable Elimination</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Fast Food LASSO Regression</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">SSB LASSO Regression</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">F&amp;V LASSO Regression</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">Fast Food Model Variable elimination</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false">SSB Model Variable elimination</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-6" role="tab" aria-controls="tabset-1-6" aria-selected="false">F&amp;V Model Variable Elimination</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
@@ -460,15 +481,9 @@ homelessness_year    1.091347  1        1.044676</code></pre>
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Full Model Based on LASSO after removing colinear variables</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>ff.ordinal.mod <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(ff_cat<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_access <span class="sc">+</span> storage_room <span class="sc">+</span> kitchen_access <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> living_with_family, homelessness_year, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stderr">
-<pre><code>pool_and_tidy_mice(): Tidying mice model with
-`mice::pool(x) %&gt;% mice::tidy(conf.int = TRUE, conf.level = 0.95, exponentiate = TRUE)`</code></pre>
-</div>
-<details>
-<summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>ff.ordinal.mod</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>ff.ordinal.mod <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(ff_cat<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_access <span class="sc">+</span> storage_room <span class="sc">+</span> kitchen_access <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> living_with_family, homelessness_year, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>ff.ordinal.mod</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 
@@ -1108,15 +1123,9 @@ homelessness_year    1.091347  1        1.044676</code></pre>
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>ff.ordinal.mod_storage <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(ff_cat<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> kitchen_access <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> living_with_family, homelessness_year, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stderr">
-<pre><code>pool_and_tidy_mice(): Tidying mice model with
-`mice::pool(x) %&gt;% mice::tidy(conf.int = TRUE, conf.level = 0.95, exponentiate = TRUE)`</code></pre>
-</div>
-<details>
-<summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_merge</span>(<span class="at">tbls =</span> <span class="fu">list</span>(ff.ordinal.mod, ff.ordinal.mod_storage), <span class="at">tab_spanner =</span> <span class="fu">c</span>(<span class="st">"Full FF Model"</span>, <span class="st">"**Test Model*"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ff.ordinal.mod_storage <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(ff_cat<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> kitchen_access <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> living_with_family, homelessness_year, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_merge</span>(<span class="at">tbls =</span> <span class="fu">list</span>(ff.ordinal.mod, ff.ordinal.mod_storage), <span class="at">tab_spanner =</span> <span class="fu">c</span>(<span class="st">"Full FF Model"</span>, <span class="st">"**Test Model*"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 
@@ -1898,10 +1907,10 @@ homelessness_year    1.091347  1        1.044676</code></pre>
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Full model based on LASSO</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>ssb.linear.model <span class="ot">&lt;-</span> <span class="fu">lm</span>(ssb_numeric<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> monthly_hh_income <span class="sc">+</span> academic_level <span class="sc">+</span> physical_activity <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_room <span class="sc">+</span> storage_access <span class="sc">+</span> firstgen <span class="sc">+</span> units_four <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(ssb.linear.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Full model based on LASSO</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>ssb.linear.model <span class="ot">&lt;-</span> <span class="fu">lm</span>(ssb_numeric<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> monthly_hh_income <span class="sc">+</span> academic_level <span class="sc">+</span> physical_activity <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_room <span class="sc">+</span> storage_access <span class="sc">+</span> firstgen <span class="sc">+</span> units_four <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(ssb.linear.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>                          GVIF Df GVIF^(1/(2*Df))
@@ -1933,9 +1942,9 @@ homelessness_year     1.083644  1        1.040982</code></pre>
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ssb.linear.model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ssb_numeric<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> academic_level <span class="sc">+</span> physical_activity <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_room <span class="sc">+</span> storage_access <span class="sc">+</span> firstgen <span class="sc">+</span> units_four <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(ssb.linear.model2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>ssb.linear.model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ssb_numeric<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> academic_level <span class="sc">+</span> physical_activity <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_room <span class="sc">+</span> storage_access <span class="sc">+</span> firstgen <span class="sc">+</span> units_four <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(ssb.linear.model2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>                          GVIF Df GVIF^(1/(2*Df))
@@ -1966,9 +1975,9 @@ homelessness_year     1.068109  1        1.033494</code></pre>
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>ssb.linear.model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ssb_numeric<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_room <span class="sc">+</span> storage_access <span class="sc">+</span> firstgen <span class="sc">+</span> units_four <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(ssb.linear.model2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>ssb.linear.model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ssb_numeric<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_room <span class="sc">+</span> storage_access <span class="sc">+</span> firstgen <span class="sc">+</span> units_four <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(ssb.linear.model2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>                          GVIF Df GVIF^(1/(2*Df))
@@ -1998,13 +2007,9 @@ homelessness_year     1.067574  1        1.033235</code></pre>
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Full Model after eliminating colinear variables</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>ssb.ordinal.mod <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(ssb_cat<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_room <span class="sc">+</span> storage_access <span class="sc">+</span> firstgen <span class="sc">+</span> units_four <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> homelessness_year, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Full Model after eliminating colinear variables</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>ssb.ordinal.mod <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(ssb_cat<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_room <span class="sc">+</span> storage_access <span class="sc">+</span> firstgen <span class="sc">+</span> units_four <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> homelessness_year, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stderr">
-<pre><code>pool_and_tidy_mice(): Tidying mice model with
-`mice::pool(x) %&gt;% mice::tidy(conf.int = TRUE, conf.level = 0.95, exponentiate = TRUE)`</code></pre>
-</div>
 </div>
 </section>
 <section id="test-removing-firstgen" class="level2">
@@ -2012,16 +2017,11 @@ homelessness_year     1.067574  1        1.033235</code></pre>
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove firstgen</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>ssb.ordinal.mod.firstgen <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(ssb_cat<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_room <span class="sc">+</span> storage_access <span class="sc">+</span> units_four <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> homelessness_year, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stderr">
-<pre><code>pool_and_tidy_mice(): Tidying mice model with
-`mice::pool(x) %&gt;% mice::tidy(conf.int = TRUE, conf.level = 0.95, exponentiate = TRUE)`</code></pre>
-</div>
-<details>
-<summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_merge</span>(<span class="at">tbls =</span> <span class="fu">list</span>(ssb.ordinal.mod, ssb.ordinal.mod.firstgen), <span class="at">tab_spanner =</span> <span class="fu">c</span>(<span class="st">"Full SSB Model"</span>, <span class="st">"**Test Model*"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove firstgen</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>ssb.ordinal.mod.firstgen <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(ssb_cat<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_room <span class="sc">+</span> storage_access <span class="sc">+</span> units_four <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> homelessness_year, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_merge</span>(<span class="at">tbls =</span> <span class="fu">list</span>(ssb.ordinal.mod, ssb.ordinal.mod.firstgen), <span class="at">tab_spanner =</span> <span class="fu">c</span>(<span class="st">"Full SSB Model"</span>, <span class="st">"**Test Model*"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 
@@ -2794,15 +2794,10 @@ homelessness_year     1.067574  1        1.033235</code></pre>
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>ssb.ordinal.mod.storage <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(ssb_cat<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_access <span class="sc">+</span> units_four <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> homelessness_year, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stderr">
-<pre><code>pool_and_tidy_mice(): Tidying mice model with
-`mice::pool(x) %&gt;% mice::tidy(conf.int = TRUE, conf.level = 0.95, exponentiate = TRUE)`</code></pre>
-</div>
-<details>
-<summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_merge</span>(<span class="at">tbls =</span> <span class="fu">list</span>(ssb.ordinal.mod.firstgen, ssb.ordinal.mod.storage), <span class="at">tab_spanner =</span> <span class="fu">c</span>(<span class="st">"Full SSB Model"</span>, <span class="st">"**Test Model*"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>ssb.ordinal.mod.storage <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(ssb_cat<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_access <span class="sc">+</span> units_four <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> homelessness_year, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_merge</span>(<span class="at">tbls =</span> <span class="fu">list</span>(ssb.ordinal.mod.firstgen, ssb.ordinal.mod.storage), <span class="at">tab_spanner =</span> <span class="fu">c</span>(<span class="st">"Full SSB Model"</span>, <span class="st">"**Test Model*"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 
@@ -3554,15 +3549,10 @@ homelessness_year     1.067574  1        1.033235</code></pre>
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>ssb.ordinal.mod.fi <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(ssb_cat<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_access <span class="sc">+</span> units_four <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> homelessness_year, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stderr">
-<pre><code>pool_and_tidy_mice(): Tidying mice model with
-`mice::pool(x) %&gt;% mice::tidy(conf.int = TRUE, conf.level = 0.95, exponentiate = TRUE)`</code></pre>
-</div>
-<details>
-<summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_merge</span>(<span class="at">tbls =</span> <span class="fu">list</span>(ssb.ordinal.mod.storage, ssb.ordinal.mod.fi), <span class="at">tab_spanner =</span> <span class="fu">c</span>(<span class="st">"Full SSB Model"</span>, <span class="st">"**Test Model*"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>ssb.ordinal.mod.fi <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(ssb_cat<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_access <span class="sc">+</span> units_four <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> homelessness_year, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_merge</span>(<span class="at">tbls =</span> <span class="fu">list</span>(ssb.ordinal.mod.storage, ssb.ordinal.mod.fi), <span class="at">tab_spanner =</span> <span class="fu">c</span>(<span class="st">"Full SSB Model"</span>, <span class="st">"**Test Model*"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 
@@ -4295,10 +4285,10 @@ homelessness_year     1.067574  1        1.033235</code></pre>
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Linear model based on results from LASSO regression</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>fv.linear.model <span class="ot">&lt;-</span> <span class="fu">lm</span>(q77_numeric<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> monthly_hh_income <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> food_insecure_2item, <span class="at">data =</span> bns_combined_imputed_df)</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(fv.linear.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Linear model based on results from LASSO regression</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>fv.linear.model <span class="ot">&lt;-</span> <span class="fu">lm</span>(q77_numeric<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> monthly_hh_income <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> food_insecure_2item, <span class="at">data =</span> bns_combined_imputed_df)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(fv.linear.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>                        GVIF Df GVIF^(1/(2*Df))
@@ -4324,9 +4314,9 @@ food_insecure_2item 1.100711  1        1.049148</code></pre>
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>fv.linear.model <span class="ot">&lt;-</span> <span class="fu">lm</span>(q77_numeric<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> food_insecure_2item, <span class="at">data =</span> bns_combined_imputed_df)</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(fv.linear.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>fv.linear.model <span class="ot">&lt;-</span> <span class="fu">lm</span>(q77_numeric<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> food_insecure_2item, <span class="at">data =</span> bns_combined_imputed_df)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(fv.linear.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>                        GVIF Df GVIF^(1/(2*Df))
@@ -4346,7 +4336,7 @@ food_insecure_2item 1.093257  1        1.045589</code></pre>
 <p>Removing income greatly decreased the vif of the calfresh3 variable</p>
 </blockquote>
 <blockquote class="blockquote">
-<p>No other variables in FV consumption looked like they can be removed through manual backwards elimination</p>
+<p>No other variables in F&amp;V consumption looked like they can be removed through manual backwards elimination</p>
 </blockquote>
 </section>
 </div>

@@ -115,27 +115,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./Survey Questions.html" rel="" target="">
+    <a class="nav-link" href="./Survey_Questions.html" rel="" target="">
  <span class="menu-text">Survey Questions</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./Data Management.html" rel="" target="">
+    <a class="nav-link" href="./Data_Collection.html" rel="" target="">
+ <span class="menu-text">Data Collection</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Data_Management.html" rel="" target="">
  <span class="menu-text">Data Management</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link active" href="./Imputations.html" rel="" target="" aria-current="page">
- <span class="menu-text">Imputations</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-data-analysis" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Data Analysis</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-data-analysis">    
+        <li>
+    <a class="dropdown-item" href="./Imputations.html" rel="" target="">
+ <span class="dropdown-text">Imputations</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./Variable Selection.html" rel="" target="">
- <span class="menu-text">Variable Selection</span></a>
+        <li>
+    <a class="dropdown-item" href="./Variable_Selection.html" rel="" target="">
+ <span class="dropdown-text">Variable Selection</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./Clustering Analysis.html" rel="" target="">
- <span class="menu-text">Clustering Analysis</span></a>
+        <li>
+    <a class="dropdown-item" href="./Model_Diagnostics.html" rel="" target="">
+ <span class="dropdown-text">Model Diagnostics</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./Campus_Type_Analysis.html" rel="" target="">
+ <span class="dropdown-text">Campus Type Analysis</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
-    <a class="nav-link" href="./Manuscript Files.html" rel="" target="">
+    <a class="nav-link" href="./Manuscript_Files.html" rel="" target="">
  <span class="menu-text">Manuscript Files</span></a>
   </li>  
 </ul>
@@ -172,6 +187,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
+<blockquote class="blockquote">
+<p>This page shows all steps taken for the imputation process. Imputations were conducted using the MICE R package using an M of 5 and 30 maximum iterations. All potential covariates were included in the imputation process as well as variables used to create the derived variables. Some of the variables that were used to create the dependent variables were removed due to too much collinearity with the derived variable and issues with reaching convergence. Some data management was performed to dichotomize variables, change reference values, and create variables used for testing different models. Models using imputed data were compared to models using complete case data.</p>
+</blockquote>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Impute Values</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Imputation data management</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Compare SSB Complete Case and Imputed Models</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">Compare Fast Food Complete Case and Imputed Models</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false">Compare F&amp;V Complete Case and Imputed Models</a></li></ul>
 <div class="tab-content">
@@ -179,101 +197,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">error =</span> <span class="cn">FALSE</span>,<span class="at">warning =</span> <span class="cn">FALSE</span>,<span class="at">message =</span> <span class="cn">FALSE</span>,<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>bns_combined <span class="ot">&lt;-</span> bns_combined <span class="sc">%&gt;%</span> <span class="fu">mutate_at</span>(<span class="fu">c</span>(<span class="st">"eth_hispanic"</span>, <span class="st">"firstgen"</span>, <span class="st">"housing_insecure"</span>, <span class="st">"homelessness_year"</span>), as.factor)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mice)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'mice'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following object is masked from 'package:stats':
-
-    filter</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:base':
-
-    cbind, rbind</code></pre>
-</div>
-<details>
-<summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(forestplot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: grid</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: checkmate</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: abind</code></pre>
-</div>
-<details>
-<summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dotwhisker)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: ggplot2</code></pre>
-</div>
-<details>
-<summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stderr">
-<pre><code>#StandWithUkraine</code></pre>
-</div>
-<details>
-<summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'dplyr'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:stats':
-
-    filter, lag</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:base':
-
-    intersect, setdiff, setequal, union</code></pre>
-</div>
-<details>
-<summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"clean_data/bns_combined.Rdata"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>variables_of_interest <span class="ot">&lt;-</span> bns_combined <span class="sc">%&gt;%</span> <span class="fu">select</span>(calfresh3, race_eth, eth_hispanic, q7, age, cooking_confident, living_with_family, food_insecure_2item, health_conscious, storage_access, storage_room, kitchen_access, ff_cat, ssb_cat, fruits3, household_size, monthly_hh_income, paid_work_hours, unpaid_work_hours, units, caregiving_hours, q64, q65, school, physical_activity, q83_1, q83_2, q83_3, calfresh_eligible, firstgen, academic_level, housing_insecure, homelessness_year)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>vector.methods <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"polyreg"</span>, <span class="st">"polyreg"</span>, <span class="st">"logreg"</span>, <span class="st">"logreg"</span>, <span class="st">"pmm"</span>, <span class="st">"logreg"</span>, <span class="st">"logreg"</span>, <span class="st">"logreg"</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"logreg"</span>, <span class="st">"logreg"</span>, <span class="st">"logreg"</span>, <span class="st">"logreg"</span>, <span class="st">"polyreg"</span>, <span class="st">"polyreg"</span>, <span class="st">"polyreg"</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"pmm"</span>, <span class="st">"polyreg"</span>, <span class="st">"pmm"</span>, <span class="st">"pmm"</span>, <span class="st">"pmm"</span>, <span class="st">"pmm"</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"polyreg"</span>, <span class="st">"polyreg"</span>, <span class="st">"polyreg"</span>, <span class="st">"logreg"</span>, <span class="st">"pmm"</span>, <span class="st">"pmm"</span>, <span class="st">"pmm"</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"logreg"</span>, <span class="st">"logreg"</span>, <span class="st">"polyreg"</span>, <span class="st">"logreg"</span>, <span class="st">"logreg"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>bns_combined <span class="ot">&lt;-</span> bns_combined <span class="sc">%&gt;%</span> <span class="fu">mutate_at</span>(<span class="fu">c</span>(<span class="st">"eth_hispanic"</span>, <span class="st">"firstgen"</span>, <span class="st">"housing_insecure"</span>, <span class="st">"q26"</span>, <span class="st">"q27"</span>, <span class="st">"q28"</span>, <span class="st">"q29"</span>, <span class="st">"q30"</span>, <span class="st">"q31"</span>, <span class="st">"q32"</span>, <span class="st">"q33"</span>, <span class="st">"homelessness_year"</span>), as.factor)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>variables_of_interest <span class="ot">&lt;-</span> bns_combined <span class="sc">%&gt;%</span> <span class="fu">select</span>(calfresh3, race_eth, eth_hispanic, q7, age, cooking_confident, living_with_family, food_insecure_2item, health_conscious, storage_access, storage_room, kitchen_access, ff_cat, ssb_cat, fruits3, household_size, monthly_hh_income, paid_work_hours, unpaid_work_hours, units, caregiving_hours, q64, q65, school, physical_activity, q83_1, q83_2, q83_3, calfresh_eligible, firstgen, academic_level, housing_insecure, homelessness_year)</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>vector.methods <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"polyreg"</span>, <span class="st">"polyreg"</span>, <span class="st">"logreg"</span>, <span class="st">"logreg"</span>, <span class="st">"pmm"</span>, <span class="st">"logreg"</span>, <span class="st">"logreg"</span>, <span class="st">"logreg"</span>,</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"logreg"</span>, <span class="st">"logreg"</span>, <span class="st">"logreg"</span>, <span class="st">"logreg"</span>, <span class="st">"polyreg"</span>, <span class="st">"polyreg"</span>, <span class="st">"polyreg"</span>,</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"pmm"</span>, <span class="st">"polyreg"</span>, <span class="st">"pmm"</span>, <span class="st">"pmm"</span>, <span class="st">"pmm"</span>, <span class="st">"pmm"</span>,</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"polyreg"</span>, <span class="st">"polyreg"</span>, <span class="st">"polyreg"</span>, <span class="st">"logreg"</span>, <span class="st">"pmm"</span>, <span class="st">"pmm"</span>, <span class="st">"pmm"</span>,</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"logreg"</span>, <span class="st">"logreg"</span>, <span class="st">"polyreg"</span>, <span class="st">"logreg"</span>, <span class="st">"logreg"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div class="cell">
-<details>
-<summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Due to the lengthy imputation process, the imputed data was saved and the code was commented out</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co">#  imp_bns_combined_raw_mids &lt;- mice(variables_of_interest, m=5, maxit=35, seed=500, printFlag=TRUE, method = vector.methods)</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># saveRDS(imp_bns_combined_raw_mids, file = "imp_bns_combined_raw_mids.RData")</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_raw_mids <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"clean_data/imp_bns_combined_raw_mids.RData"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Due to the lengthy imputation process, the imputed data was saved and the code was commented out</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#  imp_bns_combined_raw_mids &lt;- mice(variables_of_interest, m=5, maxit=35, seed=500, printFlag=TRUE, method = vector.methods)</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># saveRDS(imp_bns_combined_raw_mids, file = "imp_bns_combined_raw_mids.RData")</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_raw_mids <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"clean_data/imp_bns_combined_raw_mids.RData"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <section id="check-imputation-methods" class="level2">
@@ -281,7 +226,7 @@ Attaching package: 'dplyr'</code></pre>
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_raw_mids<span class="sc">$</span>meth</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_raw_mids<span class="sc">$</span>meth</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>          calfresh3            race_eth        eth_hispanic                  q7 
@@ -310,26 +255,14 @@ Attaching package: 'dplyr'</code></pre>
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check all the variables</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(imp_bns_combined_raw_mids, <span class="fu">c</span>(<span class="st">"calfresh3"</span>, <span class="st">"q7"</span>, <span class="st">"food_insecure_2item"</span>, <span class="st">"fruits3"</span>, <span class="st">"household_size"</span>, <span class="st">"monthly_hh_income"</span>, <span class="st">"paid_work_hours"</span>, <span class="st">"unpaid_work_hours"</span>, <span class="st">"units"</span>, <span class="st">"caregiving_hours"</span>, <span class="st">"q64"</span>, <span class="st">"q65"</span>, <span class="st">"physical_activity"</span>, <span class="st">"q83_1"</span>, <span class="st">"q83_2"</span>, <span class="st">"q83_3"</span>, <span class="st">"calfresh_eligible"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check convergence of a few variables. Note: all imputed variables were checked but only a few are displayed </span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(imp_bns_combined_raw_mids, <span class="fu">c</span>(<span class="st">"calfresh3"</span>, <span class="st">"calfresh_eligible"</span>, <span class="st">"fruits3"</span>, <span class="st">"ff_cat"</span>, <span class="st">"ssb_cat"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <p><img src="Imputations_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output-display">
 <p><img src="Imputations_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid" width="672"></p>
-</div>
-<div class="cell-output-display">
-<p><img src="Imputations_files/figure-html/unnamed-chunk-5-3.png" class="img-fluid" width="672"></p>
-</div>
-<div class="cell-output-display">
-<p><img src="Imputations_files/figure-html/unnamed-chunk-5-4.png" class="img-fluid" width="672"></p>
-</div>
-<div class="cell-output-display">
-<p><img src="Imputations_files/figure-html/unnamed-chunk-5-5.png" class="img-fluid" width="672"></p>
-</div>
-<div class="cell-output-display">
-<p><img src="Imputations_files/figure-html/unnamed-chunk-5-6.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -338,151 +271,130 @@ Attaching package: 'dplyr'</code></pre>
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#  Create a Complete Data Set</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long <span class="ot">&lt;-</span> <span class="fu">complete</span>(imp_bns_combined_raw_mids, <span class="at">action=</span> <span class="st">"long"</span>, <span class="at">include =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Gender: Rename -----</span></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long <span class="ot">&lt;-</span> <span class="fu">rename</span>(imp_bns_combined_long, <span class="at">gender =</span> q7)</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Change reference values</span></span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long<span class="sc">$</span>health_conscious <span class="ot">&lt;-</span> <span class="fu">factor</span>(imp_bns_combined_long<span class="sc">$</span>health_conscious, <span class="at">order =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> <span class="fu">relevel</span>(imp_bns_combined_long<span class="sc">$</span>health_conscious, <span class="at">ref =</span> <span class="st">"No"</span>)</span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long<span class="sc">$</span>kitchen_access <span class="ot">&lt;-</span> <span class="fu">factor</span>(imp_bns_combined_long<span class="sc">$</span>kitchen_access, <span class="at">order =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> <span class="fu">relevel</span>(imp_bns_combined_long<span class="sc">$</span>kitchen_access, <span class="at">ref =</span> <span class="st">"No"</span>)</span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long<span class="sc">$</span>storage_room <span class="ot">&lt;-</span> <span class="fu">factor</span>(imp_bns_combined_long<span class="sc">$</span>storage_room, <span class="at">order =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> <span class="fu">relevel</span>(imp_bns_combined_long<span class="sc">$</span>storage_room, <span class="at">ref =</span> <span class="st">"No"</span>)</span>
-<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Create variables to check ordinal regression</span></span>
-<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a><span class="do">## FV ------------------------</span></span>
-<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long<span class="sc">$</span>q77_one_vs_zero <span class="ot">&lt;-</span> <span class="fu">case_when</span>(imp_bns_combined_long<span class="sc">$</span>fruits3 <span class="sc">==</span> <span class="st">"0"</span> <span class="sc">~</span> <span class="st">"0"</span>, imp_bns_combined_long<span class="sc">$</span>fruits3 <span class="sc">==</span> <span class="st">"1-2"</span> <span class="sc">~</span> <span class="st">"1-2"</span>)  <span class="sc">%&gt;%</span> <span class="fu">factor</span>(<span class="at">order =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long<span class="sc">$</span>q77_one_vs_three_or_more <span class="ot">&lt;-</span> <span class="fu">case_when</span>(imp_bns_combined_long<span class="sc">$</span>fruits3 <span class="sc">==</span> <span class="st">"3 or more"</span> <span class="sc">~</span> <span class="st">"3 or more"</span>, imp_bns_combined_long<span class="sc">$</span>fruits3 <span class="sc">==</span> <span class="st">"1-2"</span> <span class="sc">~</span> <span class="st">"1-2"</span>)  <span class="sc">%&gt;%</span> <span class="fu">factor</span>(<span class="at">order =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a><span class="do">## SSB -------------------------------</span></span>
-<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long<span class="sc">$</span>ssb_cat1 <span class="ot">&lt;-</span> <span class="fu">case_when</span>(imp_bns_combined_long<span class="sc">$</span>ssb_cat <span class="sc">==</span> <span class="st">"Zero"</span> <span class="sc">~</span> <span class="st">"Zero"</span>,</span>
-<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a>                                      imp_bns_combined_long<span class="sc">$</span>ssb_cat <span class="sc">==</span> <span class="st">"1-8 ounces"</span> <span class="sc">~</span> <span class="st">"1-8 ounces"</span>) <span class="sc">%&gt;%</span> <span class="fu">factor</span>(<span class="at">order =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> <span class="fu">relevel</span>(<span class="at">ref =</span> <span class="st">"Zero"</span>)</span>
-<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long<span class="sc">$</span>ssb_cat2 <span class="ot">&lt;-</span> <span class="fu">case_when</span>(imp_bns_combined_long<span class="sc">$</span>ssb_cat <span class="sc">==</span> <span class="st">"1-8 ounces"</span> <span class="sc">~</span> <span class="st">"1-8 ounces"</span>, imp_bns_combined_long<span class="sc">$</span>ssb_cat <span class="sc">==</span> <span class="st">"9-16 ounces"</span> <span class="sc">~</span> <span class="st">"9-16 ounces"</span>) <span class="sc">%&gt;%</span> <span class="fu">factor</span>(<span class="at">order =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long<span class="sc">$</span>ssb_cat3 <span class="ot">&lt;-</span> <span class="fu">case_when</span>(imp_bns_combined_long<span class="sc">$</span>ssb_cat <span class="sc">==</span> <span class="st">"9-16 ounces"</span> <span class="sc">~</span> <span class="st">"9-16 ounces"</span>,</span>
-<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a>                                  imp_bns_combined_long<span class="sc">$</span>ssb_cat <span class="sc">==</span> <span class="st">"17 or more ounces"</span> <span class="sc">~</span> <span class="st">"17 or more ounces"</span>) <span class="sc">%&gt;%</span> <span class="fu">factor</span>(<span class="at">order =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> <span class="fu">relevel</span>(<span class="at">ref =</span> <span class="st">"9-16 ounces"</span>)</span>
-<span id="cb23-36"><a href="#cb23-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-37"><a href="#cb23-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-38"><a href="#cb23-38" aria-hidden="true" tabindex="-1"></a><span class="do">## FF ------------------------------------</span></span>
-<span id="cb23-39"><a href="#cb23-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-40"><a href="#cb23-40" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long<span class="sc">$</span>ff_cat1 <span class="ot">&lt;-</span> <span class="fu">case_when</span>(imp_bns_combined_long<span class="sc">$</span>ff_cat <span class="sc">==</span> <span class="st">"Zero"</span> <span class="sc">~</span> <span class="st">"Zero"</span>, imp_bns_combined_long<span class="sc">$</span>ff_cat <span class="sc">==</span> <span class="st">"1-2 times per week"</span> <span class="sc">~</span> <span class="st">"1-2 times per week"</span>) <span class="sc">%&gt;%</span> <span class="fu">factor</span>(<span class="at">order =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> <span class="fu">relevel</span>(<span class="at">ref =</span> <span class="st">"Zero"</span>)</span>
-<span id="cb23-41"><a href="#cb23-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-42"><a href="#cb23-42" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long<span class="sc">$</span>ff_cat2 <span class="ot">&lt;-</span> <span class="fu">case_when</span>(imp_bns_combined_long<span class="sc">$</span>ff_cat <span class="sc">==</span> <span class="st">"1-2 times per week"</span> <span class="sc">~</span> <span class="st">"1-2 times per week"</span>, imp_bns_combined_long<span class="sc">$</span>ff_cat <span class="sc">==</span> <span class="st">"3-4 times per week"</span> <span class="sc">~</span> <span class="st">"3-4 times per week"</span>) <span class="sc">%&gt;%</span> <span class="fu">factor</span>(<span class="at">order =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb23-43"><a href="#cb23-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-44"><a href="#cb23-44" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long<span class="sc">$</span>ff_cat3 <span class="ot">&lt;-</span> <span class="fu">case_when</span>(imp_bns_combined_long<span class="sc">$</span>ff_cat <span class="sc">==</span> <span class="st">"3-4 times per week"</span> <span class="sc">~</span> <span class="st">"3-4 times per week"</span>,</span>
-<span id="cb23-45"><a href="#cb23-45" aria-hidden="true" tabindex="-1"></a>                                  imp_bns_combined_long<span class="sc">$</span>ff_cat <span class="sc">==</span> <span class="st">"5 or more times per week"</span> <span class="sc">~</span> <span class="st">"5 or more times per week"</span>) <span class="sc">%&gt;%</span> <span class="fu">factor</span>(<span class="at">order =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb23-46"><a href="#cb23-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-47"><a href="#cb23-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-48"><a href="#cb23-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-49"><a href="#cb23-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Cohort</span></span>
-<span id="cb23-50"><a href="#cb23-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-51"><a href="#cb23-51" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long<span class="sc">$</span>Cohort <span class="ot">&lt;-</span> <span class="fu">case_when</span>(<span class="fu">grepl</span>(<span class="st">"Chico State|CSU, Northridge|Fresno State"</span>, imp_bns_combined_long<span class="sc">$</span>school) <span class="sc">~</span> <span class="st">"Pilot 2"</span>, <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Statewide"</span>)</span>
-<span id="cb23-52"><a href="#cb23-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-53"><a href="#cb23-53" aria-hidden="true" tabindex="-1"></a><span class="co"># Change numeric variables to increments</span></span>
-<span id="cb23-54"><a href="#cb23-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-55"><a href="#cb23-55" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long<span class="sc">$</span>paid_work_hours_tens <span class="ot">&lt;-</span> (imp_bns_combined_long<span class="sc">$</span>paid_work_hours)<span class="sc">/</span><span class="dv">10</span></span>
-<span id="cb23-56"><a href="#cb23-56" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long<span class="sc">$</span>unpaid_work_hours_tens <span class="ot">&lt;-</span> (imp_bns_combined_long<span class="sc">$</span>unpaid_work_hours)<span class="sc">/</span><span class="dv">10</span></span>
-<span id="cb23-57"><a href="#cb23-57" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long<span class="sc">$</span>caregiving_hours_tens <span class="ot">&lt;-</span> (imp_bns_combined_long<span class="sc">$</span>caregiving_hours)<span class="sc">/</span><span class="dv">10</span></span>
-<span id="cb23-58"><a href="#cb23-58" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long<span class="sc">$</span>units_four <span class="ot">&lt;-</span> (imp_bns_combined_long<span class="sc">$</span>units)<span class="sc">/</span><span class="dv">4</span></span>
-<span id="cb23-59"><a href="#cb23-59" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long<span class="sc">$</span>age_five <span class="ot">&lt;-</span> (imp_bns_combined_long<span class="sc">$</span>age)<span class="sc">/</span><span class="dv">5</span></span>
-<span id="cb23-60"><a href="#cb23-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-61"><a href="#cb23-61" aria-hidden="true" tabindex="-1"></a><span class="co"># Change Reference</span></span>
-<span id="cb23-62"><a href="#cb23-62" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long<span class="sc">$</span>food_insecure_2item <span class="ot">&lt;-</span> <span class="fu">factor</span>(imp_bns_combined_long<span class="sc">$</span>food_insecure_2item, <span class="at">order =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> <span class="fu">relevel</span>(imp_bns_combined_long<span class="sc">$</span>food_insecure_2item, <span class="at">ref =</span> <span class="st">"No"</span>)</span>
-<span id="cb23-63"><a href="#cb23-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-64"><a href="#cb23-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-65"><a href="#cb23-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-66"><a href="#cb23-66" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long<span class="sc">$</span>total_work_hours <span class="ot">&lt;-</span>   imp_bns_combined_long<span class="sc">$</span>paid_work_hours <span class="sc">+</span></span>
-<span id="cb23-67"><a href="#cb23-67" aria-hidden="true" tabindex="-1"></a>                                            imp_bns_combined_long<span class="sc">$</span>unpaid_work_hours</span>
-<span id="cb23-68"><a href="#cb23-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-69"><a href="#cb23-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-70"><a href="#cb23-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-71"><a href="#cb23-71" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long<span class="sc">$</span>ff_numeric <span class="ot">&lt;-</span> <span class="fu">recode</span>(imp_bns_combined_long<span class="sc">$</span>ff_cat, </span>
-<span id="cb23-72"><a href="#cb23-72" aria-hidden="true" tabindex="-1"></a>                                             <span class="st">"Zero"</span> <span class="ot">=</span> <span class="dv">0</span>, <span class="st">"1-2 times per week"</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
-<span id="cb23-73"><a href="#cb23-73" aria-hidden="true" tabindex="-1"></a>                                             <span class="st">"3-4 times per week"</span> <span class="ot">=</span> <span class="dv">3</span>,</span>
-<span id="cb23-74"><a href="#cb23-74" aria-hidden="true" tabindex="-1"></a>                                             <span class="st">"5 or more times per week"</span> <span class="ot">=</span> <span class="dv">5</span>)</span>
-<span id="cb23-75"><a href="#cb23-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-76"><a href="#cb23-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-77"><a href="#cb23-77" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long<span class="sc">$</span>ssb_numeric <span class="ot">&lt;-</span> <span class="fu">recode</span>(imp_bns_combined_long<span class="sc">$</span>ssb_cat,</span>
-<span id="cb23-78"><a href="#cb23-78" aria-hidden="true" tabindex="-1"></a>                                              <span class="st">"Zero"</span> <span class="ot">=</span> <span class="dv">0</span>, <span class="st">"1-8 ounces"</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
-<span id="cb23-79"><a href="#cb23-79" aria-hidden="true" tabindex="-1"></a>                                              <span class="st">"9-16 ounces"</span> <span class="ot">=</span> <span class="dv">9</span>, <span class="st">"17 or more ounces"</span> <span class="ot">=</span> <span class="dv">17</span>)</span>
-<span id="cb23-80"><a href="#cb23-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-81"><a href="#cb23-81" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long<span class="sc">$</span>q77_numeric <span class="ot">&lt;-</span> <span class="fu">recode</span>(imp_bns_combined_long<span class="sc">$</span>fruits3, <span class="st">"0"</span> <span class="ot">=</span> <span class="dv">0</span>,</span>
-<span id="cb23-82"><a href="#cb23-82" aria-hidden="true" tabindex="-1"></a>                                              <span class="st">"1-2"</span> <span class="ot">=</span> <span class="dv">1</span>, <span class="st">"3 or more"</span> <span class="ot">=</span> <span class="dv">3</span>)</span>
-<span id="cb23-83"><a href="#cb23-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-84"><a href="#cb23-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-85"><a href="#cb23-85" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long<span class="sc">$</span>school2 <span class="ot">&lt;-</span> <span class="fu">recode</span>(imp_bns_combined_long<span class="sc">$</span>school,</span>
-<span id="cb23-86"><a href="#cb23-86" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"Allan Hancock Community College"</span> <span class="ot">=</span> <span class="st">"CC"</span>,</span>
-<span id="cb23-87"><a href="#cb23-87" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"Butte CC"</span> <span class="ot">=</span> <span class="st">"CC"</span>, <span class="st">"Mt. SAC CC"</span> <span class="ot">=</span> <span class="st">"CC"</span>, <span class="st">"Clovis CC"</span> <span class="ot">=</span> <span class="st">"CC"</span>,</span>
-<span id="cb23-88"><a href="#cb23-88" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"Palo Verde CC"</span> <span class="ot">=</span> <span class="st">"CC"</span>, </span>
-<span id="cb23-89"><a href="#cb23-89" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"Cal State San Bernardino"</span> <span class="ot">=</span> <span class="st">"CSU"</span>,</span>
-<span id="cb23-90"><a href="#cb23-90" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"CSU Bakersfield"</span> <span class="ot">=</span> <span class="st">"CSU"</span>,</span>
-<span id="cb23-91"><a href="#cb23-91" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"Fresno State"</span> <span class="ot">=</span> <span class="st">"CSU"</span>,</span>
-<span id="cb23-92"><a href="#cb23-92" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"Sacramento State"</span> <span class="ot">=</span> <span class="st">"CSU"</span>,</span>
-<span id="cb23-93"><a href="#cb23-93" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"Chico State"</span> <span class="ot">=</span> <span class="st">"CSU"</span>,</span>
-<span id="cb23-94"><a href="#cb23-94" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"CSU Dominguez Hills"</span> <span class="ot">=</span> <span class="st">"CSU"</span>,</span>
-<span id="cb23-95"><a href="#cb23-95" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"San Francisco State"</span> <span class="ot">=</span> <span class="st">"CSU"</span>,</span>
-<span id="cb23-96"><a href="#cb23-96" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"Cal State LA"</span> <span class="ot">=</span> <span class="st">"CSU"</span>,</span>
-<span id="cb23-97"><a href="#cb23-97" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"CSU, Northridge"</span> <span class="ot">=</span> <span class="st">"CSU"</span>,</span>
-<span id="cb23-98"><a href="#cb23-98" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"UC Berkeley"</span> <span class="ot">=</span> <span class="st">"UC"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#  Create a Complete Data Set</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long <span class="ot">&lt;-</span> <span class="fu">complete</span>(imp_bns_combined_raw_mids, <span class="at">action=</span> <span class="st">"long"</span>, <span class="at">include =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Gender: Rename -----</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long <span class="ot">&lt;-</span> <span class="fu">rename</span>(imp_bns_combined_long, <span class="at">gender =</span> q7)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Change reference values</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long<span class="sc">$</span>health_conscious <span class="ot">&lt;-</span> <span class="fu">factor</span>(imp_bns_combined_long<span class="sc">$</span>health_conscious, <span class="at">order =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> <span class="fu">relevel</span>(imp_bns_combined_long<span class="sc">$</span>health_conscious, <span class="at">ref =</span> <span class="st">"No"</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long<span class="sc">$</span>kitchen_access <span class="ot">&lt;-</span> <span class="fu">factor</span>(imp_bns_combined_long<span class="sc">$</span>kitchen_access, <span class="at">order =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> <span class="fu">relevel</span>(imp_bns_combined_long<span class="sc">$</span>kitchen_access, <span class="at">ref =</span> <span class="st">"No"</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long<span class="sc">$</span>storage_room <span class="ot">&lt;-</span> <span class="fu">factor</span>(imp_bns_combined_long<span class="sc">$</span>storage_room, <span class="at">order =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> <span class="fu">relevel</span>(imp_bns_combined_long<span class="sc">$</span>storage_room, <span class="at">ref =</span> <span class="st">"No"</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Create variables to check ordinal regression</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="do">## FV ------------------------</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long<span class="sc">$</span>q77_one_vs_zero <span class="ot">&lt;-</span> <span class="fu">case_when</span>(imp_bns_combined_long<span class="sc">$</span>fruits3 <span class="sc">==</span> <span class="st">"0"</span> <span class="sc">~</span> <span class="st">"0"</span>, imp_bns_combined_long<span class="sc">$</span>fruits3 <span class="sc">==</span> <span class="st">"1-2"</span> <span class="sc">~</span> <span class="st">"1-2"</span>)  <span class="sc">%&gt;%</span> <span class="fu">factor</span>(<span class="at">order =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long<span class="sc">$</span>q77_one_vs_three_or_more <span class="ot">&lt;-</span> <span class="fu">case_when</span>(imp_bns_combined_long<span class="sc">$</span>fruits3 <span class="sc">==</span> <span class="st">"3 or more"</span> <span class="sc">~</span> <span class="st">"3 or more"</span>, imp_bns_combined_long<span class="sc">$</span>fruits3 <span class="sc">==</span> <span class="st">"1-2"</span> <span class="sc">~</span> <span class="st">"1-2"</span>)  <span class="sc">%&gt;%</span> <span class="fu">factor</span>(<span class="at">order =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="do">## SSB -------------------------------</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long<span class="sc">$</span>ssb_cat1 <span class="ot">&lt;-</span> <span class="fu">case_when</span>(imp_bns_combined_long<span class="sc">$</span>ssb_cat <span class="sc">==</span> <span class="st">"Zero"</span> <span class="sc">~</span> <span class="st">"Zero"</span>,</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>                                      imp_bns_combined_long<span class="sc">$</span>ssb_cat <span class="sc">==</span> <span class="st">"1-8 ounces"</span> <span class="sc">~</span> <span class="st">"1-8 ounces"</span>) <span class="sc">%&gt;%</span> <span class="fu">factor</span>(<span class="at">order =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> <span class="fu">relevel</span>(<span class="at">ref =</span> <span class="st">"Zero"</span>)</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long<span class="sc">$</span>ssb_cat2 <span class="ot">&lt;-</span> <span class="fu">case_when</span>(imp_bns_combined_long<span class="sc">$</span>ssb_cat <span class="sc">==</span> <span class="st">"1-8 ounces"</span> <span class="sc">~</span> <span class="st">"1-8 ounces"</span>, imp_bns_combined_long<span class="sc">$</span>ssb_cat <span class="sc">==</span> <span class="st">"9-16 ounces"</span> <span class="sc">~</span> <span class="st">"9-16 ounces"</span>) <span class="sc">%&gt;%</span> <span class="fu">factor</span>(<span class="at">order =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long<span class="sc">$</span>ssb_cat3 <span class="ot">&lt;-</span> <span class="fu">case_when</span>(imp_bns_combined_long<span class="sc">$</span>ssb_cat <span class="sc">==</span> <span class="st">"9-16 ounces"</span> <span class="sc">~</span> <span class="st">"9-16 ounces"</span>,</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>                                  imp_bns_combined_long<span class="sc">$</span>ssb_cat <span class="sc">==</span> <span class="st">"17 or more ounces"</span> <span class="sc">~</span> <span class="st">"17 or more ounces"</span>) <span class="sc">%&gt;%</span> <span class="fu">factor</span>(<span class="at">order =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> <span class="fu">relevel</span>(<span class="at">ref =</span> <span class="st">"9-16 ounces"</span>)</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a><span class="do">## FF ------------------------------------</span></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long<span class="sc">$</span>ff_cat1 <span class="ot">&lt;-</span> <span class="fu">case_when</span>(imp_bns_combined_long<span class="sc">$</span>ff_cat <span class="sc">==</span> <span class="st">"Zero"</span> <span class="sc">~</span> <span class="st">"Zero"</span>, imp_bns_combined_long<span class="sc">$</span>ff_cat <span class="sc">==</span> <span class="st">"1-2 times per week"</span> <span class="sc">~</span> <span class="st">"1-2 times per week"</span>) <span class="sc">%&gt;%</span> <span class="fu">factor</span>(<span class="at">order =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> <span class="fu">relevel</span>(<span class="at">ref =</span> <span class="st">"Zero"</span>)</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long<span class="sc">$</span>ff_cat2 <span class="ot">&lt;-</span> <span class="fu">case_when</span>(imp_bns_combined_long<span class="sc">$</span>ff_cat <span class="sc">==</span> <span class="st">"1-2 times per week"</span> <span class="sc">~</span> <span class="st">"1-2 times per week"</span>, imp_bns_combined_long<span class="sc">$</span>ff_cat <span class="sc">==</span> <span class="st">"3-4 times per week"</span> <span class="sc">~</span> <span class="st">"3-4 times per week"</span>) <span class="sc">%&gt;%</span> <span class="fu">factor</span>(<span class="at">order =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long<span class="sc">$</span>ff_cat3 <span class="ot">&lt;-</span> <span class="fu">case_when</span>(imp_bns_combined_long<span class="sc">$</span>ff_cat <span class="sc">==</span> <span class="st">"3-4 times per week"</span> <span class="sc">~</span> <span class="st">"3-4 times per week"</span>,</span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>                                  imp_bns_combined_long<span class="sc">$</span>ff_cat <span class="sc">==</span> <span class="st">"5 or more times per week"</span> <span class="sc">~</span> <span class="st">"5 or more times per week"</span>) <span class="sc">%&gt;%</span> <span class="fu">factor</span>(<span class="at">order =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Change numeric variables to increments</span></span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long<span class="sc">$</span>paid_work_hours_tens <span class="ot">&lt;-</span> (imp_bns_combined_long<span class="sc">$</span>paid_work_hours)<span class="sc">/</span><span class="dv">10</span></span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long<span class="sc">$</span>unpaid_work_hours_tens <span class="ot">&lt;-</span> (imp_bns_combined_long<span class="sc">$</span>unpaid_work_hours)<span class="sc">/</span><span class="dv">10</span></span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long<span class="sc">$</span>caregiving_hours_tens <span class="ot">&lt;-</span> (imp_bns_combined_long<span class="sc">$</span>caregiving_hours)<span class="sc">/</span><span class="dv">10</span></span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long<span class="sc">$</span>units_four <span class="ot">&lt;-</span> (imp_bns_combined_long<span class="sc">$</span>units)<span class="sc">/</span><span class="dv">4</span></span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long<span class="sc">$</span>age_five <span class="ot">&lt;-</span> (imp_bns_combined_long<span class="sc">$</span>age)<span class="sc">/</span><span class="dv">5</span></span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a><span class="co"># Change Reference</span></span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long<span class="sc">$</span>food_insecure_2item <span class="ot">&lt;-</span> <span class="fu">factor</span>(imp_bns_combined_long<span class="sc">$</span>food_insecure_2item, <span class="at">order =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> <span class="fu">relevel</span>(imp_bns_combined_long<span class="sc">$</span>food_insecure_2item, <span class="at">ref =</span> <span class="st">"No"</span>)</span>
+<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long<span class="sc">$</span>total_work_hours <span class="ot">&lt;-</span>   imp_bns_combined_long<span class="sc">$</span>paid_work_hours <span class="sc">+</span></span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a>                                            imp_bns_combined_long<span class="sc">$</span>unpaid_work_hours</span>
+<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long<span class="sc">$</span>ff_numeric <span class="ot">&lt;-</span> <span class="fu">recode</span>(imp_bns_combined_long<span class="sc">$</span>ff_cat, </span>
+<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a>                                             <span class="st">"Zero"</span> <span class="ot">=</span> <span class="dv">0</span>, <span class="st">"1-2 times per week"</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
+<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a>                                             <span class="st">"3-4 times per week"</span> <span class="ot">=</span> <span class="dv">3</span>,</span>
+<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a>                                             <span class="st">"5 or more times per week"</span> <span class="ot">=</span> <span class="dv">5</span>)</span>
+<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long<span class="sc">$</span>ssb_numeric <span class="ot">&lt;-</span> <span class="fu">recode</span>(imp_bns_combined_long<span class="sc">$</span>ssb_cat,</span>
+<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a>                                              <span class="st">"Zero"</span> <span class="ot">=</span> <span class="dv">0</span>, <span class="st">"1-8 ounces"</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
+<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a>                                              <span class="st">"9-16 ounces"</span> <span class="ot">=</span> <span class="dv">9</span>, <span class="st">"17 or more ounces"</span> <span class="ot">=</span> <span class="dv">17</span>)</span>
+<span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_long<span class="sc">$</span>q77_numeric <span class="ot">&lt;-</span> <span class="fu">recode</span>(imp_bns_combined_long<span class="sc">$</span>fruits3, <span class="st">"0"</span> <span class="ot">=</span> <span class="dv">0</span>,</span>
+<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a>                                              <span class="st">"1-2"</span> <span class="ot">=</span> <span class="dv">1</span>, <span class="st">"3 or more"</span> <span class="ot">=</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<section id="convert-back-to-mids" class="level2">
-<h2 class="anchored" data-anchor-id="convert-back-to-mids">Convert back to Mids</h2>
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#  imp_bns_combined_clean_mids &lt;- as.mids(imp_bns_combined_long, .imp = ".imp")</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># saveRDS(imp_bns_combined_clean_mids, file = "imp_bns_combined_clean_mids.RData")</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_clean_mids <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"clean_data/imp_bns_combined_clean_mids.RData"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Convert back to Mids</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#  imp_bns_combined_clean_mids &lt;- as.mids(imp_bns_combined_long, .imp = ".imp")</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># saveRDS(imp_bns_combined_clean_mids, file = "imp_bns_combined_clean_mids.RData")</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>imp_bns_combined_clean_mids <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"clean_data/imp_bns_combined_clean_mids.RData"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-</section>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>original_ssb_model <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_combined, MASS<span class="sc">::</span><span class="fu">polr</span>(ssb_cat<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> monthly_hh_income <span class="sc">+</span> academic_level <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_access <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> homelessness_year <span class="sc">+</span> firstgen, <span class="at">Hess=</span><span class="cn">TRUE</span>))</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>imp_ssb_model <span class="ot">&lt;-</span> <span class="fu">with</span>(imp_bns_combined_clean_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(ssb_cat<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> monthly_hh_income <span class="sc">+</span> academic_level <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_access <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> homelessness_year <span class="sc">+</span> firstgen, <span class="at">Hess=</span><span class="cn">TRUE</span>))</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co"># pool(imp_ssb_model) |&gt; summary()</span></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>original_ssb_model_tidy <span class="ot">&lt;-</span> <span class="fu">tidy</span>(original_ssb_model) <span class="sc">%&gt;%</span></span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">"original_ssb_model"</span>)</span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>imp_ssb_model_tidy <span class="ot">&lt;-</span> <span class="fu">pool</span>(imp_ssb_model) <span class="sc">|&gt;</span> <span class="fu">summary</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">"imp_ssb_model"</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>df)</span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>ssb_models <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(original_ssb_model_tidy , imp_ssb_model_tidy)</span>
-<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="fu">dwplot</span>(ssb_models)  <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>,</span>
-<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>               <span class="at">colour =</span> <span class="st">"black"</span>,</span>
-<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>               <span class="at">linetype =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>original_ssb_model <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_combined, MASS<span class="sc">::</span><span class="fu">polr</span>(ssb_cat<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> monthly_hh_income <span class="sc">+</span> academic_level <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_access <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> homelessness_year <span class="sc">+</span> firstgen, <span class="at">Hess=</span><span class="cn">TRUE</span>))</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>imp_ssb_model <span class="ot">&lt;-</span> <span class="fu">with</span>(imp_bns_combined_clean_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(ssb_cat<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> monthly_hh_income <span class="sc">+</span> academic_level <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_access <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> homelessness_year <span class="sc">+</span> firstgen, <span class="at">Hess=</span><span class="cn">TRUE</span>))</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># pool(imp_ssb_model) |&gt; summary()</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>original_ssb_model_tidy <span class="ot">&lt;-</span> <span class="fu">tidy</span>(original_ssb_model) <span class="sc">%&gt;%</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">"original_ssb_model"</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>imp_ssb_model_tidy <span class="ot">&lt;-</span> <span class="fu">pool</span>(imp_ssb_model) <span class="sc">|&gt;</span> <span class="fu">summary</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">"imp_ssb_model"</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>df)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>ssb_models <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(original_ssb_model_tidy , imp_ssb_model_tidy)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="fu">dwplot</span>(ssb_models)  <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>,</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>               <span class="at">colour =</span> <span class="st">"black"</span>,</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>               <span class="at">linetype =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="Imputations_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<p><img src="Imputations_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
 </div>
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dwplot(imp_ssb_model_tidy) + geom_vline(xintercept = 1,</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co">#                colour = "black",</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co">#                linetype = 1)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dwplot(imp_ssb_model_tidy) + geom_vline(xintercept = 1,</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#                colour = "black",</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#                linetype = 1)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -490,27 +402,27 @@ Attaching package: 'dplyr'</code></pre>
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>original_ff_model <span class="ot">&lt;-</span> MASS<span class="sc">::</span><span class="fu">polr</span>(ff_cat<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> monthly_hh_income <span class="sc">+</span> academic_level <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_access <span class="sc">+</span> kitchen_access <span class="sc">+</span> health_conscious <span class="sc">+</span> living_with_family <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined, <span class="at">Hess=</span><span class="cn">TRUE</span>)</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>imp_ff_model <span class="ot">&lt;-</span> <span class="fu">with</span>(imp_bns_combined_clean_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(ff_cat<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> monthly_hh_income <span class="sc">+</span> academic_level <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_access <span class="sc">+</span> kitchen_access <span class="sc">+</span> health_conscious <span class="sc">+</span> living_with_family <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> homelessness_year, <span class="at">Hess=</span><span class="cn">TRUE</span>))</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="co"># pool(imp_ff_model) |&gt; summary()</span></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>original_ff_model_tidy <span class="ot">&lt;-</span> <span class="fu">tidy</span>(original_ff_model) <span class="sc">%&gt;%</span></span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">"original_ff_model"</span>)</span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>imp_ff_model_tidy <span class="ot">&lt;-</span> <span class="fu">pool</span>(imp_ff_model) <span class="sc">|&gt;</span> <span class="fu">summary</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">"imp_ff_model"</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>df)</span>
-<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>ff_models <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(original_ff_model_tidy , imp_ff_model_tidy)</span>
-<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a><span class="fu">dwplot</span>(ff_models)  <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>,</span>
-<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>               <span class="at">colour =</span> <span class="st">"black"</span>,</span>
-<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>               <span class="at">linetype =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>original_ff_model <span class="ot">&lt;-</span> MASS<span class="sc">::</span><span class="fu">polr</span>(ff_cat<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> monthly_hh_income <span class="sc">+</span> academic_level <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_access <span class="sc">+</span> kitchen_access <span class="sc">+</span> health_conscious <span class="sc">+</span> living_with_family <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined, <span class="at">Hess=</span><span class="cn">TRUE</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>imp_ff_model <span class="ot">&lt;-</span> <span class="fu">with</span>(imp_bns_combined_clean_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(ff_cat<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> monthly_hh_income <span class="sc">+</span> academic_level <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_access <span class="sc">+</span> kitchen_access <span class="sc">+</span> health_conscious <span class="sc">+</span> living_with_family <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> homelessness_year, <span class="at">Hess=</span><span class="cn">TRUE</span>))</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># pool(imp_ff_model) |&gt; summary()</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>original_ff_model_tidy <span class="ot">&lt;-</span> <span class="fu">tidy</span>(original_ff_model) <span class="sc">%&gt;%</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">"original_ff_model"</span>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>imp_ff_model_tidy <span class="ot">&lt;-</span> <span class="fu">pool</span>(imp_ff_model) <span class="sc">|&gt;</span> <span class="fu">summary</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">"imp_ff_model"</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>df)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>ff_models <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(original_ff_model_tidy , imp_ff_model_tidy)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="fu">dwplot</span>(ff_models)  <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>,</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>               <span class="at">colour =</span> <span class="st">"black"</span>,</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>               <span class="at">linetype =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="Imputations_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+<p><img src="Imputations_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </div>
@@ -518,25 +430,25 @@ Attaching package: 'dplyr'</code></pre>
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>imp_FV_model <span class="ot">&lt;-</span> <span class="fu">with</span>(imp_bns_combined_clean_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(fruits3<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> monthly_hh_income <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> physical_activity <span class="sc">+</span> food_insecure_2item, <span class="at">Hess=</span><span class="cn">TRUE</span>))</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>original_FV_model <span class="ot">&lt;-</span> MASS<span class="sc">::</span><span class="fu">polr</span>(fruits3<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> monthly_hh_income <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> physical_activity <span class="sc">+</span> food_insecure_2item, <span class="at">data =</span> bns_combined, <span class="at">Hess=</span><span class="cn">TRUE</span>)</span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>original_FV_model_tidy <span class="ot">&lt;-</span> <span class="fu">tidy</span>(original_FV_model) <span class="sc">%&gt;%</span></span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">"original_FV_model"</span>)</span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>imp_FV_model_tidy <span class="ot">&lt;-</span> <span class="fu">pool</span>(imp_FV_model) <span class="sc">|&gt;</span> <span class="fu">summary</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">"imp_FV_model"</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>df)</span>
-<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>FV_models <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(original_FV_model_tidy , imp_FV_model_tidy)</span>
-<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a><span class="fu">dwplot</span>(FV_models)  <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>,</span>
-<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>               <span class="at">colour =</span> <span class="st">"black"</span>,</span>
-<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>               <span class="at">linetype =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>imp_FV_model <span class="ot">&lt;-</span> <span class="fu">with</span>(imp_bns_combined_clean_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(fruits3<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> monthly_hh_income <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> physical_activity <span class="sc">+</span> food_insecure_2item, <span class="at">Hess=</span><span class="cn">TRUE</span>))</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>original_FV_model <span class="ot">&lt;-</span> MASS<span class="sc">::</span><span class="fu">polr</span>(fruits3<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> monthly_hh_income <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> physical_activity <span class="sc">+</span> food_insecure_2item, <span class="at">data =</span> bns_combined, <span class="at">Hess=</span><span class="cn">TRUE</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>original_FV_model_tidy <span class="ot">&lt;-</span> <span class="fu">tidy</span>(original_FV_model) <span class="sc">%&gt;%</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">"original_FV_model"</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>imp_FV_model_tidy <span class="ot">&lt;-</span> <span class="fu">pool</span>(imp_FV_model) <span class="sc">|&gt;</span> <span class="fu">summary</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">"imp_FV_model"</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>df)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>FV_models <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(original_FV_model_tidy , imp_FV_model_tidy)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="fu">dwplot</span>(FV_models)  <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>,</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>               <span class="at">colour =</span> <span class="st">"black"</span>,</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>               <span class="at">linetype =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="Imputations_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+<p><img src="Imputations_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </div>
