@@ -1,0 +1,291 @@
+---
+title: "Variable Selection"
+format:
+  html:
+    code-fold: true
+    code-summary: "Show the code"
+---
+
+::: panel-tabset
+```{r}
+
+library(nnet)
+library(glmnet)
+library(gglasso)
+library(mice)
+library(gtsummary)
+library(car)
+
+# Multi Level Model
+# Random Intercept Model
+
+
+# source("../bns3_data_analysis_ssshamy/data_management.R")
+
+
+bns_imputed_mids <- readRDS("clean_data/imp_bns_combined_clean_mids.RData")
+
+bns_combined_imputed_df <- complete(bns_imputed_mids, fill = 3)
+
+
+```
+
+# Fast Food LASSO Regression
+
+```{r}
+
+
+y <- bns_combined_imputed_df$ff_numeric
+x <- model.matrix(ff_numeric~calfresh3 + Cohort + race_eth + gender + age + cooking_confident + living_with_family + food_insecure_2item + units_four + unpaid_work_hours_tens + paid_work_hours_tens + caregiving_hours_tens + health_conscious + kitchen_access + storage_access + storage_room + monthly_hh_income + physical_activity + firstgen + household_size + academic_level + housing_insecure + homelessness_year, bns_combined_imputed_df)[,-1] # the -1 drops the intercept
+model.lasso <- glmnet(x, y, alpha = 1)
+
+
+set.seed(123) # Setting a seed to ensure I get the same results each time I knit
+cv.lasso <- cv.glmnet(x, y, alpha = 1) # note change in function
+
+# Fit the final model using the min lambda
+model <- glmnet(x, y, alpha = 1, lambda = cv.lasso$lambda.min)
+
+round(coef(model), digits = 1)
+
+```
+
+> 0.1 (rounded) seemed like a reasonable cutoff Based on this, covariates will include homelessness, academic year, physical activity, income, storage room, storage_access, kitchen access, health consciousness, paid work hours, food insecurity, living with family, cooking confidence, gender, race eth Based on previous research, include gender, age, race/eth, and income
+
+# SSB LASSO Regression
+
+```{r}
+
+
+y <- bns_combined_imputed_df$ssb_numeric
+x <- model.matrix(ssb_numeric~calfresh3 + Cohort + race_eth + gender + age + cooking_confident + living_with_family + food_insecure_2item + units_four + unpaid_work_hours_tens + paid_work_hours_tens + caregiving_hours_tens + health_conscious + kitchen_access + storage_access + storage_room + monthly_hh_income + physical_activity + firstgen + household_size + academic_level + housing_insecure + homelessness_year, bns_combined_imputed_df)[,-1] # the -1 drops the intercept
+model.lasso <- glmnet(x, y, alpha = 1)
+
+
+set.seed(123) # Setting a seed to ensure I get the same results each time I knit
+cv.lasso <- cv.glmnet(x, y, alpha = 1) # note change in function
+
+# Fit the final model using the min lambda
+model <- glmnet(x, y, alpha = 1, lambda = cv.lasso$lambda.min)
+
+round(coef(model), digits = 1)
+
+```
+
+> potential cutoff: 0.1 With this cutoff, covariates will include homelessness_year, academic year, first gen, physical activity, income, storage room, storage access, health consciousness, caregiving hours, units, paid work hours, food insecurity, gender, race/eth and school From research, include age, race/eth, gender, and income
+
+# F&V LASSO Regression
+
+```{r}
+
+
+
+y <- bns_combined_imputed_df$q77_numeric
+x <- model.matrix(q77_numeric~calfresh3 + Cohort + race_eth + gender + age + cooking_confident + living_with_family + food_insecure_2item + units_four + unpaid_work_hours_tens + paid_work_hours_tens + caregiving_hours_tens + health_conscious + kitchen_access + storage_access + storage_room + monthly_hh_income + physical_activity + firstgen + household_size + academic_level + housing_insecure + homelessness_year, bns_combined_imputed_df)[,-1] # the -1 drops the intercept
+model.lasso <- glmnet(x, y, alpha = 1)
+
+
+set.seed(123) # Setting a seed to ensure I get the same results each time I knit
+cv.lasso <- cv.glmnet(x, y, alpha = 1) # note change in function
+
+# Fit the final model using the min lambda
+model <- glmnet(x, y, alpha = 1, lambda = cv.lasso$lambda.min)
+
+round(coef(model), digits = 1)
+
+```
+
+> Potential cutoff is 0.1 (round) With this cutoff, covariates will include physical activity, storage room, health consciousness, food insecurity, and cooking confident Based on research, include age, race/eth, gender, and income
+
+# Fast Food Model Variable elimination
+
+## Test Colinearity
+
+```{r}
+# Linear model based on LASSO results
+ff.linear.model <- lm(ff_numeric~calfresh3 + Cohort + gender + race_eth + age + monthly_hh_income + academic_level + physical_activity + storage_access + storage_room + kitchen_access + health_conscious + living_with_family + cooking_confident + food_insecure_2item + paid_work_hours_tens + homelessness_year, data = bns_combined_imputed_df)
+
+vif(ff.linear.model)
+
+
+```
+
+> CalFresh3 and income could be colinear Academic level and school could also be colinear since there are no juniors/seniors in a community college
+
+## Test removing income
+
+```{r}
+
+ff.linear.model2 <- lm(ff_numeric~calfresh3 + Cohort + gender + race_eth + age + academic_level + physical_activity + storage_access + storage_room + kitchen_access + health_conscious + living_with_family + cooking_confident + food_insecure_2item + paid_work_hours_tens + homelessness_year, data = bns_combined_imputed_df)
+
+vif(ff.linear.model2)
+
+```
+
+> Removing income decreased the VIF of the calfresh3 variable
+
+## Test removing academic level
+
+```{r}
+
+
+ff.linear.model3 <- lm(ff_numeric~calfresh3 + Cohort + gender + race_eth + age + physical_activity + storage_access + storage_room + kitchen_access + health_conscious + living_with_family + cooking_confident + food_insecure_2item + paid_work_hours_tens + homelessness_year, data = bns_combined_imputed_df)
+
+vif(ff.linear.model3)
+
+
+```
+
+> Academic level had a somewhat high VIF. Removing academic level decreased the VIF in the Cohort variable. This variable was removed because of the VIF improvements after removing the variable and since age was already being controlled for.
+
+
+
+## Manual Backwards Elimination
+
+```{r}
+
+# Full Model Based on LASSO after removing colinear variables
+
+ff.ordinal.mod <- with(bns_imputed_mids, MASS::polr(ff_cat~calfresh3 + Cohort + gender + race_eth + age + physical_activity + storage_access + storage_room + kitchen_access + health_conscious + cooking_confident + food_insecure_2item + paid_work_hours_tens + living_with_family, homelessness_year, Hess=TRUE)) %>% tbl_regression(exponentiate = TRUE) %>% bold_p()
+
+ff.ordinal.mod
+
+
+```
+
+## Test Removing Storage Access
+
+```{r}
+
+ff.ordinal.mod_storage <- with(bns_imputed_mids, MASS::polr(ff_cat~calfresh3 + Cohort + gender + race_eth + age + physical_activity + storage_room + kitchen_access + health_conscious + cooking_confident + food_insecure_2item + paid_work_hours_tens + living_with_family, homelessness_year, Hess=TRUE)) %>% tbl_regression(exponentiate = TRUE) %>% bold_p()
+
+tbl_merge(tbls = list(ff.ordinal.mod, ff.ordinal.mod_storage), tab_spanner = c("Full FF Model", "**Test Model*"))
+
+
+
+```
+
+> Storage Access had a high p value in the full model Storage Access can be removed without changing any results
+
+# SSB Intake Variable elimination
+
+## Test Colinearity
+
+```{r}
+# Full model based on LASSO
+ssb.linear.model <- lm(ssb_numeric~calfresh3 + Cohort + gender + race_eth + age + monthly_hh_income + academic_level + physical_activity + health_conscious + storage_room + storage_access + firstgen + units_four + paid_work_hours_tens + caregiving_hours_tens + food_insecure_2item + homelessness_year, data = bns_combined_imputed_df)
+
+vif(ssb.linear.model)
+
+```
+
+> CalFresh3 and income could be colinear Academic level and school could also be colinear since there are no juniors/seniors in a community college
+
+## Test removing income
+
+```{r}
+
+ssb.linear.model2 <- lm(ssb_numeric~calfresh3 + Cohort + gender + race_eth + age + academic_level + physical_activity + health_conscious + storage_room + storage_access + firstgen + units_four + paid_work_hours_tens + caregiving_hours_tens + food_insecure_2item + homelessness_year, data = bns_combined_imputed_df)
+
+vif(ssb.linear.model2)
+
+```
+
+> Removing income greatly decreased the VIF in the calfresh3 variable
+
+## Test removing academic year
+
+```{r}
+
+ssb.linear.model2 <- lm(ssb_numeric~calfresh3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_room + storage_access + firstgen + units_four + paid_work_hours_tens + caregiving_hours_tens + food_insecure_2item + homelessness_year, data = bns_combined_imputed_df)
+
+vif(ssb.linear.model2)
+
+```
+
+> Removing academic year decreased the VIF in Cohort
+
+## Manual backwards elimination
+
+```{r}
+
+
+# Full Model after eliminating colinear variables
+ssb.ordinal.mod <- with(bns_imputed_mids, MASS::polr(ssb_cat~calfresh3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_room + storage_access + firstgen + units_four + paid_work_hours_tens + caregiving_hours_tens + food_insecure_2item + homelessness_year, Hess=TRUE)) %>% tbl_regression(exponentiate = TRUE) %>% bold_p()
+
+
+
+
+```
+
+## Test Removing firstgen
+
+```{r}
+
+# Remove firstgen
+ssb.ordinal.mod.firstgen <- with(bns_imputed_mids, MASS::polr(ssb_cat~calfresh3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_room + storage_access + units_four + paid_work_hours_tens + caregiving_hours_tens + food_insecure_2item + homelessness_year, Hess=TRUE)) %>% tbl_regression(exponentiate = TRUE) %>% bold_p()
+
+
+tbl_merge(tbls = list(ssb.ordinal.mod, ssb.ordinal.mod.firstgen), tab_spanner = c("Full SSB Model", "**Test Model*"))
+
+
+```
+
+> First gen had a really high p value It can be reomved without changing any results
+
+## Test Removing storage room
+
+```{r}
+
+ssb.ordinal.mod.storage <- with(bns_imputed_mids, MASS::polr(ssb_cat~calfresh3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_access + units_four + paid_work_hours_tens + caregiving_hours_tens + food_insecure_2item + homelessness_year, Hess=TRUE)) %>% tbl_regression(exponentiate = TRUE) %>% bold_p()
+
+
+tbl_merge(tbls = list(ssb.ordinal.mod.firstgen, ssb.ordinal.mod.storage), tab_spanner = c("Full SSB Model", "**Test Model*"))
+
+
+```
+
+> Storage Room can be removed
+
+## Test removing food insecurity
+
+```{r}
+
+ssb.ordinal.mod.fi <- with(bns_imputed_mids, MASS::polr(ssb_cat~calfresh3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_access + units_four + paid_work_hours_tens + caregiving_hours_tens + homelessness_year, Hess=TRUE)) %>% tbl_regression(exponentiate = TRUE) %>% bold_p()
+
+
+tbl_merge(tbls = list(ssb.ordinal.mod.storage, ssb.ordinal.mod.fi), tab_spanner = c("Full SSB Model", "**Test Model*"))
+
+```
+
+> Food security can be removed
+
+# FV intake Variable Elimination
+
+## Test Colinearity
+
+```{r}
+# Linear model based on results from LASSO regression
+fv.linear.model <- lm(q77_numeric~calfresh3 + Cohort + gender + race_eth + age + monthly_hh_income + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item, data = bns_combined_imputed_df)
+
+vif(fv.linear.model)
+
+
+```
+
+> CalFresh3 and income could be colinear Academic level and school could also be colinear since there are no juniors/seniors in a community college
+
+## Test removing income
+
+```{r}
+
+fv.linear.model <- lm(q77_numeric~calfresh3 + Cohort + gender + race_eth + age + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item, data = bns_combined_imputed_df)
+
+vif(fv.linear.model)
+
+```
+
+> Removing income greatly decreased the vif of the calfresh3 variable
+
+> No other variables in FV consumption looked like they can be removed through manual backwards elimination
+:::

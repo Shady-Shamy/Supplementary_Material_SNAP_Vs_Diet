@@ -1,0 +1,13 @@
+---
+title: "Summary"
+---
+
+> This site serves as a reference to all code and supplementary material used for the CalFresh Vs College Student Diet Quality Manuscript. Below is the abstract of the paper:
+
+> College students in the United States have nutrient poor diets consisting of frequent fast-food intake, frequent sugar sweetened beverage (SSB) intake, and low fruit and vegetable (F&V) intake. Having a low income is one of the most prominent predictors of low-quality diets. Low-income students have access to CalFresh Food Benefits, known federally as Supplemental Nutrition Assistance Program (SNAP) to help provide additional money for groceries. This study analyzes the associations between CalFresh Food use and fast food, SSB, and F&V intake.
+
+> Self-reported data was analyzed from n = 2,362 college students in California using a cross sectional study design. Three ordinal regression models were built with the dietary intake indicators as the dependent variables, CalFresh status as the independent variable, and various covariates. CalFresh status was divided into three groups, those that were currently using CalFresh, those that were likely eligible non- recipients (LENRs), and those that were income-ineligible non-recipients (IINRs).
+
+> After controlling for covariates, LENRs were more likely to consume fast-food (OR: 1.69, 95% CI: 1.33 - 2.15, p \< 0.001), and SSBs (OR: 1.37, 95% CI: 1.12 -- 1.66, p = 0.002) and were less likely to consume F&Vs (OR: 0.57, 95% CI: 0.45 -- 0.72, p \< 0.001) compared to CalFresh recipients. IINRs were also more likely to consume fast-food (OR: 1.87, 95% CI: 1.43 - 2.45, p \< 0.001), and SSBs (OR: 1.53, 95% CI: 1.17 -- 2.01, p = 0.003) and were also less likely to consume F&Vs (OR: 0.57, 95% CI: 0.38 -- 0.84, p = 0.007).
+
+> Although there were positive dietary associations with receiving CalFresh Food benefits, an alarming number of students were still not eating enough F&Vs in all three groups while more than half of the students in all three groups consuming at least one serving of SSBs daily and 1-2 meals of fast-food a week. Future research should investigate the efficacy of CalFresh Healthy Living nutrition education, nutrition incentive programs, and CalFresh Food benefits in coordination with each other for improving college students’ diets. 

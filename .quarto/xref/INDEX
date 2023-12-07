@@ -1,0 +1,32 @@
+{
+  "about.qmd": {
+    "about.html": "b74add3b"
+  },
+  "Data Management.qmd": {
+    "Data Management.html": "463c2d2b"
+  },
+  "Imputations.qmd": {
+    "Imputations.html": "d2f1db7b"
+  },
+  "Variable Selection.qmd": {
+    "Variable Selection.html": "4b33327b"
+  },
+  "Clustering Analysis.qmd": {
+    "Clustering Analysis.html": "39ab3968"
+  },
+  "Manuscript Files.qmd": {
+    "Manuscript Files.html": "80fd7b9a"
+  },
+  "Abstract.qmd": {
+    "Abstract.html": "9341efc8"
+  },
+  "Index.qmd": {
+    "Index.html": "ab2b05c6"
+  },
+  "index.qmd": {
+    "index.html": "29a6fc18"
+  },
+  "Survey Questions.qmd": {
+    "Survey Questions.html": "9dc1aa76"
+  }
+}

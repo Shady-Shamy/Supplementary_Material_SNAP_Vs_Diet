@@ -1,0 +1,2839 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>CalFresh Vs Diet Quality - Manuscript Files</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">CalFresh Vs Diet Quality</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./Survey Questions.html" rel="" target="">
+ <span class="menu-text">Survey Questions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Data Management.html" rel="" target="">
+ <span class="menu-text">Data Management</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Imputations.html" rel="" target="">
+ <span class="menu-text">Imputations</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Variable Selection.html" rel="" target="">
+ <span class="menu-text">Variable Selection</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Clustering Analysis.html" rel="" target="">
+ <span class="menu-text">Clustering Analysis</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./Manuscript Files.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Manuscript Files</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#frequency-statistics" id="toc-frequency-statistics" class="nav-link active" data-scroll-target="#frequency-statistics">Frequency Statistics</a></li>
+  <li><a href="#ssb-intake" id="toc-ssb-intake" class="nav-link" data-scroll-target="#ssb-intake">SSB Intake</a></li>
+  <li><a href="#fast-food-intake" id="toc-fast-food-intake" class="nav-link" data-scroll-target="#fast-food-intake">Fast Food Intake</a></li>
+  <li><a href="#fv-intake" id="toc-fv-intake" class="nav-link" data-scroll-target="#fv-intake">FV Intake</a></li>
+  <li><a href="#all-ordinal-models" id="toc-all-ordinal-models" class="nav-link" data-scroll-target="#all-ordinal-models">All Ordinal Models</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Manuscript Files</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="frequency-statistics" class="level1">
+<h1>Frequency Statistics</h1>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Demographic Information:</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Dependent variables Vs CalFresh Table</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">FV Vs CalFresh Plot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">Fast Food Vs CalFresh Plot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false">SSB Vs CalFresh Plot</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>demographics_cc <span class="ot">&lt;-</span> bns_combined <span class="sc">%&gt;%</span> <span class="fu">select</span>(age, gender, race_eth, monthly_hh_income, academic_level, Cohort, school2, calfresh3, calfresh_eligible, cooking_confident, health_conscious, physical_activity, ssb_cat, ff_cat, fruits3, food_insecure_2item,  units, paid_work_hours)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>cc <span class="ot">&lt;-</span> demographics_cc <span class="sc">%&gt;%</span> </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_summary</span>(<span class="at">statistic =</span> <span class="fu">list</span>(</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="st">"Mean: {mean}, Median: {median}, SD: {sd}"</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">all_categorical</span>() <span class="sc">~</span> <span class="st">"{n} ({p}%)"</span>),</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">missing_text=</span> <span class="st">"Missing (n)"</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>demographics_imp <span class="ot">&lt;-</span> bns_combined_imputed_df <span class="sc">%&gt;%</span> <span class="fu">select</span>(age, gender, race_eth, monthly_hh_income, academic_level, Cohort, school2, calfresh3, calfresh_eligible, cooking_confident, health_conscious, physical_activity, ssb_cat, ff_cat, fruits3, food_insecure_2item,  units, paid_work_hours)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>imp <span class="ot">&lt;-</span> demographics_imp <span class="sc">%&gt;%</span> </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_summary</span>(<span class="at">statistic =</span> <span class="fu">list</span>(</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>      <span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="st">"Mean: {mean}, Median: {median}, SD: {sd}"</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>      <span class="fu">all_categorical</span>() <span class="sc">~</span> <span class="st">"{n} ({p}%)"</span>),</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">missing_text=</span> <span class="st">"Missing (n)"</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_merge</span>(<span class="at">tbls =</span> <span class="fu">list</span>(cc, imp), </span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>          <span class="at">tab_spanner =</span> <span class="fu">c</span>(<span class="st">"**Complete Case Demographics**"</span>, <span class="st">"**Imputed Demographics**"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_kable_extra</span>(</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">booktabs =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">longtable =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">linesep =</span> <span class="st">""</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: left; empty-cells: hide; border-bottom: hidden;"></th>
+<th data-quarto-table-cell-role="th" style="text-align: center; border-bottom: hidden; padding-bottom: 0; padding-left: 3px; padding-right: 3px;"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Complete Case Demographics
+</div></th>
+<th data-quarto-table-cell-role="th" style="text-align: center; border-bottom: hidden; padding-bottom: 0; padding-left: 3px; padding-right: 3px;"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Imputed Demographics
+</div></th>
+</tr>
+<tr class="odd">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Characteristic</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">N = 2,362</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">N = 2,362</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">age</td>
+<td style="text-align: center;">Mean: 25, Median: 22, SD: 8</td>
+<td style="text-align: center;">Mean: 25, Median: 22, SD: 8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gender</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Female</td>
+<td style="text-align: center;">1,809 (77%)</td>
+<td style="text-align: center;">1,824 (77%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Male</td>
+<td style="text-align: center;">534 (23%)</td>
+<td style="text-align: center;">538 (23%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Missing (n)</td>
+<td style="text-align: center;">19</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">race_eth</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Non Hispanic White</td>
+<td style="text-align: center;">222 (13%)</td>
+<td style="text-align: center;">229 (9.7%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Hispanic White</td>
+<td style="text-align: center;">636 (38%)</td>
+<td style="text-align: center;">1,130 (48%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Non Hispanic African American</td>
+<td style="text-align: center;">110 (6.6%)</td>
+<td style="text-align: center;">117 (5.0%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Non Hispanic Asian</td>
+<td style="text-align: center;">264 (16%)</td>
+<td style="text-align: center;">279 (12%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Other/Unknown</td>
+<td style="text-align: center;">438 (26%)</td>
+<td style="text-align: center;">607 (26%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Missing (n)</td>
+<td style="text-align: center;">692</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">monthly_hh_income</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Very Low</td>
+<td style="text-align: center;">249 (13%)</td>
+<td style="text-align: center;">288 (12%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Low</td>
+<td style="text-align: center;">930 (49%)</td>
+<td style="text-align: center;">1,050 (44%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Moderate</td>
+<td style="text-align: center;">283 (15%)</td>
+<td style="text-align: center;">350 (15%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">High</td>
+<td style="text-align: center;">179 (9.4%)</td>
+<td style="text-align: center;">245 (10%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Very High</td>
+<td style="text-align: center;">254 (13%)</td>
+<td style="text-align: center;">429 (18%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Missing (n)</td>
+<td style="text-align: center;">467</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">academic_level</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Freshman</td>
+<td style="text-align: center;">535 (24%)</td>
+<td style="text-align: center;">572 (24%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Sophomore</td>
+<td style="text-align: center;">410 (18%)</td>
+<td style="text-align: center;">428 (18%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Junior</td>
+<td style="text-align: center;">662 (29%)</td>
+<td style="text-align: center;">688 (29%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Senior</td>
+<td style="text-align: center;">647 (29%)</td>
+<td style="text-align: center;">674 (29%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Missing (n)</td>
+<td style="text-align: center;">108</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Cohort</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Pilot 2</td>
+<td style="text-align: center;">390 (17%)</td>
+<td style="text-align: center;">390 (17%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Statewide</td>
+<td style="text-align: center;">1,972 (83%)</td>
+<td style="text-align: center;">1,972 (83%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">school2</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">CC</td>
+<td style="text-align: center;">650 (28%)</td>
+<td style="text-align: center;">651 (28%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">CSU</td>
+<td style="text-align: center;">1,544 (65%)</td>
+<td style="text-align: center;">1,544 (65%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">UC</td>
+<td style="text-align: center;">167 (7.1%)</td>
+<td style="text-align: center;">167 (7.1%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Missing (n)</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">calfresh3</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">CalFresh Recipients</td>
+<td style="text-align: center;">605 (33%)</td>
+<td style="text-align: center;">739 (31%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Likely Eligible Non-Recipients</td>
+<td style="text-align: center;">1,000 (55%)</td>
+<td style="text-align: center;">1,174 (50%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Income-Ineligible Non-Recipients</td>
+<td style="text-align: center;">216 (12%)</td>
+<td style="text-align: center;">449 (19%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Missing (n)</td>
+<td style="text-align: center;">541</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">calfresh_eligible</td>
+<td style="text-align: center;">1,575 (86%)</td>
+<td style="text-align: center;">1,849 (78%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Missing (n)</td>
+<td style="text-align: center;">538</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">cooking_confident</td>
+<td style="text-align: center;">1,631 (78%)</td>
+<td style="text-align: center;">1,836 (78%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Missing (n)</td>
+<td style="text-align: center;">270</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">health_conscious</td>
+<td style="text-align: center;">1,183 (56%)</td>
+<td style="text-align: center;">1,344 (57%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Missing (n)</td>
+<td style="text-align: center;">251</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">physical_activity</td>
+<td style="text-align: center;">1,459 (71%)</td>
+<td style="text-align: center;">1,654 (70%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Missing (n)</td>
+<td style="text-align: center;">297</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ssb_cat</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Zero</td>
+<td style="text-align: center;">768 (37%)</td>
+<td style="text-align: center;">890 (38%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">1-8 ounces</td>
+<td style="text-align: center;">729 (35%)</td>
+<td style="text-align: center;">817 (35%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">9-16 ounces</td>
+<td style="text-align: center;">345 (17%)</td>
+<td style="text-align: center;">406 (17%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">17 or more ounces</td>
+<td style="text-align: center;">216 (10%)</td>
+<td style="text-align: center;">249 (11%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Missing (n)</td>
+<td style="text-align: center;">304</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ff_cat</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Zero</td>
+<td style="text-align: center;">305 (15%)</td>
+<td style="text-align: center;">356 (15%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">1-2 times per week</td>
+<td style="text-align: center;">1,152 (56%)</td>
+<td style="text-align: center;">1,321 (56%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">3-4 times per week</td>
+<td style="text-align: center;">450 (22%)</td>
+<td style="text-align: center;">503 (21%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">5 or more times per week</td>
+<td style="text-align: center;">155 (7.5%)</td>
+<td style="text-align: center;">182 (7.7%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Missing (n)</td>
+<td style="text-align: center;">300</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">fruits3</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">0</td>
+<td style="text-align: center;">260 (13%)</td>
+<td style="text-align: center;">311 (13%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">1-2</td>
+<td style="text-align: center;">1,444 (72%)</td>
+<td style="text-align: center;">1,694 (72%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">3 or more</td>
+<td style="text-align: center;">305 (15%)</td>
+<td style="text-align: center;">357 (15%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Missing (n)</td>
+<td style="text-align: center;">353</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">food_insecure_2item</td>
+<td style="text-align: center;">1,156 (60%)</td>
+<td style="text-align: center;">1,248 (53%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Missing (n)</td>
+<td style="text-align: center;">425</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">units</td>
+<td style="text-align: center;">Mean: 13.0, Median: 13.0, SD: 3.6</td>
+<td style="text-align: center;">Mean: 12.9, Median: 13.0, SD: 3.6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Missing (n)</td>
+<td style="text-align: center;">31</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">paid_work_hours</td>
+<td style="text-align: center;">Mean: 15, Median: 14, SD: 15</td>
+<td style="text-align: center;">Mean: 15, Median: 14, SD: 15</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Missing (n)</td>
+<td style="text-align: center;">189</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody><tfoot>
+<tr class="odd">
+<td style="text-align: left; padding: 0;"><sup>1</sup> Mean: Mean, Median: Median, SD: SD; n (%)</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tfoot>
+
+</table>
+
+
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>bns_combined_imputed_df <span class="sc">%&gt;%</span> <span class="fu">select</span>(ff_cat, ssb_cat, fruits3, calfresh3) <span class="sc">%&gt;%</span> <span class="fu">tbl_summary</span>(<span class="at">by =</span> calfresh3, <span class="at">missing =</span> <span class="st">"no"</span>) <span class="sc">%&gt;%</span> <span class="fu">add_overall</span>(<span class="at">last =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_kable_extra</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">booktabs =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">longtable =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">linesep =</span> <span class="st">""</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Characteristic</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">CalFresh Recipients, N = 739</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Likely Eligible Non-Recipients, N = 1,174</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Income-Ineligible Non-Recipients, N = 449</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Overall, N = 2,362</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ff_cat</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Zero</td>
+<td style="text-align: center;">161 (22%)</td>
+<td style="text-align: center;">149 (13%)</td>
+<td style="text-align: center;">46 (10%)</td>
+<td style="text-align: center;">356 (15%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">1-2 times per week</td>
+<td style="text-align: center;">433 (59%)</td>
+<td style="text-align: center;">638 (54%)</td>
+<td style="text-align: center;">250 (56%)</td>
+<td style="text-align: center;">1,321 (56%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">3-4 times per week</td>
+<td style="text-align: center;">106 (14%)</td>
+<td style="text-align: center;">281 (24%)</td>
+<td style="text-align: center;">116 (26%)</td>
+<td style="text-align: center;">503 (21%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">5 or more times per week</td>
+<td style="text-align: center;">39 (5.3%)</td>
+<td style="text-align: center;">106 (9.0%)</td>
+<td style="text-align: center;">37 (8.2%)</td>
+<td style="text-align: center;">182 (7.7%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ssb_cat</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Zero</td>
+<td style="text-align: center;">331 (45%)</td>
+<td style="text-align: center;">408 (35%)</td>
+<td style="text-align: center;">151 (34%)</td>
+<td style="text-align: center;">890 (38%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">1-8 ounces</td>
+<td style="text-align: center;">234 (32%)</td>
+<td style="text-align: center;">438 (37%)</td>
+<td style="text-align: center;">145 (32%)</td>
+<td style="text-align: center;">817 (35%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">9-16 ounces</td>
+<td style="text-align: center;">112 (15%)</td>
+<td style="text-align: center;">200 (17%)</td>
+<td style="text-align: center;">94 (21%)</td>
+<td style="text-align: center;">406 (17%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">17 or more ounces</td>
+<td style="text-align: center;">62 (8.4%)</td>
+<td style="text-align: center;">128 (11%)</td>
+<td style="text-align: center;">59 (13%)</td>
+<td style="text-align: center;">249 (11%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">fruits3</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">0</td>
+<td style="text-align: center;">57 (7.7%)</td>
+<td style="text-align: center;">200 (17%)</td>
+<td style="text-align: center;">54 (12%)</td>
+<td style="text-align: center;">311 (13%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">1-2</td>
+<td style="text-align: center;">536 (73%)</td>
+<td style="text-align: center;">814 (69%)</td>
+<td style="text-align: center;">344 (77%)</td>
+<td style="text-align: center;">1,694 (72%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">3 or more</td>
+<td style="text-align: center;">146 (20%)</td>
+<td style="text-align: center;">160 (14%)</td>
+<td style="text-align: center;">51 (11%)</td>
+<td style="text-align: center;">357 (15%)</td>
+</tr>
+</tbody><tfoot>
+<tr class="odd">
+<td style="text-align: left; padding: 0;"><sup>1</sup> n (%)</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tfoot>
+
+</table>
+
+
+</div>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> bns_combined_imputed_df <span class="sc">%&gt;%</span> <span class="fu">select</span>(fruits3, calfresh3) <span class="sc">%&gt;%</span> <span class="fu">na.omit</span>() <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> fruits3,  <span class="at">group=</span>calfresh3)) <span class="sc">+</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..prop.., <span class="at">fill =</span> <span class="fu">factor</span>(calfresh3)), <span class="at">stat=</span><span class="st">"count"</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>             <span class="co">#alpha = c(0.3, 0.7, 1, 0.3, 0.7, 1, 0.3, 0.7, 1), </span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">colour=</span><span class="st">"black"</span>, <span class="at">size=</span><span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> scales<span class="sc">::</span><span class="fu">percent</span>(<span class="fu">round</span>(..prop.., <span class="at">digits =</span> <span class="dv">2</span>)), <span class="at">y=</span>..prop..), <span class="at">stat=</span> <span class="st">"count"</span>, <span class="at">vjust =</span> <span class="sc">-</span>.<span class="dv">5</span>, <span class="at">size =</span> <span class="dv">6</span>) <span class="sc">+</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Percent of Students"</span>) <span class="sc">+</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>calfresh3, <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">scales =</span> <span class="st">"free_x"</span>) <span class="sc">+</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent, <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="fl">0.0</span>, <span class="fl">0.4</span>))) <span class="sc">+</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> chc.palette) <span class="sc">+</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>) <span class="sc">+</span> </span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Servings of Fruits and Vegetables Per Day"</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">strip.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>), <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>))</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ggsave("FV_Plot.png", plot = p1, width = 10, height = 8)</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>p1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Manuscript-Files_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>bns_combined_imputed_df<span class="sc">$</span>ff_cat2 <span class="ot">&lt;-</span> <span class="fu">recode</span>(bns_combined_imputed_df<span class="sc">$</span>ff_cat,</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                                          <span class="st">"Zer"</span> <span class="ot">=</span> <span class="st">"Zero"</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                                          <span class="st">"1-2 times per week"</span> <span class="ot">=</span> <span class="st">"1-2 times"</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                                          <span class="st">"3-4 times per week"</span> <span class="ot">=</span> <span class="st">"3-4 times"</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                                          <span class="st">"5 or more times per week"</span> <span class="ot">=</span> <span class="st">"5 or more times"</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> bns_combined_imputed_df <span class="sc">%&gt;%</span> <span class="fu">select</span>(ff_cat2, calfresh3) <span class="sc">%&gt;%</span> <span class="fu">na.omit</span>() <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> ff_cat2,  <span class="at">group=</span>calfresh3)) <span class="sc">+</span> </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..prop.., <span class="at">fill =</span> <span class="fu">factor</span>(calfresh3)), <span class="at">stat=</span><span class="st">"count"</span>,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>             <span class="co">#alpha = c(0.3, 0.7, 1, 0.3, 0.7, 1, 0.3, 0.7, 1), </span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">colour=</span><span class="st">"black"</span>, <span class="at">size=</span><span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> scales<span class="sc">::</span><span class="fu">percent</span>(<span class="fu">round</span>(..prop.., <span class="at">digits =</span> <span class="dv">2</span>)), <span class="at">y=</span>..prop..), <span class="at">stat=</span> <span class="st">"count"</span>, <span class="at">vjust =</span> <span class="sc">-</span>.<span class="dv">5</span>, <span class="at">size =</span> <span class="dv">6</span>) <span class="sc">+</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Percent of Students"</span>) <span class="sc">+</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>calfresh3, <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">scales =</span> <span class="st">"free_x"</span>) <span class="sc">+</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent, <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="fl">0.0</span>, <span class="fl">0.85</span>))) <span class="sc">+</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> chc.palette) <span class="sc">+</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>) <span class="sc">+</span> </span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Frequency of Fast-Food Meals Per Week"</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">strip.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>), <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>))</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co"># ggsave("FF_Plot.png", plot = p2, width = 10, height = 8)</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Manuscript-Files_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> bns_combined <span class="sc">%&gt;%</span> <span class="fu">select</span>(ssb_cat, calfresh3) <span class="sc">%&gt;%</span> <span class="fu">na.omit</span>() <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> ssb_cat,  <span class="at">group=</span>calfresh3)) <span class="sc">+</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..prop.., <span class="at">fill =</span> <span class="fu">factor</span>(calfresh3)), <span class="at">stat=</span><span class="st">"count"</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>             <span class="co">#alpha = c(0.3, 0.7, 1, 0.3, 0.7, 1, 0.3, 0.7, 1), </span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">colour=</span><span class="st">"black"</span>, <span class="at">size=</span><span class="fl">0.6</span>) <span class="sc">+</span> </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> scales<span class="sc">::</span><span class="fu">percent</span>(<span class="fu">round</span>(..prop.., <span class="at">digits =</span> <span class="dv">2</span>)), <span class="at">y=</span>..prop..), <span class="at">stat=</span> <span class="st">"count"</span>, <span class="at">vjust =</span> <span class="sc">-</span>.<span class="dv">5</span>, <span class="at">size =</span> <span class="dv">6</span>) <span class="sc">+</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Percent of Students"</span>) <span class="sc">+</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>calfresh3, <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">scales =</span> <span class="st">"free_x"</span>) <span class="sc">+</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent, <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="fl">0.0</span>, <span class="fl">1.6</span>))) <span class="sc">+</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> chc.palette) <span class="sc">+</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>) <span class="sc">+</span> </span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Ounces of Sugar Sweetened Beverages Consumed Per Day"</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">strip.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>), <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>))</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co"># ggsave("SSB_Plot.png", plot = p3, width = 10, height = 8)</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>p3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Manuscript-Files_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="ssb-intake" class="level1">
+<h1>SSB Intake</h1>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">SSB Ordinal</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Stratified Logistic Reg</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">Compare AIC and BIC</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false">Model Fit</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-5" role="tab" aria-controls="tabset-2-5" aria-selected="false">VIF of a Linear Model</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ssb.ordinal.mod <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(ssb_cat<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_access <span class="sc">+</span> units_four <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> homelessness_year, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>ssb.ordinal.mod  <span class="sc">%&gt;%</span> </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_kable_extra</span>(</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">booktabs =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">longtable =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">linesep =</span> <span class="st">""</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Characteristic</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">OR</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">95% CI</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">p-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">calfresh3</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">CalFresh</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">No CalFresh but Likely Eligible</td>
+<td style="text-align: center;">1.37</td>
+<td style="text-align: center;">1.12, 1.66</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">0.002</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Likely Not Eligible</td>
+<td style="text-align: center;">1.53</td>
+<td style="text-align: center;">1.17, 2.01</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">0.003</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Cohort</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Pilot 2</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Statewide</td>
+<td style="text-align: center;">1.95</td>
+<td style="text-align: center;">1.54, 2.46</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">&amp;lt;0.001</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gender</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Female</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Male</td>
+<td style="text-align: center;">1.32</td>
+<td style="text-align: center;">1.09, 1.60</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">0.004</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">race_eth</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Non Hispanic White</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Hispanic White</td>
+<td style="text-align: center;">1.09</td>
+<td style="text-align: center;">0.81, 1.46</td>
+<td style="text-align: center;">0.6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Non Hispanic African American</td>
+<td style="text-align: center;">0.98</td>
+<td style="text-align: center;">0.59, 1.64</td>
+<td style="text-align: center;">&gt;0.9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Non Hispanic Asian</td>
+<td style="text-align: center;">0.76</td>
+<td style="text-align: center;">0.53, 1.08</td>
+<td style="text-align: center;">0.12</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Other/Unknown</td>
+<td style="text-align: center;">0.93</td>
+<td style="text-align: center;">0.62, 1.38</td>
+<td style="text-align: center;">0.7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">age</td>
+<td style="text-align: center;">0.99</td>
+<td style="text-align: center;">0.98, 1.01</td>
+<td style="text-align: center;">0.3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">physical_activity</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">No</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Yes</td>
+<td style="text-align: center;">0.87</td>
+<td style="text-align: center;">0.74, 1.03</td>
+<td style="text-align: center;">0.10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">health_conscious</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">No</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Yes</td>
+<td style="text-align: center;">0.74</td>
+<td style="text-align: center;">0.62, 0.88</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">&amp;lt;0.001</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">storage_access</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">No</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Yes</td>
+<td style="text-align: center;">0.88</td>
+<td style="text-align: center;">0.70, 1.11</td>
+<td style="text-align: center;">0.3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">units_four</td>
+<td style="text-align: center;">0.91</td>
+<td style="text-align: center;">0.83, 1.01</td>
+<td style="text-align: center;">0.071</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">paid_work_hours_tens</td>
+<td style="text-align: center;">1.09</td>
+<td style="text-align: center;">1.03, 1.16</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">0.007</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">caregiving_hours_tens</td>
+<td style="text-align: center;">1.04</td>
+<td style="text-align: center;">1.00, 1.09</td>
+<td style="text-align: center;">0.069</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">homelessness_year</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">0</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">1</td>
+<td style="text-align: center;">1.34</td>
+<td style="text-align: center;">1.05, 1.72</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">0.018</span></td>
+</tr>
+</tbody><tfoot>
+<tr class="odd">
+<td style="text-align: left; padding: 0;"><sup>1</sup> OR = Odds Ratio, CI = Confidence Interval</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tfoot>
+
+</table>
+
+
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ordinal.mod1 <span class="ot">&lt;-</span><span class="fu">glm</span>(ssb_cat1<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_access <span class="sc">+</span> units_four <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df, <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>ordinal.mod2 <span class="ot">&lt;-</span><span class="fu">glm</span>(ssb_cat2<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_access <span class="sc">+</span> units_four <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df, <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>ordinal.mod3 <span class="ot">&lt;-</span><span class="fu">glm</span>(ssb_cat3<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_access <span class="sc">+</span> units_four <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df, <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>ordinal.mod1 <span class="ot">&lt;-</span> <span class="fu">tidy</span>(ordinal.mod1) <span class="sc">%&gt;%</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">"Model 1"</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>ordinal.mod2 <span class="ot">&lt;-</span> <span class="fu">tidy</span>(ordinal.mod2) <span class="sc">%&gt;%</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">"Model 2"</span>)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>ordinal.mod3 <span class="ot">&lt;-</span> <span class="fu">tidy</span>(ordinal.mod3) <span class="sc">%&gt;%</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">"Model 3"</span>)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>models <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(ordinal.mod1, ordinal.mod2, ordinal.mod3)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="fu">dwplot</span>(models)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Manuscript-Files_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>linear.model <span class="ot">&lt;-</span> <span class="fu">lm</span>(ssb_numeric<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_access <span class="sc">+</span> units_four <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>poisson.model <span class="ot">&lt;-</span> <span class="fu">glm</span>(ssb_numeric<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_access <span class="sc">+</span> units_four <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df, <span class="at">family =</span> <span class="st">"poisson"</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>log.model <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="fu">log</span>(ssb_numeric <span class="sc">+</span> <span class="fl">0.01</span>)<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_access <span class="sc">+</span> units_four <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>ordinal.mod <span class="ot">&lt;-</span> MASS<span class="sc">::</span><span class="fu">polr</span>(ff_cat<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_access <span class="sc">+</span> units_four <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df, <span class="at">Hess=</span><span class="cn">TRUE</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(poisson.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 20966.07</code></pre>
+</div>
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(linear.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 14759.42</code></pre>
+</div>
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(log.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 11660.52</code></pre>
+</div>
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(ordinal.mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5215.352</code></pre>
+</div>
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">BIC</span>(poisson.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 21064.11</code></pre>
+</div>
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">BIC</span>(linear.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 14863.23</code></pre>
+</div>
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">BIC</span>(log.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 11764.33</code></pre>
+</div>
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">BIC</span>(ordinal.mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5324.93</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-4-tab">
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>ssb.ordinal.mod2 <span class="ot">&lt;-</span> MASS<span class="sc">::</span><span class="fu">polr</span>(ssb_cat<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_access <span class="sc">+</span> units_four <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df, <span class="at">Hess=</span><span class="cn">TRUE</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>preds_SSB <span class="ot">&lt;-</span> <span class="fu">augment</span>(ssb.ordinal.mod2, <span class="at">type =</span> <span class="st">"class"</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">conf_mat</span>(preds_SSB, <span class="at">truth =</span> ssb_cat, <span class="at">estimate =</span> .fitted)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>                   Truth
+Prediction          Zero 1-8 ounces 9-16 ounces 17 or more ounces
+  Zero               556        388         168                93
+  1-8 ounces         334        429         235               156
+  9-16 ounces          0          0           1                 0
+  17 or more ounces    0          0           2                 0</code></pre>
+</div>
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">accuracy</span>(preds_SSB, <span class="at">truth =</span> ssb_cat, <span class="at">estimate =</span> .fitted)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 3
+  .metric  .estimator .estimate
+  &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
+1 accuracy multiclass     0.417</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-2-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-5-tab">
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>linear.model <span class="ot">&lt;-</span> <span class="fu">lm</span>(ssb_numeric<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_access <span class="sc">+</span> units_four <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">vif</span>(linear.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>                          GVIF Df GVIF^(1/(2*Df))
+calfresh3             1.108229  2        1.026024
+Cohort                1.119730  1        1.058173
+gender                1.082672  1        1.040515
+race_eth              1.280968  4        1.031436
+age                   1.319783  1        1.148818
+physical_activity     1.045929  1        1.022707
+health_conscious      1.039260  1        1.019441
+storage_access        1.029605  1        1.014695
+units_four            1.096573  1        1.047174
+paid_work_hours_tens  1.079766  1        1.039118
+caregiving_hours_tens 1.154539  1        1.074495
+homelessness_year     1.045626  1        1.022559</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="fast-food-intake" class="level1">
+<h1>Fast Food Intake</h1>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Fast Food Ordinal</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Stratified Logistic Reg</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false">Compare AIC and BIC</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-4" role="tab" aria-controls="tabset-3-4" aria-selected="false">Model Fit</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>ff.ordinal.mod <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(ff_cat<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> kitchen_access <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> living_with_family <span class="sc">+</span> homelessness_year, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>ff.ordinal.mod <span class="sc">%&gt;%</span> </span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_kable_extra</span>(</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">booktabs =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">longtable =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">linesep =</span> <span class="st">""</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Characteristic</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">OR</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">95% CI</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">p-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">calfresh3</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">CalFresh</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">No CalFresh but Likely Eligible</td>
+<td style="text-align: center;">1.69</td>
+<td style="text-align: center;">1.33, 2.15</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">&amp;lt;0.001</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Likely Not Eligible</td>
+<td style="text-align: center;">1.87</td>
+<td style="text-align: center;">1.43, 2.45</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">&amp;lt;0.001</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Cohort</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Pilot 2</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Statewide</td>
+<td style="text-align: center;">1.47</td>
+<td style="text-align: center;">1.14, 1.90</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">0.003</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gender</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Female</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Male</td>
+<td style="text-align: center;">1.29</td>
+<td style="text-align: center;">1.06, 1.58</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">0.013</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">race_eth</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Non Hispanic White</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Hispanic White</td>
+<td style="text-align: center;">0.92</td>
+<td style="text-align: center;">0.64, 1.31</td>
+<td style="text-align: center;">0.6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Non Hispanic African American</td>
+<td style="text-align: center;">0.95</td>
+<td style="text-align: center;">0.59, 1.52</td>
+<td style="text-align: center;">0.8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Non Hispanic Asian</td>
+<td style="text-align: center;">0.53</td>
+<td style="text-align: center;">0.35, 0.81</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">0.004</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Other/Unknown</td>
+<td style="text-align: center;">1.08</td>
+<td style="text-align: center;">0.73, 1.60</td>
+<td style="text-align: center;">0.7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">age</td>
+<td style="text-align: center;">0.97</td>
+<td style="text-align: center;">0.95, 0.98</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">&amp;lt;0.001</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">physical_activity</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">No</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Yes</td>
+<td style="text-align: center;">0.81</td>
+<td style="text-align: center;">0.67, 0.98</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">0.033</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">storage_room</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">No</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Yes</td>
+<td style="text-align: center;">0.85</td>
+<td style="text-align: center;">0.69, 1.04</td>
+<td style="text-align: center;">0.11</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">kitchen_access</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">No</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Yes</td>
+<td style="text-align: center;">0.92</td>
+<td style="text-align: center;">0.71, 1.19</td>
+<td style="text-align: center;">0.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">health_conscious</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">No</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Yes</td>
+<td style="text-align: center;">0.87</td>
+<td style="text-align: center;">0.70, 1.09</td>
+<td style="text-align: center;">0.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cooking_confident</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">No</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Yes</td>
+<td style="text-align: center;">0.81</td>
+<td style="text-align: center;">0.65, 1.02</td>
+<td style="text-align: center;">0.068</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">food_insecure_2item</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">No</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Yes</td>
+<td style="text-align: center;">1.17</td>
+<td style="text-align: center;">0.98, 1.40</td>
+<td style="text-align: center;">0.082</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">paid_work_hours_tens</td>
+<td style="text-align: center;">1.08</td>
+<td style="text-align: center;">1.01, 1.16</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">0.019</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">living_with_family</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">No</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Yes</td>
+<td style="text-align: center;">1.28</td>
+<td style="text-align: center;">1.06, 1.54</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">0.012</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">homelessness_year</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">0</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">1</td>
+<td style="text-align: center;">1.47</td>
+<td style="text-align: center;">1.13, 1.92</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">0.004</span></td>
+</tr>
+</tbody><tfoot>
+<tr class="odd">
+<td style="text-align: left; padding: 0;"><sup>1</sup> OR = Odds Ratio, CI = Confidence Interval</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tfoot>
+
+</table>
+
+
+</div>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>ordinal.mod1 <span class="ot">&lt;-</span><span class="fu">glm</span>(ff_cat1<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> kitchen_access <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> living_with_family <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df, <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>ordinal.mod2 <span class="ot">&lt;-</span><span class="fu">glm</span>(ff_cat2<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> kitchen_access <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> living_with_family <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df, <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>ordinal.mod3 <span class="ot">&lt;-</span><span class="fu">glm</span>(ff_cat3<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> kitchen_access <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> living_with_family <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df, <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>ordinal.mod1 <span class="ot">&lt;-</span> <span class="fu">tidy</span>(ordinal.mod1) <span class="sc">%&gt;%</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">"1-2 Vs Zero"</span>)</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>ordinal.mod2 <span class="ot">&lt;-</span> <span class="fu">tidy</span>(ordinal.mod2) <span class="sc">%&gt;%</span></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">"3-4 Vs 1-2"</span>)</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>ordinal.mod3 <span class="ot">&lt;-</span> <span class="fu">tidy</span>(ordinal.mod3) <span class="sc">%&gt;%</span></span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">"5 or more Vs 3-4"</span>)</span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>models <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(ordinal.mod1, ordinal.mod2, ordinal.mod3)</span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a><span class="fu">dwplot</span>(models)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Manuscript-Files_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>linear.model <span class="ot">&lt;-</span> <span class="fu">lm</span>(ff_numeric<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> kitchen_access <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> living_with_family <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>poisson.model <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="fu">floor</span>(ff_numeric)<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> kitchen_access <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> living_with_family <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df, <span class="at">family =</span> <span class="st">"poisson"</span>)</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>log.model <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="fu">log</span>(ff_numeric <span class="sc">+</span> <span class="fl">0.01</span>)<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> kitchen_access <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> living_with_family <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df)</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>ordinal.mod <span class="ot">&lt;-</span> MASS<span class="sc">::</span><span class="fu">polr</span>(ff_cat<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> kitchen_access <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> living_with_family <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df, <span class="at">Hess=</span><span class="cn">TRUE</span>)</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(poisson.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7399.252</code></pre>
+</div>
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(linear.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8061.702</code></pre>
+</div>
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(log.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 9563.968</code></pre>
+</div>
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(ordinal.mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5199.666</code></pre>
+</div>
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">BIC</span>(poisson.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7508.83</code></pre>
+</div>
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">BIC</span>(linear.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8177.047</code></pre>
+</div>
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">BIC</span>(log.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 9679.313</code></pre>
+</div>
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">BIC</span>(ordinal.mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5320.779</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-3-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-4-tab">
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>ff.ordinal.mod2 <span class="ot">&lt;-</span> MASS<span class="sc">::</span><span class="fu">polr</span>(ff_cat<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> kitchen_access <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> living_with_family <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df, <span class="at">Hess=</span><span class="cn">TRUE</span>)</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>preds_ff <span class="ot">&lt;-</span> <span class="fu">augment</span>(ff.ordinal.mod2, <span class="at">type =</span> <span class="st">"class"</span>)</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="fu">conf_mat</span>(preds_ff, <span class="at">truth =</span> ff_cat, <span class="at">estimate =</span> .fitted)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>                          Truth
+Prediction                 Zero 1-2 times per week 3-4 times per week
+  Zero                       11                  9                  0
+  1-2 times per week        345               1311                502
+  3-4 times per week          0                  1                  1
+  5 or more times per week    0                  0                  0
+                          Truth
+Prediction                 5 or more times per week
+  Zero                                            1
+  1-2 times per week                            180
+  3-4 times per week                              1
+  5 or more times per week                        0</code></pre>
+</div>
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">accuracy</span>(preds_ff, <span class="at">truth =</span> ff_cat, <span class="at">estimate =</span> .fitted)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 3
+  .metric  .estimator .estimate
+  &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
+1 accuracy multiclass     0.560</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="fv-intake" class="level1">
+<h1>FV Intake</h1>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">FV Ordinal</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">Stratified Logistic Reg</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false">Model Accuracy</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>FV.ordinal.mod <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(fruits3<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> food_insecure_2item, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>FV.ordinal.mod <span class="sc">%&gt;%</span> </span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_kable_extra</span>(</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">booktabs =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">longtable =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">linesep =</span> <span class="st">""</span></span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Characteristic</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">OR</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">95% CI</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">p-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">calfresh3</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">CalFresh</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">No CalFresh but Likely Eligible</td>
+<td style="text-align: center;">0.57</td>
+<td style="text-align: center;">0.45, 0.72</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">&amp;lt;0.001</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Likely Not Eligible</td>
+<td style="text-align: center;">0.57</td>
+<td style="text-align: center;">0.38, 0.84</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">0.007</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Cohort</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Pilot 2</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Statewide</td>
+<td style="text-align: center;">0.81</td>
+<td style="text-align: center;">0.61, 1.09</td>
+<td style="text-align: center;">0.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gender</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Female</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Male</td>
+<td style="text-align: center;">1.04</td>
+<td style="text-align: center;">0.80, 1.35</td>
+<td style="text-align: center;">0.8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">race_eth</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Non Hispanic White</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Hispanic White</td>
+<td style="text-align: center;">1.10</td>
+<td style="text-align: center;">0.75, 1.62</td>
+<td style="text-align: center;">0.6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Non Hispanic African American</td>
+<td style="text-align: center;">1.03</td>
+<td style="text-align: center;">0.57, 1.84</td>
+<td style="text-align: center;">&gt;0.9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Non Hispanic Asian</td>
+<td style="text-align: center;">1.19</td>
+<td style="text-align: center;">0.78, 1.83</td>
+<td style="text-align: center;">0.4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Other/Unknown</td>
+<td style="text-align: center;">1.08</td>
+<td style="text-align: center;">0.70, 1.65</td>
+<td style="text-align: center;">0.7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">age</td>
+<td style="text-align: center;">1.03</td>
+<td style="text-align: center;">1.02, 1.04</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">&amp;lt;0.001</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">health_conscious</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">No</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Yes</td>
+<td style="text-align: center;">1.37</td>
+<td style="text-align: center;">1.12, 1.68</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">0.002</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">cooking_confident</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">No</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Yes</td>
+<td style="text-align: center;">1.57</td>
+<td style="text-align: center;">1.25, 1.97</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">&amp;lt;0.001</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">physical_activity</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">No</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Yes</td>
+<td style="text-align: center;">3.10</td>
+<td style="text-align: center;">2.50, 3.83</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">&amp;lt;0.001</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">storage_room</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">No</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Yes</td>
+<td style="text-align: center;">1.30</td>
+<td style="text-align: center;">1.07, 1.59</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">0.009</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">food_insecure_2item</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">No</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Yes</td>
+<td style="text-align: center;">0.69</td>
+<td style="text-align: center;">0.56, 0.85</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">&amp;lt;0.001</span></td>
+</tr>
+</tbody><tfoot>
+<tr class="odd">
+<td style="text-align: left; padding: 0;"><sup>1</sup> OR = Odds Ratio, CI = Confidence Interval</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tfoot>
+
+</table>
+
+
+</div>
+</div>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>imp_one_vs_zero <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, <span class="fu">glm</span>(q77_one_vs_zero<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> food_insecure_2item, <span class="at">family =</span> <span class="st">"binomial"</span>))</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>imp_one_vs_three_or_more <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, <span class="fu">glm</span>(q77_one_vs_three_or_more<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> food_insecure_2item, <span class="at">family =</span> <span class="st">"binomial"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>imp_fv1_model_tidy <span class="ot">&lt;-</span> <span class="fu">pool</span>(imp_one_vs_zero) <span class="sc">|&gt;</span> <span class="fu">summary</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">"Odds of Eating 1-2 F&amp;V Vs Zero"</span>,</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">estimate =</span> <span class="fu">exp</span>(estimate)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>df)</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>imp_fv2_model_tidy <span class="ot">&lt;-</span> <span class="fu">pool</span>(imp_one_vs_three_or_more) <span class="sc">|&gt;</span> <span class="fu">summary</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">"Odds of Eating 3 or More F&amp;V Vs 1-2"</span>,</span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">estimate =</span> <span class="fu">exp</span>(estimate)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>df)</span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a>FV2_models <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(imp_fv1_model_tidy, imp_fv2_model_tidy)</span>
+<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-14"><a href="#cb54-14" aria-hidden="true" tabindex="-1"></a><span class="fu">dwplot</span>(FV2_models) <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">1</span>,</span>
+<span id="cb54-15"><a href="#cb54-15" aria-hidden="true" tabindex="-1"></a>               <span class="at">colour =</span> <span class="st">"grey60"</span>,</span>
+<span id="cb54-16"><a href="#cb54-16" aria-hidden="true" tabindex="-1"></a>               <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb54-17"><a href="#cb54-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb54-18"><a href="#cb54-18" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.8</span>, <span class="fl">0.95</span>), <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">face =</span> <span class="st">"bold"</span>)) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"Odds Ratio"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Manuscript-Files_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-4-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-3-tab">
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>FV.ordinal.mod2 <span class="ot">&lt;-</span> MASS<span class="sc">::</span><span class="fu">polr</span>(fruits3<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> food_insecure_2item, <span class="at">data =</span> bns_combined_imputed_df, <span class="at">Hess=</span><span class="cn">TRUE</span>)</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>preds_FV <span class="ot">&lt;-</span> <span class="fu">augment</span>(FV.ordinal.mod2, <span class="at">type =</span> <span class="st">"class"</span>)</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="fu">conf_mat</span>(preds_FV, <span class="at">truth =</span> fruits3, <span class="at">estimate =</span> .fitted)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>           Truth
+Prediction     0  1-2 3 or more
+  0            4    1         0
+  1-2        307 1691       352
+  3 or more    0    2         5</code></pre>
+</div>
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">accuracy</span>(preds_FV, <span class="at">truth =</span> fruits3, <span class="at">estimate =</span> .fitted)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 3
+  .metric  .estimator .estimate
+  &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
+1 accuracy multiclass     0.720</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="all-ordinal-models" class="level1">
+<h1>All Ordinal Models</h1>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_merge</span>(<span class="at">tbls =</span> <span class="fu">list</span>(FV.ordinal.mod, ff.ordinal.mod, ssb.ordinal.mod), <span class="at">tab_spanner =</span> <span class="fu">c</span>(<span class="st">"F&amp;V Model"</span>, <span class="st">"**Fast Food Model**"</span>, <span class="st">"**SSB Model**"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_kable_extra</span>(</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">booktabs =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">longtable =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">linesep =</span> <span class="st">""</span></span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: left; empty-cells: hide; border-bottom: hidden;"></th>
+<th colspan="3" data-quarto-table-cell-role="th" style="text-align: center; border-bottom: hidden; padding-bottom: 0; padding-left: 3px; padding-right: 3px;"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+F&amp;V Model
+</div></th>
+<th colspan="3" data-quarto-table-cell-role="th" style="text-align: center; border-bottom: hidden; padding-bottom: 0; padding-left: 3px; padding-right: 3px;"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Fast Food Model
+</div></th>
+<th colspan="3" data-quarto-table-cell-role="th" style="text-align: center; border-bottom: hidden; padding-bottom: 0; padding-left: 3px; padding-right: 3px;"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+SSB Model
+</div></th>
+</tr>
+<tr class="odd">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Characteristic</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">OR</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">95% CI</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">p-value</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">OR</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">95% CI</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">p-value</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">OR</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">95% CI</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">p-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">calfresh3</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">CalFresh</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">No CalFresh but Likely Eligible</td>
+<td style="text-align: center;">0.57</td>
+<td style="text-align: center;">0.45, 0.72</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">&amp;lt;0.001</span></td>
+<td style="text-align: center;">1.69</td>
+<td style="text-align: center;">1.33, 2.15</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">&amp;lt;0.001</span></td>
+<td style="text-align: center;">1.37</td>
+<td style="text-align: center;">1.12, 1.66</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">0.002</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Likely Not Eligible</td>
+<td style="text-align: center;">0.57</td>
+<td style="text-align: center;">0.38, 0.84</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">0.007</span></td>
+<td style="text-align: center;">1.87</td>
+<td style="text-align: center;">1.43, 2.45</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">&amp;lt;0.001</span></td>
+<td style="text-align: center;">1.53</td>
+<td style="text-align: center;">1.17, 2.01</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">0.003</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Cohort</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Pilot 2</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Statewide</td>
+<td style="text-align: center;">0.81</td>
+<td style="text-align: center;">0.61, 1.09</td>
+<td style="text-align: center;">0.2</td>
+<td style="text-align: center;">1.47</td>
+<td style="text-align: center;">1.14, 1.90</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">0.003</span></td>
+<td style="text-align: center;">1.95</td>
+<td style="text-align: center;">1.54, 2.46</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">&amp;lt;0.001</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gender</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Female</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Male</td>
+<td style="text-align: center;">1.04</td>
+<td style="text-align: center;">0.80, 1.35</td>
+<td style="text-align: center;">0.8</td>
+<td style="text-align: center;">1.29</td>
+<td style="text-align: center;">1.06, 1.58</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">0.013</span></td>
+<td style="text-align: center;">1.32</td>
+<td style="text-align: center;">1.09, 1.60</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">0.004</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">race_eth</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Non Hispanic White</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Hispanic White</td>
+<td style="text-align: center;">1.10</td>
+<td style="text-align: center;">0.75, 1.62</td>
+<td style="text-align: center;">0.6</td>
+<td style="text-align: center;">0.92</td>
+<td style="text-align: center;">0.64, 1.31</td>
+<td style="text-align: center;">0.6</td>
+<td style="text-align: center;">1.09</td>
+<td style="text-align: center;">0.81, 1.46</td>
+<td style="text-align: center;">0.6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Non Hispanic African American</td>
+<td style="text-align: center;">1.03</td>
+<td style="text-align: center;">0.57, 1.84</td>
+<td style="text-align: center;">&gt;0.9</td>
+<td style="text-align: center;">0.95</td>
+<td style="text-align: center;">0.59, 1.52</td>
+<td style="text-align: center;">0.8</td>
+<td style="text-align: center;">0.98</td>
+<td style="text-align: center;">0.59, 1.64</td>
+<td style="text-align: center;">&gt;0.9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Non Hispanic Asian</td>
+<td style="text-align: center;">1.19</td>
+<td style="text-align: center;">0.78, 1.83</td>
+<td style="text-align: center;">0.4</td>
+<td style="text-align: center;">0.53</td>
+<td style="text-align: center;">0.35, 0.81</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">0.004</span></td>
+<td style="text-align: center;">0.76</td>
+<td style="text-align: center;">0.53, 1.08</td>
+<td style="text-align: center;">0.12</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Other/Unknown</td>
+<td style="text-align: center;">1.08</td>
+<td style="text-align: center;">0.70, 1.65</td>
+<td style="text-align: center;">0.7</td>
+<td style="text-align: center;">1.08</td>
+<td style="text-align: center;">0.73, 1.60</td>
+<td style="text-align: center;">0.7</td>
+<td style="text-align: center;">0.93</td>
+<td style="text-align: center;">0.62, 1.38</td>
+<td style="text-align: center;">0.7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">age</td>
+<td style="text-align: center;">1.03</td>
+<td style="text-align: center;">1.02, 1.04</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">&amp;lt;0.001</span></td>
+<td style="text-align: center;">0.97</td>
+<td style="text-align: center;">0.95, 0.98</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">&amp;lt;0.001</span></td>
+<td style="text-align: center;">0.99</td>
+<td style="text-align: center;">0.98, 1.01</td>
+<td style="text-align: center;">0.3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">health_conscious</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">No</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Yes</td>
+<td style="text-align: center;">1.37</td>
+<td style="text-align: center;">1.12, 1.68</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">0.002</span></td>
+<td style="text-align: center;">0.87</td>
+<td style="text-align: center;">0.70, 1.09</td>
+<td style="text-align: center;">0.2</td>
+<td style="text-align: center;">0.74</td>
+<td style="text-align: center;">0.62, 0.88</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">&amp;lt;0.001</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">cooking_confident</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">No</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Yes</td>
+<td style="text-align: center;">1.57</td>
+<td style="text-align: center;">1.25, 1.97</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">&amp;lt;0.001</span></td>
+<td style="text-align: center;">0.81</td>
+<td style="text-align: center;">0.65, 1.02</td>
+<td style="text-align: center;">0.068</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">physical_activity</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">No</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Yes</td>
+<td style="text-align: center;">3.10</td>
+<td style="text-align: center;">2.50, 3.83</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">&amp;lt;0.001</span></td>
+<td style="text-align: center;">0.81</td>
+<td style="text-align: center;">0.67, 0.98</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">0.033</span></td>
+<td style="text-align: center;">0.87</td>
+<td style="text-align: center;">0.74, 1.03</td>
+<td style="text-align: center;">0.10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">storage_room</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">No</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Yes</td>
+<td style="text-align: center;">1.30</td>
+<td style="text-align: center;">1.07, 1.59</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">0.009</span></td>
+<td style="text-align: center;">0.85</td>
+<td style="text-align: center;">0.69, 1.04</td>
+<td style="text-align: center;">0.11</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">food_insecure_2item</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">No</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Yes</td>
+<td style="text-align: center;">0.69</td>
+<td style="text-align: center;">0.56, 0.85</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">&amp;lt;0.001</span></td>
+<td style="text-align: center;">1.17</td>
+<td style="text-align: center;">0.98, 1.40</td>
+<td style="text-align: center;">0.082</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">kitchen_access</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">No</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Yes</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">0.92</td>
+<td style="text-align: center;">0.71, 1.19</td>
+<td style="text-align: center;">0.5</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">paid_work_hours_tens</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">1.08</td>
+<td style="text-align: center;">1.01, 1.16</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">0.019</span></td>
+<td style="text-align: center;">1.09</td>
+<td style="text-align: center;">1.03, 1.16</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">0.007</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">living_with_family</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">No</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Yes</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">1.28</td>
+<td style="text-align: center;">1.06, 1.54</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">0.012</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">homelessness_year</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">0</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">1</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">1.47</td>
+<td style="text-align: center;">1.13, 1.92</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">0.004</span></td>
+<td style="text-align: center;">1.34</td>
+<td style="text-align: center;">1.05, 1.72</td>
+<td style="text-align: center;"><span style=" font-weight: bold;    ">0.018</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">storage_access</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">No</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Yes</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">0.88</td>
+<td style="text-align: center;">0.70, 1.11</td>
+<td style="text-align: center;">0.3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">units_four</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">0.91</td>
+<td style="text-align: center;">0.83, 1.01</td>
+<td style="text-align: center;">0.071</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">caregiving_hours_tens</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">1.04</td>
+<td style="text-align: center;">1.00, 1.09</td>
+<td style="text-align: center;">0.069</td>
+</tr>
+</tbody><tfoot>
+<tr class="odd">
+<td style="text-align: left; padding: 0;"><sup>1</sup> OR = Odds Ratio, CI = Confidence Interval</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tfoot>
+
+</table>
+
+
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

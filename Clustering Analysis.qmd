@@ -1,0 +1,112 @@
+---
+title: "Clustering Analysis"
+format:
+  html:
+    code-fold: true
+    code-summary: "Show the code"
+---
+
+::: panel-tabset
+```{r}
+
+library(lme4)
+library(kableExtra)
+library(sjPlot)
+
+load("clean_data/bns_combined.Rdata")
+
+
+```
+
+# Fast Food Clustering by Campus
+
+```{r}
+
+
+fit_partpool_ff <- lmer(ff_numeric ~ (1 |school), data=bns_combined)
+
+sjPlot::plot_model(fit_partpool_ff, type="re", sort.est = "(Intercept)", y.offset = .4, vline.color = "black")
+
+tab_model(fit_partpool_ff)
+
+```
+
+> The ICC is low for fast food intake. The amount of variance within group compared to across group is negligible
+
+```{r}
+
+showri_ff <- data.frame(Random_Effect   = unlist(ranef(fit_partpool_ff)), 
+                     Fixed_Intercept = fixef(fit_partpool_ff), 
+                     RandomIntercept = unlist(ranef(fit_partpool_ff))+fixef(fit_partpool_ff))
+                
+rownames(showri_ff) <- rownames(coef(fit_partpool_ff)$school)
+
+kbl(showri_ff) %>%
+  kable_paper("hover", full_width = F)
+
+```
+
+> There is lots of overlap of CIs between the schools. For fast-food consumption, there was significantly different random effects from Cal State LA and CSU Dominguez Hills
+
+# SSB Clustering by Campus
+
+```{r}
+
+
+fit_partpool_ssb <- lmer(ssb_numeric ~ (1 |school), data=bns_combined)
+
+sjPlot::plot_model(fit_partpool_ssb, type="re", sort.est = "(Intercept)", y.offset = .4,  vline.color = "black")
+
+tab_model(fit_partpool_ssb)
+
+
+```
+
+> The ICC is low for SSB intake. The amount of variance within group compared to across group is negligible
+
+```{r}
+
+showri_ssb <- data.frame(Random_Effect   = unlist(ranef(fit_partpool_ssb)), 
+                     Fixed_Intercept = fixef(fit_partpool_ssb), 
+                     RandomIntercept = unlist(ranef(fit_partpool_ssb))+fixef(fit_partpool_ssb))
+                
+rownames(showri_ssb) <- rownames(coef(fit_partpool_ssb)$school)
+
+kbl(showri_ssb) %>%
+  kable_paper("hover", full_width = F)
+
+```
+
+> There is lots of overlap of CIs between the schools. For SSB intake, there were significantly different random effects for Butte, Cal State LA, UC BErkeley and Chico State.
+
+# F&V Clustering by Campus
+
+```{r}
+
+bns_combined$fruits_numeric <- as.numeric(bns_combined$fruits3, na.rm = TRUE)
+
+fit_partpool_fruits <- lmer(fruits_numeric ~ (1 |school), data=bns_combined)
+
+sjPlot::plot_model(fit_partpool_fruits, type="re", sort.est = "(Intercept)", y.offset = .4, vline.color = "black")
+
+tab_model(fit_partpool_fruits)
+
+```
+
+> The ICC is low for SSB intake. The amount of variance within group compared to across group is negligible
+
+```{r}
+
+showri_fruits <- data.frame(Random_Effect   = unlist(ranef(fit_partpool_fruits)), 
+                     Fixed_Intercept = fixef(fit_partpool_fruits), 
+                     RandomIntercept = unlist(ranef(fit_partpool_fruits))+fixef(fit_partpool_fruits))
+                
+rownames(showri_fruits) <- rownames(coef(fit_partpool_fruits)$school)
+
+kbl(showri_fruits) %>%
+  kable_paper("hover", full_width = F)
+
+```
+
+> There is lots of overlap of CIs between the schools.
+:::

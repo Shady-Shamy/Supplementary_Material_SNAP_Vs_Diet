@@ -1,0 +1,755 @@
+---
+title: "Data Management"
+---
+
+::: panel-tabset
+# Statewide Data Management
+
+```{r}
+
+knitr::opts_chunk$set(error = FALSE,warning = FALSE,message = FALSE)
+
+bns <- readRDS(here::here("./raw_data/bns3_statewide_clean.rds"))
+
+
+
+library(stringr)
+library(dplyr)
+library(tidyr)
+
+bns$Cohort <- "Statewide"
+
+
+# Age ----
+# No cleaning needed
+
+
+# Ethnicity -----
+
+bns$eth_hispanic2 <- recode(bns$eth_hispanic, "1" = "Hispanic", "0" = "Non Hispanic")
+
+
+
+
+# academic year -----
+bns$academic_level <- recode(bns$q15, "Freshman (0-29 semester units or 0-44 quarter units)" = "Freshman",
+                            "Sophomore (30-59 semester units or 45-89 quarter units)" = "Sophomore",
+                            "Junior (60-89 semester units or 90-134 quarter units)" = "Junior",
+                            "Senior (90+ semester units or 135+ quarter units)" = "Senior",
+                            "None of these apply" = "Other") %>% factor(order = FALSE)
+
+
+# 2 item-Food Insecurity ( 1 = Food Insecure): food_insecure_2item
+
+
+# Gender -----
+
+bns$gender <- case_when(bns$q7 == "Man" ~ "Male", bns$q7 == "Woman" ~ "Female") %>% factor(order = FALSE)
+
+
+
+# Confidence in cooking Yes Vs No ------
+# How confident are you that you can use basic cooking skills, like cutting fruits and vegetables, measuring out ingredients, or following a recipe?
+
+bns$cooking_confident <- recode(bns$q82_2, "Not at all confident" = "No", "Not very confident" = "No", 
+                                "Neutral" = "No",
+                                "Somewhat confident" = "Yes", "Very Confident" = "Yes") %>% factor(order = FALSE)
+
+
+
+# Living With Family Vs No -----
+
+bns$living_with_family <- case_when(grepl("I live with parents or other relatives, paying rent with my own money|I live with parents or other relatives, not paying rent with my own money", bns$q25, fixed = FALSE, ignore.case = TRUE) ~ "Yes",
+                                    grepl("I live in university housing or residence halls|I rent an apartment or house with roommates|I rent an apartment or house without roommates|I own my own home|I live in transitional housing or a halfway home|I am temporarily living with friends or relatives without permanent housing|I am currently living at an outdoor location|Other|I live in a sorority or fraternity house|I am temporarily living in a homeless shelter without permanent housing", 
+                                          bns$q25, fixed = FALSE, ignore.case = TRUE) ~ "No") %>% factor(order = FALSE)
+
+
+
+
+
+# Total Hours including paid, unpaid, unit hours and caregiving hours ------
+
+bns$unit_hours <- 3*(bns$q18)
+
+bns$weekly_hours <- bns %>% select(unit_hours, paid_work_hours, unpaid_work_hours, caregiving_hours) %>% rowSums(na.rm = FALSE)
+
+bns$weekly_hours_in_tens <- bns$weekly_hours/10
+
+bns <- rename(bns, units = q18)
+
+
+
+# Health Conscious (q76_9) -----
+# I do not think about my eating/food habits
+
+bns$health_conscious <- recode(bns$q76_9, "Strongly disagree" = "Yes", "Disagree" = "Yes",
+                               "Neither agree nor disagree" = "No", "Agree" = "No", "Strongly agree" = "No") %>% factor(order = FALSE)
+
+
+
+
+
+# CalFresh Variables ----
+
+# Create temporary CalFresh variable
+bns <- bns %>% mutate(current_calfresh_temp = case_when(grepl("Currently use as a college student", q46_1) ~ "CalFresh",
+                                                          grepl("Used it in the past as a college student", q46_1) ~ "No CalFresh",
+                                                          grepl("Heard of it, but never used it", q46_1) ~ "No CalFresh",
+                                                          grepl("Never heard of it", q46_1) ~ "No CalFresh",
+                                                          grepl("Used it before attending college", q46_1) ~ "No CalFresh"))
+
+
+
+# Create  calfresh variable (https://www.cdss.ca.gov/calfreshoutreach/res/toolkit/quickreference/regulationquickreference_e_students.pdf)
+# Age and units don't actually matter. if they are between the ages of 18 and 49, and taking more than 6 units, a person is classified as a student and must meet a work exemption (such as EOP). 
+# However, if they are older than 49 or taking less than 6 units, they are not classified as a student and can still apply to calFresh as a non student. 
+# Both a non student and a student need to meet the same income and citizenship requirements. A student differs from a non student by needing to meet a work exemption which all students are EOP and meet an exemption. 
+
+
+
+bns$calfresh3 <- case_when(bns$current_calfresh_temp == "CalFresh" ~ "CalFresh", 
+                               bns$current_calfresh_temp == "No CalFresh" & bns$calfresh_eligible == 1 ~ "No CalFresh but Likely Eligible",
+                               bns$current_calfresh_temp == "No CalFresh" & bns$calfresh_eligible == 0 ~ "Likely Not Eligible") 
+
+
+bns$calfresh3 <- factor(bns$calfresh3, levels = c("CalFresh", "No CalFresh but Likely Eligible", "Likely Not Eligible"))
+
+
+
+
+
+# Income Eligible Group
+
+
+bns <- bns %>% mutate(m_income = as.numeric(monthly_hh_income, na.rm = TRUE),
+                      Income_Eligible = ifelse(((household_size == 1 & m_income < 3) |
+                                                          (household_size == 2 & m_income < 4) |
+                                                          (household_size == 3 & m_income < 5) |
+                                                          (household_size == 4 & m_income < 6) |
+                                                          (household_size == 5 & m_income < 7) |
+                                                          (household_size == 6 & m_income < 8) |
+                                                          (household_size == 7 & m_income < 9) |
+                                                          (household_size == 8 & m_income < 10)), "Yes", "No"))
+
+
+
+
+
+
+
+# Fruit/Vegetables ----
+
+bns$fruits <- bns$q77
+
+bns$fruits3 <- recode(bns$q77, "0 servings per day" = "0", 
+                      "1-2 servings per day" = "1-2",
+                      "3-4 servings per day" = "3 or more",
+                      "5 or more servings per day" = "3 or more") %>% factor(order = FALSE)
+
+
+
+bns$fruits2 <- recode(bns$q77, "0 servings per day" = "2 or less", 
+                      "1-2 servings per day" = "2 or less",
+                      "3-4 servings per day" = "3 or more",
+                      "5 or more servings per day" = "3 or more")
+
+bns$q77 <- recode(bns$q77, "0 servings per day" = "0", 
+                   "1-2 servings per day" = "1-2",
+                   "3-4 servings per day" = "3-4",
+                   "5 or more servings per day" = "5 or more")
+
+
+
+
+# SSB ----
+
+bns$ssb <- bns$q78
+
+bns$ssb5 <- recode(bns$q78, "Zero" = "Zero",
+                    "1-8 ounces" = "1-8 ounces", 
+                    "9-16 ounces" = "9-16 ounces",  
+                    "17-24 ounces" =  "17-24 ounces", 
+                    "25-36 ounces" = "25-36 ounces",
+                    "37-48 ounces" = "37 or more ounces", 
+                    "49-56 ounces" =  "37 or more ounces", 
+                    "57-64 ounces" = "37 or more ounces", 
+                    "64 ounces or more" = "37 or more ounces")
+
+bns$ssb4 <- recode(bns$q78, "Zero" = "Zero",
+                   "1-8 ounces" = "1-8 ounces", 
+                   "9-16 ounces" = "9-16 ounces",  
+                   "17-24 ounces" =  "17-24 ounces", 
+                   "25-36 ounces" = "25 or more ounces",
+                   "37-48 ounces" = "25 or more ounces", 
+                   "49-56 ounces" =  "25 or more ounces", 
+                   "57-64 ounces" = "25 or more ounces", 
+                   "64 ounces or more" = "25 or more ounces")
+
+# table(bns$ssb4, useNA = "always")
+
+bns$ssb_numeric <- recode(bns$q78, "Zero" = 0,
+                   "1-8 ounces" = 4.5, 
+                   "9-16 ounces" = 12.5,  
+                   "17-24 ounces" =  20.5, 
+                   "25-36 ounces" = 30.5,
+                   "37-48 ounces" = 42.5, 
+                   "49-56 ounces" =  52.5, 
+                   "57-64 ounces" = 60.5, 
+                   "64 ounces or more" = 64)
+
+# table(bns$ssb_numeric, useNA = "always")
+
+
+
+
+
+# Fast Food ----
+
+
+bns$ff4 <- recode(bns$q79, "Zero" = "Zero times per week", 
+                             "1-2 times per week" = "1-2 times", 
+                             "3-4 times per week" = "3-4 times",
+                             "5-6 times per week" = "5 or more times",
+                             "7-8 times per week" = "5 or more times", 
+                             "9-10 times per week" = "5 or more times", 
+                             "11 times or more per week" = "5 or more times")
+
+# table(bns$ff5, useNA = "always")
+
+bns$ff_numeric <- recode(bns$q79, "Zero" = 0, 
+                         "1-2 times per week" = 1.5, 
+                         "3-4 times per week" = 3.5,
+                         "5-6 times per week" = 5.5,
+                         "7-8 times per week" = 7.5, 
+                         "9-10 times per week" = 9.5, 
+                         "11 times or more per week" = 11)
+
+# table(bns$ff_numeric, useNA = "always")
+
+
+
+
+
+# Kitchen Access ----
+# I do not regularly have access to a kitchen where I can prepare meals.
+
+bns$kitchen_access <- recode(bns$q76_1, "Strongly disagree" = "Yes", "Disagree" = "Yes",
+                               "Neither agree nor disagree" = "No", "Agree" = "No", "Strongly agree" = "No") %>% factor(order = FALSE)
+
+
+# Storage Access ----
+# I have a secure place to store fresh food and pantry items.
+
+bns$storage_access <- recode(bns$q76_2, "Strongly disagree" = "No", "Disagree" = "No", "Neither agree nor disagree" = "No", 
+                             "Agree" = "Yes", "Strongly agree" = "Yes") %>% factor(order = FALSE)
+
+
+# Room for storage ----
+#  I do not have enough room to store food items.
+
+bns$storage_room <- recode(bns$q76_3, "Strongly disagree" = "Yes", "Disagree" = "Yes",
+                           "Neither agree nor disagree" = "No", "Agree" = "No", "Strongly agree" = "No") %>% factor(order = FALSE)
+
+
+
+
+
+# School (for FNCE and/or CFHL Poster)
+# Used to compare campuses that have CFHL (1) vs don't have CFHL (0)
+
+bns$campus_CFHL <- case_when(bns$school == "Cal State San Bernardino" ~ "Campus has CFHL",
+                             bns$school == "Sacramento State" ~ "Campus has CFHL",
+                             bns$school == "CSU Dominguez Hills"  ~ "Campus has CFHL", 
+                             bns$school == "CSU Bakersfield" ~ "Campus DOES NOT have CFHL",
+                             bns$school == "San Francisco State" ~ "Campus DOES NOT have CFHL",
+                             bns$school == "Cal State LA" ~ "Campus DOES NOT have CFHL") 
+# table(bns$campus_CFHL, bns$school, useNA = "always")
+
+
+
+# Physical activity indicator
+
+bns <- bns %>% mutate_at(c('q83_1', 'q83_2', 'q83_3'), recode,
+                         "0 days" = 0, "1 day" = 1, "2 days" = 2, "3 days" = 3, "4 days" = 4, "5 days" = 5, "6 days" = 6, "7 days" = 7)
+
+physical_act_temp <- bns %>% select(q83_1, q83_2, q83_3) %>% rowSums()
+
+
+bns$physical_activity <- ifelse(physical_act_temp >= 1, "Yes", "No")
+
+
+
+
+
+# Select variables of interest
+
+bns_variables <- bns %>%  select(calfresh3, race_eth, eth_PNTA, eth_hispanic, gender, q7, age, cooking_confident, q82_2,living_with_family, q25, food_insecure_2item, weekly_hours,                        health_conscious, q76_9, kitchen_access, q76_1, storage_access, q76_2, storage_room, q76_3, Cohort, campus_CFHL, ff_numeric, ssb_numeric, q78, q79, fruits3, q77, units, q38, q39, household_size, monthly_hh_income, paid_work_hours, unpaid_work_hours, unit_hours, caregiving_hours, q64, q65, school, q46_1, calfresh_eligible, housing_insecure, homelessness_year, homelessness_month, household_size, firstgen, physical_activity, q83_1, q83_2, q83_3, academic_level, Income_Eligible, q26, q27, q28, q29, q30, q31, q32, q33)
+
+
+
+
+```
+
+# Pilot 2 Data Management
+
+```{r}
+
+load(here::here("./raw_data/BNSp2_clean.Rdata"))
+
+
+BNSp2b$Cohort <- "Pilot 2"
+
+
+# Age ----
+# No cleaning needed
+
+
+
+# Ethnicity -----
+
+BNSp2b$ethn_hispanic2 <- recode(BNSp2b$eth_hispanic, "1" = "Hispanic", "0" = "Non Hispanic")
+# table(BNSp2b$eth_hispanic2, BNSp2b$eth_hispanic, useNA = "always")
+
+
+# rename to be able to use grep function on the rest of the "eth_" variables
+BNSp2b <- BNSp2b %>% rename("ethn_hispanic" = "eth_hispanic" )
+
+
+# Create eth_PNTA 
+# If anyone did not get to this part of the survey, they would have been dropped since this is one of the first questions, hence all the NA values are from "Prefer not to answer responses"
+# All eth variables have the same amount of NA values so using any "eth_" variable would work to create the eth_PNTA variable
+
+BNSp2b$eth_PNTA <- ifelse(is.na(BNSp2b$eth_white), 1, 0)
+#table(BNSp2b$eth_PNTA, useNA = "always")
+
+
+
+
+# Get the column names that start with 'eth_'
+eth_columns <- grep("eth_", names(BNSp2b), value = TRUE)
+
+# Update 'NA' values to 0 (not selected) in eth_columns
+BNSp2b <- BNSp2b %>%
+  mutate(across(all_of(eth_columns), ~ifelse(is.na(.), 0, .)))
+# table(BNSp2b$eth_african_amer, useNA = "always")
+
+
+# rename back to eth_hispanic
+
+BNSp2b <- BNSp2b %>% rename("eth_hispanic" = "ethn_hispanic" )
+
+BNSp2b <- BNSp2b %>% rename("eth_hispanic2" = "ethn_hispanic2" )
+
+
+
+
+# Count number of people who selected multiple races (not including PNTA and hispanic)
+
+BNSp2b$race_total_count <- BNSp2b %>% select(contains("eth_"), -eth_PNTA, -eth_hispanic, -eth_hispanic2) %>% rowSums()
+
+
+
+BNSp2b$race_eth <- case_when(BNSp2b$eth_hispanic == 1 & BNSp2b$eth_PNTA == 1 & BNSp2b$race_total_count == 0 ~ "Hispanic Prefer Not to Answer Race", 
+                                 BNSp2b$eth_hispanic == 1 & BNSp2b$eth_white == 1 & BNSp2b$eth_PNTA == 0 & BNSp2b$race_total_count == 1 ~ "Hispanic White",
+                                 BNSp2b$eth_hispanic == 0 & BNSp2b$eth_white == 1 &  BNSp2b$eth_PNTA == 0 & BNSp2b$race_total_count == 1 ~ "Non Hispanic White",
+                                 BNSp2b$eth_hispanic == 0 & BNSp2b$eth_african_amer == 1 & BNSp2b$eth_PNTA == 0 & BNSp2b$race_total_count == 1 ~ "Non Hispanic African American",
+                                 BNSp2b$eth_hispanic == 0 & (BNSp2b$eth_japanese == 1 | BNSp2b$eth_korean == 1 | BNSp2b$eth_asian_indian == 1| BNSp2b$eth_other_asian == 1 |  
+                                                                   BNSp2b$eth_vietnamese == 1 | BNSp2b$eth_chinese == 1 | BNSp2b$eth_filipino == 1) & 
+                                   BNSp2b$eth_PNTA == 0 & BNSp2b$race_total_count == 1 ~ "Non Hispanic Asian",
+                                 TRUE ~ "Other/Unknown")
+# BNSp2b %>% select(contains("eth_"), race_eth) %>% group_by_all() %>% summarize(count=n()) %>% print(n=100)
+
+
+
+
+
+# 2 item-Food Insecurity ( 1 = Food Insecure): food_insecure_2item
+
+
+
+
+# Gender -----
+
+BNSp2b$gender <- case_when(BNSp2b$q7 == "Man" ~ "Male", BNSp2b$q7 == "Woman" ~ "Female") %>% factor(order = FALSE)
+
+
+
+# Confidence in cooking Yes Vs No ------
+# How confident are you that you can use basic cooking skills, like cutting fruits and vegetables, measuring out ingredients, or following a recipe?
+
+BNSp2b$cooking_confident <- recode(BNSp2b$q82_2, "Not at all confident" = "No", "Not very confident" = "No", 
+                                "Neutral" = "No",
+                                "Somewhat confident" = "Yes", "Very confident" = "Yes") %>% factor(order = FALSE)
+
+
+
+
+
+# Living With Family Vs No -----
+
+BNSp2b$living_with_family <- case_when(grepl("I live with parents or other relatives, paying rent with my own money|I live with parents or other relatives, not paying rent with my own money", BNSp2b$q25, fixed = FALSE, ignore.case = TRUE) ~ "Yes",
+                                    grepl("I live in university housing or residence halls|I rent an apartment or house with roommates|I rent an apartment or house without roommates|I own my own home|I live in transitional housing or a halfway home|I am temporarily living with friends or relatives, without permanent housing|I am currently living at an outdoor location|Other|I live in a sorority or fraternity house|I am temporarily living in a homeless shelter without permanent housing", 
+                                          BNSp2b$q25, fixed = FALSE, ignore.case = TRUE) ~ "No") %>% factor(order = FALSE)
+
+# table(BNSp2b$q25, BNSp2b$living_with_family, useNA = "always")
+
+
+
+# Total Hours including paid, unpaid, unit hours and caregiving hours ------
+
+BNSp2b$units <- recode(BNSp2b$q18, "22+" = "22") %>% as.numeric(BNSp2b$q18, na.rm = TRUE)
+BNSp2b$paid_work_hours <-  recode(BNSp2b$q19, "41+" = "41") %>% as.numeric(BNSp2b$q19, na.rm = TRUE)
+BNSp2b$unpaid_work_hours <- recode(BNSp2b$q21, "41+" = "41") %>% as.numeric(BNSp2b$q21, na.rm = TRUE)
+BNSp2b$caregiving_hours <-recode(BNSp2b$q22, "41+" = "41") %>% as.numeric(BNSp2b$q22, na.rm = TRUE)
+
+
+BNSp2b$unit_hours <- 3*(BNSp2b$units)
+
+BNSp2b$weekly_hours <- BNSp2b %>% select(unit_hours, paid_work_hours, unpaid_work_hours, caregiving_hours) %>% rowSums(na.rm = FALSE)
+
+BNSp2b$weekly_hours_in_tens <- BNSp2b$weekly_hours/10
+
+
+# Health Conscious (q76_9) -----
+# I do not think about my eating/food habits
+
+BNSp2b$health_conscious <- recode(BNSp2b$q76_9, "Strongly disagree" = "Yes", "Disagree" = "Yes",
+                               "Neither agree nor disagree" = "No", "Agree" = "No", "Strongly agree" = "No") %>% factor(order = FALSE)
+# table(BNSp2b$health_conscious, useNA = "always")
+
+
+
+
+# CalFresh Variables ----
+
+# Create temporary CalFresh variable
+BNSp2b <- BNSp2b %>% mutate(current_calfresh_temp = case_when(grepl("Currently use as a college student", q46_1) ~ "CalFresh",
+                                                        grepl("Used it in the past as a college student", q46_1) ~ "No CalFresh",
+                                                        grepl("Heard of it, but never used it", q46_1) ~ "No CalFresh",
+                                                        grepl("Never heard of it", q46_1) ~ "No CalFresh",
+                                                        grepl("Used it before attending college", q46_1) ~ "No CalFresh"))
+
+
+
+# Create a 3 level CalFresh variable
+BNSp2b$calfresh3 <- case_when(BNSp2b$current_calfresh_temp == "CalFresh" ~ "CalFresh", 
+                           BNSp2b$current_calfresh_temp == "No CalFresh" & BNSp2b$calfresh_eligible == "Yes" ~ "No CalFresh but Likely Eligible",
+                           BNSp2b$current_calfresh_temp == "No CalFresh" & BNSp2b$calfresh_eligible == "No" ~ "Likely Not Eligible") 
+
+
+
+
+
+# Income Only Eligible
+
+BNSp2b <- BNSp2b %>% mutate(m_income = as.numeric(monthly_hh_income, na.rm = TRUE),
+                            Income_Eligible = ifelse((q38 == "Yes" | q39 == "Yes") & 
+                                                             ((household_size == 1 & m_income < 3) |
+                                                                (household_size == 2 & m_income < 4) |
+                                                                (household_size == 3 & m_income < 5) |
+                                                                (household_size == 4 & m_income < 6) |
+                                                                (household_size == 5 & m_income < 7) |
+                                                                (household_size == 6 & m_income < 8) |
+                                                                (household_size == 7 & m_income < 9) |
+                                                                (household_size == 8 & m_income < 10)), "Yes", "No"))
+
+
+
+
+
+
+# Fruit/Vegetables ----
+
+BNSp2b$fruits <- BNSp2b$fruit_veg_serv_daily
+
+BNSp2b$fruits3 <- recode(BNSp2b$fruits, "0" = "0", 
+                      "1-2" = "1-2",
+                      "3-4" = "3 or more",
+                      "5+" = "3 or more") %>% factor(order = FALSE)
+
+
+
+# Keep in line with statewide data
+BNSp2b$q77 <- recode(BNSp2b$fruits, "0" = "0", 
+                  "1-2" = "1-2",
+                  "3-4" = "3-4",
+                  "5+" = "5 or more")
+
+
+
+
+# SSB ----
+
+BNSp2b$ssb <- BNSp2b$sugar_drinks_ounces_daily
+
+
+BNSp2b$ssb_numeric <- recode(BNSp2b$ssb, "0" = 0,
+                          "1-8" = 4.5, 
+                          "9-16" = 12.5,  
+                          "17-24" =  20.5, 
+                          "25-36" = 30.5,
+                          "37-48" = 42.5, 
+                          "49-56" =  52.5, 
+                          "57-64" = 60.5, 
+                          "64+" = 64)
+# table(BNSp2b$ssb_numeric, useNA = "always")
+
+# Keep in line with statewide data
+BNSp2b$q78 <- recode(BNSp2b$ssb, "0" = "Zero",
+                     "1-8" = "1-8 ounces", 
+                     "9-16" = "9-16 ounces",  
+                     "17-24" =  "17-24 ounces", 
+                     "25-36" = "25-36 ounces",
+                     "37-48" = "37-48 ounces", 
+                     "49-56" =  "49-56 ounces", 
+                     "57-64" = "57-64 ounces", 
+                     "64+" = "64 ounces or more")
+  
+
+
+# Fast Food ----
+
+BNSp2b$q79 <- BNSp2b$eating_out_weekly
+
+
+BNSp2b$ff_numeric <- recode(BNSp2b$q79, "0" = 0, 
+                         "1-2" = 1.5, 
+                         "3-4" = 3.5,
+                         "5-6" = 5.5,
+                         "7-8" = 7.5, 
+                         "9-10" = 9.5, 
+                         "11+" = 11)
+
+# table(BNSp2b$ff_numeric, useNA = "always")
+
+
+
+
+
+# Kitchen Access ----
+# I do not regularly have access to a kitchen where I can prepare meals.
+
+BNSp2b$kitchen_access <- recode(BNSp2b$q76_1, "Strongly disagree" = "Yes", "Disagree" = "Yes",
+                             "Neither agree nor disagree" = "No", "Agree" = "No", "Strongly agree" = "No") %>% factor(order = FALSE)
+
+
+# Storage Access ----
+# I have a secure place to store fresh food and pantry items.
+
+BNSp2b$storage_access <- recode(BNSp2b$q76_2, "Strongly disagree" = "No", "Disagree" = "No", "Neither agree nor disagree" = "No", 
+                             "Agree" = "Yes", "Strongly agree" = "Yes") %>% factor(order = FALSE)
+
+
+# Room for storage ----
+#  I do not have enough room to store food items.
+
+BNSp2b$storage_room <- recode(BNSp2b$q76_3, "Strongly disagree" = "Yes", "Disagree" = "Yes",
+                           "Neither agree nor disagree" = "No", "Agree" = "No", "Strongly agree" = "No") %>% factor(order = FALSE)
+
+
+
+
+
+# School (for FNCE and/or CFHL Poster)
+# Used to compare campuses that have CFHL (1) vs don't have CFHL (0)
+
+BNSp2b$campus_CFHL <- "Campus has CFHL" # All the campuses in Pilot 2 have CFHL (Double check if they had CFHL at the time of the survey)
+
+
+
+# Physical activity indicator
+
+
+physical_act_temp <- BNSp2b %>% select(moderate_exercise_past_week, vigorous_exercise_past_week, strength_training_past_week) %>% rowSums()
+
+
+BNSp2b$physical_activity <- ifelse(physical_act_temp >= 1, "Yes", "No")
+
+
+# Rename physical activity variables to match statewide names
+
+BNSp2b <- rename(BNSp2b, q83_1 = moderate_exercise_past_week,
+                 q83_2 = vigorous_exercise_past_week, 
+                 q83_3 = strength_training_past_week)
+
+
+# Academic level
+
+BNSp2b$academic_level <- recode(BNSp2b$academic_level, "Junior (60-89 semester units)" = "Junior", "Senior (90+ semester units)" = "Senior")
+
+
+# Filter out people on a meal plan
+
+BNSp2b <- BNSp2b %>% filter((meals_per_week_mp != "11+") %>% tidyr::replace_na(TRUE))
+
+
+BNSp2b <- BNSp2b %>% select(calfresh3, race_eth, eth_PNTA, eth_hispanic, gender, q7, age, cooking_confident, q82_2,living_with_family, q25, food_insecure_2item, weekly_hours, 
+                            health_conscious, q76_9, kitchen_access, q76_1, storage_access, q76_2, storage_room, q76_3, Cohort, campus_CFHL,
+                            ff_numeric, ssb_numeric, q78, q79, fruits3, q77, units, q38, q39, household_size, monthly_hh_income, paid_work_hours, 
+                            unpaid_work_hours, unit_hours, caregiving_hours, q64, q65, school, q46_1, calfresh_eligible, housing_insecure, homelessness_year, 
+                            homelessness_month, household_size, firstgen, physical_activity, q83_1, q83_2, q83_3, academic_level, Income_Eligible,
+                            q26, q27, q28, q29, q30, q31, q32, q33)
+
+
+```
+
+# Combine Data Sets
+
+```{r}
+
+# Combine data sets
+bns_combined <- rbind(bns_variables, BNSp2b)
+
+
+rm(bns_variables)
+
+
+# Additional data management for combined data set (Used for imputations)
+
+# Group other genders into its own category (Some Wording differed between data sets and there were very few other responses)
+bns_combined$q7 <- case_when(bns_combined$q7 == "Man" ~ "Male", bns_combined$q7 == "Woman" ~ "Female",
+                             grepl("Gender", bns_combined$q7, fixed = FALSE) ~ "Other") %>% factor(order = FALSE)
+
+
+# Fix Capitalization
+bns_combined$q82_2 <- recode(bns_combined$q82_2, "Very confident" = "Very Confident")
+
+
+# Fix slight word/punctuation changes
+bns_combined$q25 <- recode(bns_combined$q25, "I am temporarily living with friends or relatives, without permanent housing (couch surfing)" = "I am temporarily living with friends or relatives without permanent housing (i.e. couch surfing)",
+                           "Other" = "Other (Please specify):", "I am currently living at an outdoor location, abandoned building, car, or other area not meant for regular housing, without permanent housing" = "I am currently living at an outdoor location, abandoned building, car, or other area not meant for regular housing without permanent housing")
+
+
+# Fix slight word changes
+ bns_combined$q79 <- recode(bns_combined$q79, "0" = "Zero", 
+                            "1-2" = "1-2 times per week", 
+                            "3-4" = "3-4 times per week",
+                            "5-6" = "5-6 times per week",
+                            "7-8" = "7-8 times per week", 
+                            "9-10" = "9-10 times per week", 
+                            "11+" = "11 times or more per week")
+ 
+ 
+# Remove NAs from citizenship questions from skip logic (to use in imputations)
+
+bns_combined$q39 <- ifelse(bns_combined$q38 == "Yes", "Citizen", as.factor(bns_combined$q39))
+bns_combined$q39 <- recode(bns_combined$q39, "1" = "Yes", "2" = "No") %>% factor(order = FALSE)
+
+
+# Group household income into 6 levels
+bns_combined$monthly_hh_income <- recode(bns_combined$monthly_hh_income,
+         "Less than $150" = "Very Low", "$150 or less" = "Very Low",
+         "$151-$2,148" = "Low", "$151-$2,082" = "Low",
+         "$2,149-$2,904" = "Moderate", "$2,083-$2,820" = "Moderate",
+         "$2,905-$3,660" = "High", "$2,821-$3,556" = "High",
+         "$3,661-$4,418" = "Very High", "$3,557-$4,292" = "Very High",
+         .default = "Very High")
+  
+
+
+# Fix responses with low sample sizes in q25 (for imputations)
+bns_combined$q25 <- recode(bns_combined$q25, "I am temporarily living in a homeless shelter without permanent housing" = "Homeless",
+                           "I am currently living at an outdoor location, abandoned building, car, or other area not meant for regular housing without permanent housing" = "Homeless")
+
+
+# Fix responses in calfresh_eligible_new
+bns_combined$calfresh_eligible <- recode(bns_combined$calfresh_eligible, "0" = "No", "1" = "Yes") %>% factor(order = FALSE)
+
+
+
+# Fix class of some variables:
+
+bns_combined$q25 <- factor(bns_combined$q25, order = FALSE)
+bns_combined$units <- as.numeric(bns_combined$units, na.rm = TRUE)
+bns_combined$Cohort <- factor(bns_combined$Cohort, order = FALSE)
+bns_combined$school <- factor(bns_combined$school, order = FALSE)
+bns_combined$q38 <- factor(bns_combined$q38, order = FALSE)
+bns_combined$physical_activity <- factor(bns_combined$physical_activity, order = FALSE)
+
+
+
+# Change Reference values
+
+
+bns_combined$race_eth <- factor(bns_combined$race_eth, order = FALSE) %>% relevel(bns_combined$race_eth, ref = "Non Hispanic White")
+
+bns_combined$food_insecure_2item <- recode(bns_combined$food_insecure_2item, "0" = "No", "1" = "Yes") 
+bns_combined$food_insecure_2item <- factor(bns_combined$food_insecure_2item, order = FALSE) %>% relevel(bns_combined$food_insecure_2item, ref = "Yes")
+
+bns_combined$health_conscious <- factor(bns_combined$health_conscious, order = FALSE) %>% relevel(bns_combined$health_conscious, ref = "No")
+
+bns_combined$kitchen_access <- factor(bns_combined$kitchen_access, order = FALSE) %>% relevel(bns_combined$kitchen_access, ref = "No")
+
+bns_combined$storage_access <- factor(bns_combined$storage_access, order = FALSE) %>% relevel(bns_combined$storage_access, ref = "No")
+
+bns_combined$storage_room <- factor(bns_combined$storage_room, order = FALSE) %>% relevel(bns_combined$storage_room, ref = "No")
+
+
+
+
+# Create dependent variable forms
+
+bns_combined$log_ff <- log(0.10 + bns_combined$ff_numeric)
+
+bns_combined$log_ssb <- log(0.10 + bns_combined$ssb_numeric)
+
+bns_combined$q77_one_vs_zero <- case_when(bns_combined$q77 == "0" ~ "0", bns_combined$q77 == "1-2" ~ "1-2")  %>% factor(order = FALSE)
+
+
+bns_combined$q77_one_vs_three_or_more <- case_when(bns_combined$q77 == "3-4" ~ "3 or more", bns_combined$q77 == "5 or more" ~ "3 or more",
+                                                   bns_combined$q77 == "1-2" ~ "1-2")  %>% factor(order = FALSE)
+
+
+bns_combined$q77_one_vs_three <- case_when(bns_combined$q77 == "3-4" ~ "3-4", bns_combined$q77 == "1-2" ~ "1-2")  %>% factor(order = FALSE)
+
+
+bns_combined$q77_five_vs_three <- case_when(bns_combined$q77 == "3-4" ~ "3-4", bns_combined$q77 == "5 or more" ~ "5+")  %>% factor(order = FALSE)
+
+
+
+# Change numeric variables to increments of 10
+
+bns_combined$paid_work_hours_tens <- (bns_combined$paid_work_hours)/10
+bns_combined$unpaid_work_hours_tens <- (bns_combined$unpaid_work_hours)/10
+bns_combined$caregiving_hours_tens <- (bns_combined$caregiving_hours)/10
+bns_combined$units_four <- (bns_combined$units)/4
+
+
+
+
+# Change PNTA ethnicity responses to missing for imputations
+
+bns_combined$race_eth <- case_when(bns_combined$eth_PNTA == "1" ~ NA, TRUE ~ as.factor(bns_combined$race_eth)) %>% droplevels()
+
+
+# Change fast food to categorical
+bns_combined$ff_cat <- recode(bns_combined$ff_numeric, "0" = "Zero",
+                                       "1.5" = "1-2 times per week", 
+                                       "3.5" = "3-4 times per week",
+                                       .default =  "5 or more times per week") %>% factor(order = FALSE,
+                                                                                          levels = c("Zero", "1-2 times per week", "3-4 times per week","5 or more times per week" ))
+
+
+# Change SSB to categorical
+bns_combined$ssb_cat <- recode(bns_combined$ssb_numeric, "0" = "Zero",
+                                        "4.5" = "1-8 ounces", 
+                                        "12.5" = "9-16 ounces",  
+                                        .default = "17 or more ounces")  %>% factor(order = FALSE, 
+                                                                                    levels = c("Zero", "1-8 ounces", "9-16 ounces", "17 or more ounces"))
+
+
+# Convert "Other" academic year Responses to NA (Small sample size affects imputations and everyone surveyed should fall into one of the 4 categories)
+
+bns_combined$academic_level <- na_if(bns_combined$academic_level, "Other") %>% droplevels()
+
+
+# Drop non males and females and drop non citizens/non lawful permanent residents
+bns_combined <- bns_combined %>% filter((q7 != "Other") %>% replace_na(TRUE), (q39 != "No") %>% replace_na(TRUE)) %>% droplevels()
+
+
+save(bns_combined, file = here::here("./clean_data/bns_combined.Rdata"))
+save(bns, file = here::here("./clean_data/bns.Rdata"))
+save(BNSp2b, file = here::here("./clean_data/BNSp2b.Rdata"))
+
+```
+:::

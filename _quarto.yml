@@ -1,0 +1,30 @@
+project:
+  type: website
+
+website:
+  title: "CalFresh Vs Diet Quality"
+  navbar:
+    left:
+      - href: Survey Questions.qmd
+        text: Survey Questions
+      - href: Data Management.qmd
+        text: Data Management
+      - href: Imputations.qmd
+        text: Imputations
+      - href: Variable Selection.qmd
+        text: Variable Selection
+      - href: Clustering Analysis.qmd
+        text: Clustering Analysis
+      - href: Manuscript Files.qmd
+        text: Manuscript Files    
+          
+        
+
+format:
+  html:
+    theme: sandstone
+    css: styles.css
+    toc: true
+
+editor: visual
+
