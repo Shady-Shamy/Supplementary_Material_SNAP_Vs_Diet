@@ -179,10 +179,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">error =</span> <span class="cn">FALSE</span>,<span class="at">warning =</span> <span class="cn">FALSE</span>,<span class="at">message =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>bns <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"../bns3_data_analysis_ssshamy/data/bns3_statewide_clean.rds"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>bns <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"./raw_data/bns3_statewide_clean.rds"</span>))</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
 Attaching package: 'dplyr'</code></pre>
@@ -470,7 +472,7 @@ Attaching package: 'dplyr'</code></pre>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"../bns3_data_analysis_ssshamy/data/BNSp2_clean.Rdata"</span>)</span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"./raw_data/BNSp2_clean.Rdata"</span>))</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>BNSp2b<span class="sc">$</span>Cohort <span class="ot">&lt;-</span> <span class="st">"Pilot 2"</span></span>
@@ -919,9 +921,9 @@ Attaching package: 'dplyr'</code></pre>
 <span id="cb7-148"><a href="#cb7-148" aria-hidden="true" tabindex="-1"></a>bns_combined <span class="ot">&lt;-</span> bns_combined <span class="sc">%&gt;%</span> <span class="fu">filter</span>((q7 <span class="sc">!=</span> <span class="st">"Other"</span>) <span class="sc">%&gt;%</span> <span class="fu">replace_na</span>(<span class="cn">TRUE</span>), (q39 <span class="sc">!=</span> <span class="st">"No"</span>) <span class="sc">%&gt;%</span> <span class="fu">replace_na</span>(<span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">droplevels</span>()</span>
 <span id="cb7-149"><a href="#cb7-149" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-150"><a href="#cb7-150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-151"><a href="#cb7-151" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(bns_combined, <span class="at">file =</span> <span class="st">"bns_combined.Rdata"</span>)</span>
-<span id="cb7-152"><a href="#cb7-152" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(bns, <span class="at">file =</span> <span class="st">"bns.Rdata"</span>)</span>
-<span id="cb7-153"><a href="#cb7-153" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(BNSp2b, <span class="at">file =</span> <span class="st">"BNSp2b.Rdata"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-151"><a href="#cb7-151" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(bns_combined, <span class="at">file =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"./clean_data/bns_combined.Rdata"</span>))</span>
+<span id="cb7-152"><a href="#cb7-152" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(bns, <span class="at">file =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"./clean_data/bns.Rdata"</span>))</span>
+<span id="cb7-153"><a href="#cb7-153" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(BNSp2b, <span class="at">file =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"./clean_data/BNSp2b.Rdata"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
