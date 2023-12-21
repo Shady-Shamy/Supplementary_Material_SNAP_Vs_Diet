@@ -8,6 +8,8 @@ format:
 
 > This page shows all graphs and tables used in the manuscript along with the code used. Additional univariate frequencies of covariates not shown in the manuscript are shown in the demographics table.
 
+
+
 ```{r, include=FALSE}
 knitr::opts_chunk$set(error = FALSE,warning = FALSE,message = FALSE,echo = TRUE)
 

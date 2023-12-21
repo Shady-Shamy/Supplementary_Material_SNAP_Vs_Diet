@@ -40,6 +40,7 @@ title: "Data Management"
 ```{r}
 
 knitr::opts_chunk$set(error = FALSE,warning = FALSE,message = FALSE,echo = TRUE)
+
 bns <- readRDS(here::here("/Users/shady/Box/CHC All/10. Research, Evaluation & Professional Presentations/02. CHC Grad Student Research/Shady Shamy/Supplementary_Material_CalFresh_Vs_Diet/raw_data/bns3_statewide_clean.rds"))
 
 
@@ -325,7 +326,7 @@ bns_variables <- bns %>%  select(calfresh3, race_eth, eth_PNTA, eth_hispanic, ge
 
 ```{r}
 
-load(here::here("/Users/shady/Box/CHC All/10. Research, Evaluation & Professional Presentations/02. CHC Grad Student Research/Shady Shamy/Supplementary_Material_CalFresh_Vs_Diet/raw_data/BNSp2_clean.Rdata"))
+load(here::here("raw_data/BNSp2_clean.Rdata"))
 
 
 BNSp2b$Cohort <- "Pilot 2"

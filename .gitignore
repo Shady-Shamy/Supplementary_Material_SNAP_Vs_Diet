@@ -2,9 +2,6 @@
 .Rhistory
 .RData
 .Ruserdata
-
 /.quarto/
-
-
-.raw_data
-.clean_data
+clean_data
+raw_data
