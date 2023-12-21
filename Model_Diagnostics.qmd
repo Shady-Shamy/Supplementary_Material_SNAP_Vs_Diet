@@ -6,9 +6,7 @@ format:
     code-summary: "Show the code"
 ---
 
-
-> This page shows all procedures used to choose the best fitting model. The BIC and AIC of a Poisson, linear, log transformation, and an ordinal regression model were compared. The ordinal regression models fit the best and had the lowest AICs and BICs. To ensure that there were no major differences in results across the different levels of the dependent variables, stratified logistic regressions were fitted and compared. All results appeared to stay consistent across the different levels, justifying the use of an ordinal regression model. 
-
+> This page shows all procedures used to choose the best fitting model. The BIC and AIC of a Poisson, linear, log transformation, and an ordinal regression model were compared. The ordinal regression models fit the best and had the lowest AICs and BICs. To ensure that there were no major differences in results across the different levels of the dependent variables, stratified logistic regressions were fitted and compared. All results appeared to stay consistent across the different levels, justifying the use of an ordinal regression model.
 
 ```{r, include=FALSE}
 knitr::opts_chunk$set(error = FALSE,warning = FALSE,message = FALSE,echo = TRUE)
@@ -20,14 +18,14 @@ library(dotwhisker)
 
 bns_imputed_mids <- readRDS("clean_data/imp_bns_combined_clean_mids.RData")
 
+
+
 bns_combined_imputed_df <- complete(bns_imputed_mids, fill = 3)
 
 
 ```
 
 ::: panel-tabset
-
-
 # Fast Food Model Diagnostic
 
 ## Stratified Logistic Regressions
@@ -116,7 +114,6 @@ linear.model <- lm(ff_numeric~calfresh3 + Cohort + gender + race_eth + age + phy
 car::vif(linear.model)
 
 ```
-
 
 # SSB Model Diagnostics
 
@@ -213,7 +210,6 @@ car::vif(linear.model)
 
 
 ```
-
 
 # F&V Model Diagnostics
 

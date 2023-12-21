@@ -4,3 +4,7 @@
 .Ruserdata
 
 /.quarto/
+
+
+.raw_data
+.clean_data

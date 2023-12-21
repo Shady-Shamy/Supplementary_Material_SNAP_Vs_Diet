@@ -195,8 +195,6 @@ bns_combined$food_insecure_2item <- factor(bns_combined$food_insecure_2item, ord
 
 ```
 
-
-
 ```{r}
 ## Convert back to Mids
 
