@@ -1,1 +1,1 @@
-# Supplementary_Material_CalFresh_Vs_Diet
+# Supplementary_Material_SNAP_Vs_Diet
