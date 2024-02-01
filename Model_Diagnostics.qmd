@@ -32,11 +32,11 @@ bns_combined_imputed_df <- complete(bns_imputed_mids, fill = 3)
 
 ```{r}
 
-ordinal.mod1 <-glm(ff_cat1~calfresh3 + Cohort + gender + race_eth + age + physical_activity + storage_room + kitchen_access + health_conscious + cooking_confident + food_insecure_2item + paid_work_hours_tens + living_with_family + homelessness_year, data = bns_combined_imputed_df, family = "binomial")
+ordinal.mod1 <-glm(ff_cat1~SNAP3 + Cohort + gender + race_eth + age + physical_activity + storage_room + kitchen_access + health_conscious + cooking_confident + food_insecure_2item + paid_work_hours_tens + living_with_family + homelessness_year, data = bns_combined_imputed_df, family = "binomial")
 
-ordinal.mod2 <-glm(ff_cat2~calfresh3 + Cohort + gender + race_eth + age + physical_activity + storage_room + kitchen_access + health_conscious + cooking_confident + food_insecure_2item + paid_work_hours_tens + living_with_family + homelessness_year, data = bns_combined_imputed_df, family = "binomial")
+ordinal.mod2 <-glm(ff_cat2~SNAP3 + Cohort + gender + race_eth + age + physical_activity + storage_room + kitchen_access + health_conscious + cooking_confident + food_insecure_2item + paid_work_hours_tens + living_with_family + homelessness_year, data = bns_combined_imputed_df, family = "binomial")
 
-ordinal.mod3 <-glm(ff_cat3~calfresh3 + Cohort + gender + race_eth + age + physical_activity + storage_room + kitchen_access + health_conscious + cooking_confident + food_insecure_2item + paid_work_hours_tens + living_with_family + homelessness_year, data = bns_combined_imputed_df, family = "binomial")
+ordinal.mod3 <-glm(ff_cat3~SNAP3 + Cohort + gender + race_eth + age + physical_activity + storage_room + kitchen_access + health_conscious + cooking_confident + food_insecure_2item + paid_work_hours_tens + living_with_family + homelessness_year, data = bns_combined_imputed_df, family = "binomial")
 
 
 ordinal.mod1 <- tidy(ordinal.mod1) %>%
@@ -64,14 +64,14 @@ dwplot(models) + geom_vline(xintercept = 1,
 
 ```{r}
 
-linear.model <- lm(ff_numeric~calfresh3 + Cohort + gender + race_eth + age + physical_activity + storage_room + kitchen_access + health_conscious + cooking_confident + food_insecure_2item + paid_work_hours_tens + living_with_family + homelessness_year, data = bns_combined_imputed_df)
+linear.model <- lm(ff_numeric~SNAP3 + Cohort + gender + race_eth + age + physical_activity + storage_room + kitchen_access + health_conscious + cooking_confident + food_insecure_2item + paid_work_hours_tens + living_with_family + homelessness_year, data = bns_combined_imputed_df)
 
 
-poisson.model <- glm(floor(ff_numeric)~calfresh3 + Cohort + gender + race_eth + age + physical_activity + storage_room + kitchen_access + health_conscious + cooking_confident + food_insecure_2item + paid_work_hours_tens + living_with_family + homelessness_year, data = bns_combined_imputed_df, family = "poisson")
+poisson.model <- glm(floor(ff_numeric)~SNAP3 + Cohort + gender + race_eth + age + physical_activity + storage_room + kitchen_access + health_conscious + cooking_confident + food_insecure_2item + paid_work_hours_tens + living_with_family + homelessness_year, data = bns_combined_imputed_df, family = "poisson")
 
-log.model <- glm(log(ff_numeric + 0.01)~calfresh3 + Cohort + gender + race_eth + age + physical_activity + storage_room + kitchen_access + health_conscious + cooking_confident + food_insecure_2item + paid_work_hours_tens + living_with_family + homelessness_year, data = bns_combined_imputed_df)
+log.model <- glm(log(ff_numeric + 0.01)~SNAP3 + Cohort + gender + race_eth + age + physical_activity + storage_room + kitchen_access + health_conscious + cooking_confident + food_insecure_2item + paid_work_hours_tens + living_with_family + homelessness_year, data = bns_combined_imputed_df)
 
-ordinal.mod <- MASS::polr(ff_cat~calfresh3 + Cohort + gender + race_eth + age + physical_activity + storage_room + kitchen_access + health_conscious + cooking_confident + food_insecure_2item + paid_work_hours_tens + living_with_family + homelessness_year, data = bns_combined_imputed_df, Hess=TRUE)
+ordinal.mod <- MASS::polr(ff_cat~SNAP3 + Cohort + gender + race_eth + age + physical_activity + storage_room + kitchen_access + health_conscious + cooking_confident + food_insecure_2item + paid_work_hours_tens + living_with_family + homelessness_year, data = bns_combined_imputed_df, Hess=TRUE)
 
 cat("AIC for Poisson Model:", AIC(poisson.model))
 
@@ -96,7 +96,7 @@ cat("BIC for Ordinal Model:", BIC(ordinal.mod))
 ## Model Accuracy
 
 ```{r}
-ff.ordinal.mod2 <- MASS::polr(ff_cat~calfresh3 + Cohort + gender + race_eth + age + physical_activity + storage_room + kitchen_access + health_conscious + cooking_confident + food_insecure_2item + paid_work_hours_tens + living_with_family + homelessness_year, data = bns_combined_imputed_df, Hess=TRUE)
+ff.ordinal.mod2 <- MASS::polr(ff_cat~SNAP3 + Cohort + gender + race_eth + age + physical_activity + storage_room + kitchen_access + health_conscious + cooking_confident + food_insecure_2item + paid_work_hours_tens + living_with_family + homelessness_year, data = bns_combined_imputed_df, Hess=TRUE)
 
 preds_ff <- augment(ff.ordinal.mod2, type = "class")
 conf_mat(preds_ff, truth = ff_cat, estimate = .fitted)
@@ -109,7 +109,7 @@ accuracy(preds_ff, truth = ff_cat, estimate = .fitted)
 ```{r}
 
 # Check VIF of a linear model
-linear.model <- lm(ff_numeric~calfresh3 + Cohort + gender + race_eth + age + physical_activity + storage_room + kitchen_access + health_conscious + cooking_confident + food_insecure_2item + paid_work_hours_tens + living_with_family + homelessness_year, data = bns_combined_imputed_df)
+linear.model <- lm(ff_numeric~SNAP3 + Cohort + gender + race_eth + age + physical_activity + storage_room + kitchen_access + health_conscious + cooking_confident + food_insecure_2item + paid_work_hours_tens + living_with_family + homelessness_year, data = bns_combined_imputed_df)
 
 car::vif(linear.model)
 
@@ -121,11 +121,11 @@ car::vif(linear.model)
 
 ```{r}
 
-ordinal.mod1 <-glm(ssb_cat1~calfresh3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_access + units_four + paid_work_hours_tens + caregiving_hours_tens + homelessness_year, data = bns_combined_imputed_df, family = "binomial")
+ordinal.mod1 <-glm(ssb_cat1~SNAP3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_access + units_four + paid_work_hours_tens + caregiving_hours_tens + homelessness_year, data = bns_combined_imputed_df, family = "binomial")
 
-ordinal.mod2 <-glm(ssb_cat2~calfresh3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_access + units_four + paid_work_hours_tens + caregiving_hours_tens + homelessness_year, data = bns_combined_imputed_df, family = "binomial")
+ordinal.mod2 <-glm(ssb_cat2~SNAP3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_access + units_four + paid_work_hours_tens + caregiving_hours_tens + homelessness_year, data = bns_combined_imputed_df, family = "binomial")
 
-ordinal.mod3 <-glm(ssb_cat3~calfresh3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_access + units_four + paid_work_hours_tens + caregiving_hours_tens + homelessness_year, data = bns_combined_imputed_df, family = "binomial")
+ordinal.mod3 <-glm(ssb_cat3~SNAP3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_access + units_four + paid_work_hours_tens + caregiving_hours_tens + homelessness_year, data = bns_combined_imputed_df, family = "binomial")
 
 
 ordinal.mod1 <- tidy(ordinal.mod1) %>%
@@ -153,14 +153,14 @@ dwplot(models) + geom_vline(xintercept = 1,
 
 ```{r}
 
-linear.model <- lm(ssb_numeric~calfresh3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_access + units_four + paid_work_hours_tens + caregiving_hours_tens + homelessness_year, data = bns_combined_imputed_df)
+linear.model <- lm(ssb_numeric~SNAP3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_access + units_four + paid_work_hours_tens + caregiving_hours_tens + homelessness_year, data = bns_combined_imputed_df)
 
 
-poisson.model <- glm(ssb_numeric~calfresh3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_access + units_four + paid_work_hours_tens + caregiving_hours_tens + homelessness_year, data = bns_combined_imputed_df, family = "poisson")
+poisson.model <- glm(ssb_numeric~SNAP3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_access + units_four + paid_work_hours_tens + caregiving_hours_tens + homelessness_year, data = bns_combined_imputed_df, family = "poisson")
 
-log.model <- glm(log(ssb_numeric + 0.01)~calfresh3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_access + units_four + paid_work_hours_tens + caregiving_hours_tens + homelessness_year, data = bns_combined_imputed_df)
+log.model <- glm(log(ssb_numeric + 0.01)~SNAP3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_access + units_four + paid_work_hours_tens + caregiving_hours_tens + homelessness_year, data = bns_combined_imputed_df)
 
-ordinal.mod <- MASS::polr(ff_cat~calfresh3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_access + units_four + paid_work_hours_tens + caregiving_hours_tens + homelessness_year, data = bns_combined_imputed_df, Hess=TRUE)
+ordinal.mod <- MASS::polr(ff_cat~SNAP3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_access + units_four + paid_work_hours_tens + caregiving_hours_tens + homelessness_year, data = bns_combined_imputed_df, Hess=TRUE)
 
 
 cat("AIC for Poisson Model:", AIC(poisson.model))
@@ -189,7 +189,7 @@ cat("BIC for Ordinal Model:", BIC(ordinal.mod))
 ```{r}
 
 
-ssb.ordinal.mod2 <- MASS::polr(ssb_cat~calfresh3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_access + units_four + paid_work_hours_tens + caregiving_hours_tens + homelessness_year, data = bns_combined_imputed_df, Hess=TRUE)
+ssb.ordinal.mod2 <- MASS::polr(ssb_cat~SNAP3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_access + units_four + paid_work_hours_tens + caregiving_hours_tens + homelessness_year, data = bns_combined_imputed_df, Hess=TRUE)
 
 preds_SSB <- augment(ssb.ordinal.mod2, type = "class")
 conf_mat(preds_SSB, truth = ssb_cat, estimate = .fitted)
@@ -204,7 +204,7 @@ accuracy(preds_SSB, truth = ssb_cat, estimate = .fitted)
 ```{r}
 
 # Check VIF of a linear model
-linear.model <- lm(ssb_numeric~calfresh3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_access + units_four + paid_work_hours_tens + caregiving_hours_tens + homelessness_year, data = bns_combined_imputed_df)
+linear.model <- lm(ssb_numeric~SNAP3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_access + units_four + paid_work_hours_tens + caregiving_hours_tens + homelessness_year, data = bns_combined_imputed_df)
 
 car::vif(linear.model)
 
@@ -217,11 +217,11 @@ car::vif(linear.model)
 
 ```{r}
 
-imp_one_vs_zero <- with(bns_imputed_mids, glm(q77_one_vs_zero~calfresh3 + Cohort + gender + race_eth + age + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item, family = "binomial"))
+imp_one_vs_zero <- with(bns_imputed_mids, glm(q77_one_vs_zero~SNAP3 + Cohort + gender + race_eth + age + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item, family = "binomial"))
 
 
 
-imp_one_vs_three_or_more <- with(bns_imputed_mids, glm(q77_one_vs_three_or_more~calfresh3 + Cohort + gender + race_eth + age + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item, family = "binomial"))
+imp_one_vs_three_or_more <- with(bns_imputed_mids, glm(q77_one_vs_three_or_more~SNAP3 + Cohort + gender + race_eth + age + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item, family = "binomial"))
 
 
 imp_fv1_model_tidy <- pool(imp_one_vs_zero) |> summary() %>%
@@ -248,14 +248,14 @@ dwplot(FV2_models) + geom_vline(xintercept = 1,
 
 ```{r}
 
-linear.model <- lm(q77_numeric~calfresh3 + Cohort + gender + race_eth + age + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item, data = bns_combined_imputed_df)
+linear.model <- lm(q77_numeric~SNAP3 + Cohort + gender + race_eth + age + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item, data = bns_combined_imputed_df)
 
 
-poisson.model <- glm(floor(q77_numeric)~calfresh3 + Cohort + gender + race_eth + age + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item, data = bns_combined_imputed_df, family = "poisson")
+poisson.model <- glm(floor(q77_numeric)~SNAP3 + Cohort + gender + race_eth + age + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item, data = bns_combined_imputed_df, family = "poisson")
 
-log.model <- glm(log(q77_numeric + 0.01)~calfresh3 + Cohort + gender + race_eth + age + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item, data = bns_combined_imputed_df)
+log.model <- glm(log(q77_numeric + 0.01)~SNAP3 + Cohort + gender + race_eth + age + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item, data = bns_combined_imputed_df)
 
-ordinal.mod <- MASS::polr(fruits3~calfresh3 + Cohort + gender + race_eth + age + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item, data = bns_combined_imputed_df, Hess=TRUE)
+ordinal.mod <- MASS::polr(fruits3~SNAP3 + Cohort + gender + race_eth + age + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item, data = bns_combined_imputed_df, Hess=TRUE)
 
 cat("AIC for Poisson Model:", AIC(poisson.model))
 
@@ -280,7 +280,7 @@ cat("BIC for Ordinal Model:", BIC(ordinal.mod))
 
 ```{r}
 
-FV.ordinal.mod2 <- MASS::polr(fruits3~calfresh3 + Cohort + gender + race_eth + age + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item, data = bns_combined_imputed_df, Hess=TRUE)
+FV.ordinal.mod2 <- MASS::polr(fruits3~SNAP3 + Cohort + gender + race_eth + age + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item, data = bns_combined_imputed_df, Hess=TRUE)
 
 preds_FV <- augment(FV.ordinal.mod2, type = "class")
 conf_mat(preds_FV, truth = fruits3, estimate = .fitted)
@@ -293,7 +293,7 @@ accuracy(preds_FV, truth = fruits3, estimate = .fitted)
 ```{r}
 
 # Check VIF of a linear model
-linear.model <- lm(q77_numeric~calfresh3 + Cohort + gender + race_eth + age + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item, data = bns_combined_imputed_df)
+linear.model <- lm(q77_numeric~SNAP3 + Cohort + gender + race_eth + age + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item, data = bns_combined_imputed_df)
 
 car::vif(linear.model)
 

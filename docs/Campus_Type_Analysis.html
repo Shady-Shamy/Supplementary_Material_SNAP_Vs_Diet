@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>CalFresh Vs Diet Quality - Campus Type Analysis</title>
+<title>SNAP Vs Diet Quality - Campus Type Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -105,7 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">CalFresh Vs Diet Quality</span>
+    <span class="navbar-title">SNAP Vs Diet Quality</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -252,33 +252,33 @@ X-squared = 9.3759, df = 4, p-value = 0.05236</code></pre>
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ff.ordinal.mod <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(ff_cat<span class="sc">~</span>calfresh3 <span class="sc">+</span> school2 <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> kitchen_access <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> living_with_family <span class="sc">+</span> homelessness_year, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ff.ordinal.mod <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(ff_cat<span class="sc">~</span>SNAP3 <span class="sc">+</span> school2 <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> kitchen_access <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> living_with_family <span class="sc">+</span> homelessness_year, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>ssb.ordinal.mod <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(ssb_cat<span class="sc">~</span>calfresh3 <span class="sc">+</span> school2 <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_access <span class="sc">+</span> units_four <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> homelessness_year, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>ssb.ordinal.mod <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(ssb_cat<span class="sc">~</span>SNAP3 <span class="sc">+</span> school2 <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_access <span class="sc">+</span> units_four <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> homelessness_year, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>FV.ordinal.mod <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(fruits3<span class="sc">~</span>calfresh3 <span class="sc">+</span> school2 <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> food_insecure_2item, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>FV.ordinal.mod <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(fruits3<span class="sc">~</span>SNAP3 <span class="sc">+</span> school2 <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> food_insecure_2item, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_merge</span>(<span class="at">tbls =</span> <span class="fu">list</span>(ff.ordinal.mod, ssb.ordinal.mod, FV.ordinal.mod), <span class="at">tab_spanner =</span> <span class="fu">c</span>(<span class="st">"F&amp;V Model"</span>, <span class="st">"**Fast Food Model**"</span>, <span class="st">"**SSB Model**"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 
-<div id="otmzevxnge" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#otmzevxnge table {
+<div id="hhnlbtdynt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#hhnlbtdynt table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#otmzevxnge thead, #otmzevxnge tbody, #otmzevxnge tfoot, #otmzevxnge tr, #otmzevxnge td, #otmzevxnge th {
+#hhnlbtdynt thead, #hhnlbtdynt tbody, #hhnlbtdynt tfoot, #hhnlbtdynt tr, #hhnlbtdynt td, #hhnlbtdynt th {
   border-style: none;
 }
 
-#otmzevxnge p {
+#hhnlbtdynt p {
   margin: 0;
   padding: 0;
 }
 
-#otmzevxnge .gt_table {
+#hhnlbtdynt .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -304,12 +304,12 @@ X-squared = 9.3759, df = 4, p-value = 0.05236</code></pre>
   border-left-color: #D3D3D3;
 }
 
-#otmzevxnge .gt_caption {
+#hhnlbtdynt .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#otmzevxnge .gt_title {
+#hhnlbtdynt .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -321,7 +321,7 @@ X-squared = 9.3759, df = 4, p-value = 0.05236</code></pre>
   border-bottom-width: 0;
 }
 
-#otmzevxnge .gt_subtitle {
+#hhnlbtdynt .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -333,7 +333,7 @@ X-squared = 9.3759, df = 4, p-value = 0.05236</code></pre>
   border-top-width: 0;
 }
 
-#otmzevxnge .gt_heading {
+#hhnlbtdynt .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -345,13 +345,13 @@ X-squared = 9.3759, df = 4, p-value = 0.05236</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#otmzevxnge .gt_bottom_border {
+#hhnlbtdynt .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#otmzevxnge .gt_col_headings {
+#hhnlbtdynt .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -366,7 +366,7 @@ X-squared = 9.3759, df = 4, p-value = 0.05236</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#otmzevxnge .gt_col_heading {
+#hhnlbtdynt .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -386,7 +386,7 @@ X-squared = 9.3759, df = 4, p-value = 0.05236</code></pre>
   overflow-x: hidden;
 }
 
-#otmzevxnge .gt_column_spanner_outer {
+#hhnlbtdynt .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -398,15 +398,15 @@ X-squared = 9.3759, df = 4, p-value = 0.05236</code></pre>
   padding-right: 4px;
 }
 
-#otmzevxnge .gt_column_spanner_outer:first-child {
+#hhnlbtdynt .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#otmzevxnge .gt_column_spanner_outer:last-child {
+#hhnlbtdynt .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#otmzevxnge .gt_column_spanner {
+#hhnlbtdynt .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -418,11 +418,11 @@ X-squared = 9.3759, df = 4, p-value = 0.05236</code></pre>
   width: 100%;
 }
 
-#otmzevxnge .gt_spanner_row {
+#hhnlbtdynt .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#otmzevxnge .gt_group_heading {
+#hhnlbtdynt .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -448,7 +448,7 @@ X-squared = 9.3759, df = 4, p-value = 0.05236</code></pre>
   text-align: left;
 }
 
-#otmzevxnge .gt_empty_group_heading {
+#hhnlbtdynt .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -463,15 +463,15 @@ X-squared = 9.3759, df = 4, p-value = 0.05236</code></pre>
   vertical-align: middle;
 }
 
-#otmzevxnge .gt_from_md > :first-child {
+#hhnlbtdynt .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#otmzevxnge .gt_from_md > :last-child {
+#hhnlbtdynt .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#otmzevxnge .gt_row {
+#hhnlbtdynt .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -490,7 +490,7 @@ X-squared = 9.3759, df = 4, p-value = 0.05236</code></pre>
   overflow-x: hidden;
 }
 
-#otmzevxnge .gt_stub {
+#hhnlbtdynt .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -503,7 +503,7 @@ X-squared = 9.3759, df = 4, p-value = 0.05236</code></pre>
   padding-right: 5px;
 }
 
-#otmzevxnge .gt_stub_row_group {
+#hhnlbtdynt .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -517,15 +517,15 @@ X-squared = 9.3759, df = 4, p-value = 0.05236</code></pre>
   vertical-align: top;
 }
 
-#otmzevxnge .gt_row_group_first td {
+#hhnlbtdynt .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#otmzevxnge .gt_row_group_first th {
+#hhnlbtdynt .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#otmzevxnge .gt_summary_row {
+#hhnlbtdynt .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -535,16 +535,16 @@ X-squared = 9.3759, df = 4, p-value = 0.05236</code></pre>
   padding-right: 5px;
 }
 
-#otmzevxnge .gt_first_summary_row {
+#hhnlbtdynt .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#otmzevxnge .gt_first_summary_row.thick {
+#hhnlbtdynt .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#otmzevxnge .gt_last_summary_row {
+#hhnlbtdynt .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -554,7 +554,7 @@ X-squared = 9.3759, df = 4, p-value = 0.05236</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#otmzevxnge .gt_grand_summary_row {
+#hhnlbtdynt .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -564,7 +564,7 @@ X-squared = 9.3759, df = 4, p-value = 0.05236</code></pre>
   padding-right: 5px;
 }
 
-#otmzevxnge .gt_first_grand_summary_row {
+#hhnlbtdynt .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -574,7 +574,7 @@ X-squared = 9.3759, df = 4, p-value = 0.05236</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#otmzevxnge .gt_last_grand_summary_row_top {
+#hhnlbtdynt .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -584,11 +584,11 @@ X-squared = 9.3759, df = 4, p-value = 0.05236</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#otmzevxnge .gt_striped {
+#hhnlbtdynt .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#otmzevxnge .gt_table_body {
+#hhnlbtdynt .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -597,7 +597,7 @@ X-squared = 9.3759, df = 4, p-value = 0.05236</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#otmzevxnge .gt_footnotes {
+#hhnlbtdynt .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -611,7 +611,7 @@ X-squared = 9.3759, df = 4, p-value = 0.05236</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#otmzevxnge .gt_footnote {
+#hhnlbtdynt .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -620,7 +620,7 @@ X-squared = 9.3759, df = 4, p-value = 0.05236</code></pre>
   padding-right: 5px;
 }
 
-#otmzevxnge .gt_sourcenotes {
+#hhnlbtdynt .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -634,7 +634,7 @@ X-squared = 9.3759, df = 4, p-value = 0.05236</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#otmzevxnge .gt_sourcenote {
+#hhnlbtdynt .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -642,63 +642,63 @@ X-squared = 9.3759, df = 4, p-value = 0.05236</code></pre>
   padding-right: 5px;
 }
 
-#otmzevxnge .gt_left {
+#hhnlbtdynt .gt_left {
   text-align: left;
 }
 
-#otmzevxnge .gt_center {
+#hhnlbtdynt .gt_center {
   text-align: center;
 }
 
-#otmzevxnge .gt_right {
+#hhnlbtdynt .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#otmzevxnge .gt_font_normal {
+#hhnlbtdynt .gt_font_normal {
   font-weight: normal;
 }
 
-#otmzevxnge .gt_font_bold {
+#hhnlbtdynt .gt_font_bold {
   font-weight: bold;
 }
 
-#otmzevxnge .gt_font_italic {
+#hhnlbtdynt .gt_font_italic {
   font-style: italic;
 }
 
-#otmzevxnge .gt_super {
+#hhnlbtdynt .gt_super {
   font-size: 65%;
 }
 
-#otmzevxnge .gt_footnote_marks {
+#hhnlbtdynt .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#otmzevxnge .gt_asterisk {
+#hhnlbtdynt .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#otmzevxnge .gt_indent_1 {
+#hhnlbtdynt .gt_indent_1 {
   text-indent: 5px;
 }
 
-#otmzevxnge .gt_indent_2 {
+#hhnlbtdynt .gt_indent_2 {
   text-indent: 10px;
 }
 
-#otmzevxnge .gt_indent_3 {
+#hhnlbtdynt .gt_indent_3 {
   text-indent: 15px;
 }
 
-#otmzevxnge .gt_indent_4 {
+#hhnlbtdynt .gt_indent_4 {
   text-indent: 20px;
 }
 
-#otmzevxnge .gt_indent_5 {
+#hhnlbtdynt .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -730,7 +730,7 @@ X-squared = 9.3759, df = 4, p-value = 0.05236</code></pre>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td headers="label" class="gt_row gt_left">calfresh3</td>
+    <tr><td headers="label" class="gt_row gt_left">SNAP3</td>
 <td headers="estimate_1" class="gt_row gt_center"><br></td>
 <td headers="ci_1" class="gt_row gt_center"><br></td>
 <td headers="p.value_1" class="gt_row gt_center"><br></td>
@@ -740,7 +740,7 @@ X-squared = 9.3759, df = 4, p-value = 0.05236</code></pre>
 <td headers="estimate_3" class="gt_row gt_center"><br></td>
 <td headers="ci_3" class="gt_row gt_center"><br></td>
 <td headers="p.value_3" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;CalFresh</td>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;SNAP</td>
 <td headers="estimate_1" class="gt_row gt_center">—</td>
 <td headers="ci_1" class="gt_row gt_center">—</td>
 <td headers="p.value_1" class="gt_row gt_center"><br></td>
@@ -750,7 +750,7 @@ X-squared = 9.3759, df = 4, p-value = 0.05236</code></pre>
 <td headers="estimate_3" class="gt_row gt_center">—</td>
 <td headers="ci_3" class="gt_row gt_center">—</td>
 <td headers="p.value_3" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;No CalFresh but Likely Eligible</td>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Likely Eligible Non-Recipient</td>
 <td headers="estimate_1" class="gt_row gt_center">1.66</td>
 <td headers="ci_1" class="gt_row gt_center">1.31, 2.11</td>
 <td headers="p.value_1" class="gt_row gt_center" style="font-weight: bold;">&lt;0.001</td>
@@ -760,7 +760,7 @@ X-squared = 9.3759, df = 4, p-value = 0.05236</code></pre>
 <td headers="estimate_3" class="gt_row gt_center">0.58</td>
 <td headers="ci_3" class="gt_row gt_center">0.45, 0.73</td>
 <td headers="p.value_3" class="gt_row gt_center" style="font-weight: bold;">&lt;0.001</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Likely Not Eligible</td>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Income-Ineligible Non-Recipient</td>
 <td headers="estimate_1" class="gt_row gt_center">1.85</td>
 <td headers="ci_1" class="gt_row gt_center">1.42, 2.42</td>
 <td headers="p.value_1" class="gt_row gt_center" style="font-weight: bold;">&lt;0.001</td>

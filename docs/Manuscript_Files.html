@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>CalFresh Vs Diet Quality - Manuscript Files</title>
+<title>SNAP Vs Diet Quality - Manuscript Files</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -108,7 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">CalFresh Vs Diet Quality</span>
+    <span class="navbar-title">SNAP Vs Diet Quality</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -175,9 +175,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#frequency-statistics" id="toc-frequency-statistics" class="nav-link active" data-scroll-target="#frequency-statistics">Frequency Statistics</a>
   <ul class="collapse">
   <li><a href="#table-1-demographic-information" id="toc-table-1-demographic-information" class="nav-link" data-scroll-target="#table-1-demographic-information">Table 1: Demographic Information:</a></li>
-  <li><a href="#figure-2-fast-food-vs-calfresh" id="toc-figure-2-fast-food-vs-calfresh" class="nav-link" data-scroll-target="#figure-2-fast-food-vs-calfresh">Figure 2: Fast Food Vs CalFresh</a></li>
-  <li><a href="#figure-3-ssb-vs-calfresh" id="toc-figure-3-ssb-vs-calfresh" class="nav-link" data-scroll-target="#figure-3-ssb-vs-calfresh">Figure 3: SSB Vs CalFresh</a></li>
-  <li><a href="#figure-4-fv-vs-calfresh" id="toc-figure-4-fv-vs-calfresh" class="nav-link" data-scroll-target="#figure-4-fv-vs-calfresh">Figure 4: F&amp;V Vs CalFresh</a></li>
+  <li><a href="#figure-2-fast-food-vs-snap" id="toc-figure-2-fast-food-vs-snap" class="nav-link" data-scroll-target="#figure-2-fast-food-vs-snap">Figure 2: Fast Food Vs SNAP</a></li>
+  <li><a href="#figure-3-ssb-vs-snap" id="toc-figure-3-ssb-vs-snap" class="nav-link" data-scroll-target="#figure-3-ssb-vs-snap">Figure 3: SSB Vs SNAP</a></li>
+  <li><a href="#figure-4-fv-vs-snap" id="toc-figure-4-fv-vs-snap" class="nav-link" data-scroll-target="#figure-4-fv-vs-snap">Figure 4: F&amp;V Vs SNAP</a></li>
   </ul></li>
   <li><a href="#ordinal-regression-models" id="toc-ordinal-regression-models" class="nav-link" data-scroll-target="#ordinal-regression-models">Ordinal Regression Models</a>
   <ul class="collapse">
@@ -219,7 +219,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>demographics_cc <span class="ot">&lt;-</span> bns_combined <span class="sc">%&gt;%</span> <span class="fu">select</span>(age, gender, race_eth, monthly_hh_income, academic_level, Cohort, school2, calfresh3, calfresh_eligible, cooking_confident, health_conscious, physical_activity, ssb_cat, ff_cat, fruits3, food_insecure_2item,  units, paid_work_hours)</span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>demographics_cc <span class="ot">&lt;-</span> bns_combined <span class="sc">%&gt;%</span> <span class="fu">select</span>(age, gender, race_eth, monthly_hh_income, academic_level, Cohort, school2, SNAP3, SNAP_eligible, cooking_confident, health_conscious, physical_activity, ssb_cat, ff_cat, fruits3, food_insecure_2item,  units, paid_work_hours)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>cc <span class="ot">&lt;-</span> demographics_cc <span class="sc">%&gt;%</span> </span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_summary</span>(<span class="at">statistic =</span> <span class="fu">list</span>(</span>
@@ -228,7 +228,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">missing_text=</span> <span class="st">"Missing (n)"</span>)</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>demographics_imp <span class="ot">&lt;-</span> bns_combined_imputed_df <span class="sc">%&gt;%</span> <span class="fu">select</span>(age, gender, race_eth, monthly_hh_income, academic_level, Cohort, school2, calfresh3, calfresh_eligible, cooking_confident, health_conscious, physical_activity, ssb_cat, ff_cat, fruits3, food_insecure_2item,  units, paid_work_hours)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>demographics_imp <span class="ot">&lt;-</span> bns_combined_imputed_df <span class="sc">%&gt;%</span> <span class="fu">select</span>(age, gender, race_eth, monthly_hh_income, academic_level, Cohort, school2, SNAP3, SNAP_eligible, cooking_confident, health_conscious, physical_activity, ssb_cat, ff_cat, fruits3, food_insecure_2item,  units, paid_work_hours)</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
@@ -437,22 +437,22 @@ Imputed Demographics
 <td style="text-align: center;"></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">calfresh3</td>
+<td style="text-align: left;">SNAP3</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">CalFresh Recipients</td>
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">SNAP Recipients</td>
 <td style="text-align: center;">605 (33%)</td>
 <td style="text-align: center;">739 (31%)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Likely Eligible Non-Recipients</td>
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Likely Eligible Non-Recipient</td>
 <td style="text-align: center;">1,000 (55%)</td>
 <td style="text-align: center;">1,174 (50%)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Income-Ineligible Non-Recipients</td>
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Income-Ineligible Non-Recipient</td>
 <td style="text-align: center;">216 (12%)</td>
 <td style="text-align: center;">449 (19%)</td>
 </tr>
@@ -462,7 +462,7 @@ Imputed Demographics
 <td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">calfresh_eligible</td>
+<td style="text-align: left;">SNAP_eligible</td>
 <td style="text-align: center;">1,575 (86%)</td>
 <td style="text-align: center;">1,849 (78%)</td>
 </tr>
@@ -630,8 +630,8 @@ Imputed Demographics
 </div>
 </div>
 </section>
-<section id="figure-2-fast-food-vs-calfresh" class="level2">
-<h2 class="anchored" data-anchor-id="figure-2-fast-food-vs-calfresh">Figure 2: Fast Food Vs CalFresh</h2>
+<section id="figure-2-fast-food-vs-snap" class="level2">
+<h2 class="anchored" data-anchor-id="figure-2-fast-food-vs-snap">Figure 2: Fast Food Vs SNAP</h2>
 <div class="cell">
 <details>
 <summary>Show the code</summary>
@@ -641,73 +641,76 @@ Imputed Demographics
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                                          <span class="st">"3-4 times per week"</span> <span class="ot">=</span> <span class="st">"3-4 times"</span>,</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                                          <span class="st">"5 or more times per week"</span> <span class="ot">=</span> <span class="st">"5 or more times"</span>)</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> bns_combined_imputed_df <span class="sc">%&gt;%</span> <span class="fu">select</span>(ff_cat2, calfresh3) <span class="sc">%&gt;%</span> <span class="fu">na.omit</span>() <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> ff_cat2,  <span class="at">group=</span>calfresh3)) <span class="sc">+</span> </span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..prop.., <span class="at">fill =</span> <span class="fu">factor</span>(calfresh3)), <span class="at">stat=</span><span class="st">"count"</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> bns_combined_imputed_df <span class="sc">%&gt;%</span> <span class="fu">select</span>(ff_cat2, SNAP3) <span class="sc">%&gt;%</span> <span class="fu">na.omit</span>() <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> ff_cat2,  <span class="at">group=</span>SNAP3)) <span class="sc">+</span> </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..prop.., <span class="at">fill =</span> <span class="fu">factor</span>(SNAP3)), <span class="at">stat=</span><span class="st">"count"</span>,</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>             <span class="co">#alpha = c(0.3, 0.7, 1, 0.3, 0.7, 1, 0.3, 0.7, 1), </span></span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">colour=</span><span class="st">"black"</span>, <span class="at">size=</span><span class="fl">0.6</span>) <span class="sc">+</span></span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> scales<span class="sc">::</span><span class="fu">percent</span>(<span class="fu">round</span>(..prop.., <span class="at">digits =</span> <span class="dv">2</span>)), <span class="at">y=</span>..prop..), <span class="at">stat=</span> <span class="st">"count"</span>, <span class="at">vjust =</span> <span class="sc">-</span>.<span class="dv">5</span>, <span class="at">size =</span> <span class="dv">6</span>) <span class="sc">+</span></span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Percent of Students"</span>) <span class="sc">+</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>calfresh3, <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">scales =</span> <span class="st">"free_x"</span>) <span class="sc">+</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent, <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="fl">0.0</span>, <span class="fl">0.85</span>))) <span class="sc">+</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> chc.palette) <span class="sc">+</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>) <span class="sc">+</span> </span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Frequency of Fast-Food Meals Per Week"</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">strip.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>), <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>))</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># ggsave("FF_Plot.png", plot = p2, width = 10, height = 8)</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>SNAP3, <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">scales =</span> <span class="st">"free_x"</span>,</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>               <span class="at">labeller =</span> <span class="fu">as_labeller</span>(figure_labels)) <span class="sc">+</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent, <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="fl">0.0</span>, <span class="fl">0.85</span>))) <span class="sc">+</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> chc.palette) <span class="sc">+</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>) <span class="sc">+</span> </span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Frequency of Fast-Food Meals Per Week"</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">strip.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>), <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>))</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co"># ggsave("FF_Plot.png", plot = p2, width = 8, height = 6)</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <p><img src="Manuscript_Files_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
-<section id="figure-3-ssb-vs-calfresh" class="level2">
-<h2 class="anchored" data-anchor-id="figure-3-ssb-vs-calfresh">Figure 3: SSB Vs CalFresh</h2>
+<section id="figure-3-ssb-vs-snap" class="level2">
+<h2 class="anchored" data-anchor-id="figure-3-ssb-vs-snap">Figure 3: SSB Vs SNAP</h2>
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> bns_combined <span class="sc">%&gt;%</span> <span class="fu">select</span>(ssb_cat, calfresh3) <span class="sc">%&gt;%</span> <span class="fu">na.omit</span>() <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> ssb_cat,  <span class="at">group=</span>calfresh3)) <span class="sc">+</span> </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..prop.., <span class="at">fill =</span> <span class="fu">factor</span>(calfresh3)), <span class="at">stat=</span><span class="st">"count"</span>,</span>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> bns_combined_imputed_df <span class="sc">%&gt;%</span> <span class="fu">select</span>(ssb_cat, SNAP3) <span class="sc">%&gt;%</span> <span class="fu">na.omit</span>() <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> ssb_cat,  <span class="at">group=</span>SNAP3)) <span class="sc">+</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..prop.., <span class="at">fill =</span> <span class="fu">factor</span>(SNAP3)), <span class="at">stat=</span><span class="st">"count"</span>,</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>             <span class="co">#alpha = c(0.3, 0.7, 1, 0.3, 0.7, 1, 0.3, 0.7, 1), </span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">colour=</span><span class="st">"black"</span>, <span class="at">size=</span><span class="fl">0.6</span>) <span class="sc">+</span> </span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> scales<span class="sc">::</span><span class="fu">percent</span>(<span class="fu">round</span>(..prop.., <span class="at">digits =</span> <span class="dv">2</span>)), <span class="at">y=</span>..prop..), <span class="at">stat=</span> <span class="st">"count"</span>, <span class="at">vjust =</span> <span class="sc">-</span>.<span class="dv">5</span>, <span class="at">size =</span> <span class="dv">6</span>) <span class="sc">+</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Percent of Students"</span>) <span class="sc">+</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>calfresh3, <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">scales =</span> <span class="st">"free_x"</span>) <span class="sc">+</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent, <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="fl">0.0</span>, <span class="fl">1.6</span>))) <span class="sc">+</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> chc.palette) <span class="sc">+</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>) <span class="sc">+</span> </span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Ounces of Sugar Sweetened Beverages Consumed Per Day"</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">strip.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>), <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>))</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># ggsave("SSB_Plot.png", plot = p3, width = 10, height = 8)</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>p3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>SNAP3, <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">scales =</span> <span class="st">"free_x"</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">labeller =</span> <span class="fu">as_labeller</span>(figure_labels)) <span class="sc">+</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent, <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="fl">0.0</span>, <span class="fl">1.6</span>))) <span class="sc">+</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> chc.palette) <span class="sc">+</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>) <span class="sc">+</span> </span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Ounces of Sugar Sweetened Beverages Consumed Per Day"</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">strip.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>), <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>))</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a> <span class="fu">ggsave</span>(<span class="st">"SSB_Plot.png"</span>, <span class="at">plot =</span> p3, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">6</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>p3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <p><img src="Manuscript_Files_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
-<section id="figure-4-fv-vs-calfresh" class="level2">
-<h2 class="anchored" data-anchor-id="figure-4-fv-vs-calfresh">Figure 4: F&amp;V Vs CalFresh</h2>
+<section id="figure-4-fv-vs-snap" class="level2">
+<h2 class="anchored" data-anchor-id="figure-4-fv-vs-snap">Figure 4: F&amp;V Vs SNAP</h2>
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> bns_combined_imputed_df <span class="sc">%&gt;%</span> <span class="fu">select</span>(fruits3, calfresh3) <span class="sc">%&gt;%</span> <span class="fu">na.omit</span>() <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> fruits3,  <span class="at">group=</span>calfresh3)) <span class="sc">+</span> </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..prop.., <span class="at">fill =</span> <span class="fu">factor</span>(calfresh3)), <span class="at">stat=</span><span class="st">"count"</span>,</span>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> bns_combined_imputed_df <span class="sc">%&gt;%</span> <span class="fu">select</span>(fruits3, SNAP3) <span class="sc">%&gt;%</span> <span class="fu">na.omit</span>() <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> fruits3,  <span class="at">group=</span>SNAP3)) <span class="sc">+</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..prop.., <span class="at">fill =</span> <span class="fu">factor</span>(SNAP3)), <span class="at">stat=</span><span class="st">"count"</span>,</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>             <span class="co">#alpha = c(0.3, 0.7, 1, 0.3, 0.7, 1, 0.3, 0.7, 1), </span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">colour=</span><span class="st">"black"</span>, <span class="at">size=</span><span class="fl">0.6</span>) <span class="sc">+</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> scales<span class="sc">::</span><span class="fu">percent</span>(<span class="fu">round</span>(..prop.., <span class="at">digits =</span> <span class="dv">2</span>)), <span class="at">y=</span>..prop..), <span class="at">stat=</span> <span class="st">"count"</span>, <span class="at">vjust =</span> <span class="sc">-</span>.<span class="dv">5</span>, <span class="at">size =</span> <span class="dv">6</span>) <span class="sc">+</span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Percent of Students"</span>) <span class="sc">+</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>calfresh3, <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">scales =</span> <span class="st">"free_x"</span>) <span class="sc">+</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent, <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="fl">0.0</span>, <span class="fl">0.6</span>))) <span class="sc">+</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> chc.palette) <span class="sc">+</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>) <span class="sc">+</span> </span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Servings of Fruits and Vegetables Per Day"</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">strip.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>), <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>))</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ggsave("FV_Plot.png", plot = p1, width = 10, height = 8)</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>p1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>SNAP3, <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">scales =</span> <span class="st">"free_x"</span>, </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">labeller =</span> <span class="fu">as_labeller</span>(figure_labels)) <span class="sc">+</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent, <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="fl">0.0</span>, <span class="fl">0.6</span>))) <span class="sc">+</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> chc.palette) <span class="sc">+</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>) <span class="sc">+</span> </span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Servings of Fruits and Vegetables Per Day"</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">strip.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>), <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>))</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ggsave("FV_Plot.png", plot = p1, width = 8, height = 6)</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>p1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <p><img src="Manuscript_Files_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
@@ -722,29 +725,29 @@ Imputed Demographics
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ff.ordinal.mod <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(ff_cat<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> kitchen_access <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> living_with_family <span class="sc">+</span> homelessness_year, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ff.ordinal.mod <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(ff_cat<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> kitchen_access <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> living_with_family <span class="sc">+</span> homelessness_year, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>ff.ordinal.mod</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 
-<div id="sifegnsjcl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#sifegnsjcl table {
+<div id="lcyuklqeku" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#lcyuklqeku table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#sifegnsjcl thead, #sifegnsjcl tbody, #sifegnsjcl tfoot, #sifegnsjcl tr, #sifegnsjcl td, #sifegnsjcl th {
+#lcyuklqeku thead, #lcyuklqeku tbody, #lcyuklqeku tfoot, #lcyuklqeku tr, #lcyuklqeku td, #lcyuklqeku th {
   border-style: none;
 }
 
-#sifegnsjcl p {
+#lcyuklqeku p {
   margin: 0;
   padding: 0;
 }
 
-#sifegnsjcl .gt_table {
+#lcyuklqeku .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -770,12 +773,12 @@ Imputed Demographics
   border-left-color: #D3D3D3;
 }
 
-#sifegnsjcl .gt_caption {
+#lcyuklqeku .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#sifegnsjcl .gt_title {
+#lcyuklqeku .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -787,7 +790,7 @@ Imputed Demographics
   border-bottom-width: 0;
 }
 
-#sifegnsjcl .gt_subtitle {
+#lcyuklqeku .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -799,7 +802,7 @@ Imputed Demographics
   border-top-width: 0;
 }
 
-#sifegnsjcl .gt_heading {
+#lcyuklqeku .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -811,13 +814,13 @@ Imputed Demographics
   border-right-color: #D3D3D3;
 }
 
-#sifegnsjcl .gt_bottom_border {
+#lcyuklqeku .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#sifegnsjcl .gt_col_headings {
+#lcyuklqeku .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -832,7 +835,7 @@ Imputed Demographics
   border-right-color: #D3D3D3;
 }
 
-#sifegnsjcl .gt_col_heading {
+#lcyuklqeku .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -852,7 +855,7 @@ Imputed Demographics
   overflow-x: hidden;
 }
 
-#sifegnsjcl .gt_column_spanner_outer {
+#lcyuklqeku .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -864,15 +867,15 @@ Imputed Demographics
   padding-right: 4px;
 }
 
-#sifegnsjcl .gt_column_spanner_outer:first-child {
+#lcyuklqeku .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#sifegnsjcl .gt_column_spanner_outer:last-child {
+#lcyuklqeku .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#sifegnsjcl .gt_column_spanner {
+#lcyuklqeku .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -884,11 +887,11 @@ Imputed Demographics
   width: 100%;
 }
 
-#sifegnsjcl .gt_spanner_row {
+#lcyuklqeku .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#sifegnsjcl .gt_group_heading {
+#lcyuklqeku .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -914,7 +917,7 @@ Imputed Demographics
   text-align: left;
 }
 
-#sifegnsjcl .gt_empty_group_heading {
+#lcyuklqeku .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -929,15 +932,15 @@ Imputed Demographics
   vertical-align: middle;
 }
 
-#sifegnsjcl .gt_from_md > :first-child {
+#lcyuklqeku .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#sifegnsjcl .gt_from_md > :last-child {
+#lcyuklqeku .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#sifegnsjcl .gt_row {
+#lcyuklqeku .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -956,7 +959,7 @@ Imputed Demographics
   overflow-x: hidden;
 }
 
-#sifegnsjcl .gt_stub {
+#lcyuklqeku .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -969,7 +972,7 @@ Imputed Demographics
   padding-right: 5px;
 }
 
-#sifegnsjcl .gt_stub_row_group {
+#lcyuklqeku .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -983,15 +986,15 @@ Imputed Demographics
   vertical-align: top;
 }
 
-#sifegnsjcl .gt_row_group_first td {
+#lcyuklqeku .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#sifegnsjcl .gt_row_group_first th {
+#lcyuklqeku .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#sifegnsjcl .gt_summary_row {
+#lcyuklqeku .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1001,16 +1004,16 @@ Imputed Demographics
   padding-right: 5px;
 }
 
-#sifegnsjcl .gt_first_summary_row {
+#lcyuklqeku .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#sifegnsjcl .gt_first_summary_row.thick {
+#lcyuklqeku .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#sifegnsjcl .gt_last_summary_row {
+#lcyuklqeku .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1020,7 +1023,7 @@ Imputed Demographics
   border-bottom-color: #D3D3D3;
 }
 
-#sifegnsjcl .gt_grand_summary_row {
+#lcyuklqeku .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1030,7 +1033,7 @@ Imputed Demographics
   padding-right: 5px;
 }
 
-#sifegnsjcl .gt_first_grand_summary_row {
+#lcyuklqeku .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1040,7 +1043,7 @@ Imputed Demographics
   border-top-color: #D3D3D3;
 }
 
-#sifegnsjcl .gt_last_grand_summary_row_top {
+#lcyuklqeku .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1050,11 +1053,11 @@ Imputed Demographics
   border-bottom-color: #D3D3D3;
 }
 
-#sifegnsjcl .gt_striped {
+#lcyuklqeku .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#sifegnsjcl .gt_table_body {
+#lcyuklqeku .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1063,7 +1066,7 @@ Imputed Demographics
   border-bottom-color: #D3D3D3;
 }
 
-#sifegnsjcl .gt_footnotes {
+#lcyuklqeku .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1077,7 +1080,7 @@ Imputed Demographics
   border-right-color: #D3D3D3;
 }
 
-#sifegnsjcl .gt_footnote {
+#lcyuklqeku .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1086,7 +1089,7 @@ Imputed Demographics
   padding-right: 5px;
 }
 
-#sifegnsjcl .gt_sourcenotes {
+#lcyuklqeku .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1100,7 +1103,7 @@ Imputed Demographics
   border-right-color: #D3D3D3;
 }
 
-#sifegnsjcl .gt_sourcenote {
+#lcyuklqeku .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1108,63 +1111,63 @@ Imputed Demographics
   padding-right: 5px;
 }
 
-#sifegnsjcl .gt_left {
+#lcyuklqeku .gt_left {
   text-align: left;
 }
 
-#sifegnsjcl .gt_center {
+#lcyuklqeku .gt_center {
   text-align: center;
 }
 
-#sifegnsjcl .gt_right {
+#lcyuklqeku .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#sifegnsjcl .gt_font_normal {
+#lcyuklqeku .gt_font_normal {
   font-weight: normal;
 }
 
-#sifegnsjcl .gt_font_bold {
+#lcyuklqeku .gt_font_bold {
   font-weight: bold;
 }
 
-#sifegnsjcl .gt_font_italic {
+#lcyuklqeku .gt_font_italic {
   font-style: italic;
 }
 
-#sifegnsjcl .gt_super {
+#lcyuklqeku .gt_super {
   font-size: 65%;
 }
 
-#sifegnsjcl .gt_footnote_marks {
+#lcyuklqeku .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#sifegnsjcl .gt_asterisk {
+#lcyuklqeku .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#sifegnsjcl .gt_indent_1 {
+#lcyuklqeku .gt_indent_1 {
   text-indent: 5px;
 }
 
-#sifegnsjcl .gt_indent_2 {
+#lcyuklqeku .gt_indent_2 {
   text-indent: 10px;
 }
 
-#sifegnsjcl .gt_indent_3 {
+#lcyuklqeku .gt_indent_3 {
   text-indent: 15px;
 }
 
-#sifegnsjcl .gt_indent_4 {
+#lcyuklqeku .gt_indent_4 {
   text-indent: 20px;
 }
 
-#sifegnsjcl .gt_indent_5 {
+#lcyuklqeku .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1179,19 +1182,19 @@ Imputed Demographics
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td headers="label" class="gt_row gt_left">calfresh3</td>
+    <tr><td headers="label" class="gt_row gt_left">SNAP3</td>
 <td headers="estimate" class="gt_row gt_center"><br></td>
 <td headers="ci" class="gt_row gt_center"><br></td>
 <td headers="p.value" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;CalFresh</td>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;SNAP</td>
 <td headers="estimate" class="gt_row gt_center">—</td>
 <td headers="ci" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;No CalFresh but Likely Eligible</td>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Likely Eligible Non-Recipient</td>
 <td headers="estimate" class="gt_row gt_center">1.69</td>
 <td headers="ci" class="gt_row gt_center">1.33, 2.15</td>
 <td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">&lt;0.001</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Likely Not Eligible</td>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Income-Ineligible Non-Recipient</td>
 <td headers="estimate" class="gt_row gt_center">1.87</td>
 <td headers="ci" class="gt_row gt_center">1.43, 2.45</td>
 <td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">&lt;0.001</td></tr>
@@ -1364,30 +1367,30 @@ Imputed Demographics
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ssb.ordinal.mod <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(ssb_cat<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_access <span class="sc">+</span> units_four <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> homelessness_year, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ssb.ordinal.mod <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(ssb_cat<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_access <span class="sc">+</span> units_four <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> homelessness_year, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>ssb.ordinal.mod</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 
-<div id="xugzfwcfzi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#xugzfwcfzi table {
+<div id="sfvdvlhucj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#sfvdvlhucj table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#xugzfwcfzi thead, #xugzfwcfzi tbody, #xugzfwcfzi tfoot, #xugzfwcfzi tr, #xugzfwcfzi td, #xugzfwcfzi th {
+#sfvdvlhucj thead, #sfvdvlhucj tbody, #sfvdvlhucj tfoot, #sfvdvlhucj tr, #sfvdvlhucj td, #sfvdvlhucj th {
   border-style: none;
 }
 
-#xugzfwcfzi p {
+#sfvdvlhucj p {
   margin: 0;
   padding: 0;
 }
 
-#xugzfwcfzi .gt_table {
+#sfvdvlhucj .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1413,12 +1416,12 @@ Imputed Demographics
   border-left-color: #D3D3D3;
 }
 
-#xugzfwcfzi .gt_caption {
+#sfvdvlhucj .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#xugzfwcfzi .gt_title {
+#sfvdvlhucj .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1430,7 +1433,7 @@ Imputed Demographics
   border-bottom-width: 0;
 }
 
-#xugzfwcfzi .gt_subtitle {
+#sfvdvlhucj .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1442,7 +1445,7 @@ Imputed Demographics
   border-top-width: 0;
 }
 
-#xugzfwcfzi .gt_heading {
+#sfvdvlhucj .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1454,13 +1457,13 @@ Imputed Demographics
   border-right-color: #D3D3D3;
 }
 
-#xugzfwcfzi .gt_bottom_border {
+#sfvdvlhucj .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#xugzfwcfzi .gt_col_headings {
+#sfvdvlhucj .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1475,7 +1478,7 @@ Imputed Demographics
   border-right-color: #D3D3D3;
 }
 
-#xugzfwcfzi .gt_col_heading {
+#sfvdvlhucj .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1495,7 +1498,7 @@ Imputed Demographics
   overflow-x: hidden;
 }
 
-#xugzfwcfzi .gt_column_spanner_outer {
+#sfvdvlhucj .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1507,15 +1510,15 @@ Imputed Demographics
   padding-right: 4px;
 }
 
-#xugzfwcfzi .gt_column_spanner_outer:first-child {
+#sfvdvlhucj .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#xugzfwcfzi .gt_column_spanner_outer:last-child {
+#sfvdvlhucj .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#xugzfwcfzi .gt_column_spanner {
+#sfvdvlhucj .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1527,11 +1530,11 @@ Imputed Demographics
   width: 100%;
 }
 
-#xugzfwcfzi .gt_spanner_row {
+#sfvdvlhucj .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#xugzfwcfzi .gt_group_heading {
+#sfvdvlhucj .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1557,7 +1560,7 @@ Imputed Demographics
   text-align: left;
 }
 
-#xugzfwcfzi .gt_empty_group_heading {
+#sfvdvlhucj .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1572,15 +1575,15 @@ Imputed Demographics
   vertical-align: middle;
 }
 
-#xugzfwcfzi .gt_from_md > :first-child {
+#sfvdvlhucj .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#xugzfwcfzi .gt_from_md > :last-child {
+#sfvdvlhucj .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#xugzfwcfzi .gt_row {
+#sfvdvlhucj .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1599,7 +1602,7 @@ Imputed Demographics
   overflow-x: hidden;
 }
 
-#xugzfwcfzi .gt_stub {
+#sfvdvlhucj .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1612,7 +1615,7 @@ Imputed Demographics
   padding-right: 5px;
 }
 
-#xugzfwcfzi .gt_stub_row_group {
+#sfvdvlhucj .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1626,15 +1629,15 @@ Imputed Demographics
   vertical-align: top;
 }
 
-#xugzfwcfzi .gt_row_group_first td {
+#sfvdvlhucj .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#xugzfwcfzi .gt_row_group_first th {
+#sfvdvlhucj .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#xugzfwcfzi .gt_summary_row {
+#sfvdvlhucj .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1644,16 +1647,16 @@ Imputed Demographics
   padding-right: 5px;
 }
 
-#xugzfwcfzi .gt_first_summary_row {
+#sfvdvlhucj .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#xugzfwcfzi .gt_first_summary_row.thick {
+#sfvdvlhucj .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#xugzfwcfzi .gt_last_summary_row {
+#sfvdvlhucj .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1663,7 +1666,7 @@ Imputed Demographics
   border-bottom-color: #D3D3D3;
 }
 
-#xugzfwcfzi .gt_grand_summary_row {
+#sfvdvlhucj .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1673,7 +1676,7 @@ Imputed Demographics
   padding-right: 5px;
 }
 
-#xugzfwcfzi .gt_first_grand_summary_row {
+#sfvdvlhucj .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1683,7 +1686,7 @@ Imputed Demographics
   border-top-color: #D3D3D3;
 }
 
-#xugzfwcfzi .gt_last_grand_summary_row_top {
+#sfvdvlhucj .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1693,11 +1696,11 @@ Imputed Demographics
   border-bottom-color: #D3D3D3;
 }
 
-#xugzfwcfzi .gt_striped {
+#sfvdvlhucj .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#xugzfwcfzi .gt_table_body {
+#sfvdvlhucj .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1706,7 +1709,7 @@ Imputed Demographics
   border-bottom-color: #D3D3D3;
 }
 
-#xugzfwcfzi .gt_footnotes {
+#sfvdvlhucj .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1720,7 +1723,7 @@ Imputed Demographics
   border-right-color: #D3D3D3;
 }
 
-#xugzfwcfzi .gt_footnote {
+#sfvdvlhucj .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1729,7 +1732,7 @@ Imputed Demographics
   padding-right: 5px;
 }
 
-#xugzfwcfzi .gt_sourcenotes {
+#sfvdvlhucj .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1743,7 +1746,7 @@ Imputed Demographics
   border-right-color: #D3D3D3;
 }
 
-#xugzfwcfzi .gt_sourcenote {
+#sfvdvlhucj .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1751,63 +1754,63 @@ Imputed Demographics
   padding-right: 5px;
 }
 
-#xugzfwcfzi .gt_left {
+#sfvdvlhucj .gt_left {
   text-align: left;
 }
 
-#xugzfwcfzi .gt_center {
+#sfvdvlhucj .gt_center {
   text-align: center;
 }
 
-#xugzfwcfzi .gt_right {
+#sfvdvlhucj .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#xugzfwcfzi .gt_font_normal {
+#sfvdvlhucj .gt_font_normal {
   font-weight: normal;
 }
 
-#xugzfwcfzi .gt_font_bold {
+#sfvdvlhucj .gt_font_bold {
   font-weight: bold;
 }
 
-#xugzfwcfzi .gt_font_italic {
+#sfvdvlhucj .gt_font_italic {
   font-style: italic;
 }
 
-#xugzfwcfzi .gt_super {
+#sfvdvlhucj .gt_super {
   font-size: 65%;
 }
 
-#xugzfwcfzi .gt_footnote_marks {
+#sfvdvlhucj .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#xugzfwcfzi .gt_asterisk {
+#sfvdvlhucj .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#xugzfwcfzi .gt_indent_1 {
+#sfvdvlhucj .gt_indent_1 {
   text-indent: 5px;
 }
 
-#xugzfwcfzi .gt_indent_2 {
+#sfvdvlhucj .gt_indent_2 {
   text-indent: 10px;
 }
 
-#xugzfwcfzi .gt_indent_3 {
+#sfvdvlhucj .gt_indent_3 {
   text-indent: 15px;
 }
 
-#xugzfwcfzi .gt_indent_4 {
+#sfvdvlhucj .gt_indent_4 {
   text-indent: 20px;
 }
 
-#xugzfwcfzi .gt_indent_5 {
+#sfvdvlhucj .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1822,19 +1825,19 @@ Imputed Demographics
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td headers="label" class="gt_row gt_left">calfresh3</td>
+    <tr><td headers="label" class="gt_row gt_left">SNAP3</td>
 <td headers="estimate" class="gt_row gt_center"><br></td>
 <td headers="ci" class="gt_row gt_center"><br></td>
 <td headers="p.value" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;CalFresh</td>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;SNAP</td>
 <td headers="estimate" class="gt_row gt_center">—</td>
 <td headers="ci" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;No CalFresh but Likely Eligible</td>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Likely Eligible Non-Recipient</td>
 <td headers="estimate" class="gt_row gt_center">1.37</td>
 <td headers="ci" class="gt_row gt_center">1.12, 1.66</td>
 <td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">0.002</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Likely Not Eligible</td>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Income-Ineligible Non-Recipient</td>
 <td headers="estimate" class="gt_row gt_center">1.53</td>
 <td headers="ci" class="gt_row gt_center">1.17, 2.01</td>
 <td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">0.003</td></tr>
@@ -1967,7 +1970,7 @@ Imputed Demographics
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>FV.ordinal.mod <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(fruits3<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> food_insecure_2item, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>FV.ordinal.mod <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(fruits3<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> food_insecure_2item, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -1975,23 +1978,23 @@ Imputed Demographics
 </details>
 <div class="cell-output-display">
 
-<div id="lkpcopavfh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#lkpcopavfh table {
+<div id="lnfacfsnsl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#lnfacfsnsl table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#lkpcopavfh thead, #lkpcopavfh tbody, #lkpcopavfh tfoot, #lkpcopavfh tr, #lkpcopavfh td, #lkpcopavfh th {
+#lnfacfsnsl thead, #lnfacfsnsl tbody, #lnfacfsnsl tfoot, #lnfacfsnsl tr, #lnfacfsnsl td, #lnfacfsnsl th {
   border-style: none;
 }
 
-#lkpcopavfh p {
+#lnfacfsnsl p {
   margin: 0;
   padding: 0;
 }
 
-#lkpcopavfh .gt_table {
+#lnfacfsnsl .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2017,12 +2020,12 @@ Imputed Demographics
   border-left-color: #D3D3D3;
 }
 
-#lkpcopavfh .gt_caption {
+#lnfacfsnsl .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#lkpcopavfh .gt_title {
+#lnfacfsnsl .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2034,7 +2037,7 @@ Imputed Demographics
   border-bottom-width: 0;
 }
 
-#lkpcopavfh .gt_subtitle {
+#lnfacfsnsl .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2046,7 +2049,7 @@ Imputed Demographics
   border-top-width: 0;
 }
 
-#lkpcopavfh .gt_heading {
+#lnfacfsnsl .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2058,13 +2061,13 @@ Imputed Demographics
   border-right-color: #D3D3D3;
 }
 
-#lkpcopavfh .gt_bottom_border {
+#lnfacfsnsl .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#lkpcopavfh .gt_col_headings {
+#lnfacfsnsl .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2079,7 +2082,7 @@ Imputed Demographics
   border-right-color: #D3D3D3;
 }
 
-#lkpcopavfh .gt_col_heading {
+#lnfacfsnsl .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2099,7 +2102,7 @@ Imputed Demographics
   overflow-x: hidden;
 }
 
-#lkpcopavfh .gt_column_spanner_outer {
+#lnfacfsnsl .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2111,15 +2114,15 @@ Imputed Demographics
   padding-right: 4px;
 }
 
-#lkpcopavfh .gt_column_spanner_outer:first-child {
+#lnfacfsnsl .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#lkpcopavfh .gt_column_spanner_outer:last-child {
+#lnfacfsnsl .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#lkpcopavfh .gt_column_spanner {
+#lnfacfsnsl .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2131,11 +2134,11 @@ Imputed Demographics
   width: 100%;
 }
 
-#lkpcopavfh .gt_spanner_row {
+#lnfacfsnsl .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#lkpcopavfh .gt_group_heading {
+#lnfacfsnsl .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2161,7 +2164,7 @@ Imputed Demographics
   text-align: left;
 }
 
-#lkpcopavfh .gt_empty_group_heading {
+#lnfacfsnsl .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2176,15 +2179,15 @@ Imputed Demographics
   vertical-align: middle;
 }
 
-#lkpcopavfh .gt_from_md > :first-child {
+#lnfacfsnsl .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#lkpcopavfh .gt_from_md > :last-child {
+#lnfacfsnsl .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#lkpcopavfh .gt_row {
+#lnfacfsnsl .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2203,7 +2206,7 @@ Imputed Demographics
   overflow-x: hidden;
 }
 
-#lkpcopavfh .gt_stub {
+#lnfacfsnsl .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2216,7 +2219,7 @@ Imputed Demographics
   padding-right: 5px;
 }
 
-#lkpcopavfh .gt_stub_row_group {
+#lnfacfsnsl .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2230,15 +2233,15 @@ Imputed Demographics
   vertical-align: top;
 }
 
-#lkpcopavfh .gt_row_group_first td {
+#lnfacfsnsl .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#lkpcopavfh .gt_row_group_first th {
+#lnfacfsnsl .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#lkpcopavfh .gt_summary_row {
+#lnfacfsnsl .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2248,16 +2251,16 @@ Imputed Demographics
   padding-right: 5px;
 }
 
-#lkpcopavfh .gt_first_summary_row {
+#lnfacfsnsl .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#lkpcopavfh .gt_first_summary_row.thick {
+#lnfacfsnsl .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#lkpcopavfh .gt_last_summary_row {
+#lnfacfsnsl .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2267,7 +2270,7 @@ Imputed Demographics
   border-bottom-color: #D3D3D3;
 }
 
-#lkpcopavfh .gt_grand_summary_row {
+#lnfacfsnsl .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2277,7 +2280,7 @@ Imputed Demographics
   padding-right: 5px;
 }
 
-#lkpcopavfh .gt_first_grand_summary_row {
+#lnfacfsnsl .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2287,7 +2290,7 @@ Imputed Demographics
   border-top-color: #D3D3D3;
 }
 
-#lkpcopavfh .gt_last_grand_summary_row_top {
+#lnfacfsnsl .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2297,11 +2300,11 @@ Imputed Demographics
   border-bottom-color: #D3D3D3;
 }
 
-#lkpcopavfh .gt_striped {
+#lnfacfsnsl .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#lkpcopavfh .gt_table_body {
+#lnfacfsnsl .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2310,7 +2313,7 @@ Imputed Demographics
   border-bottom-color: #D3D3D3;
 }
 
-#lkpcopavfh .gt_footnotes {
+#lnfacfsnsl .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2324,7 +2327,7 @@ Imputed Demographics
   border-right-color: #D3D3D3;
 }
 
-#lkpcopavfh .gt_footnote {
+#lnfacfsnsl .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2333,7 +2336,7 @@ Imputed Demographics
   padding-right: 5px;
 }
 
-#lkpcopavfh .gt_sourcenotes {
+#lnfacfsnsl .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2347,7 +2350,7 @@ Imputed Demographics
   border-right-color: #D3D3D3;
 }
 
-#lkpcopavfh .gt_sourcenote {
+#lnfacfsnsl .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2355,63 +2358,63 @@ Imputed Demographics
   padding-right: 5px;
 }
 
-#lkpcopavfh .gt_left {
+#lnfacfsnsl .gt_left {
   text-align: left;
 }
 
-#lkpcopavfh .gt_center {
+#lnfacfsnsl .gt_center {
   text-align: center;
 }
 
-#lkpcopavfh .gt_right {
+#lnfacfsnsl .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#lkpcopavfh .gt_font_normal {
+#lnfacfsnsl .gt_font_normal {
   font-weight: normal;
 }
 
-#lkpcopavfh .gt_font_bold {
+#lnfacfsnsl .gt_font_bold {
   font-weight: bold;
 }
 
-#lkpcopavfh .gt_font_italic {
+#lnfacfsnsl .gt_font_italic {
   font-style: italic;
 }
 
-#lkpcopavfh .gt_super {
+#lnfacfsnsl .gt_super {
   font-size: 65%;
 }
 
-#lkpcopavfh .gt_footnote_marks {
+#lnfacfsnsl .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#lkpcopavfh .gt_asterisk {
+#lnfacfsnsl .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#lkpcopavfh .gt_indent_1 {
+#lnfacfsnsl .gt_indent_1 {
   text-indent: 5px;
 }
 
-#lkpcopavfh .gt_indent_2 {
+#lnfacfsnsl .gt_indent_2 {
   text-indent: 10px;
 }
 
-#lkpcopavfh .gt_indent_3 {
+#lnfacfsnsl .gt_indent_3 {
   text-indent: 15px;
 }
 
-#lkpcopavfh .gt_indent_4 {
+#lnfacfsnsl .gt_indent_4 {
   text-indent: 20px;
 }
 
-#lkpcopavfh .gt_indent_5 {
+#lnfacfsnsl .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2426,19 +2429,19 @@ Imputed Demographics
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td headers="label" class="gt_row gt_left">calfresh3</td>
+    <tr><td headers="label" class="gt_row gt_left">SNAP3</td>
 <td headers="estimate" class="gt_row gt_center"><br></td>
 <td headers="ci" class="gt_row gt_center"><br></td>
 <td headers="p.value" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;CalFresh</td>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;SNAP</td>
 <td headers="estimate" class="gt_row gt_center">—</td>
 <td headers="ci" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;No CalFresh but Likely Eligible</td>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Likely Eligible Non-Recipient</td>
 <td headers="estimate" class="gt_row gt_center">0.57</td>
 <td headers="ci" class="gt_row gt_center">0.45, 0.72</td>
 <td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">&lt;0.001</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Likely Not Eligible</td>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Income-Ineligible Non-Recipient</td>
 <td headers="estimate" class="gt_row gt_center">0.57</td>
 <td headers="ci" class="gt_row gt_center">0.38, 0.84</td>
 <td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">0.007</td></tr>
@@ -2572,27 +2575,27 @@ Imputed Demographics
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_merge</span>(<span class="at">tbls =</span> <span class="fu">list</span>(ff.ordinal.mod, ssb.ordinal.mod, FV.ordinal.mod), <span class="at">tab_spanner =</span> <span class="fu">c</span>(<span class="st">"F&amp;V Model"</span>, <span class="st">"**Fast Food Model**"</span>, <span class="st">"**SSB Model**"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_merge</span>(<span class="at">tbls =</span> <span class="fu">list</span>(ff.ordinal.mod, ssb.ordinal.mod, FV.ordinal.mod), <span class="at">tab_spanner =</span> <span class="fu">c</span>(<span class="st">"**Fast Food Model**"</span>, <span class="st">"**SSB Model**"</span>, <span class="st">"F&amp;V Model"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 
-<div id="mvgohuvqks" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#mvgohuvqks table {
+<div id="avzmtjtlbn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#avzmtjtlbn table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#mvgohuvqks thead, #mvgohuvqks tbody, #mvgohuvqks tfoot, #mvgohuvqks tr, #mvgohuvqks td, #mvgohuvqks th {
+#avzmtjtlbn thead, #avzmtjtlbn tbody, #avzmtjtlbn tfoot, #avzmtjtlbn tr, #avzmtjtlbn td, #avzmtjtlbn th {
   border-style: none;
 }
 
-#mvgohuvqks p {
+#avzmtjtlbn p {
   margin: 0;
   padding: 0;
 }
 
-#mvgohuvqks .gt_table {
+#avzmtjtlbn .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2618,12 +2621,12 @@ Imputed Demographics
   border-left-color: #D3D3D3;
 }
 
-#mvgohuvqks .gt_caption {
+#avzmtjtlbn .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#mvgohuvqks .gt_title {
+#avzmtjtlbn .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2635,7 +2638,7 @@ Imputed Demographics
   border-bottom-width: 0;
 }
 
-#mvgohuvqks .gt_subtitle {
+#avzmtjtlbn .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2647,7 +2650,7 @@ Imputed Demographics
   border-top-width: 0;
 }
 
-#mvgohuvqks .gt_heading {
+#avzmtjtlbn .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2659,13 +2662,13 @@ Imputed Demographics
   border-right-color: #D3D3D3;
 }
 
-#mvgohuvqks .gt_bottom_border {
+#avzmtjtlbn .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#mvgohuvqks .gt_col_headings {
+#avzmtjtlbn .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2680,7 +2683,7 @@ Imputed Demographics
   border-right-color: #D3D3D3;
 }
 
-#mvgohuvqks .gt_col_heading {
+#avzmtjtlbn .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2700,7 +2703,7 @@ Imputed Demographics
   overflow-x: hidden;
 }
 
-#mvgohuvqks .gt_column_spanner_outer {
+#avzmtjtlbn .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2712,15 +2715,15 @@ Imputed Demographics
   padding-right: 4px;
 }
 
-#mvgohuvqks .gt_column_spanner_outer:first-child {
+#avzmtjtlbn .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#mvgohuvqks .gt_column_spanner_outer:last-child {
+#avzmtjtlbn .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#mvgohuvqks .gt_column_spanner {
+#avzmtjtlbn .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2732,11 +2735,11 @@ Imputed Demographics
   width: 100%;
 }
 
-#mvgohuvqks .gt_spanner_row {
+#avzmtjtlbn .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#mvgohuvqks .gt_group_heading {
+#avzmtjtlbn .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2762,7 +2765,7 @@ Imputed Demographics
   text-align: left;
 }
 
-#mvgohuvqks .gt_empty_group_heading {
+#avzmtjtlbn .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2777,15 +2780,15 @@ Imputed Demographics
   vertical-align: middle;
 }
 
-#mvgohuvqks .gt_from_md > :first-child {
+#avzmtjtlbn .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#mvgohuvqks .gt_from_md > :last-child {
+#avzmtjtlbn .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#mvgohuvqks .gt_row {
+#avzmtjtlbn .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2804,7 +2807,7 @@ Imputed Demographics
   overflow-x: hidden;
 }
 
-#mvgohuvqks .gt_stub {
+#avzmtjtlbn .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2817,7 +2820,7 @@ Imputed Demographics
   padding-right: 5px;
 }
 
-#mvgohuvqks .gt_stub_row_group {
+#avzmtjtlbn .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2831,15 +2834,15 @@ Imputed Demographics
   vertical-align: top;
 }
 
-#mvgohuvqks .gt_row_group_first td {
+#avzmtjtlbn .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#mvgohuvqks .gt_row_group_first th {
+#avzmtjtlbn .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#mvgohuvqks .gt_summary_row {
+#avzmtjtlbn .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2849,16 +2852,16 @@ Imputed Demographics
   padding-right: 5px;
 }
 
-#mvgohuvqks .gt_first_summary_row {
+#avzmtjtlbn .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#mvgohuvqks .gt_first_summary_row.thick {
+#avzmtjtlbn .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#mvgohuvqks .gt_last_summary_row {
+#avzmtjtlbn .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2868,7 +2871,7 @@ Imputed Demographics
   border-bottom-color: #D3D3D3;
 }
 
-#mvgohuvqks .gt_grand_summary_row {
+#avzmtjtlbn .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2878,7 +2881,7 @@ Imputed Demographics
   padding-right: 5px;
 }
 
-#mvgohuvqks .gt_first_grand_summary_row {
+#avzmtjtlbn .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2888,7 +2891,7 @@ Imputed Demographics
   border-top-color: #D3D3D3;
 }
 
-#mvgohuvqks .gt_last_grand_summary_row_top {
+#avzmtjtlbn .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2898,11 +2901,11 @@ Imputed Demographics
   border-bottom-color: #D3D3D3;
 }
 
-#mvgohuvqks .gt_striped {
+#avzmtjtlbn .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#mvgohuvqks .gt_table_body {
+#avzmtjtlbn .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2911,7 +2914,7 @@ Imputed Demographics
   border-bottom-color: #D3D3D3;
 }
 
-#mvgohuvqks .gt_footnotes {
+#avzmtjtlbn .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2925,7 +2928,7 @@ Imputed Demographics
   border-right-color: #D3D3D3;
 }
 
-#mvgohuvqks .gt_footnote {
+#avzmtjtlbn .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2934,7 +2937,7 @@ Imputed Demographics
   padding-right: 5px;
 }
 
-#mvgohuvqks .gt_sourcenotes {
+#avzmtjtlbn .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2948,7 +2951,7 @@ Imputed Demographics
   border-right-color: #D3D3D3;
 }
 
-#mvgohuvqks .gt_sourcenote {
+#avzmtjtlbn .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2956,63 +2959,63 @@ Imputed Demographics
   padding-right: 5px;
 }
 
-#mvgohuvqks .gt_left {
+#avzmtjtlbn .gt_left {
   text-align: left;
 }
 
-#mvgohuvqks .gt_center {
+#avzmtjtlbn .gt_center {
   text-align: center;
 }
 
-#mvgohuvqks .gt_right {
+#avzmtjtlbn .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#mvgohuvqks .gt_font_normal {
+#avzmtjtlbn .gt_font_normal {
   font-weight: normal;
 }
 
-#mvgohuvqks .gt_font_bold {
+#avzmtjtlbn .gt_font_bold {
   font-weight: bold;
 }
 
-#mvgohuvqks .gt_font_italic {
+#avzmtjtlbn .gt_font_italic {
   font-style: italic;
 }
 
-#mvgohuvqks .gt_super {
+#avzmtjtlbn .gt_super {
   font-size: 65%;
 }
 
-#mvgohuvqks .gt_footnote_marks {
+#avzmtjtlbn .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#mvgohuvqks .gt_asterisk {
+#avzmtjtlbn .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#mvgohuvqks .gt_indent_1 {
+#avzmtjtlbn .gt_indent_1 {
   text-indent: 5px;
 }
 
-#mvgohuvqks .gt_indent_2 {
+#avzmtjtlbn .gt_indent_2 {
   text-indent: 10px;
 }
 
-#mvgohuvqks .gt_indent_3 {
+#avzmtjtlbn .gt_indent_3 {
   text-indent: 15px;
 }
 
-#mvgohuvqks .gt_indent_4 {
+#avzmtjtlbn .gt_indent_4 {
   text-indent: 20px;
 }
 
-#mvgohuvqks .gt_indent_5 {
+#avzmtjtlbn .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -3021,14 +3024,14 @@ Imputed Demographics
     
     <tr class="gt_col_headings gt_spanner_row">
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" scope="col" id="<strong>Characteristic</strong>"><strong>Characteristic</strong></th>
-      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="3" scope="colgroup" id="F&amp;amp;V Model">
-        <span class="gt_column_spanner">F&amp;V Model</span>
-      </th>
       <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="3" scope="colgroup" id="<strong>Fast Food Model</strong>">
         <span class="gt_column_spanner"><strong>Fast Food Model</strong></span>
       </th>
       <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="3" scope="colgroup" id="<strong>SSB Model</strong>">
         <span class="gt_column_spanner"><strong>SSB Model</strong></span>
+      </th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="3" scope="colgroup" id="F&amp;amp;V Model">
+        <span class="gt_column_spanner">F&amp;V Model</span>
       </th>
     </tr>
     <tr class="gt_col_headings">
@@ -3044,7 +3047,7 @@ Imputed Demographics
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td headers="label" class="gt_row gt_left">calfresh3</td>
+    <tr><td headers="label" class="gt_row gt_left">SNAP3</td>
 <td headers="estimate_1" class="gt_row gt_center"><br></td>
 <td headers="ci_1" class="gt_row gt_center"><br></td>
 <td headers="p.value_1" class="gt_row gt_center"><br></td>
@@ -3054,7 +3057,7 @@ Imputed Demographics
 <td headers="estimate_3" class="gt_row gt_center"><br></td>
 <td headers="ci_3" class="gt_row gt_center"><br></td>
 <td headers="p.value_3" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;CalFresh</td>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;SNAP</td>
 <td headers="estimate_1" class="gt_row gt_center">—</td>
 <td headers="ci_1" class="gt_row gt_center">—</td>
 <td headers="p.value_1" class="gt_row gt_center"><br></td>
@@ -3064,7 +3067,7 @@ Imputed Demographics
 <td headers="estimate_3" class="gt_row gt_center">—</td>
 <td headers="ci_3" class="gt_row gt_center">—</td>
 <td headers="p.value_3" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;No CalFresh but Likely Eligible</td>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Likely Eligible Non-Recipient</td>
 <td headers="estimate_1" class="gt_row gt_center">1.69</td>
 <td headers="ci_1" class="gt_row gt_center">1.33, 2.15</td>
 <td headers="p.value_1" class="gt_row gt_center" style="font-weight: bold;">&lt;0.001</td>
@@ -3074,7 +3077,7 @@ Imputed Demographics
 <td headers="estimate_3" class="gt_row gt_center">0.57</td>
 <td headers="ci_3" class="gt_row gt_center">0.45, 0.72</td>
 <td headers="p.value_3" class="gt_row gt_center" style="font-weight: bold;">&lt;0.001</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Likely Not Eligible</td>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Income-Ineligible Non-Recipient</td>
 <td headers="estimate_1" class="gt_row gt_center">1.87</td>
 <td headers="ci_1" class="gt_row gt_center">1.43, 2.45</td>
 <td headers="p.value_1" class="gt_row gt_center" style="font-weight: bold;">&lt;0.001</td>

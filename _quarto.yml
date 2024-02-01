@@ -2,7 +2,7 @@ project:
   type: website
   output-dir: docs
 website:
-  title: "CalFresh Vs Diet Quality"
+  title: "SNAP Vs Diet Quality"
   navbar:
     left:
       - href: Survey_Questions.qmd

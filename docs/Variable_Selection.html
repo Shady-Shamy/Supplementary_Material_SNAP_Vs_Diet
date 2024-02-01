@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>CalFresh Vs Diet Quality - Variable Selection</title>
+<title>SNAP Vs Diet Quality - Variable Selection</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -105,7 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">CalFresh Vs Diet Quality</span>
+    <span class="navbar-title">SNAP Vs Diet Quality</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -201,7 +201,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <details>
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> bns_combined_imputed_df<span class="sc">$</span>ff_numeric</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(ff_numeric<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> race_eth <span class="sc">+</span> gender <span class="sc">+</span> age <span class="sc">+</span> cooking_confident <span class="sc">+</span> living_with_family <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> units_four <span class="sc">+</span> unpaid_work_hours_tens <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> health_conscious <span class="sc">+</span> kitchen_access <span class="sc">+</span> storage_access <span class="sc">+</span> storage_room <span class="sc">+</span> monthly_hh_income <span class="sc">+</span> physical_activity <span class="sc">+</span> firstgen <span class="sc">+</span> household_size <span class="sc">+</span> academic_level <span class="sc">+</span> housing_insecure <span class="sc">+</span> homelessness_year, bns_combined_imputed_df)[,<span class="sc">-</span><span class="dv">1</span>] <span class="co"># the -1 drops the intercept</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(ff_numeric<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> race_eth <span class="sc">+</span> gender <span class="sc">+</span> age <span class="sc">+</span> cooking_confident <span class="sc">+</span> living_with_family <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> units_four <span class="sc">+</span> unpaid_work_hours_tens <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> health_conscious <span class="sc">+</span> kitchen_access <span class="sc">+</span> storage_access <span class="sc">+</span> storage_room <span class="sc">+</span> monthly_hh_income <span class="sc">+</span> physical_activity <span class="sc">+</span> firstgen <span class="sc">+</span> household_size <span class="sc">+</span> academic_level <span class="sc">+</span> housing_insecure <span class="sc">+</span> homelessness_year, bns_combined_imputed_df)[,<span class="sc">-</span><span class="dv">1</span>] <span class="co"># the -1 drops the intercept</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>model.lasso <span class="ot">&lt;-</span> <span class="fu">glmnet</span>(x, y, <span class="at">alpha =</span> <span class="dv">1</span>)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
@@ -215,40 +215,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>33 x 1 sparse Matrix of class "dgCMatrix"
-                                           s0
-(Intercept)                               1.5
-calfresh3No CalFresh but Likely Eligible  0.3
-calfresh3Likely Not Eligible              0.1
-CohortStatewide                           0.4
-race_ethHispanic White                   -0.1
-race_ethNon Hispanic African American    -0.2
-race_ethNon Hispanic Asian               -0.5
-race_ethOther/Unknown                     0.1
-genderMale                                0.1
-age                                       0.0
-cooking_confidentYes                     -0.1
-living_with_familyYes                     0.2
-food_insecure_2itemYes                    0.2
-units_four                                0.0
-unpaid_work_hours_tens                    0.0
-paid_work_hours_tens                      0.1
-caregiving_hours_tens                     0.0
-health_consciousYes                      -0.2
-kitchen_accessYes                        -0.1
-storage_accessYes                        -0.1
-storage_roomYes                          -0.1
-monthly_hh_incomeLow                      0.1
-monthly_hh_incomeModerate                 0.2
-monthly_hh_incomeHigh                     0.2
-monthly_hh_incomeVery High                0.5
-physical_activityYes                     -0.2
-firstgen1                                 0.0
-household_size                           -0.1
-academic_levelSophomore                   0.1
-academic_levelJunior                      0.2
-academic_levelSenior                      0.2
-housing_insecure1                         0.0
-homelessness_year1                        0.3</code></pre>
+                                        s0
+(Intercept)                            1.5
+SNAP3Likely Eligible Non-Recipient     0.3
+SNAP3Income-Ineligible Non-Recipient   0.1
+CohortStatewide                        0.4
+race_ethHispanic White                -0.1
+race_ethNon Hispanic African American -0.2
+race_ethNon Hispanic Asian            -0.5
+race_ethOther/Unknown                  0.1
+genderMale                             0.1
+age                                    0.0
+cooking_confidentYes                  -0.1
+living_with_familyYes                  0.2
+food_insecure_2itemYes                 0.2
+units_four                             0.0
+unpaid_work_hours_tens                 0.0
+paid_work_hours_tens                   0.1
+caregiving_hours_tens                  0.0
+health_consciousYes                   -0.2
+kitchen_accessYes                     -0.1
+storage_accessYes                     -0.1
+storage_roomYes                       -0.1
+monthly_hh_incomeLow                   0.1
+monthly_hh_incomeModerate              0.2
+monthly_hh_incomeHigh                  0.2
+monthly_hh_incomeVery High             0.5
+physical_activityYes                  -0.2
+firstgen1                              0.0
+household_size                        -0.1
+academic_levelSophomore                0.1
+academic_levelJunior                   0.2
+academic_levelSenior                   0.2
+housing_insecure1                      0.0
+homelessness_year1                     0.3</code></pre>
 </div>
 </div>
 <blockquote class="blockquote">
@@ -260,7 +260,7 @@ homelessness_year1                        0.3</code></pre>
 <details>
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> bns_combined_imputed_df<span class="sc">$</span>ssb_numeric</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(ssb_numeric<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> race_eth <span class="sc">+</span> gender <span class="sc">+</span> age <span class="sc">+</span> cooking_confident <span class="sc">+</span> living_with_family <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> units_four <span class="sc">+</span> unpaid_work_hours_tens <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> health_conscious <span class="sc">+</span> kitchen_access <span class="sc">+</span> storage_access <span class="sc">+</span> storage_room <span class="sc">+</span> monthly_hh_income <span class="sc">+</span> physical_activity <span class="sc">+</span> firstgen <span class="sc">+</span> household_size <span class="sc">+</span> academic_level <span class="sc">+</span> housing_insecure <span class="sc">+</span> homelessness_year, bns_combined_imputed_df)[,<span class="sc">-</span><span class="dv">1</span>] <span class="co"># the -1 drops the intercept</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(ssb_numeric<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> race_eth <span class="sc">+</span> gender <span class="sc">+</span> age <span class="sc">+</span> cooking_confident <span class="sc">+</span> living_with_family <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> units_four <span class="sc">+</span> unpaid_work_hours_tens <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> health_conscious <span class="sc">+</span> kitchen_access <span class="sc">+</span> storage_access <span class="sc">+</span> storage_room <span class="sc">+</span> monthly_hh_income <span class="sc">+</span> physical_activity <span class="sc">+</span> firstgen <span class="sc">+</span> household_size <span class="sc">+</span> academic_level <span class="sc">+</span> housing_insecure <span class="sc">+</span> homelessness_year, bns_combined_imputed_df)[,<span class="sc">-</span><span class="dv">1</span>] <span class="co"># the -1 drops the intercept</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>model.lasso <span class="ot">&lt;-</span> <span class="fu">glmnet</span>(x, y, <span class="at">alpha =</span> <span class="dv">1</span>)</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
@@ -274,40 +274,40 @@ homelessness_year1                        0.3</code></pre>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>33 x 1 sparse Matrix of class "dgCMatrix"
-                                           s0
-(Intercept)                               4.0
-calfresh3No CalFresh but Likely Eligible  0.3
-calfresh3Likely Not Eligible              0.7
-CohortStatewide                           1.0
-race_ethHispanic White                    0.0
-race_ethNon Hispanic African American     .  
-race_ethNon Hispanic Asian               -1.0
-race_ethOther/Unknown                    -0.1
-genderMale                                0.8
-age                                       0.0
-cooking_confidentYes                      .  
-living_with_familyYes                     0.0
-food_insecure_2itemYes                   -0.1
-units_four                               -0.2
-unpaid_work_hours_tens                    .  
-paid_work_hours_tens                      0.3
-caregiving_hours_tens                     0.1
-health_consciousYes                      -0.9
-kitchen_accessYes                         .  
-storage_accessYes                        -0.1
-storage_roomYes                           0.0
-monthly_hh_incomeLow                     -0.3
-monthly_hh_incomeModerate                -0.3
-monthly_hh_incomeHigh                     .  
-monthly_hh_incomeVery High                .  
-physical_activityYes                     -0.2
-firstgen1                                -0.6
-household_size                            .  
-academic_levelSophomore                   .  
-academic_levelJunior                      0.4
-academic_levelSenior                      0.3
-housing_insecure1                         0.0
-homelessness_year1                        0.9</code></pre>
+                                        s0
+(Intercept)                            4.0
+SNAP3Likely Eligible Non-Recipient     0.3
+SNAP3Income-Ineligible Non-Recipient   0.7
+CohortStatewide                        1.0
+race_ethHispanic White                 0.0
+race_ethNon Hispanic African American  .  
+race_ethNon Hispanic Asian            -1.0
+race_ethOther/Unknown                 -0.1
+genderMale                             0.8
+age                                    0.0
+cooking_confidentYes                   .  
+living_with_familyYes                  0.0
+food_insecure_2itemYes                -0.1
+units_four                            -0.2
+unpaid_work_hours_tens                 .  
+paid_work_hours_tens                   0.3
+caregiving_hours_tens                  0.1
+health_consciousYes                   -0.9
+kitchen_accessYes                      .  
+storage_accessYes                     -0.1
+storage_roomYes                        0.0
+monthly_hh_incomeLow                  -0.3
+monthly_hh_incomeModerate             -0.3
+monthly_hh_incomeHigh                  .  
+monthly_hh_incomeVery High             .  
+physical_activityYes                  -0.2
+firstgen1                             -0.6
+household_size                         .  
+academic_levelSophomore                .  
+academic_levelJunior                   0.4
+academic_levelSenior                   0.3
+housing_insecure1                      0.0
+homelessness_year1                     0.9</code></pre>
 </div>
 </div>
 <blockquote class="blockquote">
@@ -319,7 +319,7 @@ homelessness_year1                        0.9</code></pre>
 <details>
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> bns_combined_imputed_df<span class="sc">$</span>q77_numeric</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(q77_numeric<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> race_eth <span class="sc">+</span> gender <span class="sc">+</span> age <span class="sc">+</span> cooking_confident <span class="sc">+</span> living_with_family <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> units_four <span class="sc">+</span> unpaid_work_hours_tens <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> health_conscious <span class="sc">+</span> kitchen_access <span class="sc">+</span> storage_access <span class="sc">+</span> storage_room <span class="sc">+</span> monthly_hh_income <span class="sc">+</span> physical_activity <span class="sc">+</span> firstgen <span class="sc">+</span> household_size <span class="sc">+</span> academic_level <span class="sc">+</span> housing_insecure <span class="sc">+</span> homelessness_year, bns_combined_imputed_df)[,<span class="sc">-</span><span class="dv">1</span>] <span class="co"># the -1 drops the intercept</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(q77_numeric<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> race_eth <span class="sc">+</span> gender <span class="sc">+</span> age <span class="sc">+</span> cooking_confident <span class="sc">+</span> living_with_family <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> units_four <span class="sc">+</span> unpaid_work_hours_tens <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> health_conscious <span class="sc">+</span> kitchen_access <span class="sc">+</span> storage_access <span class="sc">+</span> storage_room <span class="sc">+</span> monthly_hh_income <span class="sc">+</span> physical_activity <span class="sc">+</span> firstgen <span class="sc">+</span> household_size <span class="sc">+</span> academic_level <span class="sc">+</span> housing_insecure <span class="sc">+</span> homelessness_year, bns_combined_imputed_df)[,<span class="sc">-</span><span class="dv">1</span>] <span class="co"># the -1 drops the intercept</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>model.lasso <span class="ot">&lt;-</span> <span class="fu">glmnet</span>(x, y, <span class="at">alpha =</span> <span class="dv">1</span>)</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
@@ -333,40 +333,40 @@ homelessness_year1                        0.9</code></pre>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>33 x 1 sparse Matrix of class "dgCMatrix"
-                                           s0
-(Intercept)                               0.8
-calfresh3No CalFresh but Likely Eligible -0.1
-calfresh3Likely Not Eligible             -0.1
-CohortStatewide                          -0.1
-race_ethHispanic White                    .  
-race_ethNon Hispanic African American     .  
-race_ethNon Hispanic Asian                .  
-race_ethOther/Unknown                     .  
-genderMale                                0.0
-age                                       0.0
-cooking_confidentYes                      0.1
-living_with_familyYes                     0.0
-food_insecure_2itemYes                   -0.1
-units_four                                0.0
-unpaid_work_hours_tens                    0.0
-paid_work_hours_tens                      .  
-caregiving_hours_tens                     0.0
-health_consciousYes                       0.1
-kitchen_accessYes                         .  
-storage_accessYes                         .  
-storage_roomYes                           0.1
-monthly_hh_incomeLow                      .  
-monthly_hh_incomeModerate                 .  
-monthly_hh_incomeHigh                     .  
-monthly_hh_incomeVery High                .  
-physical_activityYes                      0.3
-firstgen1                                 .  
-household_size                            0.0
-academic_levelSophomore                   .  
-academic_levelJunior                      0.0
-academic_levelSenior                      .  
-housing_insecure1                         0.0
-homelessness_year1                        0.0</code></pre>
+                                        s0
+(Intercept)                            0.8
+SNAP3Likely Eligible Non-Recipient    -0.1
+SNAP3Income-Ineligible Non-Recipient  -0.1
+CohortStatewide                       -0.1
+race_ethHispanic White                 .  
+race_ethNon Hispanic African American  .  
+race_ethNon Hispanic Asian             .  
+race_ethOther/Unknown                  .  
+genderMale                             0.0
+age                                    0.0
+cooking_confidentYes                   0.1
+living_with_familyYes                  0.0
+food_insecure_2itemYes                -0.1
+units_four                             0.0
+unpaid_work_hours_tens                 0.0
+paid_work_hours_tens                   .  
+caregiving_hours_tens                  0.0
+health_consciousYes                    0.1
+kitchen_accessYes                      .  
+storage_accessYes                      .  
+storage_roomYes                        0.1
+monthly_hh_incomeLow                   .  
+monthly_hh_incomeModerate              .  
+monthly_hh_incomeHigh                  .  
+monthly_hh_incomeVery High             .  
+physical_activityYes                   0.3
+firstgen1                              .  
+household_size                         0.0
+academic_levelSophomore                .  
+academic_levelJunior                   0.0
+academic_levelSenior                   .  
+housing_insecure1                      0.0
+homelessness_year1                     0.0</code></pre>
 </div>
 </div>
 <blockquote class="blockquote">
@@ -380,13 +380,13 @@ homelessness_year1                        0.0</code></pre>
 <details>
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Linear model based on LASSO results</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>ff.linear.model <span class="ot">&lt;-</span> <span class="fu">lm</span>(ff_numeric<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> monthly_hh_income <span class="sc">+</span> academic_level <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_access <span class="sc">+</span> storage_room <span class="sc">+</span> kitchen_access <span class="sc">+</span> health_conscious <span class="sc">+</span> living_with_family <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>ff.linear.model <span class="ot">&lt;-</span> <span class="fu">lm</span>(ff_numeric<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> monthly_hh_income <span class="sc">+</span> academic_level <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_access <span class="sc">+</span> storage_room <span class="sc">+</span> kitchen_access <span class="sc">+</span> health_conscious <span class="sc">+</span> living_with_family <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(ff.linear.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>                         GVIF Df GVIF^(1/(2*Df))
-calfresh3            2.059766  2        1.197993
+SNAP3                2.059766  2        1.197993
 Cohort               1.368091  1        1.169654
 gender               1.071191  1        1.034984
 race_eth             1.353794  4        1.038590
@@ -406,7 +406,7 @@ homelessness_year    1.100787  1        1.049184</code></pre>
 </div>
 </div>
 <blockquote class="blockquote">
-<p>CalFresh3 and income could be colinear Academic level and school could also be colinear since there are no juniors/seniors in a community college</p>
+<p>SNAP3 and income could be colinear Academic level and school could also be colinear since there are no juniors/seniors in a community college</p>
 </blockquote>
 </section>
 <section id="test-removing-income" class="level2">
@@ -414,13 +414,13 @@ homelessness_year    1.100787  1        1.049184</code></pre>
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ff.linear.model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ff_numeric<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> academic_level <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_access <span class="sc">+</span> storage_room <span class="sc">+</span> kitchen_access <span class="sc">+</span> health_conscious <span class="sc">+</span> living_with_family <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df)</span>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ff.linear.model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ff_numeric<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> academic_level <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_access <span class="sc">+</span> storage_room <span class="sc">+</span> kitchen_access <span class="sc">+</span> health_conscious <span class="sc">+</span> living_with_family <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(ff.linear.model2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>                         GVIF Df GVIF^(1/(2*Df))
-calfresh3            1.185089  2        1.043369
+SNAP3                1.185089  2        1.043369
 Cohort               1.361618  1        1.166884
 gender               1.067034  1        1.032973
 race_eth             1.339335  4        1.037197
@@ -439,7 +439,7 @@ homelessness_year    1.091987  1        1.044982</code></pre>
 </div>
 </div>
 <blockquote class="blockquote">
-<p>Removing income decreased the VIF of the calfresh3 variable</p>
+<p>Removing income decreased the VIF of the SNAP3 variable</p>
 </blockquote>
 </section>
 <section id="test-removing-academic-level" class="level2">
@@ -447,13 +447,13 @@ homelessness_year    1.091987  1        1.044982</code></pre>
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ff.linear.model3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ff_numeric<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_access <span class="sc">+</span> storage_room <span class="sc">+</span> kitchen_access <span class="sc">+</span> health_conscious <span class="sc">+</span> living_with_family <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df)</span>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ff.linear.model3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ff_numeric<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_access <span class="sc">+</span> storage_room <span class="sc">+</span> kitchen_access <span class="sc">+</span> health_conscious <span class="sc">+</span> living_with_family <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(ff.linear.model3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>                         GVIF Df GVIF^(1/(2*Df))
-calfresh3            1.180153  2        1.042280
+SNAP3                1.180153  2        1.042280
 Cohort               1.138856  1        1.067172
 gender               1.066042  1        1.032493
 race_eth             1.309705  4        1.034300
@@ -481,7 +481,7 @@ homelessness_year    1.091347  1        1.044676</code></pre>
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Full Model Based on LASSO after removing colinear variables</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>ff.ordinal.mod <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(ff_cat<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_access <span class="sc">+</span> storage_room <span class="sc">+</span> kitchen_access <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> living_with_family, homelessness_year, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>ff.ordinal.mod <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(ff_cat<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_access <span class="sc">+</span> storage_room <span class="sc">+</span> kitchen_access <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> living_with_family, homelessness_year, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>ff.ordinal.mod</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -938,19 +938,19 @@ homelessness_year    1.091347  1        1.044676</code></pre>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td headers="label" class="gt_row gt_left">calfresh3</td>
+    <tr><td headers="label" class="gt_row gt_left">SNAP3</td>
 <td headers="estimate" class="gt_row gt_center"><br></td>
 <td headers="ci" class="gt_row gt_center"><br></td>
 <td headers="p.value" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;CalFresh</td>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;SNAP</td>
 <td headers="estimate" class="gt_row gt_center">—</td>
 <td headers="ci" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;No CalFresh but Likely Eligible</td>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Likely Eligible Non-Recipient</td>
 <td headers="estimate" class="gt_row gt_center">1.66</td>
 <td headers="ci" class="gt_row gt_center">1.31, 2.12</td>
 <td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">&lt;0.001</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Likely Not Eligible</td>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Income-Ineligible Non-Recipient</td>
 <td headers="estimate" class="gt_row gt_center">1.85</td>
 <td headers="ci" class="gt_row gt_center">1.41, 2.42</td>
 <td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">&lt;0.001</td></tr>
@@ -1123,7 +1123,7 @@ homelessness_year    1.091347  1        1.044676</code></pre>
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ff.ordinal.mod_storage <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(ff_cat<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> kitchen_access <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> living_with_family, homelessness_year, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ff.ordinal.mod_storage <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(ff_cat<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> kitchen_access <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> living_with_family, homelessness_year, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_merge</span>(<span class="at">tbls =</span> <span class="fu">list</span>(ff.ordinal.mod, ff.ordinal.mod_storage), <span class="at">tab_spanner =</span> <span class="fu">c</span>(<span class="st">"Full FF Model"</span>, <span class="st">"**Test Model*"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -1591,28 +1591,28 @@ homelessness_year    1.091347  1        1.044676</code></pre>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td headers="label" class="gt_row gt_left">calfresh3</td>
+    <tr><td headers="label" class="gt_row gt_left">SNAP3</td>
 <td headers="estimate_1" class="gt_row gt_center"><br></td>
 <td headers="ci_1" class="gt_row gt_center"><br></td>
 <td headers="p.value_1" class="gt_row gt_center"><br></td>
 <td headers="estimate_2" class="gt_row gt_center"><br></td>
 <td headers="ci_2" class="gt_row gt_center"><br></td>
 <td headers="p.value_2" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;CalFresh</td>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;SNAP</td>
 <td headers="estimate_1" class="gt_row gt_center">—</td>
 <td headers="ci_1" class="gt_row gt_center">—</td>
 <td headers="p.value_1" class="gt_row gt_center"><br></td>
 <td headers="estimate_2" class="gt_row gt_center">—</td>
 <td headers="ci_2" class="gt_row gt_center">—</td>
 <td headers="p.value_2" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;No CalFresh but Likely Eligible</td>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Likely Eligible Non-Recipient</td>
 <td headers="estimate_1" class="gt_row gt_center">1.66</td>
 <td headers="ci_1" class="gt_row gt_center">1.31, 2.12</td>
 <td headers="p.value_1" class="gt_row gt_center" style="font-weight: bold;">&lt;0.001</td>
 <td headers="estimate_2" class="gt_row gt_center">1.67</td>
 <td headers="ci_2" class="gt_row gt_center">1.31, 2.12</td>
 <td headers="p.value_2" class="gt_row gt_center" style="font-weight: bold;">&lt;0.001</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Likely Not Eligible</td>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Income-Ineligible Non-Recipient</td>
 <td headers="estimate_1" class="gt_row gt_center">1.85</td>
 <td headers="ci_1" class="gt_row gt_center">1.41, 2.42</td>
 <td headers="p.value_1" class="gt_row gt_center" style="font-weight: bold;">&lt;0.001</td>
@@ -1908,13 +1908,13 @@ homelessness_year    1.091347  1        1.044676</code></pre>
 <details>
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Full model based on LASSO</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>ssb.linear.model <span class="ot">&lt;-</span> <span class="fu">lm</span>(ssb_numeric<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> monthly_hh_income <span class="sc">+</span> academic_level <span class="sc">+</span> physical_activity <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_room <span class="sc">+</span> storage_access <span class="sc">+</span> firstgen <span class="sc">+</span> units_four <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>ssb.linear.model <span class="ot">&lt;-</span> <span class="fu">lm</span>(ssb_numeric<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> monthly_hh_income <span class="sc">+</span> academic_level <span class="sc">+</span> physical_activity <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_room <span class="sc">+</span> storage_access <span class="sc">+</span> firstgen <span class="sc">+</span> units_four <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(ssb.linear.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>                          GVIF Df GVIF^(1/(2*Df))
-calfresh3             2.034009  2        1.194231
+SNAP3                 2.034009  2        1.194231
 Cohort                1.347221  1        1.160699
 gender                1.095965  1        1.046884
 race_eth              1.346425  4        1.037882
@@ -1934,7 +1934,7 @@ homelessness_year     1.083644  1        1.040982</code></pre>
 </div>
 </div>
 <blockquote class="blockquote">
-<p>CalFresh3 and income could be colinear Academic level and school could also be colinear since there are no juniors/seniors in a community college</p>
+<p>SNAP3 and income could be colinear Academic level and school could also be colinear since there are no juniors/seniors in a community college</p>
 </blockquote>
 </section>
 <section id="test-removing-income-1" class="level2">
@@ -1942,13 +1942,13 @@ homelessness_year     1.083644  1        1.040982</code></pre>
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>ssb.linear.model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ssb_numeric<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> academic_level <span class="sc">+</span> physical_activity <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_room <span class="sc">+</span> storage_access <span class="sc">+</span> firstgen <span class="sc">+</span> units_four <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df)</span>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>ssb.linear.model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ssb_numeric<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> academic_level <span class="sc">+</span> physical_activity <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_room <span class="sc">+</span> storage_access <span class="sc">+</span> firstgen <span class="sc">+</span> units_four <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(ssb.linear.model2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>                          GVIF Df GVIF^(1/(2*Df))
-calfresh3             1.156033  2        1.036914
+SNAP3                 1.156033  2        1.036914
 Cohort                1.340748  1        1.157907
 gender                1.090608  1        1.044322
 race_eth              1.331406  4        1.036427
@@ -1967,7 +1967,7 @@ homelessness_year     1.068109  1        1.033494</code></pre>
 </div>
 </div>
 <blockquote class="blockquote">
-<p>Removing income greatly decreased the VIF in the calfresh3 variable</p>
+<p>Removing income greatly decreased the VIF in the SNAP3 variable</p>
 </blockquote>
 </section>
 <section id="test-removing-academic-year" class="level2">
@@ -1975,13 +1975,13 @@ homelessness_year     1.068109  1        1.033494</code></pre>
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>ssb.linear.model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ssb_numeric<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_room <span class="sc">+</span> storage_access <span class="sc">+</span> firstgen <span class="sc">+</span> units_four <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df)</span>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>ssb.linear.model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ssb_numeric<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_room <span class="sc">+</span> storage_access <span class="sc">+</span> firstgen <span class="sc">+</span> units_four <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df)</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(ssb.linear.model2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>                          GVIF Df GVIF^(1/(2*Df))
-calfresh3             1.151032  2        1.035790
+SNAP3                 1.151032  2        1.035790
 Cohort                1.123702  1        1.060048
 gender                1.088926  1        1.043516
 race_eth              1.305010  4        1.033836
@@ -2008,7 +2008,7 @@ homelessness_year     1.067574  1        1.033235</code></pre>
 <details>
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Full Model after eliminating colinear variables</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>ssb.ordinal.mod <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(ssb_cat<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_room <span class="sc">+</span> storage_access <span class="sc">+</span> firstgen <span class="sc">+</span> units_four <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> homelessness_year, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>ssb.ordinal.mod <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(ssb_cat<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_room <span class="sc">+</span> storage_access <span class="sc">+</span> firstgen <span class="sc">+</span> units_four <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> homelessness_year, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -2018,7 +2018,7 @@ homelessness_year     1.067574  1        1.033235</code></pre>
 <details>
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove firstgen</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>ssb.ordinal.mod.firstgen <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(ssb_cat<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_room <span class="sc">+</span> storage_access <span class="sc">+</span> units_four <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> homelessness_year, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>ssb.ordinal.mod.firstgen <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(ssb_cat<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_room <span class="sc">+</span> storage_access <span class="sc">+</span> units_four <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> homelessness_year, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_merge</span>(<span class="at">tbls =</span> <span class="fu">list</span>(ssb.ordinal.mod, ssb.ordinal.mod.firstgen), <span class="at">tab_spanner =</span> <span class="fu">c</span>(<span class="st">"Full SSB Model"</span>, <span class="st">"**Test Model*"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2487,28 +2487,28 @@ homelessness_year     1.067574  1        1.033235</code></pre>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td headers="label" class="gt_row gt_left">calfresh3</td>
+    <tr><td headers="label" class="gt_row gt_left">SNAP3</td>
 <td headers="estimate_1" class="gt_row gt_center"><br></td>
 <td headers="ci_1" class="gt_row gt_center"><br></td>
 <td headers="p.value_1" class="gt_row gt_center"><br></td>
 <td headers="estimate_2" class="gt_row gt_center"><br></td>
 <td headers="ci_2" class="gt_row gt_center"><br></td>
 <td headers="p.value_2" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;CalFresh</td>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;SNAP</td>
 <td headers="estimate_1" class="gt_row gt_center">—</td>
 <td headers="ci_1" class="gt_row gt_center">—</td>
 <td headers="p.value_1" class="gt_row gt_center"><br></td>
 <td headers="estimate_2" class="gt_row gt_center">—</td>
 <td headers="ci_2" class="gt_row gt_center">—</td>
 <td headers="p.value_2" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;No CalFresh but Likely Eligible</td>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Likely Eligible Non-Recipient</td>
 <td headers="estimate_1" class="gt_row gt_center">1.37</td>
 <td headers="ci_1" class="gt_row gt_center">1.13, 1.67</td>
 <td headers="p.value_1" class="gt_row gt_center" style="font-weight: bold;">0.002</td>
 <td headers="estimate_2" class="gt_row gt_center">1.37</td>
 <td headers="ci_2" class="gt_row gt_center">1.13, 1.67</td>
 <td headers="p.value_2" class="gt_row gt_center" style="font-weight: bold;">0.002</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Likely Not Eligible</td>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Income-Ineligible Non-Recipient</td>
 <td headers="estimate_1" class="gt_row gt_center">1.53</td>
 <td headers="ci_1" class="gt_row gt_center">1.16, 2.02</td>
 <td headers="p.value_1" class="gt_row gt_center" style="font-weight: bold;">0.003</td>
@@ -2794,7 +2794,7 @@ homelessness_year     1.067574  1        1.033235</code></pre>
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>ssb.ordinal.mod.storage <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(ssb_cat<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_access <span class="sc">+</span> units_four <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> homelessness_year, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>ssb.ordinal.mod.storage <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(ssb_cat<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_access <span class="sc">+</span> units_four <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> homelessness_year, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_merge</span>(<span class="at">tbls =</span> <span class="fu">list</span>(ssb.ordinal.mod.firstgen, ssb.ordinal.mod.storage), <span class="at">tab_spanner =</span> <span class="fu">c</span>(<span class="st">"Full SSB Model"</span>, <span class="st">"**Test Model*"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3263,28 +3263,28 @@ homelessness_year     1.067574  1        1.033235</code></pre>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td headers="label" class="gt_row gt_left">calfresh3</td>
+    <tr><td headers="label" class="gt_row gt_left">SNAP3</td>
 <td headers="estimate_1" class="gt_row gt_center"><br></td>
 <td headers="ci_1" class="gt_row gt_center"><br></td>
 <td headers="p.value_1" class="gt_row gt_center"><br></td>
 <td headers="estimate_2" class="gt_row gt_center"><br></td>
 <td headers="ci_2" class="gt_row gt_center"><br></td>
 <td headers="p.value_2" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;CalFresh</td>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;SNAP</td>
 <td headers="estimate_1" class="gt_row gt_center">—</td>
 <td headers="ci_1" class="gt_row gt_center">—</td>
 <td headers="p.value_1" class="gt_row gt_center"><br></td>
 <td headers="estimate_2" class="gt_row gt_center">—</td>
 <td headers="ci_2" class="gt_row gt_center">—</td>
 <td headers="p.value_2" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;No CalFresh but Likely Eligible</td>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Likely Eligible Non-Recipient</td>
 <td headers="estimate_1" class="gt_row gt_center">1.37</td>
 <td headers="ci_1" class="gt_row gt_center">1.13, 1.67</td>
 <td headers="p.value_1" class="gt_row gt_center" style="font-weight: bold;">0.002</td>
 <td headers="estimate_2" class="gt_row gt_center">1.37</td>
 <td headers="ci_2" class="gt_row gt_center">1.12, 1.66</td>
 <td headers="p.value_2" class="gt_row gt_center" style="font-weight: bold;">0.002</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Likely Not Eligible</td>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Income-Ineligible Non-Recipient</td>
 <td headers="estimate_1" class="gt_row gt_center">1.53</td>
 <td headers="ci_1" class="gt_row gt_center">1.16, 2.02</td>
 <td headers="p.value_1" class="gt_row gt_center" style="font-weight: bold;">0.003</td>
@@ -3549,7 +3549,7 @@ homelessness_year     1.067574  1        1.033235</code></pre>
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>ssb.ordinal.mod.fi <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(ssb_cat<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_access <span class="sc">+</span> units_four <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> homelessness_year, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>ssb.ordinal.mod.fi <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(ssb_cat<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_access <span class="sc">+</span> units_four <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> homelessness_year, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_merge</span>(<span class="at">tbls =</span> <span class="fu">list</span>(ssb.ordinal.mod.storage, ssb.ordinal.mod.fi), <span class="at">tab_spanner =</span> <span class="fu">c</span>(<span class="st">"Full SSB Model"</span>, <span class="st">"**Test Model*"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -4018,28 +4018,28 @@ homelessness_year     1.067574  1        1.033235</code></pre>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td headers="label" class="gt_row gt_left">calfresh3</td>
+    <tr><td headers="label" class="gt_row gt_left">SNAP3</td>
 <td headers="estimate_1" class="gt_row gt_center"><br></td>
 <td headers="ci_1" class="gt_row gt_center"><br></td>
 <td headers="p.value_1" class="gt_row gt_center"><br></td>
 <td headers="estimate_2" class="gt_row gt_center"><br></td>
 <td headers="ci_2" class="gt_row gt_center"><br></td>
 <td headers="p.value_2" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;CalFresh</td>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;SNAP</td>
 <td headers="estimate_1" class="gt_row gt_center">—</td>
 <td headers="ci_1" class="gt_row gt_center">—</td>
 <td headers="p.value_1" class="gt_row gt_center"><br></td>
 <td headers="estimate_2" class="gt_row gt_center">—</td>
 <td headers="ci_2" class="gt_row gt_center">—</td>
 <td headers="p.value_2" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;No CalFresh but Likely Eligible</td>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Likely Eligible Non-Recipient</td>
 <td headers="estimate_1" class="gt_row gt_center">1.37</td>
 <td headers="ci_1" class="gt_row gt_center">1.12, 1.66</td>
 <td headers="p.value_1" class="gt_row gt_center" style="font-weight: bold;">0.002</td>
 <td headers="estimate_2" class="gt_row gt_center">1.37</td>
 <td headers="ci_2" class="gt_row gt_center">1.12, 1.66</td>
 <td headers="p.value_2" class="gt_row gt_center" style="font-weight: bold;">0.002</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Likely Not Eligible</td>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Income-Ineligible Non-Recipient</td>
 <td headers="estimate_1" class="gt_row gt_center">1.52</td>
 <td headers="ci_1" class="gt_row gt_center">1.15, 2.01</td>
 <td headers="p.value_1" class="gt_row gt_center" style="font-weight: bold;">0.004</td>
@@ -4286,13 +4286,13 @@ homelessness_year     1.067574  1        1.033235</code></pre>
 <details>
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Linear model based on results from LASSO regression</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>fv.linear.model <span class="ot">&lt;-</span> <span class="fu">lm</span>(q77_numeric<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> monthly_hh_income <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> food_insecure_2item, <span class="at">data =</span> bns_combined_imputed_df)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>fv.linear.model <span class="ot">&lt;-</span> <span class="fu">lm</span>(q77_numeric<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> monthly_hh_income <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> food_insecure_2item, <span class="at">data =</span> bns_combined_imputed_df)</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(fv.linear.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>                        GVIF Df GVIF^(1/(2*Df))
-calfresh3           1.945620  2        1.181040
+SNAP3               1.945620  2        1.181040
 Cohort              1.136130  1        1.065894
 gender              1.060529  1        1.029820
 race_eth            1.257416  4        1.029046
@@ -4306,7 +4306,7 @@ food_insecure_2item 1.100711  1        1.049148</code></pre>
 </div>
 </div>
 <blockquote class="blockquote">
-<p>CalFresh3 and income could be colinear Academic level and school could also be colinear since there are no juniors/seniors in a community college</p>
+<p>SNAP3 and income could be colinear Academic level and school could also be colinear since there are no juniors/seniors in a community college</p>
 </blockquote>
 </section>
 <section id="test-removing-income-2" class="level2">
@@ -4314,13 +4314,13 @@ food_insecure_2item 1.100711  1        1.049148</code></pre>
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>fv.linear.model <span class="ot">&lt;-</span> <span class="fu">lm</span>(q77_numeric<span class="sc">~</span>calfresh3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> food_insecure_2item, <span class="at">data =</span> bns_combined_imputed_df)</span>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>fv.linear.model <span class="ot">&lt;-</span> <span class="fu">lm</span>(q77_numeric<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> food_insecure_2item, <span class="at">data =</span> bns_combined_imputed_df)</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(fv.linear.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>                        GVIF Df GVIF^(1/(2*Df))
-calfresh3           1.092264  2        1.022308
+SNAP3               1.092264  2        1.022308
 Cohort              1.128819  1        1.062459
 gender              1.056334  1        1.027781
 race_eth            1.241056  4        1.027363
@@ -4333,7 +4333,7 @@ food_insecure_2item 1.093257  1        1.045589</code></pre>
 </div>
 </div>
 <blockquote class="blockquote">
-<p>Removing income greatly decreased the vif of the calfresh3 variable</p>
+<p>Removing income greatly decreased the vif of the SNAP3 variable</p>
 </blockquote>
 <blockquote class="blockquote">
 <p>No other variables in F&amp;V consumption looked like they can be removed through manual backwards elimination</p>

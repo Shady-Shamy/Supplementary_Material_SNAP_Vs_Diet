@@ -8,8 +8,6 @@ format:
 
 > This page shows all graphs and tables used in the manuscript along with the code used. Additional univariate frequencies of covariates not shown in the manuscript are shown in the demographics table.
 
-
-
 ```{r, include=FALSE}
 knitr::opts_chunk$set(error = FALSE,warning = FALSE,message = FALSE,echo = TRUE)
 
@@ -33,11 +31,17 @@ load("clean_data/bns_combined.Rdata")
 
 chc.palette <- c("#B1D238", "#5782B0", "#FF914D")
 
-bns_combined_imputed_df$calfresh3 <- recode(bns_combined_imputed_df$calfresh3, "CalFresh" = "CalFresh Recipients", "Likely Not Eligible" = "Income-Ineligible Non-Recipients",
-"No CalFresh but Likely Eligible" = "Likely Eligible Non-Recipients")
+bns_combined_imputed_df$SNAP3 <- recode(bns_combined_imputed_df$SNAP3, "SNAP" = "SNAP Recipients", "Likely Not Eligible" = "Income-Ineligible Non-Recipients",
+"No SNAP but Likely Eligible" = "Likely Eligible Non-Recipients")
 
-bns_combined$calfresh3 <- recode(bns_combined$calfresh3, "CalFresh" = "CalFresh Recipients", "Likely Not Eligible" = "Income-Ineligible Non-Recipients",
-"No CalFresh but Likely Eligible" = "Likely Eligible Non-Recipients")
+# Set figure labels
+figure_labels <- c("SNAP Recipients" = "SNAP Recipients (n = 739)", 
+              "Income-Ineligible Non-Recipients" = "Income-Ineligible Non-Recipients (n = 449)", 
+              "Likely Eligible Non-Recipients" = "Likely Eligible Non-Recipients (n = 1,174)")
+
+
+bns_combined$SNAP3 <- recode(bns_combined$SNAP3, "SNAP" = "SNAP Recipients", "Likely Not Eligible" = "Income-Ineligible Non-Recipients",
+"No SNAP but Likely Eligible" = "Likely Eligible Non-Recipients")
 
 
 
@@ -85,7 +89,7 @@ bns_combined_imputed_df$school2 <- recode(bns_combined_imputed_df$school,
 
 
 
-demographics_cc <- bns_combined %>% select(age, gender, race_eth, monthly_hh_income, academic_level, Cohort, school2, calfresh3, calfresh_eligible, cooking_confident, health_conscious, physical_activity, ssb_cat, ff_cat, fruits3, food_insecure_2item,  units, paid_work_hours)
+demographics_cc <- bns_combined %>% select(age, gender, race_eth, monthly_hh_income, academic_level, Cohort, school2, SNAP3, SNAP_eligible, cooking_confident, health_conscious, physical_activity, ssb_cat, ff_cat, fruits3, food_insecure_2item,  units, paid_work_hours)
 
 cc <- demographics_cc %>% 
   tbl_summary(statistic = list(
@@ -94,7 +98,7 @@ cc <- demographics_cc %>%
       missing_text= "Missing (n)")
 
 
-demographics_imp <- bns_combined_imputed_df %>% select(age, gender, race_eth, monthly_hh_income, academic_level, Cohort, school2, calfresh3, calfresh_eligible, cooking_confident, health_conscious, physical_activity, ssb_cat, ff_cat, fruits3, food_insecure_2item,  units, paid_work_hours)
+demographics_imp <- bns_combined_imputed_df %>% select(age, gender, race_eth, monthly_hh_income, academic_level, Cohort, school2, SNAP3, SNAP_eligible, cooking_confident, health_conscious, physical_activity, ssb_cat, ff_cat, fruits3, food_insecure_2item,  units, paid_work_hours)
 
 
 
@@ -115,7 +119,7 @@ tbl_merge(tbls = list(cc, imp),
 
 ```
 
-## Figure 2: Fast Food Vs CalFresh
+## Figure 2: Fast Food Vs SNAP
 
 ```{r}
 
@@ -126,41 +130,45 @@ bns_combined_imputed_df$ff_cat2 <- recode(bns_combined_imputed_df$ff_cat,
                                           "3-4 times per week" = "3-4 times",
                                           "5 or more times per week" = "5 or more times")
 
-p2 <- bns_combined_imputed_df %>% select(ff_cat2, calfresh3) %>% na.omit() %>% ggplot(aes(x= ff_cat2,  group=calfresh3)) + 
-    geom_bar(aes(y = ..prop.., fill = factor(calfresh3)), stat="count",
+p2 <- bns_combined_imputed_df %>% select(ff_cat2, SNAP3) %>% na.omit() %>% ggplot(aes(x= ff_cat2,  group=SNAP3)) + 
+    geom_bar(aes(y = ..prop.., fill = factor(SNAP3)), stat="count",
              #alpha = c(0.3, 0.7, 1, 0.3, 0.7, 1, 0.3, 0.7, 1), 
              colour="black", size=0.6) +
      geom_text(aes(label = scales::percent(round(..prop.., digits = 2)), y=..prop..), stat= "count", vjust = -.5, size = 6) +
     labs(y = "Percent of Students") +
-    facet_wrap(~calfresh3, ncol = 1, scales = "free_x") +
+    facet_wrap(~SNAP3, ncol = 1, scales = "free_x",
+               labeller = as_labeller(figure_labels)) +
     scale_y_continuous(labels = scales::percent, expand = expansion(mult = c(0.0, 0.85))) +
   scale_fill_manual(values = chc.palette) +
   theme_bw() + theme(legend.position="none") + 
   xlab("\nFrequency of Fast-Food Meals Per Week") + theme(strip.text.x = element_text(size = 15), text = element_text(size = 15))
 
-# ggsave("FF_Plot.png", plot = p2, width = 10, height = 8)
+# ggsave("FF_Plot.png", plot = p2, width = 8, height = 6)
 
 p2
 
 ```
 
-## Figure 3: SSB Vs CalFresh
+## Figure 3: SSB Vs SNAP
 
 ```{r}
 
-p3 <- bns_combined %>% select(ssb_cat, calfresh3) %>% na.omit() %>% ggplot(aes(x= ssb_cat,  group=calfresh3)) + 
-    geom_bar(aes(y = ..prop.., fill = factor(calfresh3)), stat="count",
+
+
+p3 <- bns_combined_imputed_df %>% select(ssb_cat, SNAP3) %>% na.omit() %>% ggplot(aes(x= ssb_cat,  group=SNAP3)) + 
+    geom_bar(aes(y = ..prop.., fill = factor(SNAP3)), stat="count",
              #alpha = c(0.3, 0.7, 1, 0.3, 0.7, 1, 0.3, 0.7, 1), 
              colour="black", size=0.6) + 
     geom_text(aes(label = scales::percent(round(..prop.., digits = 2)), y=..prop..), stat= "count", vjust = -.5, size = 6) +
     labs(y = "Percent of Students") +
-    facet_wrap(~calfresh3, ncol = 1, scales = "free_x") +
+    facet_wrap(~SNAP3, ncol = 1, scales = "free_x",
+               labeller = as_labeller(figure_labels)) +
     scale_y_continuous(labels = scales::percent, expand = expansion(mult = c(0.0, 1.6))) +
   scale_fill_manual(values = chc.palette) +
   theme_bw() + theme(legend.position="none") + 
   xlab("\nOunces of Sugar Sweetened Beverages Consumed Per Day") + theme(strip.text.x = element_text(size = 15), text = element_text(size = 15))
 
-# ggsave("SSB_Plot.png", plot = p3, width = 10, height = 8)
+ ggsave("SSB_Plot.png", plot = p3, width = 8, height = 6)
 
 p3
 
@@ -168,24 +176,24 @@ p3
 
 ```
 
-## Figure 4: F&V Vs CalFresh
+## Figure 4: F&V Vs SNAP
 
 ```{r}
 
-
-p1 <- bns_combined_imputed_df %>% select(fruits3, calfresh3) %>% na.omit() %>% ggplot(aes(x= fruits3,  group=calfresh3)) + 
-    geom_bar(aes(y = ..prop.., fill = factor(calfresh3)), stat="count",
+p1 <- bns_combined_imputed_df %>% select(fruits3, SNAP3) %>% na.omit() %>% ggplot(aes(x= fruits3,  group=SNAP3)) + 
+    geom_bar(aes(y = ..prop.., fill = factor(SNAP3)), stat="count",
              #alpha = c(0.3, 0.7, 1, 0.3, 0.7, 1, 0.3, 0.7, 1), 
              colour="black", size=0.6) +
     geom_text(aes(label = scales::percent(round(..prop.., digits = 2)), y=..prop..), stat= "count", vjust = -.5, size = 6) +
     labs(y = "Percent of Students") +
-    facet_wrap(~calfresh3, ncol = 1, scales = "free_x") +
+    facet_wrap(~SNAP3, ncol = 1, scales = "free_x", 
+               labeller = as_labeller(figure_labels)) +
     scale_y_continuous(labels = scales::percent, expand = expansion(mult = c(0.0, 0.6))) +
   scale_fill_manual(values = chc.palette) +
   theme_bw() + theme(legend.position="none") + 
   xlab("\nServings of Fruits and Vegetables Per Day") + theme(strip.text.x = element_text(size = 15), text = element_text(size = 15))
 
-  # ggsave("FV_Plot.png", plot = p1, width = 10, height = 8)
+  # ggsave("FV_Plot.png", plot = p1, width = 8, height = 6)
 
 p1
 
@@ -197,7 +205,7 @@ p1
 
 ```{r}
 
-ff.ordinal.mod <- with(bns_imputed_mids, MASS::polr(ff_cat~calfresh3 + Cohort + gender + race_eth + age + physical_activity + storage_room + kitchen_access + health_conscious + cooking_confident + food_insecure_2item + paid_work_hours_tens + living_with_family + homelessness_year, Hess=TRUE)) %>% tbl_regression(exponentiate = TRUE) %>% bold_p()
+ff.ordinal.mod <- with(bns_imputed_mids, MASS::polr(ff_cat~SNAP3 + Cohort + gender + race_eth + age + physical_activity + storage_room + kitchen_access + health_conscious + cooking_confident + food_insecure_2item + paid_work_hours_tens + living_with_family + homelessness_year, Hess=TRUE)) %>% tbl_regression(exponentiate = TRUE) %>% bold_p()
 
 ff.ordinal.mod
 
@@ -210,7 +218,7 @@ ff.ordinal.mod
 
 
 
-ssb.ordinal.mod <- with(bns_imputed_mids, MASS::polr(ssb_cat~calfresh3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_access + units_four + paid_work_hours_tens + caregiving_hours_tens + homelessness_year, Hess=TRUE)) %>% tbl_regression(exponentiate = TRUE) %>% bold_p()
+ssb.ordinal.mod <- with(bns_imputed_mids, MASS::polr(ssb_cat~SNAP3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_access + units_four + paid_work_hours_tens + caregiving_hours_tens + homelessness_year, Hess=TRUE)) %>% tbl_regression(exponentiate = TRUE) %>% bold_p()
 
 
 ssb.ordinal.mod
@@ -222,7 +230,7 @@ ssb.ordinal.mod
 
 ```{r}
 
-FV.ordinal.mod <- with(bns_imputed_mids, MASS::polr(fruits3~calfresh3 + Cohort + gender + race_eth + age + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item, Hess=TRUE)) %>% tbl_regression(exponentiate = TRUE) %>% bold_p()
+FV.ordinal.mod <- with(bns_imputed_mids, MASS::polr(fruits3~SNAP3 + Cohort + gender + race_eth + age + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item, Hess=TRUE)) %>% tbl_regression(exponentiate = TRUE) %>% bold_p()
 
 
 
@@ -234,6 +242,6 @@ FV.ordinal.mod
 
 ```{r}
 
-tbl_merge(tbls = list(ff.ordinal.mod, ssb.ordinal.mod, FV.ordinal.mod), tab_spanner = c("F&V Model", "**Fast Food Model**", "**SSB Model**"))
+tbl_merge(tbls = list(ff.ordinal.mod, ssb.ordinal.mod, FV.ordinal.mod), tab_spanner = c("**Fast Food Model**", "**SSB Model**", "F&V Model"))
 
 ```

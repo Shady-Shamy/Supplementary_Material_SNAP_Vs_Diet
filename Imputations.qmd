@@ -33,14 +33,14 @@ load("clean_data/bns_combined.Rdata")
 
 bns_combined <- bns_combined %>% mutate_at(c("eth_hispanic", "firstgen", "housing_insecure", "homelessness_year"), as.factor)
 
-variables_of_interest <- bns_combined %>% select(calfresh3, race_eth, eth_hispanic, q7, age, cooking_confident, living_with_family, food_insecure_2item, health_conscious, storage_access, storage_room, kitchen_access, ff_cat, ssb_cat, fruits3, household_size, monthly_hh_income, paid_work_hours, unpaid_work_hours, units, caregiving_hours, q64, q65, school, physical_activity, q83_1, q83_2, q83_3, calfresh_eligible, firstgen, academic_level, housing_insecure, homelessness_year)
+variables_of_interest <- bns_combined %>% select(SNAP3, race_eth, eth_hispanic, age, cooking_confident, living_with_family, food_insecure_2item, health_conscious, storage_access, storage_room, kitchen_access, ff_cat, ssb_cat, fruits3, household_size, monthly_hh_income, paid_work_hours, unpaid_work_hours, units, caregiving_hours, q64, q65, school, physical_activity, q83_1, q83_2, q83_3, SNAP_eligible, firstgen, academic_level, housing_insecure, homelessness_year, q7)
 
 
-vector.methods <- c("polyreg", "polyreg", "logreg", "logreg", "pmm", "logreg", "logreg", "logreg",
+vector.methods <- c("polyreg", "polyreg", "logreg", "pmm", "logreg", "logreg", "logreg",
                     "logreg", "logreg", "logreg", "logreg", "polyreg", "polyreg", "polyreg",
                     "pmm", "polyreg", "pmm", "pmm", "pmm", "pmm",
                     "polyreg", "polyreg", "polyreg", "logreg", "pmm", "pmm", "pmm",
-                    "logreg", "logreg", "polyreg", "logreg", "logreg")
+                    "logreg", "logreg", "polyreg", "logreg", "logreg", "logreg")
 
 
 ```
@@ -49,34 +49,17 @@ vector.methods <- c("polyreg", "polyreg", "logreg", "logreg", "pmm", "logreg", "
 
 
 # Due to the lengthy imputation process, the imputed data was saved and the code was commented out
-#  imp_bns_combined_raw_mids <- mice(variables_of_interest, m=5, maxit=35, seed=500, printFlag=TRUE, method = vector.methods)
+ # imp_bns_combined_raw_mids <- mice(variables_of_interest, m=5, maxit=30, seed=500, printFlag=TRUE, method = vector.methods)
 
-# saveRDS(imp_bns_combined_raw_mids, file = "imp_bns_combined_raw_mids.RData")
+# saveRDS(imp_bns_combined_raw_mids, file ="clean_data/imp_bns_combined_raw_mids.RData")
 
 
 imp_bns_combined_raw_mids <- readRDS("clean_data/imp_bns_combined_raw_mids.RData")
 
 
-
 ```
 
-## Check Imputation methods
 
-```{r}
-
-imp_bns_combined_raw_mids$meth
-
-```
-
-## Check Convergence
-
-```{r}
-
-# Check convergence of a few variables. Note: all imputed variables were checked but only a few are displayed 
-plot(imp_bns_combined_raw_mids, c("calfresh3", "calfresh_eligible", "fruits3", "ff_cat", "ssb_cat"))
-
-
-```
 
 # Imputation data management
 
@@ -85,10 +68,6 @@ plot(imp_bns_combined_raw_mids, c("calfresh3", "calfresh_eligible", "fruits3", "
 #  Create a Complete Data Set
 imp_bns_combined_long <- complete(imp_bns_combined_raw_mids, action= "long", include = TRUE)
 
-
-# Gender: Rename -----
-
-imp_bns_combined_long <- rename(imp_bns_combined_long, gender = q7)
 
 # Change reference values
 
@@ -163,7 +142,22 @@ imp_bns_combined_long$q77_numeric <- recode(imp_bns_combined_long$fruits3, "0" =
 
 
 
+# Rename calfresh3 to SNAP3
+imp_bns_combined_long <- rename(imp_bns_combined_long, SNAP3 = calfresh3)
 
+# Rename levels of SNAP3
+imp_bns_combined_long$SNAP3 <- recode(imp_bns_combined_long$SNAP3,
+                                "CalFresh" = "SNAP",
+                                "No CalFresh but Likely Eligible" = "Likely Eligible Non-Recipient",
+                                "Likely Not Eligible" = "Income-Ineligible Non-Recipient")
+
+
+# Rename q7 to gender
+imp_bns_combined_long <- rename(imp_bns_combined_long, gender = q7)
+
+
+# Rename calfresh_eligible to SNAP_eligible
+imp_bns_combined_long <- rename(imp_bns_combined_long, SNAP_eligible = calfresh_eligible)
 
 
 ```
@@ -196,11 +190,11 @@ bns_combined$food_insecure_2item <- factor(bns_combined$food_insecure_2item, ord
 ```
 
 ```{r}
-## Convert back to Mids
+# Convert back to Mids
+# imp_bns_combined_clean_mids <- as.mids(imp_bns_combined_long, .imp = ".imp")
+# 
+# saveRDS(imp_bns_combined_clean_mids, file = "clean_data/imp_bns_combined_clean_mids.RData")
 
-#  imp_bns_combined_clean_mids <- as.mids(imp_bns_combined_long, .imp = ".imp")
-
-# saveRDS(imp_bns_combined_clean_mids, file = "imp_bns_combined_clean_mids.RData")
 
 imp_bns_combined_clean_mids <- readRDS("clean_data/imp_bns_combined_clean_mids.RData")
 
@@ -208,16 +202,28 @@ imp_bns_combined_clean_mids <- readRDS("clean_data/imp_bns_combined_clean_mids.R
 
 ```
 
+
+## Check Convergence
+
+```{r}
+
+# Check convergence of a few variables. Note: all imputed variables were checked but only a few are displayed 
+plot(imp_bns_combined_raw_mids, c("calfresh3", "calfresh_eligible", "fruits3", "ff_cat", "ssb_cat"))
+
+
+```
+
+
 # Compare SSB Complete Case and Imputed Models
 
 ```{r}
 
 
-original_ssb_model <- with(bns_combined, MASS::polr(ssb_cat~calfresh3 + Cohort + gender + race_eth + age + monthly_hh_income + academic_level + physical_activity + storage_access + food_insecure_2item + homelessness_year + firstgen, Hess=TRUE))
+original_ssb_model <- with(bns_combined, MASS::polr(ssb_cat~SNAP3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_access + units_four + paid_work_hours_tens + caregiving_hours_tens + homelessness_year, Hess=TRUE))
 
 
 
-imp_ssb_model <- with(imp_bns_combined_clean_mids, MASS::polr(ssb_cat~calfresh3 + Cohort + gender + race_eth + age + monthly_hh_income + academic_level + physical_activity + storage_access + food_insecure_2item + homelessness_year + firstgen, Hess=TRUE))
+imp_ssb_model <- with(imp_bns_combined_clean_mids, MASS::polr(ssb_cat~SNAP3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_access + units_four + paid_work_hours_tens + caregiving_hours_tens + homelessness_year, Hess=TRUE))
 # pool(imp_ssb_model) |> summary()
 
 original_ssb_model_tidy <- tidy(original_ssb_model) %>%
@@ -244,10 +250,10 @@ dwplot(ssb_models)  + geom_vline(xintercept = 0,
 ```{r}
 
 
-original_ff_model <- MASS::polr(ff_cat~calfresh3 + Cohort + gender + race_eth + age + monthly_hh_income + academic_level + physical_activity + storage_access + kitchen_access + health_conscious + living_with_family + cooking_confident + food_insecure_2item + homelessness_year, data = bns_combined, Hess=TRUE)
+original_ff_model <- MASS::polr(ff_cat~SNAP3 + Cohort + gender + race_eth + age + monthly_hh_income + academic_level + physical_activity + storage_access + kitchen_access + health_conscious + living_with_family + cooking_confident + food_insecure_2item + homelessness_year, data = bns_combined, Hess=TRUE)
 
 
-imp_ff_model <- with(imp_bns_combined_clean_mids, MASS::polr(ff_cat~calfresh3 + Cohort + gender + race_eth + age + monthly_hh_income + academic_level + physical_activity + storage_access + kitchen_access + health_conscious + living_with_family + cooking_confident + food_insecure_2item + homelessness_year, Hess=TRUE))
+imp_ff_model <- with(imp_bns_combined_clean_mids, MASS::polr(ff_cat~SNAP3 + Cohort + gender + race_eth + age + monthly_hh_income + academic_level + physical_activity + storage_access + kitchen_access + health_conscious + living_with_family + cooking_confident + food_insecure_2item + homelessness_year, Hess=TRUE))
 # pool(imp_ff_model) |> summary()
 
 
@@ -273,10 +279,10 @@ dwplot(ff_models)  + geom_vline(xintercept = 0,
 
 
 
-imp_FV_model <- with(imp_bns_combined_clean_mids, MASS::polr(fruits3~calfresh3 + Cohort + gender + race_eth + age + monthly_hh_income + health_conscious + cooking_confident + physical_activity + food_insecure_2item, Hess=TRUE))
+imp_FV_model <- with(imp_bns_combined_clean_mids, MASS::polr(fruits3~SNAP3 + Cohort + gender + race_eth + age + monthly_hh_income + health_conscious + cooking_confident + physical_activity + food_insecure_2item, Hess=TRUE))
 
 
-original_FV_model <- MASS::polr(fruits3~calfresh3 + Cohort + gender + race_eth + age + monthly_hh_income + health_conscious + cooking_confident + physical_activity + food_insecure_2item, data = bns_combined, Hess=TRUE)
+original_FV_model <- MASS::polr(fruits3~SNAP3 + Cohort + gender + race_eth + age + monthly_hh_income + health_conscious + cooking_confident + physical_activity + food_insecure_2item, data = bns_combined, Hess=TRUE)
 
 original_FV_model_tidy <- tidy(original_FV_model) %>%
   mutate(model = "original_FV_model")

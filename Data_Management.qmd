@@ -25,13 +25,13 @@ title: "Data Management"
 
 > Adequate storage room was asked on a 5-point Likert scale. Those who chose "Strongly disagree", or "Disagree" were coded as "Yes" (Has adequate storage room). Those who chose "Neither agree nor disagree", "Agree", or "Strongly agree" were coded as "No" (Doesn't have adequate storage room).
 
-> Monthly household income was asked in ranges based on CalFresh eligibility income requirements at the time of the surveys. The income ranges slightly differed between the Statewide data and the Pilot 2 data and were collapsed into five levels. Those who chose "Less than \$150" or "\$150 or less" was coded as "Very Low"; "\$151-\$2,148" or "\$151-\$2,082" were coded as "Low"; "\$2,149-\$2,904" or "\$2,083-\$2,820" were coded as "Moderate"; "\$2,905-\$3,660" or "\$2,821-\$3,556" were coded as "High"; and all other responses greater than \$3,661 (in the statewide data set) or \$3,557 (in the pilot 2 data set) were coded as "Very High."
+> Monthly household income was asked in ranges based on SNAP eligibility income requirements at the time of the surveys. The income ranges slightly differed between the Statewide data and the Pilot 2 data and were collapsed into five levels. Those who chose "Less than \$150" or "\$150 or less" was coded as "Very Low"; "\$151-\$2,148" or "\$151-\$2,082" were coded as "Low"; "\$2,149-\$2,904" or "\$2,083-\$2,820" were coded as "Moderate"; "\$2,905-\$3,660" or "\$2,821-\$3,556" were coded as "High"; and all other responses greater than \$3,661 (in the statewide data set) or \$3,557 (in the pilot 2 data set) were coded as "Very High."
 
 > Physical activity was surveyed in three separate questions asking how many days per week a student engages in moderate exercise, strength training exercise, and vigorous exercise. Students who engaged in any of the three forms of exercise for at least one day per week were coded as "Yes" (engages in physical activity). Students who responded zero days per week in all three questions were coded as "No" (does not engage in physical activity).
 
 > Those who chose "Gender Queer or Gender-Nonconforming," "Gender non-binary," and "Gender Unlisted" were dropped from the analysis. Those who chose "Prefer not to answer" were kept in the data set and imputed.
 
-> CalFresh status was created using five questions, whether they are currently using CalFresh, household size, monthly household income, U.S. citizenship, and lawful permanent residency if not a U.S. citizen. Those that reported currently using CalFresh were coded as "CalFresh". Those that met the CalFresh eligibility criteria discussed in the methods sections and did not receive CalFresh benefits were coded as "No CalFresh but likely eligible." Those that did not meet CalFresh eligibility criteria and did not receive CalFresh benefits were coded as "No CalFresh and likely ineligible."
+> SNAP status was created using five questions, whether they are currently using SNAP, household size, monthly household income, U.S. citizenship, and lawful permanent residency if not a U.S. citizen. Those that reported currently using SNAP were coded as "SNAP". Those that met the SNAP eligibility criteria discussed in the methods sections and did not receive SNAP benefits were coded as "No SNAP but likely eligible." Those that did not meet SNAP eligibility criteria and did not receive SNAP benefits were coded as "No SNAP and likely ineligible."
 
 > Age was rounded down to the nearest whole number. Paid work hours, unpaid work hours, and caregiving hours were divided by 10 and units were divided by 4 to better interpret the results.
 
@@ -121,51 +121,34 @@ bns$health_conscious <- recode(bns$q76_9, "Strongly disagree" = "Yes", "Disagree
 
 
 
-# CalFresh Variables ----
+# SNAP Variables ----
 
-# Create temporary CalFresh variable
-bns <- bns %>% mutate(current_calfresh_temp = case_when(grepl("Currently use as a college student", q46_1) ~ "CalFresh",
-                                                          grepl("Used it in the past as a college student", q46_1) ~ "No CalFresh",
-                                                          grepl("Heard of it, but never used it", q46_1) ~ "No CalFresh",
-                                                          grepl("Never heard of it", q46_1) ~ "No CalFresh",
-                                                          grepl("Used it before attending college", q46_1) ~ "No CalFresh"))
+# Create temporary SNAP variable
+bns <- bns %>% mutate(current_SNAP_temp = case_when(grepl("Currently use as a college student", q46_1) ~ "SNAP",
+                                                          grepl("Used it in the past as a college student", q46_1) ~ "No SNAP",
+                                                          grepl("Heard of it, but never used it", q46_1) ~ "No SNAP",
+                                                          grepl("Never heard of it", q46_1) ~ "No SNAP",
+                                                          grepl("Used it before attending college", q46_1) ~ "No SNAP"))
 
 
 
-# Create  calfresh variable (https://www.cdss.ca.gov/calfreshoutreach/res/toolkit/quickreference/regulationquickreference_e_students.pdf)
+# Create  SNAP variable (https://www.cdss.ca.gov/calfreshoutreach/res/toolkit/quickreference/regulationquickreference_e_students.pdf)
 # Age and units don't actually matter. if they are between the ages of 18 and 49, and taking more than 6 units, a person is classified as a student and must meet a work exemption (such as EOP). 
-# However, if they are older than 49 or taking less than 6 units, they are not classified as a student and can still apply to calFresh as a non student. 
+# However, if they are older than 49 or taking less than 6 units, they are not classified as a student and can still apply to SNAP as a non student. 
 # Both a non student and a student need to meet the same income and citizenship requirements. A student differs from a non student by needing to meet a work exemption which all students are EOP and meet an exemption. 
 
+# Reword calfresh_eligible variable to SNAP_eligible
 
-
-bns$calfresh3 <- case_when(bns$current_calfresh_temp == "CalFresh" ~ "CalFresh", 
-                               bns$current_calfresh_temp == "No CalFresh" & bns$calfresh_eligible == 1 ~ "No CalFresh but Likely Eligible",
-                               bns$current_calfresh_temp == "No CalFresh" & bns$calfresh_eligible == 0 ~ "Likely Not Eligible") 
-
-
-bns$calfresh3 <- factor(bns$calfresh3, levels = c("CalFresh", "No CalFresh but Likely Eligible", "Likely Not Eligible"))
+bns <- rename(bns, SNAP_eligible = calfresh_eligible)
 
 
 
+bns$SNAP3 <- case_when(bns$current_SNAP_temp == "SNAP" ~ "SNAP", 
+                               bns$current_SNAP_temp == "No SNAP" & bns$SNAP_eligible == 1 ~ "Likely Eligible Non-Recipient",
+                               bns$current_SNAP_temp == "No SNAP" & bns$SNAP_eligible == 0 ~ "Income-Ineligible Non-Recipient") 
 
 
-# Income Eligible Group
-
-
-bns <- bns %>% mutate(m_income = as.numeric(monthly_hh_income, na.rm = TRUE),
-                      Income_Eligible = ifelse(((household_size == 1 & m_income < 3) |
-                                                          (household_size == 2 & m_income < 4) |
-                                                          (household_size == 3 & m_income < 5) |
-                                                          (household_size == 4 & m_income < 6) |
-                                                          (household_size == 5 & m_income < 7) |
-                                                          (household_size == 6 & m_income < 8) |
-                                                          (household_size == 7 & m_income < 9) |
-                                                          (household_size == 8 & m_income < 10)), "Yes", "No"))
-
-
-
-
+bns$SNAP3 <- factor(bns$SNAP3, levels = c("SNAP", "Likely Eligible Non-Recipient", "Income-Ineligible Non-Recipient"))
 
 
 
@@ -284,21 +267,6 @@ bns$storage_room <- recode(bns$q76_3, "Strongly disagree" = "Yes", "Disagree" = 
 
 
 
-
-
-# School (for FNCE and/or CFHL Poster)
-# Used to compare campuses that have CFHL (1) vs don't have CFHL (0)
-
-bns$campus_CFHL <- case_when(bns$school == "Cal State San Bernardino" ~ "Campus has CFHL",
-                             bns$school == "Sacramento State" ~ "Campus has CFHL",
-                             bns$school == "CSU Dominguez Hills"  ~ "Campus has CFHL", 
-                             bns$school == "CSU Bakersfield" ~ "Campus DOES NOT have CFHL",
-                             bns$school == "San Francisco State" ~ "Campus DOES NOT have CFHL",
-                             bns$school == "Cal State LA" ~ "Campus DOES NOT have CFHL") 
-# table(bns$campus_CFHL, bns$school, useNA = "always")
-
-
-
 # Physical activity indicator
 
 bns <- bns %>% mutate_at(c('q83_1', 'q83_2', 'q83_3'), recode,
@@ -315,12 +283,13 @@ bns$physical_activity <- ifelse(physical_act_temp >= 1, "Yes", "No")
 
 # Select variables of interest
 
-bns_variables <- bns %>%  select(calfresh3, race_eth, eth_PNTA, eth_hispanic, gender, q7, age, cooking_confident, q82_2,living_with_family, q25, food_insecure_2item, weekly_hours,                        health_conscious, q76_9, kitchen_access, q76_1, storage_access, q76_2, storage_room, q76_3, Cohort, campus_CFHL, ff_numeric, ssb_numeric, q78, q79, fruits3, q77, units, q38, q39, household_size, monthly_hh_income, paid_work_hours, unpaid_work_hours, unit_hours, caregiving_hours, q64, q65, school, q46_1, calfresh_eligible, housing_insecure, homelessness_year, homelessness_month, household_size, firstgen, physical_activity, q83_1, q83_2, q83_3, academic_level, Income_Eligible, q26, q27, q28, q29, q30, q31, q32, q33)
+bns_variables <- bns %>%  select(SNAP3, race_eth, eth_PNTA, eth_hispanic, gender, q7, age, cooking_confident, q82_2,living_with_family, q25, food_insecure_2item, weekly_hours, health_conscious, q76_9, kitchen_access, q76_1, storage_access, q76_2, storage_room, q76_3, Cohort, ff_numeric, ssb_numeric, q78, q79, fruits3, q77, units, q38, q39, household_size, monthly_hh_income, paid_work_hours, unpaid_work_hours, unit_hours, caregiving_hours, q64, q65, school, q46_1, SNAP_eligible, housing_insecure, homelessness_year, homelessness_month, household_size, firstgen, physical_activity, q83_1, q83_2, q83_3, academic_level, q26, q27, q28, q29, q30, q31, q32, q33)
 
 
 
 
 ```
+
 
 # Pilot 2 Data Management Code
 
@@ -452,39 +421,25 @@ BNSp2b$health_conscious <- recode(BNSp2b$q76_9, "Strongly disagree" = "Yes", "Di
 
 
 
-# CalFresh Variables ----
+# SNAP Variables ----
 
-# Create temporary CalFresh variable
-BNSp2b <- BNSp2b %>% mutate(current_calfresh_temp = case_when(grepl("Currently use as a college student", q46_1) ~ "CalFresh",
-                                                        grepl("Used it in the past as a college student", q46_1) ~ "No CalFresh",
-                                                        grepl("Heard of it, but never used it", q46_1) ~ "No CalFresh",
-                                                        grepl("Never heard of it", q46_1) ~ "No CalFresh",
-                                                        grepl("Used it before attending college", q46_1) ~ "No CalFresh"))
+# Rename to SNAP_eligible
+BNSp2b <- rename(BNSp2b, SNAP_eligible = calfresh_eligible) 
 
 
-
-# Create a 3 level CalFresh variable
-BNSp2b$calfresh3 <- case_when(BNSp2b$current_calfresh_temp == "CalFresh" ~ "CalFresh", 
-                           BNSp2b$current_calfresh_temp == "No CalFresh" & BNSp2b$calfresh_eligible == "Yes" ~ "No CalFresh but Likely Eligible",
-                           BNSp2b$current_calfresh_temp == "No CalFresh" & BNSp2b$calfresh_eligible == "No" ~ "Likely Not Eligible") 
+# Create temporary SNAP variable
+BNSp2b <- BNSp2b %>% mutate(current_SNAP_temp = case_when(grepl("Currently use as a college student", q46_1) ~ "SNAP",
+                                                        grepl("Used it in the past as a college student", q46_1) ~ "No SNAP",
+                                                        grepl("Heard of it, but never used it", q46_1) ~ "No SNAP",
+                                                        grepl("Never heard of it", q46_1) ~ "No SNAP",
+                                                        grepl("Used it before attending college", q46_1) ~ "No SNAP"))
 
 
 
-
-
-# Income Only Eligible
-
-BNSp2b <- BNSp2b %>% mutate(m_income = as.numeric(monthly_hh_income, na.rm = TRUE),
-                            Income_Eligible = ifelse((q38 == "Yes" | q39 == "Yes") & 
-                                                             ((household_size == 1 & m_income < 3) |
-                                                                (household_size == 2 & m_income < 4) |
-                                                                (household_size == 3 & m_income < 5) |
-                                                                (household_size == 4 & m_income < 6) |
-                                                                (household_size == 5 & m_income < 7) |
-                                                                (household_size == 6 & m_income < 8) |
-                                                                (household_size == 7 & m_income < 9) |
-                                                                (household_size == 8 & m_income < 10)), "Yes", "No"))
-
+# Create a 3 level SNAP variable
+BNSp2b$SNAP3 <- case_when(BNSp2b$current_SNAP_temp == "SNAP" ~ "SNAP", 
+                           BNSp2b$current_SNAP_temp == "No SNAP" & BNSp2b$SNAP_eligible == "Yes" ~ "Likely Eligible Non-Recipient",
+                           BNSp2b$current_SNAP_temp == "No SNAP" & BNSp2b$SNAP_eligible == "No" ~ "Income-Ineligible Non-Recipient") 
 
 
 
@@ -501,7 +456,7 @@ BNSp2b$fruits3 <- recode(BNSp2b$fruits, "0" = "0",
 
 
 
-# Keep in line with statewide data
+# Reword to keep in line with statewide data
 BNSp2b$q77 <- recode(BNSp2b$fruits, "0" = "0", 
                   "1-2" = "1-2",
                   "3-4" = "3-4",
@@ -582,12 +537,6 @@ BNSp2b$storage_room <- recode(BNSp2b$q76_3, "Strongly disagree" = "Yes", "Disagr
 
 
 
-# School (for FNCE and/or CFHL Poster)
-# Used to compare campuses that have CFHL (1) vs don't have CFHL (0)
-
-BNSp2b$campus_CFHL <- "Campus has CFHL" # All the campuses in Pilot 2 have CFHL (Double check if they had CFHL at the time of the survey)
-
-
 
 # Physical activity indicator
 
@@ -615,12 +564,11 @@ BNSp2b$academic_level <- recode(BNSp2b$academic_level, "Junior (60-89 semester u
 BNSp2b <- BNSp2b %>% filter((meals_per_week_mp != "11+") %>% tidyr::replace_na(TRUE))
 
 
-BNSp2b <- BNSp2b %>% select(calfresh3, race_eth, eth_PNTA, eth_hispanic, gender, q7, age, cooking_confident, q82_2,living_with_family, q25, food_insecure_2item, weekly_hours, 
-                            health_conscious, q76_9, kitchen_access, q76_1, storage_access, q76_2, storage_room, q76_3, Cohort, campus_CFHL,
+BNSp2b <- BNSp2b %>% select(SNAP3, race_eth, eth_PNTA, eth_hispanic, gender, q7, age, cooking_confident, q82_2,living_with_family, q25, food_insecure_2item, weekly_hours, 
+                            health_conscious, q76_9, kitchen_access, q76_1, storage_access, q76_2, storage_room, q76_3, Cohort,
                             ff_numeric, ssb_numeric, q78, q79, fruits3, q77, units, q38, q39, household_size, monthly_hh_income, paid_work_hours, 
-                            unpaid_work_hours, unit_hours, caregiving_hours, q64, q65, school, q46_1, calfresh_eligible, housing_insecure, homelessness_year, 
-                            homelessness_month, household_size, firstgen, physical_activity, q83_1, q83_2, q83_3, academic_level, Income_Eligible,
-                            q26, q27, q28, q29, q30, q31, q32, q33)
+                            unpaid_work_hours, unit_hours, caregiving_hours, q64, q65, school, q46_1, SNAP_eligible, housing_insecure, homelessness_year, 
+                            homelessness_month, household_size, firstgen, physical_activity, q83_1, q83_2, q83_3, academic_level,q26, q27, q28, q29, q30, q31, q32, q33)
 
 
 ```
@@ -684,8 +632,8 @@ bns_combined$q25 <- recode(bns_combined$q25, "I am temporarily living in a homel
                            "I am currently living at an outdoor location, abandoned building, car, or other area not meant for regular housing without permanent housing" = "Homeless")
 
 
-# Fix responses in calfresh_eligible_new
-bns_combined$calfresh_eligible <- recode(bns_combined$calfresh_eligible, "0" = "No", "1" = "Yes") %>% factor(order = FALSE)
+# Change 1/0 responses in SNAP_eligible Variable to Yes/No
+bns_combined$SNAP_eligible <- recode(bns_combined$SNAP_eligible, "0" = "No", "1" = "Yes") %>% factor(order = FALSE)
 
 
 
@@ -775,8 +723,8 @@ bns_combined$ssb_cat <- recode(bns_combined$ssb_numeric, "0" = "Zero",
 bns_combined$academic_level <- na_if(bns_combined$academic_level, "Other") %>% droplevels()
 
 
-# Drop non males and females and drop non citizens/non lawful permanent residents
-bns_combined <- bns_combined %>% filter((q7 != "Other") %>% replace_na(TRUE), (q39 != "No") %>% replace_na(TRUE)) %>% droplevels()
+# Drop those who identified as anything other than male or female and drop non citizens/non lawful permanent residents
+bns_combined <- bns_combined %>% filter((q7 == "Male" | q7 == "Female" ) %>% replace_na(TRUE), (q39 != "No") %>% replace_na(TRUE)) %>% droplevels()
 
 
 save(bns_combined, file = here::here("./clean_data/bns_combined.Rdata"))

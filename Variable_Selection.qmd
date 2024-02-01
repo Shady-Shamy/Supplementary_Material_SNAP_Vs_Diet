@@ -41,7 +41,7 @@ bns_combined_imputed_df <- complete(bns_imputed_mids, fill = 3)
 
 
 y <- bns_combined_imputed_df$ff_numeric
-x <- model.matrix(ff_numeric~calfresh3 + Cohort + race_eth + gender + age + cooking_confident + living_with_family + food_insecure_2item + units_four + unpaid_work_hours_tens + paid_work_hours_tens + caregiving_hours_tens + health_conscious + kitchen_access + storage_access + storage_room + monthly_hh_income + physical_activity + firstgen + household_size + academic_level + housing_insecure + homelessness_year, bns_combined_imputed_df)[,-1] # the -1 drops the intercept
+x <- model.matrix(ff_numeric~SNAP3 + Cohort + race_eth + gender + age + cooking_confident + living_with_family + food_insecure_2item + units_four + unpaid_work_hours_tens + paid_work_hours_tens + caregiving_hours_tens + health_conscious + kitchen_access + storage_access + storage_room + monthly_hh_income + physical_activity + firstgen + household_size + academic_level + housing_insecure + homelessness_year, bns_combined_imputed_df)[,-1] # the -1 drops the intercept
 model.lasso <- glmnet(x, y, alpha = 1)
 
 
@@ -63,7 +63,7 @@ round(coef(model), digits = 1)
 
 
 y <- bns_combined_imputed_df$ssb_numeric
-x <- model.matrix(ssb_numeric~calfresh3 + Cohort + race_eth + gender + age + cooking_confident + living_with_family + food_insecure_2item + units_four + unpaid_work_hours_tens + paid_work_hours_tens + caregiving_hours_tens + health_conscious + kitchen_access + storage_access + storage_room + monthly_hh_income + physical_activity + firstgen + household_size + academic_level + housing_insecure + homelessness_year, bns_combined_imputed_df)[,-1] # the -1 drops the intercept
+x <- model.matrix(ssb_numeric~SNAP3 + Cohort + race_eth + gender + age + cooking_confident + living_with_family + food_insecure_2item + units_four + unpaid_work_hours_tens + paid_work_hours_tens + caregiving_hours_tens + health_conscious + kitchen_access + storage_access + storage_room + monthly_hh_income + physical_activity + firstgen + household_size + academic_level + housing_insecure + homelessness_year, bns_combined_imputed_df)[,-1] # the -1 drops the intercept
 model.lasso <- glmnet(x, y, alpha = 1)
 
 
@@ -86,7 +86,7 @@ round(coef(model), digits = 1)
 
 
 y <- bns_combined_imputed_df$q77_numeric
-x <- model.matrix(q77_numeric~calfresh3 + Cohort + race_eth + gender + age + cooking_confident + living_with_family + food_insecure_2item + units_four + unpaid_work_hours_tens + paid_work_hours_tens + caregiving_hours_tens + health_conscious + kitchen_access + storage_access + storage_room + monthly_hh_income + physical_activity + firstgen + household_size + academic_level + housing_insecure + homelessness_year, bns_combined_imputed_df)[,-1] # the -1 drops the intercept
+x <- model.matrix(q77_numeric~SNAP3 + Cohort + race_eth + gender + age + cooking_confident + living_with_family + food_insecure_2item + units_four + unpaid_work_hours_tens + paid_work_hours_tens + caregiving_hours_tens + health_conscious + kitchen_access + storage_access + storage_room + monthly_hh_income + physical_activity + firstgen + household_size + academic_level + housing_insecure + homelessness_year, bns_combined_imputed_df)[,-1] # the -1 drops the intercept
 model.lasso <- glmnet(x, y, alpha = 1)
 
 
@@ -108,33 +108,33 @@ round(coef(model), digits = 1)
 
 ```{r}
 # Linear model based on LASSO results
-ff.linear.model <- lm(ff_numeric~calfresh3 + Cohort + gender + race_eth + age + monthly_hh_income + academic_level + physical_activity + storage_access + storage_room + kitchen_access + health_conscious + living_with_family + cooking_confident + food_insecure_2item + paid_work_hours_tens + homelessness_year, data = bns_combined_imputed_df)
+ff.linear.model <- lm(ff_numeric~SNAP3 + Cohort + gender + race_eth + age + monthly_hh_income + academic_level + physical_activity + storage_access + storage_room + kitchen_access + health_conscious + living_with_family + cooking_confident + food_insecure_2item + paid_work_hours_tens + homelessness_year, data = bns_combined_imputed_df)
 
 vif(ff.linear.model)
 
 
 ```
 
-> CalFresh3 and income could be colinear Academic level and school could also be colinear since there are no juniors/seniors in a community college
+> SNAP3 and income could be colinear Academic level and school could also be colinear since there are no juniors/seniors in a community college
 
 ## Test removing income
 
 ```{r}
 
-ff.linear.model2 <- lm(ff_numeric~calfresh3 + Cohort + gender + race_eth + age + academic_level + physical_activity + storage_access + storage_room + kitchen_access + health_conscious + living_with_family + cooking_confident + food_insecure_2item + paid_work_hours_tens + homelessness_year, data = bns_combined_imputed_df)
+ff.linear.model2 <- lm(ff_numeric~SNAP3 + Cohort + gender + race_eth + age + academic_level + physical_activity + storage_access + storage_room + kitchen_access + health_conscious + living_with_family + cooking_confident + food_insecure_2item + paid_work_hours_tens + homelessness_year, data = bns_combined_imputed_df)
 
 vif(ff.linear.model2)
 
 ```
 
-> Removing income decreased the VIF of the calfresh3 variable
+> Removing income decreased the VIF of the SNAP3 variable
 
 ## Test removing academic level
 
 ```{r}
 
 
-ff.linear.model3 <- lm(ff_numeric~calfresh3 + Cohort + gender + race_eth + age + physical_activity + storage_access + storage_room + kitchen_access + health_conscious + living_with_family + cooking_confident + food_insecure_2item + paid_work_hours_tens + homelessness_year, data = bns_combined_imputed_df)
+ff.linear.model3 <- lm(ff_numeric~SNAP3 + Cohort + gender + race_eth + age + physical_activity + storage_access + storage_room + kitchen_access + health_conscious + living_with_family + cooking_confident + food_insecure_2item + paid_work_hours_tens + homelessness_year, data = bns_combined_imputed_df)
 
 vif(ff.linear.model3)
 
@@ -149,7 +149,7 @@ vif(ff.linear.model3)
 
 # Full Model Based on LASSO after removing colinear variables
 
-ff.ordinal.mod <- with(bns_imputed_mids, MASS::polr(ff_cat~calfresh3 + Cohort + gender + race_eth + age + physical_activity + storage_access + storage_room + kitchen_access + health_conscious + cooking_confident + food_insecure_2item + paid_work_hours_tens + living_with_family, homelessness_year, Hess=TRUE)) %>% tbl_regression(exponentiate = TRUE) %>% bold_p()
+ff.ordinal.mod <- with(bns_imputed_mids, MASS::polr(ff_cat~SNAP3 + Cohort + gender + race_eth + age + physical_activity + storage_access + storage_room + kitchen_access + health_conscious + cooking_confident + food_insecure_2item + paid_work_hours_tens + living_with_family, homelessness_year, Hess=TRUE)) %>% tbl_regression(exponentiate = TRUE) %>% bold_p()
 
 ff.ordinal.mod
 
@@ -160,7 +160,7 @@ ff.ordinal.mod
 
 ```{r}
 
-ff.ordinal.mod_storage <- with(bns_imputed_mids, MASS::polr(ff_cat~calfresh3 + Cohort + gender + race_eth + age + physical_activity + storage_room + kitchen_access + health_conscious + cooking_confident + food_insecure_2item + paid_work_hours_tens + living_with_family, homelessness_year, Hess=TRUE)) %>% tbl_regression(exponentiate = TRUE) %>% bold_p()
+ff.ordinal.mod_storage <- with(bns_imputed_mids, MASS::polr(ff_cat~SNAP3 + Cohort + gender + race_eth + age + physical_activity + storage_room + kitchen_access + health_conscious + cooking_confident + food_insecure_2item + paid_work_hours_tens + living_with_family, homelessness_year, Hess=TRUE)) %>% tbl_regression(exponentiate = TRUE) %>% bold_p()
 
 tbl_merge(tbls = list(ff.ordinal.mod, ff.ordinal.mod_storage), tab_spanner = c("Full FF Model", "**Test Model*"))
 
@@ -176,31 +176,31 @@ tbl_merge(tbls = list(ff.ordinal.mod, ff.ordinal.mod_storage), tab_spanner = c("
 
 ```{r}
 # Full model based on LASSO
-ssb.linear.model <- lm(ssb_numeric~calfresh3 + Cohort + gender + race_eth + age + monthly_hh_income + academic_level + physical_activity + health_conscious + storage_room + storage_access + firstgen + units_four + paid_work_hours_tens + caregiving_hours_tens + food_insecure_2item + homelessness_year, data = bns_combined_imputed_df)
+ssb.linear.model <- lm(ssb_numeric~SNAP3 + Cohort + gender + race_eth + age + monthly_hh_income + academic_level + physical_activity + health_conscious + storage_room + storage_access + firstgen + units_four + paid_work_hours_tens + caregiving_hours_tens + food_insecure_2item + homelessness_year, data = bns_combined_imputed_df)
 
 vif(ssb.linear.model)
 
 ```
 
-> CalFresh3 and income could be colinear Academic level and school could also be colinear since there are no juniors/seniors in a community college
+> SNAP3 and income could be colinear Academic level and school could also be colinear since there are no juniors/seniors in a community college
 
 ## Test removing income
 
 ```{r}
 
-ssb.linear.model2 <- lm(ssb_numeric~calfresh3 + Cohort + gender + race_eth + age + academic_level + physical_activity + health_conscious + storage_room + storage_access + firstgen + units_four + paid_work_hours_tens + caregiving_hours_tens + food_insecure_2item + homelessness_year, data = bns_combined_imputed_df)
+ssb.linear.model2 <- lm(ssb_numeric~SNAP3 + Cohort + gender + race_eth + age + academic_level + physical_activity + health_conscious + storage_room + storage_access + firstgen + units_four + paid_work_hours_tens + caregiving_hours_tens + food_insecure_2item + homelessness_year, data = bns_combined_imputed_df)
 
 vif(ssb.linear.model2)
 
 ```
 
-> Removing income greatly decreased the VIF in the calfresh3 variable
+> Removing income greatly decreased the VIF in the SNAP3 variable
 
 ## Test removing academic year
 
 ```{r}
 
-ssb.linear.model2 <- lm(ssb_numeric~calfresh3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_room + storage_access + firstgen + units_four + paid_work_hours_tens + caregiving_hours_tens + food_insecure_2item + homelessness_year, data = bns_combined_imputed_df)
+ssb.linear.model2 <- lm(ssb_numeric~SNAP3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_room + storage_access + firstgen + units_four + paid_work_hours_tens + caregiving_hours_tens + food_insecure_2item + homelessness_year, data = bns_combined_imputed_df)
 
 vif(ssb.linear.model2)
 
@@ -214,7 +214,7 @@ vif(ssb.linear.model2)
 
 
 # Full Model after eliminating colinear variables
-ssb.ordinal.mod <- with(bns_imputed_mids, MASS::polr(ssb_cat~calfresh3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_room + storage_access + firstgen + units_four + paid_work_hours_tens + caregiving_hours_tens + food_insecure_2item + homelessness_year, Hess=TRUE)) %>% tbl_regression(exponentiate = TRUE) %>% bold_p()
+ssb.ordinal.mod <- with(bns_imputed_mids, MASS::polr(ssb_cat~SNAP3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_room + storage_access + firstgen + units_four + paid_work_hours_tens + caregiving_hours_tens + food_insecure_2item + homelessness_year, Hess=TRUE)) %>% tbl_regression(exponentiate = TRUE) %>% bold_p()
 
 
 
@@ -226,7 +226,7 @@ ssb.ordinal.mod <- with(bns_imputed_mids, MASS::polr(ssb_cat~calfresh3 + Cohort 
 ```{r}
 
 # Remove firstgen
-ssb.ordinal.mod.firstgen <- with(bns_imputed_mids, MASS::polr(ssb_cat~calfresh3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_room + storage_access + units_four + paid_work_hours_tens + caregiving_hours_tens + food_insecure_2item + homelessness_year, Hess=TRUE)) %>% tbl_regression(exponentiate = TRUE) %>% bold_p()
+ssb.ordinal.mod.firstgen <- with(bns_imputed_mids, MASS::polr(ssb_cat~SNAP3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_room + storage_access + units_four + paid_work_hours_tens + caregiving_hours_tens + food_insecure_2item + homelessness_year, Hess=TRUE)) %>% tbl_regression(exponentiate = TRUE) %>% bold_p()
 
 
 tbl_merge(tbls = list(ssb.ordinal.mod, ssb.ordinal.mod.firstgen), tab_spanner = c("Full SSB Model", "**Test Model*"))
@@ -240,7 +240,7 @@ tbl_merge(tbls = list(ssb.ordinal.mod, ssb.ordinal.mod.firstgen), tab_spanner = 
 
 ```{r}
 
-ssb.ordinal.mod.storage <- with(bns_imputed_mids, MASS::polr(ssb_cat~calfresh3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_access + units_four + paid_work_hours_tens + caregiving_hours_tens + food_insecure_2item + homelessness_year, Hess=TRUE)) %>% tbl_regression(exponentiate = TRUE) %>% bold_p()
+ssb.ordinal.mod.storage <- with(bns_imputed_mids, MASS::polr(ssb_cat~SNAP3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_access + units_four + paid_work_hours_tens + caregiving_hours_tens + food_insecure_2item + homelessness_year, Hess=TRUE)) %>% tbl_regression(exponentiate = TRUE) %>% bold_p()
 
 
 tbl_merge(tbls = list(ssb.ordinal.mod.firstgen, ssb.ordinal.mod.storage), tab_spanner = c("Full SSB Model", "**Test Model*"))
@@ -254,7 +254,7 @@ tbl_merge(tbls = list(ssb.ordinal.mod.firstgen, ssb.ordinal.mod.storage), tab_sp
 
 ```{r}
 
-ssb.ordinal.mod.fi <- with(bns_imputed_mids, MASS::polr(ssb_cat~calfresh3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_access + units_four + paid_work_hours_tens + caregiving_hours_tens + homelessness_year, Hess=TRUE)) %>% tbl_regression(exponentiate = TRUE) %>% bold_p()
+ssb.ordinal.mod.fi <- with(bns_imputed_mids, MASS::polr(ssb_cat~SNAP3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_access + units_four + paid_work_hours_tens + caregiving_hours_tens + homelessness_year, Hess=TRUE)) %>% tbl_regression(exponentiate = TRUE) %>% bold_p()
 
 
 tbl_merge(tbls = list(ssb.ordinal.mod.storage, ssb.ordinal.mod.fi), tab_spanner = c("Full SSB Model", "**Test Model*"))
@@ -269,26 +269,26 @@ tbl_merge(tbls = list(ssb.ordinal.mod.storage, ssb.ordinal.mod.fi), tab_spanner 
 
 ```{r}
 # Linear model based on results from LASSO regression
-fv.linear.model <- lm(q77_numeric~calfresh3 + Cohort + gender + race_eth + age + monthly_hh_income + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item, data = bns_combined_imputed_df)
+fv.linear.model <- lm(q77_numeric~SNAP3 + Cohort + gender + race_eth + age + monthly_hh_income + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item, data = bns_combined_imputed_df)
 
 vif(fv.linear.model)
 
 
 ```
 
-> CalFresh3 and income could be colinear Academic level and school could also be colinear since there are no juniors/seniors in a community college
+> SNAP3 and income could be colinear Academic level and school could also be colinear since there are no juniors/seniors in a community college
 
 ## Test removing income
 
 ```{r}
 
-fv.linear.model <- lm(q77_numeric~calfresh3 + Cohort + gender + race_eth + age + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item, data = bns_combined_imputed_df)
+fv.linear.model <- lm(q77_numeric~SNAP3 + Cohort + gender + race_eth + age + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item, data = bns_combined_imputed_df)
 
 vif(fv.linear.model)
 
 ```
 
-> Removing income greatly decreased the vif of the calfresh3 variable
+> Removing income greatly decreased the vif of the SNAP3 variable
 
 > No other variables in F&V consumption looked like they can be removed through manual backwards elimination
 :::
