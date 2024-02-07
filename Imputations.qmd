@@ -6,12 +6,10 @@ format:
     code-summary: "Show the code"
 ---
 
-> This page shows all steps taken for the imputation process. Imputations were conducted using the MICE R package using an M of 5 and 30 maximum iterations. All potential covariates were included in the imputation process as well as variables used to create the derived variables. Some of the variables that were used to create the dependent variables were removed due to too much collinearity with the derived variable and issues with reaching convergence. Some data management was performed to dichotomize variables, change reference values, and create variables used for testing different models. Models using imputed data were compared to models using complete case data.
+> This page shows all steps taken for the imputation process. Imputations were conducted using the MICE R package using an M of 5 and 30 maximum iterations. All potential covariates were included in the imputations. Variables used to create derived variables were not included in the imputations due to too much collinearity with the derived variable causing convergence not to be reached. Some data management was performed to dichotomize variables, change reference values, and create variables used for testing different model types. Models using imputed data were compared to models using non-imputed data.
 
 ::: panel-tabset
-# Impute Values
-
-```{r, include=FALSE}
+```{r}
 knitr::opts_chunk$set(error = FALSE,warning = FALSE,message = FALSE,echo = TRUE)
 
 
@@ -28,18 +26,15 @@ load("clean_data/bns_combined.Rdata")
 
 ```
 
-```{r}
+```{r, include=FALSE}
 
 
-bns_combined <- bns_combined %>% mutate_at(c("eth_hispanic", "firstgen", "housing_insecure", "homelessness_year"), as.factor)
-
-variables_of_interest <- bns_combined %>% select(SNAP3, race_eth, eth_hispanic, age, cooking_confident, living_with_family, food_insecure_2item, health_conscious, storage_access, storage_room, kitchen_access, ff_cat, ssb_cat, fruits3, household_size, monthly_hh_income, paid_work_hours, unpaid_work_hours, units, caregiving_hours, q64, q65, school, physical_activity, q83_1, q83_2, q83_3, SNAP_eligible, firstgen, academic_level, housing_insecure, homelessness_year, q7)
+variables_of_interest <- bns_combined %>% select(q46_1, race_eth, eth_hispanic, age, cooking_confident, living_with_family, food_insecure_2item, health_conscious, storage_access, storage_room, kitchen_access, ff_cat, ssb_cat, fruits3, household_size, paid_work_hours, unpaid_work_hours, units, caregiving_hours, school, physical_activity, SNAP_eligible, firstgen, academic_level, housing_insecure, homelessness_year, q7)
 
 
 vector.methods <- c("polyreg", "polyreg", "logreg", "pmm", "logreg", "logreg", "logreg",
                     "logreg", "logreg", "logreg", "logreg", "polyreg", "polyreg", "polyreg",
-                    "pmm", "polyreg", "pmm", "pmm", "pmm", "pmm",
-                    "polyreg", "polyreg", "polyreg", "logreg", "pmm", "pmm", "pmm",
+                    "pmm", "pmm", "pmm", "pmm", "pmm", "polyreg", "logreg",
                     "logreg", "logreg", "polyreg", "logreg", "logreg", "logreg")
 
 
@@ -53,20 +48,41 @@ vector.methods <- c("polyreg", "polyreg", "logreg", "pmm", "logreg", "logreg", "
 
 # saveRDS(imp_bns_combined_raw_mids, file ="clean_data/imp_bns_combined_raw_mids.RData")
 
-
 imp_bns_combined_raw_mids <- readRDS("clean_data/imp_bns_combined_raw_mids.RData")
 
 
 ```
 
-
-
-# Imputation data management
+# Data Management
 
 ```{r}
 
 #  Create a Complete Data Set
 imp_bns_combined_long <- complete(imp_bns_combined_raw_mids, action= "long", include = TRUE)
+
+
+# Create temporary SNAP variable
+imp_bns_combined_long <- imp_bns_combined_long %>% mutate(current_SNAP_temp = 
+                        case_when(grepl("Currently use as a college student", q46_1) ~ "SNAP",
+                                                          grepl("Used it in the past as a college student", q46_1) ~ "No SNAP",
+                                                          grepl("Heard of it, but never used it", q46_1) ~ "No SNAP",
+                                                          grepl("Never heard of it", q46_1) ~ "No SNAP",
+                                                          grepl("Used it before attending college", q46_1) ~ "No SNAP"))
+# table(imp_bns_combined_long$q46_1, imp_bns_combined_long$current_SNAP_temp, useNA = "always")
+
+
+imp_bns_combined_long$SNAP3 <- case_when(imp_bns_combined_long$current_SNAP_temp == "SNAP" ~ "SNAP Recipient", 
+                               imp_bns_combined_long$current_SNAP_temp == "No SNAP" & 
+                                 imp_bns_combined_long$SNAP_eligible == "Yes" ~ "Likely Eligible Non-Recipient",
+                               imp_bns_combined_long$current_SNAP_temp == "No SNAP" & 
+                                 imp_bns_combined_long$SNAP_eligible == "No" ~ "Income-Ineligible Non-Recipient") 
+
+
+imp_bns_combined_long$SNAP3 <- factor(imp_bns_combined_long$SNAP3, 
+                                      levels = c("SNAP Recipient", "Likely Eligible Non-Recipient", "Income-Ineligible Non-Recipient"))
+
+#  imp_bns_combined_long %>% select(SNAP3, current_SNAP_temp, SNAP_eligible) %>% unique()
+
 
 
 # Change reference values
@@ -78,7 +94,7 @@ imp_bns_combined_long$kitchen_access <- factor(imp_bns_combined_long$kitchen_acc
 imp_bns_combined_long$storage_room <- factor(imp_bns_combined_long$storage_room, order = FALSE) %>% relevel(imp_bns_combined_long$storage_room, ref = "No")
 
 
-# Create variables to check ordinal regression
+# Create variables for stratified logistic regressions (Used to test different models)
 
 
 ## FV ------------------------
@@ -117,15 +133,12 @@ imp_bns_combined_long$caregiving_hours_tens <- (imp_bns_combined_long$caregiving
 imp_bns_combined_long$units_four <- (imp_bns_combined_long$units)/4
 imp_bns_combined_long$age_five <- (imp_bns_combined_long$age)/5
 
+
 # Change Reference
 imp_bns_combined_long$food_insecure_2item <- factor(imp_bns_combined_long$food_insecure_2item, order = FALSE) %>% relevel(imp_bns_combined_long$food_insecure_2item, ref = "No")
 
 
-
-imp_bns_combined_long$total_work_hours <-   imp_bns_combined_long$paid_work_hours +
-                                            imp_bns_combined_long$unpaid_work_hours
-
-
+# Create numeric variables for LASSO regressions and testing a linear model
 
 imp_bns_combined_long$ff_numeric <- recode(imp_bns_combined_long$ff_cat, 
                                              "Zero" = 0, "1-2 times per week" = 1,
@@ -142,22 +155,16 @@ imp_bns_combined_long$q77_numeric <- recode(imp_bns_combined_long$fruits3, "0" =
 
 
 
-# Rename calfresh3 to SNAP3
-imp_bns_combined_long <- rename(imp_bns_combined_long, SNAP3 = calfresh3)
-
-# Rename levels of SNAP3
-imp_bns_combined_long$SNAP3 <- recode(imp_bns_combined_long$SNAP3,
-                                "CalFresh" = "SNAP",
-                                "No CalFresh but Likely Eligible" = "Likely Eligible Non-Recipient",
-                                "Likely Not Eligible" = "Income-Ineligible Non-Recipient")
-
-
 # Rename q7 to gender
 imp_bns_combined_long <- rename(imp_bns_combined_long, gender = q7)
 
+# Set firstgen as factor, recode to Yes/No and change reference
+imp_bns_combined_long$firstgen <- recode(imp_bns_combined_long$firstgen, "1" = "Yes", "0" = "No") %>%
+  factor(order = FALSE) %>% relevel(ref = "No")
 
-# Rename calfresh_eligible to SNAP_eligible
-imp_bns_combined_long <- rename(imp_bns_combined_long, SNAP_eligible = calfresh_eligible)
+# Set homeless_year as factor, recode to Yes/No and change reference
+imp_bns_combined_long$homelessness_year <- recode(imp_bns_combined_long$homelessness_year, "1" = "Yes", "0" = "No") %>%
+  factor(order = FALSE) %>% relevel(ref = "No")
 
 
 ```
@@ -170,9 +177,9 @@ imp_bns_combined_long$Cohort <- case_when(grepl("Chico State|CSU, Northridge|Fre
 
 # School
 imp_bns_combined_long$school2 <- recode(imp_bns_combined_long$school,
-                             "Allan Hancock Community College" = "CC",
-                             "Butte CC" = "CC", "Mt. SAC CC" = "CC", "Clovis CC" = "CC",
-                             "Palo Verde CC" = "CC", 
+                             "Allan Hancock Community College" = "CCC",
+                             "Butte CC" = "CCC", "Mt. SAC CC" = "CCC", "Clovis CC" = "CCC",
+                             "Palo Verde CC" = "CCC", 
                              "Cal State San Bernardino" = "CSU",
                              "CSU Bakersfield" = "CSU",
                              "Fresno State" = "CSU",
@@ -184,8 +191,6 @@ imp_bns_combined_long$school2 <- recode(imp_bns_combined_long$school,
                              "CSU, Northridge" = "CSU",
                              "UC Berkeley" = "UC")
 
-# Change reference of food insecurity in original data set
-bns_combined$food_insecure_2item <- factor(bns_combined$food_insecure_2item, order = FALSE) %>% relevel(bns_combined$food_insecure_2item, ref = "No")
 
 ```
 
@@ -202,28 +207,30 @@ imp_bns_combined_clean_mids <- readRDS("clean_data/imp_bns_combined_clean_mids.R
 
 ```
 
-
-## Check Convergence
+# Check Convergence
 
 ```{r}
 
-# Check convergence of a few variables. Note: all imputed variables were checked but only a few are displayed 
-plot(imp_bns_combined_raw_mids, c("calfresh3", "calfresh_eligible", "fruits3", "ff_cat", "ssb_cat"))
+# Check convergence of all variables.
+plot(imp_bns_combined_raw_mids, c("q46_1", "fruits3", "ff_cat", "ssb_cat", "race_eth", "eth_hispanic", "food_insecure_2item", "cooking_confident", "living_with_family", "health_conscious", "storage_access", "storage_room", "kitchen_access", "household_size", "physical_activity", "SNAP_eligible", "firstgen", "academic_level", "housing_insecure", "homelessness_year", "q7",
+                                  "paid_work_hours", "unpaid_work_hours", "units", "caregiving_hours", "school"))
+
 
 
 ```
 
+# Compare Non-Imputed and Imputed Models
 
-# Compare SSB Complete Case and Imputed Models
+## Compare SSB Non-Imputed and Imputed Models
 
 ```{r}
 
 
-original_ssb_model <- with(bns_combined, MASS::polr(ssb_cat~SNAP3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_access + units_four + paid_work_hours_tens + caregiving_hours_tens + homelessness_year, Hess=TRUE))
+original_ssb_model <- MASS::polr(ssb_cat~SNAP3 + Cohort + race_eth + gender + age + units_four + unpaid_work_hours_tens + paid_work_hours_tens + caregiving_hours_tens + health_conscious + storage_access + physical_activity + homelessness_year, data = bns_combined, Hess=TRUE)
 
 
 
-imp_ssb_model <- with(imp_bns_combined_clean_mids, MASS::polr(ssb_cat~SNAP3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_access + units_four + paid_work_hours_tens + caregiving_hours_tens + homelessness_year, Hess=TRUE))
+imp_ssb_model <- with(imp_bns_combined_clean_mids, MASS::polr(ssb_cat~SNAP3 + Cohort + race_eth + gender + age + units_four + unpaid_work_hours_tens + paid_work_hours_tens + caregiving_hours_tens + health_conscious + storage_access + physical_activity + homelessness_year, Hess=TRUE))
 # pool(imp_ssb_model) |> summary()
 
 original_ssb_model_tidy <- tidy(original_ssb_model) %>%
@@ -234,26 +241,22 @@ imp_ssb_model_tidy <- pool(imp_ssb_model) |> summary() %>%
 
 ssb_models <- bind_rows(original_ssb_model_tidy , imp_ssb_model_tidy)
 
-dwplot(ssb_models)  + geom_vline(xintercept = 0,
+dwplot(ssb_models) + geom_vline(xintercept = 0,
                colour = "black",
                linetype = 1)
-
-# dwplot(imp_ssb_model_tidy) + geom_vline(xintercept = 1,
-#                colour = "black",
-#                linetype = 1)
 
 
 ```
 
-# Compare Fast Food Complete Case and Imputed Models
+## Compare Fast Food Non-imputed and Imputed Models
 
 ```{r}
 
 
-original_ff_model <- MASS::polr(ff_cat~SNAP3 + Cohort + gender + race_eth + age + monthly_hh_income + academic_level + physical_activity + storage_access + kitchen_access + health_conscious + living_with_family + cooking_confident + food_insecure_2item + homelessness_year, data = bns_combined, Hess=TRUE)
+original_ff_model <- MASS::polr(ff_cat~SNAP3 + Cohort + gender + race_eth + age + physical_activity + storage_room + kitchen_access + health_conscious + living_with_family + cooking_confident + food_insecure_2item + paid_work_hours_tens + homelessness_year, data = bns_combined, Hess=TRUE)
 
 
-imp_ff_model <- with(imp_bns_combined_clean_mids, MASS::polr(ff_cat~SNAP3 + Cohort + gender + race_eth + age + monthly_hh_income + academic_level + physical_activity + storage_access + kitchen_access + health_conscious + living_with_family + cooking_confident + food_insecure_2item + homelessness_year, Hess=TRUE))
+imp_ff_model <- with(imp_bns_combined_clean_mids, MASS::polr(ff_cat~SNAP3 + Cohort + gender + race_eth + age + physical_activity + storage_room + kitchen_access + health_conscious + living_with_family + cooking_confident + food_insecure_2item + paid_work_hours_tens + homelessness_year, Hess=TRUE))
 # pool(imp_ff_model) |> summary()
 
 
@@ -265,7 +268,7 @@ imp_ff_model_tidy <- pool(imp_ff_model) |> summary() %>%
 
 ff_models <- bind_rows(original_ff_model_tidy , imp_ff_model_tidy)
 
-dwplot(ff_models)  + geom_vline(xintercept = 0,
+dwplot(ff_models) + geom_vline(xintercept = 0,
                colour = "black",
                linetype = 1)
 
@@ -273,16 +276,16 @@ dwplot(ff_models)  + geom_vline(xintercept = 0,
 
 ```
 
-# Compare F&V Complete Case and Imputed Models
+## Compare F&V Non-Imputed and Imputed Models
 
 ```{r}
 
 
 
-imp_FV_model <- with(imp_bns_combined_clean_mids, MASS::polr(fruits3~SNAP3 + Cohort + gender + race_eth + age + monthly_hh_income + health_conscious + cooking_confident + physical_activity + food_insecure_2item, Hess=TRUE))
+imp_FV_model <- with(imp_bns_combined_clean_mids, MASS::polr(fruits3~SNAP3 + Cohort + gender + race_eth + age  + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item + firstgen, Hess=TRUE))
 
 
-original_FV_model <- MASS::polr(fruits3~SNAP3 + Cohort + gender + race_eth + age + monthly_hh_income + health_conscious + cooking_confident + physical_activity + food_insecure_2item, data = bns_combined, Hess=TRUE)
+original_FV_model <- MASS::polr(fruits3~SNAP3 + Cohort + gender + race_eth + age  + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item + firstgen, data = bns_combined, Hess=TRUE)
 
 original_FV_model_tidy <- tidy(original_FV_model) %>%
   mutate(model = "original_FV_model")

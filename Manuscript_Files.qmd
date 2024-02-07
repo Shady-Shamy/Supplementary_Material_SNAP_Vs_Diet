@@ -31,17 +31,14 @@ load("clean_data/bns_combined.Rdata")
 
 chc.palette <- c("#B1D238", "#5782B0", "#FF914D")
 
-bns_combined_imputed_df$SNAP3 <- recode(bns_combined_imputed_df$SNAP3, "SNAP" = "SNAP Recipients", "Likely Not Eligible" = "Income-Ineligible Non-Recipients",
-"No SNAP but Likely Eligible" = "Likely Eligible Non-Recipients")
+
+
 
 # Set figure labels
-figure_labels <- c("SNAP Recipients" = "SNAP Recipients (n = 739)", 
-              "Income-Ineligible Non-Recipients" = "Income-Ineligible Non-Recipients (n = 449)", 
-              "Likely Eligible Non-Recipients" = "Likely Eligible Non-Recipients (n = 1,174)")
+figure_labels <- c("SNAP Recipient" = "SNAP Recipients (n = 670)", 
+              "Income-Ineligible Non-Recipient" = "Income-Ineligible Non-Recipients (n = 321)", 
+              "Likely Eligible Non-Recipient" = "Likely Eligible Non-Recipients (n = 1,371)")
 
-
-bns_combined$SNAP3 <- recode(bns_combined$SNAP3, "SNAP" = "SNAP Recipients", "Likely Not Eligible" = "Income-Ineligible Non-Recipients",
-"No SNAP but Likely Eligible" = "Likely Eligible Non-Recipients")
 
 
 
@@ -89,7 +86,7 @@ bns_combined_imputed_df$school2 <- recode(bns_combined_imputed_df$school,
 
 
 
-demographics_cc <- bns_combined %>% select(age, gender, race_eth, monthly_hh_income, academic_level, Cohort, school2, SNAP3, SNAP_eligible, cooking_confident, health_conscious, physical_activity, ssb_cat, ff_cat, fruits3, food_insecure_2item,  units, paid_work_hours)
+demographics_cc <- bns_combined %>% select(age, gender, race_eth, academic_level, Cohort, school2, SNAP3, SNAP_eligible, cooking_confident, health_conscious, physical_activity, ssb_cat, ff_cat, fruits3, food_insecure_2item,  units, paid_work_hours)
 
 cc <- demographics_cc %>% 
   tbl_summary(statistic = list(
@@ -98,7 +95,7 @@ cc <- demographics_cc %>%
       missing_text= "Missing (n)")
 
 
-demographics_imp <- bns_combined_imputed_df %>% select(age, gender, race_eth, monthly_hh_income, academic_level, Cohort, school2, SNAP3, SNAP_eligible, cooking_confident, health_conscious, physical_activity, ssb_cat, ff_cat, fruits3, food_insecure_2item,  units, paid_work_hours)
+demographics_imp <- bns_combined_imputed_df %>% select(age, gender, race_eth, academic_level, Cohort, school2, SNAP3, SNAP_eligible, cooking_confident, health_conscious, physical_activity, ssb_cat, ff_cat, fruits3, food_insecure_2item,  units, paid_work_hours)
 
 
 
@@ -110,7 +107,7 @@ imp <- demographics_imp %>%
 
 
 tbl_merge(tbls = list(cc, imp), 
-          tab_spanner = c("**Complete Case Demographics**", "**Imputed Demographics**")) %>% 
+          tab_spanner = c("**Non-imputed Demographics**", "**Imputed Demographics**")) %>% 
   as_kable_extra(
     booktabs = TRUE,
     longtable = TRUE,
@@ -125,7 +122,7 @@ tbl_merge(tbls = list(cc, imp),
 
 
 bns_combined_imputed_df$ff_cat2 <- recode(bns_combined_imputed_df$ff_cat,
-                                          "Zer" = "Zero",
+                                          "Zero" = "Zero",
                                           "1-2 times per week" = "1-2 times",
                                           "3-4 times per week" = "3-4 times",
                                           "5 or more times per week" = "5 or more times")
@@ -168,7 +165,7 @@ p3 <- bns_combined_imputed_df %>% select(ssb_cat, SNAP3) %>% na.omit() %>% ggplo
   theme_bw() + theme(legend.position="none") + 
   xlab("\nOunces of Sugar Sweetened Beverages Consumed Per Day") + theme(strip.text.x = element_text(size = 15), text = element_text(size = 15))
 
- ggsave("SSB_Plot.png", plot = p3, width = 8, height = 6)
+ # ggsave("SSB_Plot.png", plot = p3, width = 8, height = 6)
 
 p3
 
@@ -205,7 +202,7 @@ p1
 
 ```{r}
 
-ff.ordinal.mod <- with(bns_imputed_mids, MASS::polr(ff_cat~SNAP3 + Cohort + gender + race_eth + age + physical_activity + storage_room + kitchen_access + health_conscious + cooking_confident + food_insecure_2item + paid_work_hours_tens + living_with_family + homelessness_year, Hess=TRUE)) %>% tbl_regression(exponentiate = TRUE) %>% bold_p()
+ff.ordinal.mod <- with(bns_imputed_mids, MASS::polr(ff_cat~SNAP3 + Cohort + gender + race_eth + age + physical_activity + storage_room + health_conscious + living_with_family + cooking_confident + food_insecure_2item + paid_work_hours_tens + homelessness_year, Hess=TRUE)) %>% tbl_regression(exponentiate = TRUE) %>% bold_p()
 
 ff.ordinal.mod
 
@@ -218,7 +215,7 @@ ff.ordinal.mod
 
 
 
-ssb.ordinal.mod <- with(bns_imputed_mids, MASS::polr(ssb_cat~SNAP3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_access + units_four + paid_work_hours_tens + caregiving_hours_tens + homelessness_year, Hess=TRUE)) %>% tbl_regression(exponentiate = TRUE) %>% bold_p()
+ssb.ordinal.mod <- with(bns_imputed_mids, MASS::polr(ssb_cat~SNAP3 + Cohort + race_eth + gender + age + units_four + unpaid_work_hours_tens + paid_work_hours_tens + caregiving_hours_tens + health_conscious + storage_access + physical_activity + homelessness_year, Hess=TRUE)) %>% tbl_regression(exponentiate = TRUE) %>% bold_p()
 
 
 ssb.ordinal.mod
@@ -230,7 +227,7 @@ ssb.ordinal.mod
 
 ```{r}
 
-FV.ordinal.mod <- with(bns_imputed_mids, MASS::polr(fruits3~SNAP3 + Cohort + gender + race_eth + age + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item, Hess=TRUE)) %>% tbl_regression(exponentiate = TRUE) %>% bold_p()
+FV.ordinal.mod <- with(bns_imputed_mids, MASS::polr(fruits3~SNAP3 + Cohort + gender + race_eth + age  + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item + firstgen, Hess=TRUE)) %>% tbl_regression(exponentiate = TRUE) %>% bold_p()
 
 
 
@@ -242,6 +239,6 @@ FV.ordinal.mod
 
 ```{r}
 
-tbl_merge(tbls = list(ff.ordinal.mod, ssb.ordinal.mod, FV.ordinal.mod), tab_spanner = c("**Fast Food Model**", "**SSB Model**", "F&V Model"))
+tbl_merge(tbls = list(ff.ordinal.mod, ssb.ordinal.mod, FV.ordinal.mod), tab_spanner = c("**Fast Food Model**", "**SSB Model**", "**F&V Model**"))
 
 ```

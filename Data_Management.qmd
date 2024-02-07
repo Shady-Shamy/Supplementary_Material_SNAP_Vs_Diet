@@ -2,7 +2,7 @@
 title: "Data Management"
 ---
 
-> This page explains all the data management steps taken to clean and create all variables that were not discussed in the methods section of the manuscript. Two clean data sets were used, and all code for any additional data management procedures are shown below as well as a text description of all procedures.
+> This page explains all the data management steps taken to clean and create all variables that were not discussed in the methods section of the manuscript. Two clean data sets were used (one from the second pilot study and one from the statewide study), and all code for any additional data management procedures are shown below as well as a text description of all procedures.
 
 ::: panel-tabset
 # Data Management Text Description
@@ -25,13 +25,11 @@ title: "Data Management"
 
 > Adequate storage room was asked on a 5-point Likert scale. Those who chose "Strongly disagree", or "Disagree" were coded as "Yes" (Has adequate storage room). Those who chose "Neither agree nor disagree", "Agree", or "Strongly agree" were coded as "No" (Doesn't have adequate storage room).
 
-> Monthly household income was asked in ranges based on SNAP eligibility income requirements at the time of the surveys. The income ranges slightly differed between the Statewide data and the Pilot 2 data and were collapsed into five levels. Those who chose "Less than \$150" or "\$150 or less" was coded as "Very Low"; "\$151-\$2,148" or "\$151-\$2,082" were coded as "Low"; "\$2,149-\$2,904" or "\$2,083-\$2,820" were coded as "Moderate"; "\$2,905-\$3,660" or "\$2,821-\$3,556" were coded as "High"; and all other responses greater than \$3,661 (in the statewide data set) or \$3,557 (in the pilot 2 data set) were coded as "Very High."
-
 > Physical activity was surveyed in three separate questions asking how many days per week a student engages in moderate exercise, strength training exercise, and vigorous exercise. Students who engaged in any of the three forms of exercise for at least one day per week were coded as "Yes" (engages in physical activity). Students who responded zero days per week in all three questions were coded as "No" (does not engage in physical activity).
 
-> Those who chose "Gender Queer or Gender-Nonconforming," "Gender non-binary," and "Gender Unlisted" were dropped from the analysis. Those who chose "Prefer not to answer" were kept in the data set and imputed.
+> Those who chose "Gender Queer or Gender-Nonconforming," "Gender non-binary," and "Gender Unlisted" were dropped from the analysis. Those who chose "Prefer not to answer" were kept in the data set and imputed (n = 19).
 
-> SNAP status was created using five questions, whether they are currently using SNAP, household size, monthly household income, U.S. citizenship, and lawful permanent residency if not a U.S. citizen. Those that reported currently using SNAP were coded as "SNAP". Those that met the SNAP eligibility criteria discussed in the methods sections and did not receive SNAP benefits were coded as "No SNAP but likely eligible." Those that did not meet SNAP eligibility criteria and did not receive SNAP benefits were coded as "No SNAP and likely ineligible."
+> SNAP status was created using five questions, whether they are currently using SNAP, household size, monthly household income, U.S. citizenship, and lawful permanent residency if not a U.S. citizen. Those that reported currently using SNAP were coded as "SNAP". Those that met the SNAP eligibility criteria discussed in the methods sections and did not receive SNAP benefits were coded as "Likely Eligible Non-Recipient." Those that did not meet SNAP eligibility criteria and did not receive SNAP benefits were coded as "Income-Ineligible Non-Recipient."
 
 > Age was rounded down to the nearest whole number. Paid work hours, unpaid work hours, and caregiving hours were divided by 10 and units were divided by 4 to better interpret the results.
 
@@ -143,12 +141,12 @@ bns <- rename(bns, SNAP_eligible = calfresh_eligible)
 
 
 
-bns$SNAP3 <- case_when(bns$current_SNAP_temp == "SNAP" ~ "SNAP", 
+bns$SNAP3 <- case_when(bns$current_SNAP_temp == "SNAP" ~ "SNAP Recipient", 
                                bns$current_SNAP_temp == "No SNAP" & bns$SNAP_eligible == 1 ~ "Likely Eligible Non-Recipient",
                                bns$current_SNAP_temp == "No SNAP" & bns$SNAP_eligible == 0 ~ "Income-Ineligible Non-Recipient") 
 
 
-bns$SNAP3 <- factor(bns$SNAP3, levels = c("SNAP", "Likely Eligible Non-Recipient", "Income-Ineligible Non-Recipient"))
+bns$SNAP3 <- factor(bns$SNAP3, levels = c("SNAP Recipient", "Likely Eligible Non-Recipient", "Income-Ineligible Non-Recipient"))
 
 
 
@@ -289,7 +287,6 @@ bns_variables <- bns %>%  select(SNAP3, race_eth, eth_PNTA, eth_hispanic, gender
 
 
 ```
-
 
 # Pilot 2 Data Management Code
 
@@ -437,7 +434,7 @@ BNSp2b <- BNSp2b %>% mutate(current_SNAP_temp = case_when(grepl("Currently use a
 
 
 # Create a 3 level SNAP variable
-BNSp2b$SNAP3 <- case_when(BNSp2b$current_SNAP_temp == "SNAP" ~ "SNAP", 
+BNSp2b$SNAP3 <- case_when(BNSp2b$current_SNAP_temp == "SNAP" ~ "SNAP Recipient", 
                            BNSp2b$current_SNAP_temp == "No SNAP" & BNSp2b$SNAP_eligible == "Yes" ~ "Likely Eligible Non-Recipient",
                            BNSp2b$current_SNAP_temp == "No SNAP" & BNSp2b$SNAP_eligible == "No" ~ "Income-Ineligible Non-Recipient") 
 
@@ -722,9 +719,29 @@ bns_combined$ssb_cat <- recode(bns_combined$ssb_numeric, "0" = "Zero",
 
 bns_combined$academic_level <- na_if(bns_combined$academic_level, "Other") %>% droplevels()
 
+# Set Food insecurity as factor and change reference
+bns_combined$food_insecure_2item <- factor(bns_combined$food_insecure_2item, order = FALSE) %>% relevel(bns_combined$food_insecure_2item, ref = "No")
+
+# Set housing insecurity as factor and change reference
+bns_combined$homelessness_year <- factor(bns_combined$homelessness_year, order = FALSE) %>% relevel(bns_combined$homelessness_year, ref = "0")
+
+# Set firstgen as factor, recode to Yes/No and change reference
+bns_combined$firstgen <- recode(bns_combined$firstgen, "1" = "Yes", "0" = "No") %>%
+  factor(order = FALSE) %>% relevel(ref = "No")
+
+# Set homeless_year as factor, recode to Yes/No and change reference
+bns_combined$homelessness_year <- recode(bns_combined$homelessness_year, "1" = "Yes", "0" = "No") %>%
+  factor(order = FALSE) %>% relevel(ref = "No")
+
+# Set variables to factor
+
+bns_combined <- bns_combined %>% mutate_at(c("eth_hispanic", "firstgen", "housing_insecure", "homelessness_year"), as.factor)
 
 # Drop those who identified as anything other than male or female and drop non citizens/non lawful permanent residents
 bns_combined <- bns_combined %>% filter((q7 == "Male" | q7 == "Female" ) %>% replace_na(TRUE), (q39 != "No") %>% replace_na(TRUE)) %>% droplevels()
+
+
+
 
 
 save(bns_combined, file = here::here("./clean_data/bns_combined.Rdata"))

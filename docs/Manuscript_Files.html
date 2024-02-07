@@ -219,7 +219,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>demographics_cc <span class="ot">&lt;-</span> bns_combined <span class="sc">%&gt;%</span> <span class="fu">select</span>(age, gender, race_eth, monthly_hh_income, academic_level, Cohort, school2, SNAP3, SNAP_eligible, cooking_confident, health_conscious, physical_activity, ssb_cat, ff_cat, fruits3, food_insecure_2item,  units, paid_work_hours)</span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>demographics_cc <span class="ot">&lt;-</span> bns_combined <span class="sc">%&gt;%</span> <span class="fu">select</span>(age, gender, race_eth, academic_level, Cohort, school2, SNAP3, SNAP_eligible, cooking_confident, health_conscious, physical_activity, ssb_cat, ff_cat, fruits3, food_insecure_2item,  units, paid_work_hours)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>cc <span class="ot">&lt;-</span> demographics_cc <span class="sc">%&gt;%</span> </span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_summary</span>(<span class="at">statistic =</span> <span class="fu">list</span>(</span>
@@ -228,7 +228,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">missing_text=</span> <span class="st">"Missing (n)"</span>)</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>demographics_imp <span class="ot">&lt;-</span> bns_combined_imputed_df <span class="sc">%&gt;%</span> <span class="fu">select</span>(age, gender, race_eth, monthly_hh_income, academic_level, Cohort, school2, SNAP3, SNAP_eligible, cooking_confident, health_conscious, physical_activity, ssb_cat, ff_cat, fruits3, food_insecure_2item,  units, paid_work_hours)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>demographics_imp <span class="ot">&lt;-</span> bns_combined_imputed_df <span class="sc">%&gt;%</span> <span class="fu">select</span>(age, gender, race_eth, academic_level, Cohort, school2, SNAP3, SNAP_eligible, cooking_confident, health_conscious, physical_activity, ssb_cat, ff_cat, fruits3, food_insecure_2item,  units, paid_work_hours)</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
@@ -240,7 +240,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_merge</span>(<span class="at">tbls =</span> <span class="fu">list</span>(cc, imp), </span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>          <span class="at">tab_spanner =</span> <span class="fu">c</span>(<span class="st">"**Complete Case Demographics**"</span>, <span class="st">"**Imputed Demographics**"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>          <span class="at">tab_spanner =</span> <span class="fu">c</span>(<span class="st">"**Non-imputed Demographics**"</span>, <span class="st">"**Imputed Demographics**"</span>)) <span class="sc">%&gt;%</span> </span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_kable_extra</span>(</span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">booktabs =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">longtable =</span> <span class="cn">TRUE</span>,</span>
@@ -258,7 +258,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: left; empty-cells: hide; border-bottom: hidden;"></th>
 <th data-quarto-table-cell-role="th" style="text-align: center; border-bottom: hidden; padding-bottom: 0; padding-left: 3px; padding-right: 3px;"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Complete Case Demographics
+Non-imputed Demographics
 </div></th>
 <th data-quarto-table-cell-role="th" style="text-align: center; border-bottom: hidden; padding-bottom: 0; padding-left: 3px; padding-right: 3px;"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
 Imputed Demographics
@@ -284,12 +284,12 @@ Imputed Demographics
 <tr class="odd">
 <td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Female</td>
 <td style="text-align: center;">1,809 (77%)</td>
-<td style="text-align: center;">1,824 (77%)</td>
+<td style="text-align: center;">1,825 (77%)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Male</td>
 <td style="text-align: center;">534 (23%)</td>
-<td style="text-align: center;">538 (23%)</td>
+<td style="text-align: center;">537 (23%)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Missing (n)</td>
@@ -304,27 +304,27 @@ Imputed Demographics
 <tr class="odd">
 <td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Non Hispanic White</td>
 <td style="text-align: center;">222 (13%)</td>
-<td style="text-align: center;">229 (9.7%)</td>
+<td style="text-align: center;">238 (10%)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Hispanic White</td>
 <td style="text-align: center;">636 (38%)</td>
-<td style="text-align: center;">1,130 (48%)</td>
+<td style="text-align: center;">1,147 (49%)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Non Hispanic African American</td>
 <td style="text-align: center;">110 (6.6%)</td>
-<td style="text-align: center;">117 (5.0%)</td>
+<td style="text-align: center;">120 (5.1%)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Non Hispanic Asian</td>
 <td style="text-align: center;">264 (16%)</td>
-<td style="text-align: center;">279 (12%)</td>
+<td style="text-align: center;">273 (12%)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Other/Unknown</td>
 <td style="text-align: center;">438 (26%)</td>
-<td style="text-align: center;">607 (26%)</td>
+<td style="text-align: center;">584 (25%)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Missing (n)</td>
@@ -332,292 +332,257 @@ Imputed Demographics
 <td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">monthly_hh_income</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Very Low</td>
-<td style="text-align: center;">249 (13%)</td>
-<td style="text-align: center;">288 (12%)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Low</td>
-<td style="text-align: center;">930 (49%)</td>
-<td style="text-align: center;">1,050 (44%)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Moderate</td>
-<td style="text-align: center;">283 (15%)</td>
-<td style="text-align: center;">350 (15%)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">High</td>
-<td style="text-align: center;">179 (9.4%)</td>
-<td style="text-align: center;">245 (10%)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Very High</td>
-<td style="text-align: center;">254 (13%)</td>
-<td style="text-align: center;">429 (18%)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Missing (n)</td>
-<td style="text-align: center;">467</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
 <td style="text-align: left;">academic_level</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Freshman</td>
 <td style="text-align: center;">535 (24%)</td>
-<td style="text-align: center;">572 (24%)</td>
+<td style="text-align: center;">564 (24%)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Sophomore</td>
 <td style="text-align: center;">410 (18%)</td>
-<td style="text-align: center;">428 (18%)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Junior</td>
-<td style="text-align: center;">662 (29%)</td>
-<td style="text-align: center;">688 (29%)</td>
+<td style="text-align: center;">436 (18%)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Senior</td>
-<td style="text-align: center;">647 (29%)</td>
-<td style="text-align: center;">674 (29%)</td>
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Junior</td>
+<td style="text-align: center;">662 (29%)</td>
+<td style="text-align: center;">678 (29%)</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Senior</td>
+<td style="text-align: center;">647 (29%)</td>
+<td style="text-align: center;">684 (29%)</td>
+</tr>
+<tr class="even">
 <td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Missing (n)</td>
 <td style="text-align: center;">108</td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Cohort</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Pilot 2</td>
 <td style="text-align: center;">390 (17%)</td>
 <td style="text-align: center;">390 (17%)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Statewide</td>
 <td style="text-align: center;">1,972 (83%)</td>
 <td style="text-align: center;">1,972 (83%)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">school2</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left; padding-left: 2em;" data-indentlevel="1">CC</td>
 <td style="text-align: center;">650 (28%)</td>
 <td style="text-align: center;">651 (28%)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left; padding-left: 2em;" data-indentlevel="1">CSU</td>
 <td style="text-align: center;">1,544 (65%)</td>
 <td style="text-align: center;">1,544 (65%)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left; padding-left: 2em;" data-indentlevel="1">UC</td>
 <td style="text-align: center;">167 (7.1%)</td>
 <td style="text-align: center;">167 (7.1%)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Missing (n)</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">SNAP3</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">SNAP Recipients</td>
-<td style="text-align: center;">605 (33%)</td>
-<td style="text-align: center;">739 (31%)</td>
-</tr>
 <tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">SNAP Recipient</td>
+<td style="text-align: center;">605 (33%)</td>
+<td style="text-align: center;">670 (28%)</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Likely Eligible Non-Recipient</td>
 <td style="text-align: center;">1,000 (55%)</td>
-<td style="text-align: center;">1,174 (50%)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Income-Ineligible Non-Recipient</td>
-<td style="text-align: center;">216 (12%)</td>
-<td style="text-align: center;">449 (19%)</td>
+<td style="text-align: center;">1,371 (58%)</td>
 </tr>
 <tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Income-Ineligible Non-Recipient</td>
+<td style="text-align: center;">216 (12%)</td>
+<td style="text-align: center;">321 (14%)</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Missing (n)</td>
 <td style="text-align: center;">541</td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">SNAP_eligible</td>
 <td style="text-align: center;">1,575 (86%)</td>
-<td style="text-align: center;">1,849 (78%)</td>
+<td style="text-align: center;">2,003 (85%)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Missing (n)</td>
 <td style="text-align: center;">538</td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">cooking_confident</td>
 <td style="text-align: center;">1,631 (78%)</td>
-<td style="text-align: center;">1,836 (78%)</td>
+<td style="text-align: center;">1,831 (78%)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Missing (n)</td>
 <td style="text-align: center;">270</td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">health_conscious</td>
 <td style="text-align: center;">1,183 (56%)</td>
-<td style="text-align: center;">1,344 (57%)</td>
+<td style="text-align: center;">1,327 (56%)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Missing (n)</td>
 <td style="text-align: center;">251</td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">physical_activity</td>
 <td style="text-align: center;">1,459 (71%)</td>
-<td style="text-align: center;">1,654 (70%)</td>
+<td style="text-align: center;">1,657 (70%)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Missing (n)</td>
 <td style="text-align: center;">297</td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">ssb_cat</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Zero</td>
 <td style="text-align: center;">768 (37%)</td>
-<td style="text-align: center;">890 (38%)</td>
+<td style="text-align: center;">869 (37%)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left; padding-left: 2em;" data-indentlevel="1">1-8 ounces</td>
 <td style="text-align: center;">729 (35%)</td>
-<td style="text-align: center;">817 (35%)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">9-16 ounces</td>
-<td style="text-align: center;">345 (17%)</td>
-<td style="text-align: center;">406 (17%)</td>
+<td style="text-align: center;">849 (36%)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">17 or more ounces</td>
-<td style="text-align: center;">216 (10%)</td>
-<td style="text-align: center;">249 (11%)</td>
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">9-16 ounces</td>
+<td style="text-align: center;">345 (17%)</td>
+<td style="text-align: center;">394 (17%)</td>
 </tr>
 <tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">17 or more ounces</td>
+<td style="text-align: center;">216 (10%)</td>
+<td style="text-align: center;">250 (11%)</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Missing (n)</td>
 <td style="text-align: center;">304</td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">ff_cat</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Zero</td>
 <td style="text-align: center;">305 (15%)</td>
-<td style="text-align: center;">356 (15%)</td>
+<td style="text-align: center;">353 (15%)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left; padding-left: 2em;" data-indentlevel="1">1-2 times per week</td>
 <td style="text-align: center;">1,152 (56%)</td>
-<td style="text-align: center;">1,321 (56%)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">3-4 times per week</td>
-<td style="text-align: center;">450 (22%)</td>
-<td style="text-align: center;">503 (21%)</td>
+<td style="text-align: center;">1,316 (56%)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">5 or more times per week</td>
-<td style="text-align: center;">155 (7.5%)</td>
-<td style="text-align: center;">182 (7.7%)</td>
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">3-4 times per week</td>
+<td style="text-align: center;">450 (22%)</td>
+<td style="text-align: center;">508 (22%)</td>
 </tr>
 <tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">5 or more times per week</td>
+<td style="text-align: center;">155 (7.5%)</td>
+<td style="text-align: center;">185 (7.8%)</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Missing (n)</td>
 <td style="text-align: center;">300</td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">fruits3</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left; padding-left: 2em;" data-indentlevel="1">0</td>
 <td style="text-align: center;">260 (13%)</td>
-<td style="text-align: center;">311 (13%)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">1-2</td>
-<td style="text-align: center;">1,444 (72%)</td>
-<td style="text-align: center;">1,694 (72%)</td>
+<td style="text-align: center;">316 (13%)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">3 or more</td>
-<td style="text-align: center;">305 (15%)</td>
-<td style="text-align: center;">357 (15%)</td>
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">1-2</td>
+<td style="text-align: center;">1,444 (72%)</td>
+<td style="text-align: center;">1,691 (72%)</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">3 or more</td>
+<td style="text-align: center;">305 (15%)</td>
+<td style="text-align: center;">355 (15%)</td>
+</tr>
+<tr class="even">
 <td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Missing (n)</td>
 <td style="text-align: center;">353</td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">food_insecure_2item</td>
 <td style="text-align: center;">1,156 (60%)</td>
-<td style="text-align: center;">1,248 (53%)</td>
+<td style="text-align: center;">1,407 (60%)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Missing (n)</td>
 <td style="text-align: center;">425</td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">units</td>
 <td style="text-align: center;">Mean: 13.0, Median: 13.0, SD: 3.6</td>
-<td style="text-align: center;">Mean: 12.9, Median: 13.0, SD: 3.6</td>
+<td style="text-align: center;">Mean: 13.0, Median: 13.0, SD: 3.6</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Missing (n)</td>
 <td style="text-align: center;">31</td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">paid_work_hours</td>
 <td style="text-align: center;">Mean: 15, Median: 14, SD: 15</td>
 <td style="text-align: center;">Mean: 15, Median: 14, SD: 15</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Missing (n)</td>
 <td style="text-align: center;">189</td>
 <td style="text-align: center;"></td>
 </tr>
 </tbody><tfoot>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left; padding: 0;"><sup>1</sup> Mean: Mean, Median: Median, SD: SD; n (%)</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -636,7 +601,7 @@ Imputed Demographics
 <details>
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>bns_combined_imputed_df<span class="sc">$</span>ff_cat2 <span class="ot">&lt;-</span> <span class="fu">recode</span>(bns_combined_imputed_df<span class="sc">$</span>ff_cat,</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                                          <span class="st">"Zer"</span> <span class="ot">=</span> <span class="st">"Zero"</span>,</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                                          <span class="st">"Zero"</span> <span class="ot">=</span> <span class="st">"Zero"</span>,</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                                          <span class="st">"1-2 times per week"</span> <span class="ot">=</span> <span class="st">"1-2 times"</span>,</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                                          <span class="st">"3-4 times per week"</span> <span class="ot">=</span> <span class="st">"3-4 times"</span>,</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                                          <span class="st">"5 or more times per week"</span> <span class="ot">=</span> <span class="st">"5 or more times"</span>)</span>
@@ -681,7 +646,7 @@ Imputed Demographics
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>) <span class="sc">+</span> </span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Ounces of Sugar Sweetened Beverages Consumed Per Day"</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">strip.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>), <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>))</span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a> <span class="fu">ggsave</span>(<span class="st">"SSB_Plot.png"</span>, <span class="at">plot =</span> p3, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">6</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a> <span class="co"># ggsave("SSB_Plot.png", plot = p3, width = 8, height = 6)</span></span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>p3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -725,29 +690,29 @@ Imputed Demographics
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ff.ordinal.mod <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(ff_cat<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> kitchen_access <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> living_with_family <span class="sc">+</span> homelessness_year, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ff.ordinal.mod <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(ff_cat<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> health_conscious <span class="sc">+</span> living_with_family <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> homelessness_year, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>ff.ordinal.mod</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 
-<div id="lcyuklqeku" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#lcyuklqeku table {
+<div id="yyyjknckfc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#yyyjknckfc table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#lcyuklqeku thead, #lcyuklqeku tbody, #lcyuklqeku tfoot, #lcyuklqeku tr, #lcyuklqeku td, #lcyuklqeku th {
+#yyyjknckfc thead, #yyyjknckfc tbody, #yyyjknckfc tfoot, #yyyjknckfc tr, #yyyjknckfc td, #yyyjknckfc th {
   border-style: none;
 }
 
-#lcyuklqeku p {
+#yyyjknckfc p {
   margin: 0;
   padding: 0;
 }
 
-#lcyuklqeku .gt_table {
+#yyyjknckfc .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -773,12 +738,12 @@ Imputed Demographics
   border-left-color: #D3D3D3;
 }
 
-#lcyuklqeku .gt_caption {
+#yyyjknckfc .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#lcyuklqeku .gt_title {
+#yyyjknckfc .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -790,7 +755,7 @@ Imputed Demographics
   border-bottom-width: 0;
 }
 
-#lcyuklqeku .gt_subtitle {
+#yyyjknckfc .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -802,7 +767,7 @@ Imputed Demographics
   border-top-width: 0;
 }
 
-#lcyuklqeku .gt_heading {
+#yyyjknckfc .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -814,13 +779,13 @@ Imputed Demographics
   border-right-color: #D3D3D3;
 }
 
-#lcyuklqeku .gt_bottom_border {
+#yyyjknckfc .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#lcyuklqeku .gt_col_headings {
+#yyyjknckfc .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -835,7 +800,7 @@ Imputed Demographics
   border-right-color: #D3D3D3;
 }
 
-#lcyuklqeku .gt_col_heading {
+#yyyjknckfc .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -855,7 +820,7 @@ Imputed Demographics
   overflow-x: hidden;
 }
 
-#lcyuklqeku .gt_column_spanner_outer {
+#yyyjknckfc .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -867,15 +832,15 @@ Imputed Demographics
   padding-right: 4px;
 }
 
-#lcyuklqeku .gt_column_spanner_outer:first-child {
+#yyyjknckfc .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#lcyuklqeku .gt_column_spanner_outer:last-child {
+#yyyjknckfc .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#lcyuklqeku .gt_column_spanner {
+#yyyjknckfc .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -887,11 +852,11 @@ Imputed Demographics
   width: 100%;
 }
 
-#lcyuklqeku .gt_spanner_row {
+#yyyjknckfc .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#lcyuklqeku .gt_group_heading {
+#yyyjknckfc .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -917,7 +882,7 @@ Imputed Demographics
   text-align: left;
 }
 
-#lcyuklqeku .gt_empty_group_heading {
+#yyyjknckfc .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -932,15 +897,15 @@ Imputed Demographics
   vertical-align: middle;
 }
 
-#lcyuklqeku .gt_from_md > :first-child {
+#yyyjknckfc .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#lcyuklqeku .gt_from_md > :last-child {
+#yyyjknckfc .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#lcyuklqeku .gt_row {
+#yyyjknckfc .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -959,7 +924,7 @@ Imputed Demographics
   overflow-x: hidden;
 }
 
-#lcyuklqeku .gt_stub {
+#yyyjknckfc .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -972,7 +937,7 @@ Imputed Demographics
   padding-right: 5px;
 }
 
-#lcyuklqeku .gt_stub_row_group {
+#yyyjknckfc .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -986,15 +951,15 @@ Imputed Demographics
   vertical-align: top;
 }
 
-#lcyuklqeku .gt_row_group_first td {
+#yyyjknckfc .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#lcyuklqeku .gt_row_group_first th {
+#yyyjknckfc .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#lcyuklqeku .gt_summary_row {
+#yyyjknckfc .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1004,16 +969,16 @@ Imputed Demographics
   padding-right: 5px;
 }
 
-#lcyuklqeku .gt_first_summary_row {
+#yyyjknckfc .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#lcyuklqeku .gt_first_summary_row.thick {
+#yyyjknckfc .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#lcyuklqeku .gt_last_summary_row {
+#yyyjknckfc .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1023,7 +988,7 @@ Imputed Demographics
   border-bottom-color: #D3D3D3;
 }
 
-#lcyuklqeku .gt_grand_summary_row {
+#yyyjknckfc .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1033,7 +998,7 @@ Imputed Demographics
   padding-right: 5px;
 }
 
-#lcyuklqeku .gt_first_grand_summary_row {
+#yyyjknckfc .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1043,7 +1008,7 @@ Imputed Demographics
   border-top-color: #D3D3D3;
 }
 
-#lcyuklqeku .gt_last_grand_summary_row_top {
+#yyyjknckfc .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1053,11 +1018,11 @@ Imputed Demographics
   border-bottom-color: #D3D3D3;
 }
 
-#lcyuklqeku .gt_striped {
+#yyyjknckfc .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#lcyuklqeku .gt_table_body {
+#yyyjknckfc .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1066,7 +1031,7 @@ Imputed Demographics
   border-bottom-color: #D3D3D3;
 }
 
-#lcyuklqeku .gt_footnotes {
+#yyyjknckfc .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1080,7 +1045,7 @@ Imputed Demographics
   border-right-color: #D3D3D3;
 }
 
-#lcyuklqeku .gt_footnote {
+#yyyjknckfc .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1089,7 +1054,7 @@ Imputed Demographics
   padding-right: 5px;
 }
 
-#lcyuklqeku .gt_sourcenotes {
+#yyyjknckfc .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1103,7 +1068,7 @@ Imputed Demographics
   border-right-color: #D3D3D3;
 }
 
-#lcyuklqeku .gt_sourcenote {
+#yyyjknckfc .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1111,63 +1076,63 @@ Imputed Demographics
   padding-right: 5px;
 }
 
-#lcyuklqeku .gt_left {
+#yyyjknckfc .gt_left {
   text-align: left;
 }
 
-#lcyuklqeku .gt_center {
+#yyyjknckfc .gt_center {
   text-align: center;
 }
 
-#lcyuklqeku .gt_right {
+#yyyjknckfc .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#lcyuklqeku .gt_font_normal {
+#yyyjknckfc .gt_font_normal {
   font-weight: normal;
 }
 
-#lcyuklqeku .gt_font_bold {
+#yyyjknckfc .gt_font_bold {
   font-weight: bold;
 }
 
-#lcyuklqeku .gt_font_italic {
+#yyyjknckfc .gt_font_italic {
   font-style: italic;
 }
 
-#lcyuklqeku .gt_super {
+#yyyjknckfc .gt_super {
   font-size: 65%;
 }
 
-#lcyuklqeku .gt_footnote_marks {
+#yyyjknckfc .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#lcyuklqeku .gt_asterisk {
+#yyyjknckfc .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#lcyuklqeku .gt_indent_1 {
+#yyyjknckfc .gt_indent_1 {
   text-indent: 5px;
 }
 
-#lcyuklqeku .gt_indent_2 {
+#yyyjknckfc .gt_indent_2 {
   text-indent: 10px;
 }
 
-#lcyuklqeku .gt_indent_3 {
+#yyyjknckfc .gt_indent_3 {
   text-indent: 15px;
 }
 
-#lcyuklqeku .gt_indent_4 {
+#yyyjknckfc .gt_indent_4 {
   text-indent: 20px;
 }
 
-#lcyuklqeku .gt_indent_5 {
+#yyyjknckfc .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1186,17 +1151,17 @@ Imputed Demographics
 <td headers="estimate" class="gt_row gt_center"><br></td>
 <td headers="ci" class="gt_row gt_center"><br></td>
 <td headers="p.value" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;SNAP</td>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;SNAP Recipient</td>
 <td headers="estimate" class="gt_row gt_center">—</td>
 <td headers="ci" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"><br></td></tr>
     <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Likely Eligible Non-Recipient</td>
-<td headers="estimate" class="gt_row gt_center">1.69</td>
-<td headers="ci" class="gt_row gt_center">1.33, 2.15</td>
+<td headers="estimate" class="gt_row gt_center">1.67</td>
+<td headers="ci" class="gt_row gt_center">1.35, 2.07</td>
 <td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">&lt;0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Income-Ineligible Non-Recipient</td>
-<td headers="estimate" class="gt_row gt_center">1.87</td>
-<td headers="ci" class="gt_row gt_center">1.43, 2.45</td>
+<td headers="estimate" class="gt_row gt_center">2.05</td>
+<td headers="ci" class="gt_row gt_center">1.44, 2.92</td>
 <td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">&lt;0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">Cohort</td>
 <td headers="estimate" class="gt_row gt_center"><br></td>
@@ -1207,9 +1172,9 @@ Imputed Demographics
 <td headers="ci" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"><br></td></tr>
     <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Statewide</td>
-<td headers="estimate" class="gt_row gt_center">1.47</td>
-<td headers="ci" class="gt_row gt_center">1.14, 1.90</td>
-<td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">0.003</td></tr>
+<td headers="estimate" class="gt_row gt_center">1.45</td>
+<td headers="ci" class="gt_row gt_center">1.13, 1.86</td>
+<td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">0.004</td></tr>
     <tr><td headers="label" class="gt_row gt_left">gender</td>
 <td headers="estimate" class="gt_row gt_center"><br></td>
 <td headers="ci" class="gt_row gt_center"><br></td>
@@ -1219,9 +1184,9 @@ Imputed Demographics
 <td headers="ci" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"><br></td></tr>
     <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Male</td>
-<td headers="estimate" class="gt_row gt_center">1.29</td>
-<td headers="ci" class="gt_row gt_center">1.06, 1.58</td>
-<td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">0.013</td></tr>
+<td headers="estimate" class="gt_row gt_center">1.24</td>
+<td headers="ci" class="gt_row gt_center">0.99, 1.56</td>
+<td headers="p.value" class="gt_row gt_center">0.058</td></tr>
     <tr><td headers="label" class="gt_row gt_left">race_eth</td>
 <td headers="estimate" class="gt_row gt_center"><br></td>
 <td headers="ci" class="gt_row gt_center"><br></td>
@@ -1231,21 +1196,21 @@ Imputed Demographics
 <td headers="ci" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"><br></td></tr>
     <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Hispanic White</td>
-<td headers="estimate" class="gt_row gt_center">0.92</td>
-<td headers="ci" class="gt_row gt_center">0.64, 1.31</td>
-<td headers="p.value" class="gt_row gt_center">0.6</td></tr>
+<td headers="estimate" class="gt_row gt_center">0.99</td>
+<td headers="ci" class="gt_row gt_center">0.67, 1.47</td>
+<td headers="p.value" class="gt_row gt_center">&gt;0.9</td></tr>
     <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Non Hispanic African American</td>
-<td headers="estimate" class="gt_row gt_center">0.95</td>
-<td headers="ci" class="gt_row gt_center">0.59, 1.52</td>
-<td headers="p.value" class="gt_row gt_center">0.8</td></tr>
+<td headers="estimate" class="gt_row gt_center">1.04</td>
+<td headers="ci" class="gt_row gt_center">0.57, 1.88</td>
+<td headers="p.value" class="gt_row gt_center">&gt;0.9</td></tr>
     <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Non Hispanic Asian</td>
-<td headers="estimate" class="gt_row gt_center">0.53</td>
-<td headers="ci" class="gt_row gt_center">0.35, 0.81</td>
-<td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">0.004</td></tr>
+<td headers="estimate" class="gt_row gt_center">0.57</td>
+<td headers="ci" class="gt_row gt_center">0.38, 0.87</td>
+<td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">0.010</td></tr>
     <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Other/Unknown</td>
-<td headers="estimate" class="gt_row gt_center">1.08</td>
-<td headers="ci" class="gt_row gt_center">0.73, 1.60</td>
-<td headers="p.value" class="gt_row gt_center">0.7</td></tr>
+<td headers="estimate" class="gt_row gt_center">1.20</td>
+<td headers="ci" class="gt_row gt_center">0.76, 1.89</td>
+<td headers="p.value" class="gt_row gt_center">0.4</td></tr>
     <tr><td headers="label" class="gt_row gt_left">age</td>
 <td headers="estimate" class="gt_row gt_center">0.97</td>
 <td headers="ci" class="gt_row gt_center">0.95, 0.98</td>
@@ -1259,9 +1224,9 @@ Imputed Demographics
 <td headers="ci" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"><br></td></tr>
     <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Yes</td>
-<td headers="estimate" class="gt_row gt_center">0.81</td>
-<td headers="ci" class="gt_row gt_center">0.67, 0.98</td>
-<td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">0.033</td></tr>
+<td headers="estimate" class="gt_row gt_center">0.82</td>
+<td headers="ci" class="gt_row gt_center">0.66, 1.01</td>
+<td headers="p.value" class="gt_row gt_center">0.058</td></tr>
     <tr><td headers="label" class="gt_row gt_left">storage_room</td>
 <td headers="estimate" class="gt_row gt_center"><br></td>
 <td headers="ci" class="gt_row gt_center"><br></td>
@@ -1271,21 +1236,9 @@ Imputed Demographics
 <td headers="ci" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"><br></td></tr>
     <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Yes</td>
-<td headers="estimate" class="gt_row gt_center">0.85</td>
-<td headers="ci" class="gt_row gt_center">0.69, 1.04</td>
-<td headers="p.value" class="gt_row gt_center">0.11</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">kitchen_access</td>
-<td headers="estimate" class="gt_row gt_center"><br></td>
-<td headers="ci" class="gt_row gt_center"><br></td>
-<td headers="p.value" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;No</td>
-<td headers="estimate" class="gt_row gt_center">—</td>
-<td headers="ci" class="gt_row gt_center">—</td>
-<td headers="p.value" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Yes</td>
-<td headers="estimate" class="gt_row gt_center">0.92</td>
-<td headers="ci" class="gt_row gt_center">0.71, 1.19</td>
-<td headers="p.value" class="gt_row gt_center">0.5</td></tr>
+<td headers="estimate" class="gt_row gt_center">0.83</td>
+<td headers="ci" class="gt_row gt_center">0.70, 1.00</td>
+<td headers="p.value" class="gt_row gt_center">0.054</td></tr>
     <tr><td headers="label" class="gt_row gt_left">health_conscious</td>
 <td headers="estimate" class="gt_row gt_center"><br></td>
 <td headers="ci" class="gt_row gt_center"><br></td>
@@ -1295,37 +1248,9 @@ Imputed Demographics
 <td headers="ci" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"><br></td></tr>
     <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Yes</td>
-<td headers="estimate" class="gt_row gt_center">0.87</td>
-<td headers="ci" class="gt_row gt_center">0.70, 1.09</td>
-<td headers="p.value" class="gt_row gt_center">0.2</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">cooking_confident</td>
-<td headers="estimate" class="gt_row gt_center"><br></td>
-<td headers="ci" class="gt_row gt_center"><br></td>
-<td headers="p.value" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;No</td>
-<td headers="estimate" class="gt_row gt_center">—</td>
-<td headers="ci" class="gt_row gt_center">—</td>
-<td headers="p.value" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Yes</td>
-<td headers="estimate" class="gt_row gt_center">0.81</td>
-<td headers="ci" class="gt_row gt_center">0.65, 1.02</td>
-<td headers="p.value" class="gt_row gt_center">0.068</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">food_insecure_2item</td>
-<td headers="estimate" class="gt_row gt_center"><br></td>
-<td headers="ci" class="gt_row gt_center"><br></td>
-<td headers="p.value" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;No</td>
-<td headers="estimate" class="gt_row gt_center">—</td>
-<td headers="ci" class="gt_row gt_center">—</td>
-<td headers="p.value" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Yes</td>
-<td headers="estimate" class="gt_row gt_center">1.17</td>
-<td headers="ci" class="gt_row gt_center">0.98, 1.40</td>
-<td headers="p.value" class="gt_row gt_center">0.082</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">paid_work_hours_tens</td>
-<td headers="estimate" class="gt_row gt_center">1.08</td>
-<td headers="ci" class="gt_row gt_center">1.01, 1.16</td>
-<td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">0.019</td></tr>
+<td headers="estimate" class="gt_row gt_center">0.86</td>
+<td headers="ci" class="gt_row gt_center">0.72, 1.03</td>
+<td headers="p.value" class="gt_row gt_center">0.11</td></tr>
     <tr><td headers="label" class="gt_row gt_left">living_with_family</td>
 <td headers="estimate" class="gt_row gt_center"><br></td>
 <td headers="ci" class="gt_row gt_center"><br></td>
@@ -1335,21 +1260,49 @@ Imputed Demographics
 <td headers="ci" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"><br></td></tr>
     <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Yes</td>
-<td headers="estimate" class="gt_row gt_center">1.28</td>
-<td headers="ci" class="gt_row gt_center">1.06, 1.54</td>
-<td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">0.012</td></tr>
+<td headers="estimate" class="gt_row gt_center">1.25</td>
+<td headers="ci" class="gt_row gt_center">1.03, 1.52</td>
+<td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">0.024</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">cooking_confident</td>
+<td headers="estimate" class="gt_row gt_center"><br></td>
+<td headers="ci" class="gt_row gt_center"><br></td>
+<td headers="p.value" class="gt_row gt_center"><br></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;No</td>
+<td headers="estimate" class="gt_row gt_center">—</td>
+<td headers="ci" class="gt_row gt_center">—</td>
+<td headers="p.value" class="gt_row gt_center"><br></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Yes</td>
+<td headers="estimate" class="gt_row gt_center">0.82</td>
+<td headers="ci" class="gt_row gt_center">0.67, 1.00</td>
+<td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">0.047</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">food_insecure_2item</td>
+<td headers="estimate" class="gt_row gt_center"><br></td>
+<td headers="ci" class="gt_row gt_center"><br></td>
+<td headers="p.value" class="gt_row gt_center"><br></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;No</td>
+<td headers="estimate" class="gt_row gt_center">—</td>
+<td headers="ci" class="gt_row gt_center">—</td>
+<td headers="p.value" class="gt_row gt_center"><br></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Yes</td>
+<td headers="estimate" class="gt_row gt_center">1.12</td>
+<td headers="ci" class="gt_row gt_center">0.93, 1.34</td>
+<td headers="p.value" class="gt_row gt_center">0.2</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">paid_work_hours_tens</td>
+<td headers="estimate" class="gt_row gt_center">1.09</td>
+<td headers="ci" class="gt_row gt_center">1.02, 1.17</td>
+<td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">0.013</td></tr>
     <tr><td headers="label" class="gt_row gt_left">homelessness_year</td>
 <td headers="estimate" class="gt_row gt_center"><br></td>
 <td headers="ci" class="gt_row gt_center"><br></td>
 <td headers="p.value" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;0</td>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;No</td>
 <td headers="estimate" class="gt_row gt_center">—</td>
 <td headers="ci" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;1</td>
-<td headers="estimate" class="gt_row gt_center">1.47</td>
-<td headers="ci" class="gt_row gt_center">1.13, 1.92</td>
-<td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">0.004</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Yes</td>
+<td headers="estimate" class="gt_row gt_center">1.46</td>
+<td headers="ci" class="gt_row gt_center">1.09, 1.95</td>
+<td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">0.011</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
@@ -1367,30 +1320,30 @@ Imputed Demographics
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ssb.ordinal.mod <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(ssb_cat<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_access <span class="sc">+</span> units_four <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> homelessness_year, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ssb.ordinal.mod <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(ssb_cat<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> race_eth <span class="sc">+</span> gender <span class="sc">+</span> age <span class="sc">+</span> units_four <span class="sc">+</span> unpaid_work_hours_tens <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_access <span class="sc">+</span> physical_activity <span class="sc">+</span> homelessness_year, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>ssb.ordinal.mod</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 
-<div id="sfvdvlhucj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#sfvdvlhucj table {
+<div id="pvtfcwymvy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#pvtfcwymvy table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#sfvdvlhucj thead, #sfvdvlhucj tbody, #sfvdvlhucj tfoot, #sfvdvlhucj tr, #sfvdvlhucj td, #sfvdvlhucj th {
+#pvtfcwymvy thead, #pvtfcwymvy tbody, #pvtfcwymvy tfoot, #pvtfcwymvy tr, #pvtfcwymvy td, #pvtfcwymvy th {
   border-style: none;
 }
 
-#sfvdvlhucj p {
+#pvtfcwymvy p {
   margin: 0;
   padding: 0;
 }
 
-#sfvdvlhucj .gt_table {
+#pvtfcwymvy .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1416,12 +1369,12 @@ Imputed Demographics
   border-left-color: #D3D3D3;
 }
 
-#sfvdvlhucj .gt_caption {
+#pvtfcwymvy .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#sfvdvlhucj .gt_title {
+#pvtfcwymvy .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1433,7 +1386,7 @@ Imputed Demographics
   border-bottom-width: 0;
 }
 
-#sfvdvlhucj .gt_subtitle {
+#pvtfcwymvy .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1445,7 +1398,7 @@ Imputed Demographics
   border-top-width: 0;
 }
 
-#sfvdvlhucj .gt_heading {
+#pvtfcwymvy .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1457,13 +1410,13 @@ Imputed Demographics
   border-right-color: #D3D3D3;
 }
 
-#sfvdvlhucj .gt_bottom_border {
+#pvtfcwymvy .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#sfvdvlhucj .gt_col_headings {
+#pvtfcwymvy .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1478,7 +1431,7 @@ Imputed Demographics
   border-right-color: #D3D3D3;
 }
 
-#sfvdvlhucj .gt_col_heading {
+#pvtfcwymvy .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1498,7 +1451,7 @@ Imputed Demographics
   overflow-x: hidden;
 }
 
-#sfvdvlhucj .gt_column_spanner_outer {
+#pvtfcwymvy .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1510,15 +1463,15 @@ Imputed Demographics
   padding-right: 4px;
 }
 
-#sfvdvlhucj .gt_column_spanner_outer:first-child {
+#pvtfcwymvy .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#sfvdvlhucj .gt_column_spanner_outer:last-child {
+#pvtfcwymvy .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#sfvdvlhucj .gt_column_spanner {
+#pvtfcwymvy .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1530,11 +1483,11 @@ Imputed Demographics
   width: 100%;
 }
 
-#sfvdvlhucj .gt_spanner_row {
+#pvtfcwymvy .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#sfvdvlhucj .gt_group_heading {
+#pvtfcwymvy .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1560,7 +1513,7 @@ Imputed Demographics
   text-align: left;
 }
 
-#sfvdvlhucj .gt_empty_group_heading {
+#pvtfcwymvy .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1575,15 +1528,15 @@ Imputed Demographics
   vertical-align: middle;
 }
 
-#sfvdvlhucj .gt_from_md > :first-child {
+#pvtfcwymvy .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#sfvdvlhucj .gt_from_md > :last-child {
+#pvtfcwymvy .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#sfvdvlhucj .gt_row {
+#pvtfcwymvy .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1602,7 +1555,7 @@ Imputed Demographics
   overflow-x: hidden;
 }
 
-#sfvdvlhucj .gt_stub {
+#pvtfcwymvy .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1615,7 +1568,7 @@ Imputed Demographics
   padding-right: 5px;
 }
 
-#sfvdvlhucj .gt_stub_row_group {
+#pvtfcwymvy .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1629,15 +1582,15 @@ Imputed Demographics
   vertical-align: top;
 }
 
-#sfvdvlhucj .gt_row_group_first td {
+#pvtfcwymvy .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#sfvdvlhucj .gt_row_group_first th {
+#pvtfcwymvy .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#sfvdvlhucj .gt_summary_row {
+#pvtfcwymvy .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1647,16 +1600,16 @@ Imputed Demographics
   padding-right: 5px;
 }
 
-#sfvdvlhucj .gt_first_summary_row {
+#pvtfcwymvy .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#sfvdvlhucj .gt_first_summary_row.thick {
+#pvtfcwymvy .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#sfvdvlhucj .gt_last_summary_row {
+#pvtfcwymvy .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1666,7 +1619,7 @@ Imputed Demographics
   border-bottom-color: #D3D3D3;
 }
 
-#sfvdvlhucj .gt_grand_summary_row {
+#pvtfcwymvy .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1676,7 +1629,7 @@ Imputed Demographics
   padding-right: 5px;
 }
 
-#sfvdvlhucj .gt_first_grand_summary_row {
+#pvtfcwymvy .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1686,7 +1639,7 @@ Imputed Demographics
   border-top-color: #D3D3D3;
 }
 
-#sfvdvlhucj .gt_last_grand_summary_row_top {
+#pvtfcwymvy .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1696,11 +1649,11 @@ Imputed Demographics
   border-bottom-color: #D3D3D3;
 }
 
-#sfvdvlhucj .gt_striped {
+#pvtfcwymvy .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#sfvdvlhucj .gt_table_body {
+#pvtfcwymvy .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1709,7 +1662,7 @@ Imputed Demographics
   border-bottom-color: #D3D3D3;
 }
 
-#sfvdvlhucj .gt_footnotes {
+#pvtfcwymvy .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1723,7 +1676,7 @@ Imputed Demographics
   border-right-color: #D3D3D3;
 }
 
-#sfvdvlhucj .gt_footnote {
+#pvtfcwymvy .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1732,7 +1685,7 @@ Imputed Demographics
   padding-right: 5px;
 }
 
-#sfvdvlhucj .gt_sourcenotes {
+#pvtfcwymvy .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1746,7 +1699,7 @@ Imputed Demographics
   border-right-color: #D3D3D3;
 }
 
-#sfvdvlhucj .gt_sourcenote {
+#pvtfcwymvy .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1754,63 +1707,63 @@ Imputed Demographics
   padding-right: 5px;
 }
 
-#sfvdvlhucj .gt_left {
+#pvtfcwymvy .gt_left {
   text-align: left;
 }
 
-#sfvdvlhucj .gt_center {
+#pvtfcwymvy .gt_center {
   text-align: center;
 }
 
-#sfvdvlhucj .gt_right {
+#pvtfcwymvy .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#sfvdvlhucj .gt_font_normal {
+#pvtfcwymvy .gt_font_normal {
   font-weight: normal;
 }
 
-#sfvdvlhucj .gt_font_bold {
+#pvtfcwymvy .gt_font_bold {
   font-weight: bold;
 }
 
-#sfvdvlhucj .gt_font_italic {
+#pvtfcwymvy .gt_font_italic {
   font-style: italic;
 }
 
-#sfvdvlhucj .gt_super {
+#pvtfcwymvy .gt_super {
   font-size: 65%;
 }
 
-#sfvdvlhucj .gt_footnote_marks {
+#pvtfcwymvy .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#sfvdvlhucj .gt_asterisk {
+#pvtfcwymvy .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#sfvdvlhucj .gt_indent_1 {
+#pvtfcwymvy .gt_indent_1 {
   text-indent: 5px;
 }
 
-#sfvdvlhucj .gt_indent_2 {
+#pvtfcwymvy .gt_indent_2 {
   text-indent: 10px;
 }
 
-#sfvdvlhucj .gt_indent_3 {
+#pvtfcwymvy .gt_indent_3 {
   text-indent: 15px;
 }
 
-#sfvdvlhucj .gt_indent_4 {
+#pvtfcwymvy .gt_indent_4 {
   text-indent: 20px;
 }
 
-#sfvdvlhucj .gt_indent_5 {
+#pvtfcwymvy .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1829,18 +1782,18 @@ Imputed Demographics
 <td headers="estimate" class="gt_row gt_center"><br></td>
 <td headers="ci" class="gt_row gt_center"><br></td>
 <td headers="p.value" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;SNAP</td>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;SNAP Recipient</td>
 <td headers="estimate" class="gt_row gt_center">—</td>
 <td headers="ci" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"><br></td></tr>
     <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Likely Eligible Non-Recipient</td>
-<td headers="estimate" class="gt_row gt_center">1.37</td>
-<td headers="ci" class="gt_row gt_center">1.12, 1.66</td>
-<td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">0.002</td></tr>
+<td headers="estimate" class="gt_row gt_center">1.34</td>
+<td headers="ci" class="gt_row gt_center">1.09, 1.65</td>
+<td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">0.006</td></tr>
     <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Income-Ineligible Non-Recipient</td>
-<td headers="estimate" class="gt_row gt_center">1.53</td>
-<td headers="ci" class="gt_row gt_center">1.17, 2.01</td>
-<td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">0.003</td></tr>
+<td headers="estimate" class="gt_row gt_center">1.44</td>
+<td headers="ci" class="gt_row gt_center">1.06, 1.95</td>
+<td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">0.020</td></tr>
     <tr><td headers="label" class="gt_row gt_left">Cohort</td>
 <td headers="estimate" class="gt_row gt_center"><br></td>
 <td headers="ci" class="gt_row gt_center"><br></td>
@@ -1850,21 +1803,9 @@ Imputed Demographics
 <td headers="ci" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"><br></td></tr>
     <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Statewide</td>
-<td headers="estimate" class="gt_row gt_center">1.95</td>
-<td headers="ci" class="gt_row gt_center">1.54, 2.46</td>
+<td headers="estimate" class="gt_row gt_center">2.12</td>
+<td headers="ci" class="gt_row gt_center">1.64, 2.74</td>
 <td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">&lt;0.001</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">gender</td>
-<td headers="estimate" class="gt_row gt_center"><br></td>
-<td headers="ci" class="gt_row gt_center"><br></td>
-<td headers="p.value" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Female</td>
-<td headers="estimate" class="gt_row gt_center">—</td>
-<td headers="ci" class="gt_row gt_center">—</td>
-<td headers="p.value" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Male</td>
-<td headers="estimate" class="gt_row gt_center">1.32</td>
-<td headers="ci" class="gt_row gt_center">1.09, 1.60</td>
-<td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">0.004</td></tr>
     <tr><td headers="label" class="gt_row gt_left">race_eth</td>
 <td headers="estimate" class="gt_row gt_center"><br></td>
 <td headers="ci" class="gt_row gt_center"><br></td>
@@ -1874,25 +1815,77 @@ Imputed Demographics
 <td headers="ci" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"><br></td></tr>
     <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Hispanic White</td>
-<td headers="estimate" class="gt_row gt_center">1.09</td>
-<td headers="ci" class="gt_row gt_center">0.81, 1.46</td>
-<td headers="p.value" class="gt_row gt_center">0.6</td></tr>
+<td headers="estimate" class="gt_row gt_center">1.15</td>
+<td headers="ci" class="gt_row gt_center">0.83, 1.58</td>
+<td headers="p.value" class="gt_row gt_center">0.4</td></tr>
     <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Non Hispanic African American</td>
-<td headers="estimate" class="gt_row gt_center">0.98</td>
-<td headers="ci" class="gt_row gt_center">0.59, 1.64</td>
+<td headers="estimate" class="gt_row gt_center">1.02</td>
+<td headers="ci" class="gt_row gt_center">0.60, 1.74</td>
 <td headers="p.value" class="gt_row gt_center">&gt;0.9</td></tr>
     <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Non Hispanic Asian</td>
-<td headers="estimate" class="gt_row gt_center">0.76</td>
-<td headers="ci" class="gt_row gt_center">0.53, 1.08</td>
-<td headers="p.value" class="gt_row gt_center">0.12</td></tr>
+<td headers="estimate" class="gt_row gt_center">0.78</td>
+<td headers="ci" class="gt_row gt_center">0.54, 1.15</td>
+<td headers="p.value" class="gt_row gt_center">0.2</td></tr>
     <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Other/Unknown</td>
-<td headers="estimate" class="gt_row gt_center">0.93</td>
-<td headers="ci" class="gt_row gt_center">0.62, 1.38</td>
+<td headers="estimate" class="gt_row gt_center">1.06</td>
+<td headers="ci" class="gt_row gt_center">0.74, 1.52</td>
 <td headers="p.value" class="gt_row gt_center">0.7</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">gender</td>
+<td headers="estimate" class="gt_row gt_center"><br></td>
+<td headers="ci" class="gt_row gt_center"><br></td>
+<td headers="p.value" class="gt_row gt_center"><br></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Female</td>
+<td headers="estimate" class="gt_row gt_center">—</td>
+<td headers="ci" class="gt_row gt_center">—</td>
+<td headers="p.value" class="gt_row gt_center"><br></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Male</td>
+<td headers="estimate" class="gt_row gt_center">1.33</td>
+<td headers="ci" class="gt_row gt_center">1.10, 1.61</td>
+<td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">0.004</td></tr>
     <tr><td headers="label" class="gt_row gt_left">age</td>
 <td headers="estimate" class="gt_row gt_center">0.99</td>
 <td headers="ci" class="gt_row gt_center">0.98, 1.01</td>
 <td headers="p.value" class="gt_row gt_center">0.3</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">units_four</td>
+<td headers="estimate" class="gt_row gt_center">0.90</td>
+<td headers="ci" class="gt_row gt_center">0.83, 0.99</td>
+<td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">0.029</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">unpaid_work_hours_tens</td>
+<td headers="estimate" class="gt_row gt_center">1.05</td>
+<td headers="ci" class="gt_row gt_center">0.95, 1.15</td>
+<td headers="p.value" class="gt_row gt_center">0.3</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">paid_work_hours_tens</td>
+<td headers="estimate" class="gt_row gt_center">1.09</td>
+<td headers="ci" class="gt_row gt_center">1.04, 1.15</td>
+<td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">0.001</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">caregiving_hours_tens</td>
+<td headers="estimate" class="gt_row gt_center">1.04</td>
+<td headers="ci" class="gt_row gt_center">1.00, 1.08</td>
+<td headers="p.value" class="gt_row gt_center">0.066</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">health_conscious</td>
+<td headers="estimate" class="gt_row gt_center"><br></td>
+<td headers="ci" class="gt_row gt_center"><br></td>
+<td headers="p.value" class="gt_row gt_center"><br></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;No</td>
+<td headers="estimate" class="gt_row gt_center">—</td>
+<td headers="ci" class="gt_row gt_center">—</td>
+<td headers="p.value" class="gt_row gt_center"><br></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Yes</td>
+<td headers="estimate" class="gt_row gt_center">0.76</td>
+<td headers="ci" class="gt_row gt_center">0.63, 0.90</td>
+<td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">0.002</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">storage_access</td>
+<td headers="estimate" class="gt_row gt_center"><br></td>
+<td headers="ci" class="gt_row gt_center"><br></td>
+<td headers="p.value" class="gt_row gt_center"><br></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;No</td>
+<td headers="estimate" class="gt_row gt_center">—</td>
+<td headers="ci" class="gt_row gt_center">—</td>
+<td headers="p.value" class="gt_row gt_center"><br></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Yes</td>
+<td headers="estimate" class="gt_row gt_center">0.89</td>
+<td headers="ci" class="gt_row gt_center">0.70, 1.14</td>
+<td headers="p.value" class="gt_row gt_center">0.4</td></tr>
     <tr><td headers="label" class="gt_row gt_left">physical_activity</td>
 <td headers="estimate" class="gt_row gt_center"><br></td>
 <td headers="ci" class="gt_row gt_center"><br></td>
@@ -1903,56 +1896,20 @@ Imputed Demographics
 <td headers="p.value" class="gt_row gt_center"><br></td></tr>
     <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Yes</td>
 <td headers="estimate" class="gt_row gt_center">0.87</td>
-<td headers="ci" class="gt_row gt_center">0.74, 1.03</td>
-<td headers="p.value" class="gt_row gt_center">0.10</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">health_conscious</td>
-<td headers="estimate" class="gt_row gt_center"><br></td>
-<td headers="ci" class="gt_row gt_center"><br></td>
-<td headers="p.value" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;No</td>
-<td headers="estimate" class="gt_row gt_center">—</td>
-<td headers="ci" class="gt_row gt_center">—</td>
-<td headers="p.value" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Yes</td>
-<td headers="estimate" class="gt_row gt_center">0.74</td>
-<td headers="ci" class="gt_row gt_center">0.62, 0.88</td>
-<td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">&lt;0.001</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">storage_access</td>
-<td headers="estimate" class="gt_row gt_center"><br></td>
-<td headers="ci" class="gt_row gt_center"><br></td>
-<td headers="p.value" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;No</td>
-<td headers="estimate" class="gt_row gt_center">—</td>
-<td headers="ci" class="gt_row gt_center">—</td>
-<td headers="p.value" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Yes</td>
-<td headers="estimate" class="gt_row gt_center">0.88</td>
-<td headers="ci" class="gt_row gt_center">0.70, 1.11</td>
-<td headers="p.value" class="gt_row gt_center">0.3</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">units_four</td>
-<td headers="estimate" class="gt_row gt_center">0.91</td>
-<td headers="ci" class="gt_row gt_center">0.83, 1.01</td>
-<td headers="p.value" class="gt_row gt_center">0.071</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">paid_work_hours_tens</td>
-<td headers="estimate" class="gt_row gt_center">1.09</td>
-<td headers="ci" class="gt_row gt_center">1.03, 1.16</td>
-<td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">0.007</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">caregiving_hours_tens</td>
-<td headers="estimate" class="gt_row gt_center">1.04</td>
-<td headers="ci" class="gt_row gt_center">1.00, 1.09</td>
-<td headers="p.value" class="gt_row gt_center">0.069</td></tr>
+<td headers="ci" class="gt_row gt_center">0.72, 1.05</td>
+<td headers="p.value" class="gt_row gt_center">0.14</td></tr>
     <tr><td headers="label" class="gt_row gt_left">homelessness_year</td>
 <td headers="estimate" class="gt_row gt_center"><br></td>
 <td headers="ci" class="gt_row gt_center"><br></td>
 <td headers="p.value" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;0</td>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;No</td>
 <td headers="estimate" class="gt_row gt_center">—</td>
 <td headers="ci" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;1</td>
-<td headers="estimate" class="gt_row gt_center">1.34</td>
-<td headers="ci" class="gt_row gt_center">1.05, 1.72</td>
-<td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">0.018</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Yes</td>
+<td headers="estimate" class="gt_row gt_center">1.38</td>
+<td headers="ci" class="gt_row gt_center">1.02, 1.89</td>
+<td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">0.040</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
@@ -1970,7 +1927,7 @@ Imputed Demographics
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>FV.ordinal.mod <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(fruits3<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> food_insecure_2item, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>FV.ordinal.mod <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, MASS<span class="sc">::</span><span class="fu">polr</span>(fruits3<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age  <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> firstgen, <span class="at">Hess=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">bold_p</span>()</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -1978,23 +1935,23 @@ Imputed Demographics
 </details>
 <div class="cell-output-display">
 
-<div id="lnfacfsnsl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#lnfacfsnsl table {
+<div id="sclncurele" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#sclncurele table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#lnfacfsnsl thead, #lnfacfsnsl tbody, #lnfacfsnsl tfoot, #lnfacfsnsl tr, #lnfacfsnsl td, #lnfacfsnsl th {
+#sclncurele thead, #sclncurele tbody, #sclncurele tfoot, #sclncurele tr, #sclncurele td, #sclncurele th {
   border-style: none;
 }
 
-#lnfacfsnsl p {
+#sclncurele p {
   margin: 0;
   padding: 0;
 }
 
-#lnfacfsnsl .gt_table {
+#sclncurele .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2020,12 +1977,12 @@ Imputed Demographics
   border-left-color: #D3D3D3;
 }
 
-#lnfacfsnsl .gt_caption {
+#sclncurele .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#lnfacfsnsl .gt_title {
+#sclncurele .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2037,7 +1994,7 @@ Imputed Demographics
   border-bottom-width: 0;
 }
 
-#lnfacfsnsl .gt_subtitle {
+#sclncurele .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2049,7 +2006,7 @@ Imputed Demographics
   border-top-width: 0;
 }
 
-#lnfacfsnsl .gt_heading {
+#sclncurele .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2061,13 +2018,13 @@ Imputed Demographics
   border-right-color: #D3D3D3;
 }
 
-#lnfacfsnsl .gt_bottom_border {
+#sclncurele .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#lnfacfsnsl .gt_col_headings {
+#sclncurele .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2082,7 +2039,7 @@ Imputed Demographics
   border-right-color: #D3D3D3;
 }
 
-#lnfacfsnsl .gt_col_heading {
+#sclncurele .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2102,7 +2059,7 @@ Imputed Demographics
   overflow-x: hidden;
 }
 
-#lnfacfsnsl .gt_column_spanner_outer {
+#sclncurele .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2114,15 +2071,15 @@ Imputed Demographics
   padding-right: 4px;
 }
 
-#lnfacfsnsl .gt_column_spanner_outer:first-child {
+#sclncurele .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#lnfacfsnsl .gt_column_spanner_outer:last-child {
+#sclncurele .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#lnfacfsnsl .gt_column_spanner {
+#sclncurele .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2134,11 +2091,11 @@ Imputed Demographics
   width: 100%;
 }
 
-#lnfacfsnsl .gt_spanner_row {
+#sclncurele .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#lnfacfsnsl .gt_group_heading {
+#sclncurele .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2164,7 +2121,7 @@ Imputed Demographics
   text-align: left;
 }
 
-#lnfacfsnsl .gt_empty_group_heading {
+#sclncurele .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2179,15 +2136,15 @@ Imputed Demographics
   vertical-align: middle;
 }
 
-#lnfacfsnsl .gt_from_md > :first-child {
+#sclncurele .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#lnfacfsnsl .gt_from_md > :last-child {
+#sclncurele .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#lnfacfsnsl .gt_row {
+#sclncurele .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2206,7 +2163,7 @@ Imputed Demographics
   overflow-x: hidden;
 }
 
-#lnfacfsnsl .gt_stub {
+#sclncurele .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2219,7 +2176,7 @@ Imputed Demographics
   padding-right: 5px;
 }
 
-#lnfacfsnsl .gt_stub_row_group {
+#sclncurele .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2233,15 +2190,15 @@ Imputed Demographics
   vertical-align: top;
 }
 
-#lnfacfsnsl .gt_row_group_first td {
+#sclncurele .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#lnfacfsnsl .gt_row_group_first th {
+#sclncurele .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#lnfacfsnsl .gt_summary_row {
+#sclncurele .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2251,16 +2208,16 @@ Imputed Demographics
   padding-right: 5px;
 }
 
-#lnfacfsnsl .gt_first_summary_row {
+#sclncurele .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#lnfacfsnsl .gt_first_summary_row.thick {
+#sclncurele .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#lnfacfsnsl .gt_last_summary_row {
+#sclncurele .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2270,7 +2227,7 @@ Imputed Demographics
   border-bottom-color: #D3D3D3;
 }
 
-#lnfacfsnsl .gt_grand_summary_row {
+#sclncurele .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2280,7 +2237,7 @@ Imputed Demographics
   padding-right: 5px;
 }
 
-#lnfacfsnsl .gt_first_grand_summary_row {
+#sclncurele .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2290,7 +2247,7 @@ Imputed Demographics
   border-top-color: #D3D3D3;
 }
 
-#lnfacfsnsl .gt_last_grand_summary_row_top {
+#sclncurele .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2300,11 +2257,11 @@ Imputed Demographics
   border-bottom-color: #D3D3D3;
 }
 
-#lnfacfsnsl .gt_striped {
+#sclncurele .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#lnfacfsnsl .gt_table_body {
+#sclncurele .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2313,7 +2270,7 @@ Imputed Demographics
   border-bottom-color: #D3D3D3;
 }
 
-#lnfacfsnsl .gt_footnotes {
+#sclncurele .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2327,7 +2284,7 @@ Imputed Demographics
   border-right-color: #D3D3D3;
 }
 
-#lnfacfsnsl .gt_footnote {
+#sclncurele .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2336,7 +2293,7 @@ Imputed Demographics
   padding-right: 5px;
 }
 
-#lnfacfsnsl .gt_sourcenotes {
+#sclncurele .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2350,7 +2307,7 @@ Imputed Demographics
   border-right-color: #D3D3D3;
 }
 
-#lnfacfsnsl .gt_sourcenote {
+#sclncurele .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2358,63 +2315,63 @@ Imputed Demographics
   padding-right: 5px;
 }
 
-#lnfacfsnsl .gt_left {
+#sclncurele .gt_left {
   text-align: left;
 }
 
-#lnfacfsnsl .gt_center {
+#sclncurele .gt_center {
   text-align: center;
 }
 
-#lnfacfsnsl .gt_right {
+#sclncurele .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#lnfacfsnsl .gt_font_normal {
+#sclncurele .gt_font_normal {
   font-weight: normal;
 }
 
-#lnfacfsnsl .gt_font_bold {
+#sclncurele .gt_font_bold {
   font-weight: bold;
 }
 
-#lnfacfsnsl .gt_font_italic {
+#sclncurele .gt_font_italic {
   font-style: italic;
 }
 
-#lnfacfsnsl .gt_super {
+#sclncurele .gt_super {
   font-size: 65%;
 }
 
-#lnfacfsnsl .gt_footnote_marks {
+#sclncurele .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#lnfacfsnsl .gt_asterisk {
+#sclncurele .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#lnfacfsnsl .gt_indent_1 {
+#sclncurele .gt_indent_1 {
   text-indent: 5px;
 }
 
-#lnfacfsnsl .gt_indent_2 {
+#sclncurele .gt_indent_2 {
   text-indent: 10px;
 }
 
-#lnfacfsnsl .gt_indent_3 {
+#sclncurele .gt_indent_3 {
   text-indent: 15px;
 }
 
-#lnfacfsnsl .gt_indent_4 {
+#sclncurele .gt_indent_4 {
   text-indent: 20px;
 }
 
-#lnfacfsnsl .gt_indent_5 {
+#sclncurele .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2433,18 +2390,18 @@ Imputed Demographics
 <td headers="estimate" class="gt_row gt_center"><br></td>
 <td headers="ci" class="gt_row gt_center"><br></td>
 <td headers="p.value" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;SNAP</td>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;SNAP Recipient</td>
 <td headers="estimate" class="gt_row gt_center">—</td>
 <td headers="ci" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"><br></td></tr>
     <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Likely Eligible Non-Recipient</td>
-<td headers="estimate" class="gt_row gt_center">0.57</td>
-<td headers="ci" class="gt_row gt_center">0.45, 0.72</td>
+<td headers="estimate" class="gt_row gt_center">0.55</td>
+<td headers="ci" class="gt_row gt_center">0.44, 0.68</td>
 <td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">&lt;0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Income-Ineligible Non-Recipient</td>
-<td headers="estimate" class="gt_row gt_center">0.57</td>
-<td headers="ci" class="gt_row gt_center">0.38, 0.84</td>
-<td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">0.007</td></tr>
+<td headers="estimate" class="gt_row gt_center">0.66</td>
+<td headers="ci" class="gt_row gt_center">0.45, 0.97</td>
+<td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">0.033</td></tr>
     <tr><td headers="label" class="gt_row gt_left">Cohort</td>
 <td headers="estimate" class="gt_row gt_center"><br></td>
 <td headers="ci" class="gt_row gt_center"><br></td>
@@ -2455,8 +2412,8 @@ Imputed Demographics
 <td headers="p.value" class="gt_row gt_center"><br></td></tr>
     <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Statewide</td>
 <td headers="estimate" class="gt_row gt_center">0.81</td>
-<td headers="ci" class="gt_row gt_center">0.61, 1.09</td>
-<td headers="p.value" class="gt_row gt_center">0.2</td></tr>
+<td headers="ci" class="gt_row gt_center">0.62, 1.06</td>
+<td headers="p.value" class="gt_row gt_center">0.12</td></tr>
     <tr><td headers="label" class="gt_row gt_left">gender</td>
 <td headers="estimate" class="gt_row gt_center"><br></td>
 <td headers="ci" class="gt_row gt_center"><br></td>
@@ -2466,8 +2423,8 @@ Imputed Demographics
 <td headers="ci" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"><br></td></tr>
     <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Male</td>
-<td headers="estimate" class="gt_row gt_center">1.04</td>
-<td headers="ci" class="gt_row gt_center">0.80, 1.35</td>
+<td headers="estimate" class="gt_row gt_center">1.03</td>
+<td headers="ci" class="gt_row gt_center">0.82, 1.29</td>
 <td headers="p.value" class="gt_row gt_center">0.8</td></tr>
     <tr><td headers="label" class="gt_row gt_left">race_eth</td>
 <td headers="estimate" class="gt_row gt_center"><br></td>
@@ -2478,24 +2435,24 @@ Imputed Demographics
 <td headers="ci" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"><br></td></tr>
     <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Hispanic White</td>
-<td headers="estimate" class="gt_row gt_center">1.10</td>
-<td headers="ci" class="gt_row gt_center">0.75, 1.62</td>
-<td headers="p.value" class="gt_row gt_center">0.6</td></tr>
+<td headers="estimate" class="gt_row gt_center">1.05</td>
+<td headers="ci" class="gt_row gt_center">0.71, 1.54</td>
+<td headers="p.value" class="gt_row gt_center">0.8</td></tr>
     <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Non Hispanic African American</td>
-<td headers="estimate" class="gt_row gt_center">1.03</td>
-<td headers="ci" class="gt_row gt_center">0.57, 1.84</td>
-<td headers="p.value" class="gt_row gt_center">&gt;0.9</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Non Hispanic Asian</td>
-<td headers="estimate" class="gt_row gt_center">1.19</td>
-<td headers="ci" class="gt_row gt_center">0.78, 1.83</td>
-<td headers="p.value" class="gt_row gt_center">0.4</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Other/Unknown</td>
-<td headers="estimate" class="gt_row gt_center">1.08</td>
-<td headers="ci" class="gt_row gt_center">0.70, 1.65</td>
+<td headers="estimate" class="gt_row gt_center">1.14</td>
+<td headers="ci" class="gt_row gt_center">0.60, 2.16</td>
 <td headers="p.value" class="gt_row gt_center">0.7</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Non Hispanic Asian</td>
+<td headers="estimate" class="gt_row gt_center">1.16</td>
+<td headers="ci" class="gt_row gt_center">0.73, 1.85</td>
+<td headers="p.value" class="gt_row gt_center">0.5</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Other/Unknown</td>
+<td headers="estimate" class="gt_row gt_center">1.06</td>
+<td headers="ci" class="gt_row gt_center">0.68, 1.66</td>
+<td headers="p.value" class="gt_row gt_center">0.8</td></tr>
     <tr><td headers="label" class="gt_row gt_left">age</td>
 <td headers="estimate" class="gt_row gt_center">1.03</td>
-<td headers="ci" class="gt_row gt_center">1.02, 1.04</td>
+<td headers="ci" class="gt_row gt_center">1.01, 1.04</td>
 <td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">&lt;0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">health_conscious</td>
 <td headers="estimate" class="gt_row gt_center"><br></td>
@@ -2506,9 +2463,9 @@ Imputed Demographics
 <td headers="ci" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"><br></td></tr>
     <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Yes</td>
-<td headers="estimate" class="gt_row gt_center">1.37</td>
-<td headers="ci" class="gt_row gt_center">1.12, 1.68</td>
-<td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">0.002</td></tr>
+<td headers="estimate" class="gt_row gt_center">1.35</td>
+<td headers="ci" class="gt_row gt_center">1.07, 1.72</td>
+<td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">0.014</td></tr>
     <tr><td headers="label" class="gt_row gt_left">cooking_confident</td>
 <td headers="estimate" class="gt_row gt_center"><br></td>
 <td headers="ci" class="gt_row gt_center"><br></td>
@@ -2518,8 +2475,8 @@ Imputed Demographics
 <td headers="ci" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"><br></td></tr>
     <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Yes</td>
-<td headers="estimate" class="gt_row gt_center">1.57</td>
-<td headers="ci" class="gt_row gt_center">1.25, 1.97</td>
+<td headers="estimate" class="gt_row gt_center">1.53</td>
+<td headers="ci" class="gt_row gt_center">1.22, 1.92</td>
 <td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">&lt;0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">physical_activity</td>
 <td headers="estimate" class="gt_row gt_center"><br></td>
@@ -2530,8 +2487,8 @@ Imputed Demographics
 <td headers="ci" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"><br></td></tr>
     <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Yes</td>
-<td headers="estimate" class="gt_row gt_center">3.10</td>
-<td headers="ci" class="gt_row gt_center">2.50, 3.83</td>
+<td headers="estimate" class="gt_row gt_center">3.08</td>
+<td headers="ci" class="gt_row gt_center">2.45, 3.86</td>
 <td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">&lt;0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">storage_room</td>
 <td headers="estimate" class="gt_row gt_center"><br></td>
@@ -2542,9 +2499,9 @@ Imputed Demographics
 <td headers="ci" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"><br></td></tr>
     <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Yes</td>
-<td headers="estimate" class="gt_row gt_center">1.30</td>
-<td headers="ci" class="gt_row gt_center">1.07, 1.59</td>
-<td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">0.009</td></tr>
+<td headers="estimate" class="gt_row gt_center">1.29</td>
+<td headers="ci" class="gt_row gt_center">1.04, 1.59</td>
+<td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">0.020</td></tr>
     <tr><td headers="label" class="gt_row gt_left">food_insecure_2item</td>
 <td headers="estimate" class="gt_row gt_center"><br></td>
 <td headers="ci" class="gt_row gt_center"><br></td>
@@ -2554,9 +2511,21 @@ Imputed Demographics
 <td headers="ci" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"><br></td></tr>
     <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Yes</td>
-<td headers="estimate" class="gt_row gt_center">0.69</td>
-<td headers="ci" class="gt_row gt_center">0.56, 0.85</td>
-<td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">&lt;0.001</td></tr>
+<td headers="estimate" class="gt_row gt_center">0.70</td>
+<td headers="ci" class="gt_row gt_center">0.57, 0.87</td>
+<td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">0.001</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">firstgen</td>
+<td headers="estimate" class="gt_row gt_center"><br></td>
+<td headers="ci" class="gt_row gt_center"><br></td>
+<td headers="p.value" class="gt_row gt_center"><br></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;No</td>
+<td headers="estimate" class="gt_row gt_center">—</td>
+<td headers="ci" class="gt_row gt_center">—</td>
+<td headers="p.value" class="gt_row gt_center"><br></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Yes</td>
+<td headers="estimate" class="gt_row gt_center">0.76</td>
+<td headers="ci" class="gt_row gt_center">0.46, 1.26</td>
+<td headers="p.value" class="gt_row gt_center">0.3</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
@@ -2575,27 +2544,27 @@ Imputed Demographics
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_merge</span>(<span class="at">tbls =</span> <span class="fu">list</span>(ff.ordinal.mod, ssb.ordinal.mod, FV.ordinal.mod), <span class="at">tab_spanner =</span> <span class="fu">c</span>(<span class="st">"**Fast Food Model**"</span>, <span class="st">"**SSB Model**"</span>, <span class="st">"F&amp;V Model"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_merge</span>(<span class="at">tbls =</span> <span class="fu">list</span>(ff.ordinal.mod, ssb.ordinal.mod, FV.ordinal.mod), <span class="at">tab_spanner =</span> <span class="fu">c</span>(<span class="st">"**Fast Food Model**"</span>, <span class="st">"**SSB Model**"</span>, <span class="st">"**F&amp;V Model**"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 
-<div id="avzmtjtlbn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#avzmtjtlbn table {
+<div id="flgisqfzby" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#flgisqfzby table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#avzmtjtlbn thead, #avzmtjtlbn tbody, #avzmtjtlbn tfoot, #avzmtjtlbn tr, #avzmtjtlbn td, #avzmtjtlbn th {
+#flgisqfzby thead, #flgisqfzby tbody, #flgisqfzby tfoot, #flgisqfzby tr, #flgisqfzby td, #flgisqfzby th {
   border-style: none;
 }
 
-#avzmtjtlbn p {
+#flgisqfzby p {
   margin: 0;
   padding: 0;
 }
 
-#avzmtjtlbn .gt_table {
+#flgisqfzby .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2621,12 +2590,12 @@ Imputed Demographics
   border-left-color: #D3D3D3;
 }
 
-#avzmtjtlbn .gt_caption {
+#flgisqfzby .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#avzmtjtlbn .gt_title {
+#flgisqfzby .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2638,7 +2607,7 @@ Imputed Demographics
   border-bottom-width: 0;
 }
 
-#avzmtjtlbn .gt_subtitle {
+#flgisqfzby .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2650,7 +2619,7 @@ Imputed Demographics
   border-top-width: 0;
 }
 
-#avzmtjtlbn .gt_heading {
+#flgisqfzby .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2662,13 +2631,13 @@ Imputed Demographics
   border-right-color: #D3D3D3;
 }
 
-#avzmtjtlbn .gt_bottom_border {
+#flgisqfzby .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#avzmtjtlbn .gt_col_headings {
+#flgisqfzby .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2683,7 +2652,7 @@ Imputed Demographics
   border-right-color: #D3D3D3;
 }
 
-#avzmtjtlbn .gt_col_heading {
+#flgisqfzby .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2703,7 +2672,7 @@ Imputed Demographics
   overflow-x: hidden;
 }
 
-#avzmtjtlbn .gt_column_spanner_outer {
+#flgisqfzby .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2715,15 +2684,15 @@ Imputed Demographics
   padding-right: 4px;
 }
 
-#avzmtjtlbn .gt_column_spanner_outer:first-child {
+#flgisqfzby .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#avzmtjtlbn .gt_column_spanner_outer:last-child {
+#flgisqfzby .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#avzmtjtlbn .gt_column_spanner {
+#flgisqfzby .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2735,11 +2704,11 @@ Imputed Demographics
   width: 100%;
 }
 
-#avzmtjtlbn .gt_spanner_row {
+#flgisqfzby .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#avzmtjtlbn .gt_group_heading {
+#flgisqfzby .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2765,7 +2734,7 @@ Imputed Demographics
   text-align: left;
 }
 
-#avzmtjtlbn .gt_empty_group_heading {
+#flgisqfzby .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2780,15 +2749,15 @@ Imputed Demographics
   vertical-align: middle;
 }
 
-#avzmtjtlbn .gt_from_md > :first-child {
+#flgisqfzby .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#avzmtjtlbn .gt_from_md > :last-child {
+#flgisqfzby .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#avzmtjtlbn .gt_row {
+#flgisqfzby .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2807,7 +2776,7 @@ Imputed Demographics
   overflow-x: hidden;
 }
 
-#avzmtjtlbn .gt_stub {
+#flgisqfzby .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2820,7 +2789,7 @@ Imputed Demographics
   padding-right: 5px;
 }
 
-#avzmtjtlbn .gt_stub_row_group {
+#flgisqfzby .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2834,15 +2803,15 @@ Imputed Demographics
   vertical-align: top;
 }
 
-#avzmtjtlbn .gt_row_group_first td {
+#flgisqfzby .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#avzmtjtlbn .gt_row_group_first th {
+#flgisqfzby .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#avzmtjtlbn .gt_summary_row {
+#flgisqfzby .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2852,16 +2821,16 @@ Imputed Demographics
   padding-right: 5px;
 }
 
-#avzmtjtlbn .gt_first_summary_row {
+#flgisqfzby .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#avzmtjtlbn .gt_first_summary_row.thick {
+#flgisqfzby .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#avzmtjtlbn .gt_last_summary_row {
+#flgisqfzby .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2871,7 +2840,7 @@ Imputed Demographics
   border-bottom-color: #D3D3D3;
 }
 
-#avzmtjtlbn .gt_grand_summary_row {
+#flgisqfzby .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2881,7 +2850,7 @@ Imputed Demographics
   padding-right: 5px;
 }
 
-#avzmtjtlbn .gt_first_grand_summary_row {
+#flgisqfzby .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2891,7 +2860,7 @@ Imputed Demographics
   border-top-color: #D3D3D3;
 }
 
-#avzmtjtlbn .gt_last_grand_summary_row_top {
+#flgisqfzby .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2901,11 +2870,11 @@ Imputed Demographics
   border-bottom-color: #D3D3D3;
 }
 
-#avzmtjtlbn .gt_striped {
+#flgisqfzby .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#avzmtjtlbn .gt_table_body {
+#flgisqfzby .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2914,7 +2883,7 @@ Imputed Demographics
   border-bottom-color: #D3D3D3;
 }
 
-#avzmtjtlbn .gt_footnotes {
+#flgisqfzby .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2928,7 +2897,7 @@ Imputed Demographics
   border-right-color: #D3D3D3;
 }
 
-#avzmtjtlbn .gt_footnote {
+#flgisqfzby .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2937,7 +2906,7 @@ Imputed Demographics
   padding-right: 5px;
 }
 
-#avzmtjtlbn .gt_sourcenotes {
+#flgisqfzby .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2951,7 +2920,7 @@ Imputed Demographics
   border-right-color: #D3D3D3;
 }
 
-#avzmtjtlbn .gt_sourcenote {
+#flgisqfzby .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2959,63 +2928,63 @@ Imputed Demographics
   padding-right: 5px;
 }
 
-#avzmtjtlbn .gt_left {
+#flgisqfzby .gt_left {
   text-align: left;
 }
 
-#avzmtjtlbn .gt_center {
+#flgisqfzby .gt_center {
   text-align: center;
 }
 
-#avzmtjtlbn .gt_right {
+#flgisqfzby .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#avzmtjtlbn .gt_font_normal {
+#flgisqfzby .gt_font_normal {
   font-weight: normal;
 }
 
-#avzmtjtlbn .gt_font_bold {
+#flgisqfzby .gt_font_bold {
   font-weight: bold;
 }
 
-#avzmtjtlbn .gt_font_italic {
+#flgisqfzby .gt_font_italic {
   font-style: italic;
 }
 
-#avzmtjtlbn .gt_super {
+#flgisqfzby .gt_super {
   font-size: 65%;
 }
 
-#avzmtjtlbn .gt_footnote_marks {
+#flgisqfzby .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#avzmtjtlbn .gt_asterisk {
+#flgisqfzby .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#avzmtjtlbn .gt_indent_1 {
+#flgisqfzby .gt_indent_1 {
   text-indent: 5px;
 }
 
-#avzmtjtlbn .gt_indent_2 {
+#flgisqfzby .gt_indent_2 {
   text-indent: 10px;
 }
 
-#avzmtjtlbn .gt_indent_3 {
+#flgisqfzby .gt_indent_3 {
   text-indent: 15px;
 }
 
-#avzmtjtlbn .gt_indent_4 {
+#flgisqfzby .gt_indent_4 {
   text-indent: 20px;
 }
 
-#avzmtjtlbn .gt_indent_5 {
+#flgisqfzby .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -3030,8 +2999,8 @@ Imputed Demographics
       <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="3" scope="colgroup" id="<strong>SSB Model</strong>">
         <span class="gt_column_spanner"><strong>SSB Model</strong></span>
       </th>
-      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="3" scope="colgroup" id="F&amp;amp;V Model">
-        <span class="gt_column_spanner">F&amp;V Model</span>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="3" scope="colgroup" id="<strong>F&amp;amp;V Model</strong>">
+        <span class="gt_column_spanner"><strong>F&amp;V Model</strong></span>
       </th>
     </tr>
     <tr class="gt_col_headings">
@@ -3057,7 +3026,7 @@ Imputed Demographics
 <td headers="estimate_3" class="gt_row gt_center"><br></td>
 <td headers="ci_3" class="gt_row gt_center"><br></td>
 <td headers="p.value_3" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;SNAP</td>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;SNAP Recipient</td>
 <td headers="estimate_1" class="gt_row gt_center">—</td>
 <td headers="ci_1" class="gt_row gt_center">—</td>
 <td headers="p.value_1" class="gt_row gt_center"><br></td>
@@ -3068,25 +3037,25 @@ Imputed Demographics
 <td headers="ci_3" class="gt_row gt_center">—</td>
 <td headers="p.value_3" class="gt_row gt_center"><br></td></tr>
     <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Likely Eligible Non-Recipient</td>
-<td headers="estimate_1" class="gt_row gt_center">1.69</td>
-<td headers="ci_1" class="gt_row gt_center">1.33, 2.15</td>
+<td headers="estimate_1" class="gt_row gt_center">1.67</td>
+<td headers="ci_1" class="gt_row gt_center">1.35, 2.07</td>
 <td headers="p.value_1" class="gt_row gt_center" style="font-weight: bold;">&lt;0.001</td>
-<td headers="estimate_2" class="gt_row gt_center">1.37</td>
-<td headers="ci_2" class="gt_row gt_center">1.12, 1.66</td>
-<td headers="p.value_2" class="gt_row gt_center" style="font-weight: bold;">0.002</td>
-<td headers="estimate_3" class="gt_row gt_center">0.57</td>
-<td headers="ci_3" class="gt_row gt_center">0.45, 0.72</td>
+<td headers="estimate_2" class="gt_row gt_center">1.34</td>
+<td headers="ci_2" class="gt_row gt_center">1.09, 1.65</td>
+<td headers="p.value_2" class="gt_row gt_center" style="font-weight: bold;">0.006</td>
+<td headers="estimate_3" class="gt_row gt_center">0.55</td>
+<td headers="ci_3" class="gt_row gt_center">0.44, 0.68</td>
 <td headers="p.value_3" class="gt_row gt_center" style="font-weight: bold;">&lt;0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Income-Ineligible Non-Recipient</td>
-<td headers="estimate_1" class="gt_row gt_center">1.87</td>
-<td headers="ci_1" class="gt_row gt_center">1.43, 2.45</td>
+<td headers="estimate_1" class="gt_row gt_center">2.05</td>
+<td headers="ci_1" class="gt_row gt_center">1.44, 2.92</td>
 <td headers="p.value_1" class="gt_row gt_center" style="font-weight: bold;">&lt;0.001</td>
-<td headers="estimate_2" class="gt_row gt_center">1.53</td>
-<td headers="ci_2" class="gt_row gt_center">1.17, 2.01</td>
-<td headers="p.value_2" class="gt_row gt_center" style="font-weight: bold;">0.003</td>
-<td headers="estimate_3" class="gt_row gt_center">0.57</td>
-<td headers="ci_3" class="gt_row gt_center">0.38, 0.84</td>
-<td headers="p.value_3" class="gt_row gt_center" style="font-weight: bold;">0.007</td></tr>
+<td headers="estimate_2" class="gt_row gt_center">1.44</td>
+<td headers="ci_2" class="gt_row gt_center">1.06, 1.95</td>
+<td headers="p.value_2" class="gt_row gt_center" style="font-weight: bold;">0.020</td>
+<td headers="estimate_3" class="gt_row gt_center">0.66</td>
+<td headers="ci_3" class="gt_row gt_center">0.45, 0.97</td>
+<td headers="p.value_3" class="gt_row gt_center" style="font-weight: bold;">0.033</td></tr>
     <tr><td headers="label" class="gt_row gt_left">Cohort</td>
 <td headers="estimate_1" class="gt_row gt_center"><br></td>
 <td headers="ci_1" class="gt_row gt_center"><br></td>
@@ -3108,15 +3077,15 @@ Imputed Demographics
 <td headers="ci_3" class="gt_row gt_center">—</td>
 <td headers="p.value_3" class="gt_row gt_center"><br></td></tr>
     <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Statewide</td>
-<td headers="estimate_1" class="gt_row gt_center">1.47</td>
-<td headers="ci_1" class="gt_row gt_center">1.14, 1.90</td>
-<td headers="p.value_1" class="gt_row gt_center" style="font-weight: bold;">0.003</td>
-<td headers="estimate_2" class="gt_row gt_center">1.95</td>
-<td headers="ci_2" class="gt_row gt_center">1.54, 2.46</td>
+<td headers="estimate_1" class="gt_row gt_center">1.45</td>
+<td headers="ci_1" class="gt_row gt_center">1.13, 1.86</td>
+<td headers="p.value_1" class="gt_row gt_center" style="font-weight: bold;">0.004</td>
+<td headers="estimate_2" class="gt_row gt_center">2.12</td>
+<td headers="ci_2" class="gt_row gt_center">1.64, 2.74</td>
 <td headers="p.value_2" class="gt_row gt_center" style="font-weight: bold;">&lt;0.001</td>
 <td headers="estimate_3" class="gt_row gt_center">0.81</td>
-<td headers="ci_3" class="gt_row gt_center">0.61, 1.09</td>
-<td headers="p.value_3" class="gt_row gt_center">0.2</td></tr>
+<td headers="ci_3" class="gt_row gt_center">0.62, 1.06</td>
+<td headers="p.value_3" class="gt_row gt_center">0.12</td></tr>
     <tr><td headers="label" class="gt_row gt_left">gender</td>
 <td headers="estimate_1" class="gt_row gt_center"><br></td>
 <td headers="ci_1" class="gt_row gt_center"><br></td>
@@ -3138,14 +3107,14 @@ Imputed Demographics
 <td headers="ci_3" class="gt_row gt_center">—</td>
 <td headers="p.value_3" class="gt_row gt_center"><br></td></tr>
     <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Male</td>
-<td headers="estimate_1" class="gt_row gt_center">1.29</td>
-<td headers="ci_1" class="gt_row gt_center">1.06, 1.58</td>
-<td headers="p.value_1" class="gt_row gt_center" style="font-weight: bold;">0.013</td>
-<td headers="estimate_2" class="gt_row gt_center">1.32</td>
-<td headers="ci_2" class="gt_row gt_center">1.09, 1.60</td>
+<td headers="estimate_1" class="gt_row gt_center">1.24</td>
+<td headers="ci_1" class="gt_row gt_center">0.99, 1.56</td>
+<td headers="p.value_1" class="gt_row gt_center">0.058</td>
+<td headers="estimate_2" class="gt_row gt_center">1.33</td>
+<td headers="ci_2" class="gt_row gt_center">1.10, 1.61</td>
 <td headers="p.value_2" class="gt_row gt_center" style="font-weight: bold;">0.004</td>
-<td headers="estimate_3" class="gt_row gt_center">1.04</td>
-<td headers="ci_3" class="gt_row gt_center">0.80, 1.35</td>
+<td headers="estimate_3" class="gt_row gt_center">1.03</td>
+<td headers="ci_3" class="gt_row gt_center">0.82, 1.29</td>
 <td headers="p.value_3" class="gt_row gt_center">0.8</td></tr>
     <tr><td headers="label" class="gt_row gt_left">race_eth</td>
 <td headers="estimate_1" class="gt_row gt_center"><br></td>
@@ -3168,45 +3137,45 @@ Imputed Demographics
 <td headers="ci_3" class="gt_row gt_center">—</td>
 <td headers="p.value_3" class="gt_row gt_center"><br></td></tr>
     <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Hispanic White</td>
-<td headers="estimate_1" class="gt_row gt_center">0.92</td>
-<td headers="ci_1" class="gt_row gt_center">0.64, 1.31</td>
-<td headers="p.value_1" class="gt_row gt_center">0.6</td>
-<td headers="estimate_2" class="gt_row gt_center">1.09</td>
-<td headers="ci_2" class="gt_row gt_center">0.81, 1.46</td>
-<td headers="p.value_2" class="gt_row gt_center">0.6</td>
-<td headers="estimate_3" class="gt_row gt_center">1.10</td>
-<td headers="ci_3" class="gt_row gt_center">0.75, 1.62</td>
-<td headers="p.value_3" class="gt_row gt_center">0.6</td></tr>
+<td headers="estimate_1" class="gt_row gt_center">0.99</td>
+<td headers="ci_1" class="gt_row gt_center">0.67, 1.47</td>
+<td headers="p.value_1" class="gt_row gt_center">&gt;0.9</td>
+<td headers="estimate_2" class="gt_row gt_center">1.15</td>
+<td headers="ci_2" class="gt_row gt_center">0.83, 1.58</td>
+<td headers="p.value_2" class="gt_row gt_center">0.4</td>
+<td headers="estimate_3" class="gt_row gt_center">1.05</td>
+<td headers="ci_3" class="gt_row gt_center">0.71, 1.54</td>
+<td headers="p.value_3" class="gt_row gt_center">0.8</td></tr>
     <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Non Hispanic African American</td>
-<td headers="estimate_1" class="gt_row gt_center">0.95</td>
-<td headers="ci_1" class="gt_row gt_center">0.59, 1.52</td>
-<td headers="p.value_1" class="gt_row gt_center">0.8</td>
-<td headers="estimate_2" class="gt_row gt_center">0.98</td>
-<td headers="ci_2" class="gt_row gt_center">0.59, 1.64</td>
+<td headers="estimate_1" class="gt_row gt_center">1.04</td>
+<td headers="ci_1" class="gt_row gt_center">0.57, 1.88</td>
+<td headers="p.value_1" class="gt_row gt_center">&gt;0.9</td>
+<td headers="estimate_2" class="gt_row gt_center">1.02</td>
+<td headers="ci_2" class="gt_row gt_center">0.60, 1.74</td>
 <td headers="p.value_2" class="gt_row gt_center">&gt;0.9</td>
-<td headers="estimate_3" class="gt_row gt_center">1.03</td>
-<td headers="ci_3" class="gt_row gt_center">0.57, 1.84</td>
-<td headers="p.value_3" class="gt_row gt_center">&gt;0.9</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Non Hispanic Asian</td>
-<td headers="estimate_1" class="gt_row gt_center">0.53</td>
-<td headers="ci_1" class="gt_row gt_center">0.35, 0.81</td>
-<td headers="p.value_1" class="gt_row gt_center" style="font-weight: bold;">0.004</td>
-<td headers="estimate_2" class="gt_row gt_center">0.76</td>
-<td headers="ci_2" class="gt_row gt_center">0.53, 1.08</td>
-<td headers="p.value_2" class="gt_row gt_center">0.12</td>
-<td headers="estimate_3" class="gt_row gt_center">1.19</td>
-<td headers="ci_3" class="gt_row gt_center">0.78, 1.83</td>
-<td headers="p.value_3" class="gt_row gt_center">0.4</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Other/Unknown</td>
-<td headers="estimate_1" class="gt_row gt_center">1.08</td>
-<td headers="ci_1" class="gt_row gt_center">0.73, 1.60</td>
-<td headers="p.value_1" class="gt_row gt_center">0.7</td>
-<td headers="estimate_2" class="gt_row gt_center">0.93</td>
-<td headers="ci_2" class="gt_row gt_center">0.62, 1.38</td>
-<td headers="p.value_2" class="gt_row gt_center">0.7</td>
-<td headers="estimate_3" class="gt_row gt_center">1.08</td>
-<td headers="ci_3" class="gt_row gt_center">0.70, 1.65</td>
+<td headers="estimate_3" class="gt_row gt_center">1.14</td>
+<td headers="ci_3" class="gt_row gt_center">0.60, 2.16</td>
 <td headers="p.value_3" class="gt_row gt_center">0.7</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Non Hispanic Asian</td>
+<td headers="estimate_1" class="gt_row gt_center">0.57</td>
+<td headers="ci_1" class="gt_row gt_center">0.38, 0.87</td>
+<td headers="p.value_1" class="gt_row gt_center" style="font-weight: bold;">0.010</td>
+<td headers="estimate_2" class="gt_row gt_center">0.78</td>
+<td headers="ci_2" class="gt_row gt_center">0.54, 1.15</td>
+<td headers="p.value_2" class="gt_row gt_center">0.2</td>
+<td headers="estimate_3" class="gt_row gt_center">1.16</td>
+<td headers="ci_3" class="gt_row gt_center">0.73, 1.85</td>
+<td headers="p.value_3" class="gt_row gt_center">0.5</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Other/Unknown</td>
+<td headers="estimate_1" class="gt_row gt_center">1.20</td>
+<td headers="ci_1" class="gt_row gt_center">0.76, 1.89</td>
+<td headers="p.value_1" class="gt_row gt_center">0.4</td>
+<td headers="estimate_2" class="gt_row gt_center">1.06</td>
+<td headers="ci_2" class="gt_row gt_center">0.74, 1.52</td>
+<td headers="p.value_2" class="gt_row gt_center">0.7</td>
+<td headers="estimate_3" class="gt_row gt_center">1.06</td>
+<td headers="ci_3" class="gt_row gt_center">0.68, 1.66</td>
+<td headers="p.value_3" class="gt_row gt_center">0.8</td></tr>
     <tr><td headers="label" class="gt_row gt_left">age</td>
 <td headers="estimate_1" class="gt_row gt_center">0.97</td>
 <td headers="ci_1" class="gt_row gt_center">0.95, 0.98</td>
@@ -3215,7 +3184,7 @@ Imputed Demographics
 <td headers="ci_2" class="gt_row gt_center">0.98, 1.01</td>
 <td headers="p.value_2" class="gt_row gt_center">0.3</td>
 <td headers="estimate_3" class="gt_row gt_center">1.03</td>
-<td headers="ci_3" class="gt_row gt_center">1.02, 1.04</td>
+<td headers="ci_3" class="gt_row gt_center">1.01, 1.04</td>
 <td headers="p.value_3" class="gt_row gt_center" style="font-weight: bold;">&lt;0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">physical_activity</td>
 <td headers="estimate_1" class="gt_row gt_center"><br></td>
@@ -3238,14 +3207,14 @@ Imputed Demographics
 <td headers="ci_3" class="gt_row gt_center">—</td>
 <td headers="p.value_3" class="gt_row gt_center"><br></td></tr>
     <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Yes</td>
-<td headers="estimate_1" class="gt_row gt_center">0.81</td>
-<td headers="ci_1" class="gt_row gt_center">0.67, 0.98</td>
-<td headers="p.value_1" class="gt_row gt_center" style="font-weight: bold;">0.033</td>
+<td headers="estimate_1" class="gt_row gt_center">0.82</td>
+<td headers="ci_1" class="gt_row gt_center">0.66, 1.01</td>
+<td headers="p.value_1" class="gt_row gt_center">0.058</td>
 <td headers="estimate_2" class="gt_row gt_center">0.87</td>
-<td headers="ci_2" class="gt_row gt_center">0.74, 1.03</td>
-<td headers="p.value_2" class="gt_row gt_center">0.10</td>
-<td headers="estimate_3" class="gt_row gt_center">3.10</td>
-<td headers="ci_3" class="gt_row gt_center">2.50, 3.83</td>
+<td headers="ci_2" class="gt_row gt_center">0.72, 1.05</td>
+<td headers="p.value_2" class="gt_row gt_center">0.14</td>
+<td headers="estimate_3" class="gt_row gt_center">3.08</td>
+<td headers="ci_3" class="gt_row gt_center">2.45, 3.86</td>
 <td headers="p.value_3" class="gt_row gt_center" style="font-weight: bold;">&lt;0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">storage_room</td>
 <td headers="estimate_1" class="gt_row gt_center"><br></td>
@@ -3268,45 +3237,15 @@ Imputed Demographics
 <td headers="ci_3" class="gt_row gt_center">—</td>
 <td headers="p.value_3" class="gt_row gt_center"><br></td></tr>
     <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Yes</td>
-<td headers="estimate_1" class="gt_row gt_center">0.85</td>
-<td headers="ci_1" class="gt_row gt_center">0.69, 1.04</td>
-<td headers="p.value_1" class="gt_row gt_center">0.11</td>
+<td headers="estimate_1" class="gt_row gt_center">0.83</td>
+<td headers="ci_1" class="gt_row gt_center">0.70, 1.00</td>
+<td headers="p.value_1" class="gt_row gt_center">0.054</td>
 <td headers="estimate_2" class="gt_row gt_center"><br></td>
 <td headers="ci_2" class="gt_row gt_center"><br></td>
 <td headers="p.value_2" class="gt_row gt_center"><br></td>
-<td headers="estimate_3" class="gt_row gt_center">1.30</td>
-<td headers="ci_3" class="gt_row gt_center">1.07, 1.59</td>
-<td headers="p.value_3" class="gt_row gt_center" style="font-weight: bold;">0.009</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">kitchen_access</td>
-<td headers="estimate_1" class="gt_row gt_center"><br></td>
-<td headers="ci_1" class="gt_row gt_center"><br></td>
-<td headers="p.value_1" class="gt_row gt_center"><br></td>
-<td headers="estimate_2" class="gt_row gt_center"><br></td>
-<td headers="ci_2" class="gt_row gt_center"><br></td>
-<td headers="p.value_2" class="gt_row gt_center"><br></td>
-<td headers="estimate_3" class="gt_row gt_center"><br></td>
-<td headers="ci_3" class="gt_row gt_center"><br></td>
-<td headers="p.value_3" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;No</td>
-<td headers="estimate_1" class="gt_row gt_center">—</td>
-<td headers="ci_1" class="gt_row gt_center">—</td>
-<td headers="p.value_1" class="gt_row gt_center"><br></td>
-<td headers="estimate_2" class="gt_row gt_center"><br></td>
-<td headers="ci_2" class="gt_row gt_center"><br></td>
-<td headers="p.value_2" class="gt_row gt_center"><br></td>
-<td headers="estimate_3" class="gt_row gt_center"><br></td>
-<td headers="ci_3" class="gt_row gt_center"><br></td>
-<td headers="p.value_3" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Yes</td>
-<td headers="estimate_1" class="gt_row gt_center">0.92</td>
-<td headers="ci_1" class="gt_row gt_center">0.71, 1.19</td>
-<td headers="p.value_1" class="gt_row gt_center">0.5</td>
-<td headers="estimate_2" class="gt_row gt_center"><br></td>
-<td headers="ci_2" class="gt_row gt_center"><br></td>
-<td headers="p.value_2" class="gt_row gt_center"><br></td>
-<td headers="estimate_3" class="gt_row gt_center"><br></td>
-<td headers="ci_3" class="gt_row gt_center"><br></td>
-<td headers="p.value_3" class="gt_row gt_center"><br></td></tr>
+<td headers="estimate_3" class="gt_row gt_center">1.29</td>
+<td headers="ci_3" class="gt_row gt_center">1.04, 1.59</td>
+<td headers="p.value_3" class="gt_row gt_center" style="font-weight: bold;">0.020</td></tr>
     <tr><td headers="label" class="gt_row gt_left">health_conscious</td>
 <td headers="estimate_1" class="gt_row gt_center"><br></td>
 <td headers="ci_1" class="gt_row gt_center"><br></td>
@@ -3328,15 +3267,45 @@ Imputed Demographics
 <td headers="ci_3" class="gt_row gt_center">—</td>
 <td headers="p.value_3" class="gt_row gt_center"><br></td></tr>
     <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Yes</td>
-<td headers="estimate_1" class="gt_row gt_center">0.87</td>
-<td headers="ci_1" class="gt_row gt_center">0.70, 1.09</td>
-<td headers="p.value_1" class="gt_row gt_center">0.2</td>
-<td headers="estimate_2" class="gt_row gt_center">0.74</td>
-<td headers="ci_2" class="gt_row gt_center">0.62, 0.88</td>
-<td headers="p.value_2" class="gt_row gt_center" style="font-weight: bold;">&lt;0.001</td>
-<td headers="estimate_3" class="gt_row gt_center">1.37</td>
-<td headers="ci_3" class="gt_row gt_center">1.12, 1.68</td>
-<td headers="p.value_3" class="gt_row gt_center" style="font-weight: bold;">0.002</td></tr>
+<td headers="estimate_1" class="gt_row gt_center">0.86</td>
+<td headers="ci_1" class="gt_row gt_center">0.72, 1.03</td>
+<td headers="p.value_1" class="gt_row gt_center">0.11</td>
+<td headers="estimate_2" class="gt_row gt_center">0.76</td>
+<td headers="ci_2" class="gt_row gt_center">0.63, 0.90</td>
+<td headers="p.value_2" class="gt_row gt_center" style="font-weight: bold;">0.002</td>
+<td headers="estimate_3" class="gt_row gt_center">1.35</td>
+<td headers="ci_3" class="gt_row gt_center">1.07, 1.72</td>
+<td headers="p.value_3" class="gt_row gt_center" style="font-weight: bold;">0.014</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">living_with_family</td>
+<td headers="estimate_1" class="gt_row gt_center"><br></td>
+<td headers="ci_1" class="gt_row gt_center"><br></td>
+<td headers="p.value_1" class="gt_row gt_center"><br></td>
+<td headers="estimate_2" class="gt_row gt_center"><br></td>
+<td headers="ci_2" class="gt_row gt_center"><br></td>
+<td headers="p.value_2" class="gt_row gt_center"><br></td>
+<td headers="estimate_3" class="gt_row gt_center"><br></td>
+<td headers="ci_3" class="gt_row gt_center"><br></td>
+<td headers="p.value_3" class="gt_row gt_center"><br></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;No</td>
+<td headers="estimate_1" class="gt_row gt_center">—</td>
+<td headers="ci_1" class="gt_row gt_center">—</td>
+<td headers="p.value_1" class="gt_row gt_center"><br></td>
+<td headers="estimate_2" class="gt_row gt_center"><br></td>
+<td headers="ci_2" class="gt_row gt_center"><br></td>
+<td headers="p.value_2" class="gt_row gt_center"><br></td>
+<td headers="estimate_3" class="gt_row gt_center"><br></td>
+<td headers="ci_3" class="gt_row gt_center"><br></td>
+<td headers="p.value_3" class="gt_row gt_center"><br></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Yes</td>
+<td headers="estimate_1" class="gt_row gt_center">1.25</td>
+<td headers="ci_1" class="gt_row gt_center">1.03, 1.52</td>
+<td headers="p.value_1" class="gt_row gt_center" style="font-weight: bold;">0.024</td>
+<td headers="estimate_2" class="gt_row gt_center"><br></td>
+<td headers="ci_2" class="gt_row gt_center"><br></td>
+<td headers="p.value_2" class="gt_row gt_center"><br></td>
+<td headers="estimate_3" class="gt_row gt_center"><br></td>
+<td headers="ci_3" class="gt_row gt_center"><br></td>
+<td headers="p.value_3" class="gt_row gt_center"><br></td></tr>
     <tr><td headers="label" class="gt_row gt_left">cooking_confident</td>
 <td headers="estimate_1" class="gt_row gt_center"><br></td>
 <td headers="ci_1" class="gt_row gt_center"><br></td>
@@ -3358,14 +3327,14 @@ Imputed Demographics
 <td headers="ci_3" class="gt_row gt_center">—</td>
 <td headers="p.value_3" class="gt_row gt_center"><br></td></tr>
     <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Yes</td>
-<td headers="estimate_1" class="gt_row gt_center">0.81</td>
-<td headers="ci_1" class="gt_row gt_center">0.65, 1.02</td>
-<td headers="p.value_1" class="gt_row gt_center">0.068</td>
+<td headers="estimate_1" class="gt_row gt_center">0.82</td>
+<td headers="ci_1" class="gt_row gt_center">0.67, 1.00</td>
+<td headers="p.value_1" class="gt_row gt_center" style="font-weight: bold;">0.047</td>
 <td headers="estimate_2" class="gt_row gt_center"><br></td>
 <td headers="ci_2" class="gt_row gt_center"><br></td>
 <td headers="p.value_2" class="gt_row gt_center"><br></td>
-<td headers="estimate_3" class="gt_row gt_center">1.57</td>
-<td headers="ci_3" class="gt_row gt_center">1.25, 1.97</td>
+<td headers="estimate_3" class="gt_row gt_center">1.53</td>
+<td headers="ci_3" class="gt_row gt_center">1.22, 1.92</td>
 <td headers="p.value_3" class="gt_row gt_center" style="font-weight: bold;">&lt;0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">food_insecure_2item</td>
 <td headers="estimate_1" class="gt_row gt_center"><br></td>
@@ -3388,52 +3357,22 @@ Imputed Demographics
 <td headers="ci_3" class="gt_row gt_center">—</td>
 <td headers="p.value_3" class="gt_row gt_center"><br></td></tr>
     <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Yes</td>
-<td headers="estimate_1" class="gt_row gt_center">1.17</td>
-<td headers="ci_1" class="gt_row gt_center">0.98, 1.40</td>
-<td headers="p.value_1" class="gt_row gt_center">0.082</td>
+<td headers="estimate_1" class="gt_row gt_center">1.12</td>
+<td headers="ci_1" class="gt_row gt_center">0.93, 1.34</td>
+<td headers="p.value_1" class="gt_row gt_center">0.2</td>
 <td headers="estimate_2" class="gt_row gt_center"><br></td>
 <td headers="ci_2" class="gt_row gt_center"><br></td>
 <td headers="p.value_2" class="gt_row gt_center"><br></td>
-<td headers="estimate_3" class="gt_row gt_center">0.69</td>
-<td headers="ci_3" class="gt_row gt_center">0.56, 0.85</td>
-<td headers="p.value_3" class="gt_row gt_center" style="font-weight: bold;">&lt;0.001</td></tr>
+<td headers="estimate_3" class="gt_row gt_center">0.70</td>
+<td headers="ci_3" class="gt_row gt_center">0.57, 0.87</td>
+<td headers="p.value_3" class="gt_row gt_center" style="font-weight: bold;">0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">paid_work_hours_tens</td>
-<td headers="estimate_1" class="gt_row gt_center">1.08</td>
-<td headers="ci_1" class="gt_row gt_center">1.01, 1.16</td>
-<td headers="p.value_1" class="gt_row gt_center" style="font-weight: bold;">0.019</td>
+<td headers="estimate_1" class="gt_row gt_center">1.09</td>
+<td headers="ci_1" class="gt_row gt_center">1.02, 1.17</td>
+<td headers="p.value_1" class="gt_row gt_center" style="font-weight: bold;">0.013</td>
 <td headers="estimate_2" class="gt_row gt_center">1.09</td>
-<td headers="ci_2" class="gt_row gt_center">1.03, 1.16</td>
-<td headers="p.value_2" class="gt_row gt_center" style="font-weight: bold;">0.007</td>
-<td headers="estimate_3" class="gt_row gt_center"><br></td>
-<td headers="ci_3" class="gt_row gt_center"><br></td>
-<td headers="p.value_3" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">living_with_family</td>
-<td headers="estimate_1" class="gt_row gt_center"><br></td>
-<td headers="ci_1" class="gt_row gt_center"><br></td>
-<td headers="p.value_1" class="gt_row gt_center"><br></td>
-<td headers="estimate_2" class="gt_row gt_center"><br></td>
-<td headers="ci_2" class="gt_row gt_center"><br></td>
-<td headers="p.value_2" class="gt_row gt_center"><br></td>
-<td headers="estimate_3" class="gt_row gt_center"><br></td>
-<td headers="ci_3" class="gt_row gt_center"><br></td>
-<td headers="p.value_3" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;No</td>
-<td headers="estimate_1" class="gt_row gt_center">—</td>
-<td headers="ci_1" class="gt_row gt_center">—</td>
-<td headers="p.value_1" class="gt_row gt_center"><br></td>
-<td headers="estimate_2" class="gt_row gt_center"><br></td>
-<td headers="ci_2" class="gt_row gt_center"><br></td>
-<td headers="p.value_2" class="gt_row gt_center"><br></td>
-<td headers="estimate_3" class="gt_row gt_center"><br></td>
-<td headers="ci_3" class="gt_row gt_center"><br></td>
-<td headers="p.value_3" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Yes</td>
-<td headers="estimate_1" class="gt_row gt_center">1.28</td>
-<td headers="ci_1" class="gt_row gt_center">1.06, 1.54</td>
-<td headers="p.value_1" class="gt_row gt_center" style="font-weight: bold;">0.012</td>
-<td headers="estimate_2" class="gt_row gt_center"><br></td>
-<td headers="ci_2" class="gt_row gt_center"><br></td>
-<td headers="p.value_2" class="gt_row gt_center"><br></td>
+<td headers="ci_2" class="gt_row gt_center">1.04, 1.15</td>
+<td headers="p.value_2" class="gt_row gt_center" style="font-weight: bold;">0.001</td>
 <td headers="estimate_3" class="gt_row gt_center"><br></td>
 <td headers="ci_3" class="gt_row gt_center"><br></td>
 <td headers="p.value_3" class="gt_row gt_center"><br></td></tr>
@@ -3447,7 +3386,7 @@ Imputed Demographics
 <td headers="estimate_3" class="gt_row gt_center"><br></td>
 <td headers="ci_3" class="gt_row gt_center"><br></td>
 <td headers="p.value_3" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;0</td>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;No</td>
 <td headers="estimate_1" class="gt_row gt_center">—</td>
 <td headers="ci_1" class="gt_row gt_center">—</td>
 <td headers="p.value_1" class="gt_row gt_center"><br></td>
@@ -3457,13 +3396,43 @@ Imputed Demographics
 <td headers="estimate_3" class="gt_row gt_center"><br></td>
 <td headers="ci_3" class="gt_row gt_center"><br></td>
 <td headers="p.value_3" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;1</td>
-<td headers="estimate_1" class="gt_row gt_center">1.47</td>
-<td headers="ci_1" class="gt_row gt_center">1.13, 1.92</td>
-<td headers="p.value_1" class="gt_row gt_center" style="font-weight: bold;">0.004</td>
-<td headers="estimate_2" class="gt_row gt_center">1.34</td>
-<td headers="ci_2" class="gt_row gt_center">1.05, 1.72</td>
-<td headers="p.value_2" class="gt_row gt_center" style="font-weight: bold;">0.018</td>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Yes</td>
+<td headers="estimate_1" class="gt_row gt_center">1.46</td>
+<td headers="ci_1" class="gt_row gt_center">1.09, 1.95</td>
+<td headers="p.value_1" class="gt_row gt_center" style="font-weight: bold;">0.011</td>
+<td headers="estimate_2" class="gt_row gt_center">1.38</td>
+<td headers="ci_2" class="gt_row gt_center">1.02, 1.89</td>
+<td headers="p.value_2" class="gt_row gt_center" style="font-weight: bold;">0.040</td>
+<td headers="estimate_3" class="gt_row gt_center"><br></td>
+<td headers="ci_3" class="gt_row gt_center"><br></td>
+<td headers="p.value_3" class="gt_row gt_center"><br></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">units_four</td>
+<td headers="estimate_1" class="gt_row gt_center"><br></td>
+<td headers="ci_1" class="gt_row gt_center"><br></td>
+<td headers="p.value_1" class="gt_row gt_center"><br></td>
+<td headers="estimate_2" class="gt_row gt_center">0.90</td>
+<td headers="ci_2" class="gt_row gt_center">0.83, 0.99</td>
+<td headers="p.value_2" class="gt_row gt_center" style="font-weight: bold;">0.029</td>
+<td headers="estimate_3" class="gt_row gt_center"><br></td>
+<td headers="ci_3" class="gt_row gt_center"><br></td>
+<td headers="p.value_3" class="gt_row gt_center"><br></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">unpaid_work_hours_tens</td>
+<td headers="estimate_1" class="gt_row gt_center"><br></td>
+<td headers="ci_1" class="gt_row gt_center"><br></td>
+<td headers="p.value_1" class="gt_row gt_center"><br></td>
+<td headers="estimate_2" class="gt_row gt_center">1.05</td>
+<td headers="ci_2" class="gt_row gt_center">0.95, 1.15</td>
+<td headers="p.value_2" class="gt_row gt_center">0.3</td>
+<td headers="estimate_3" class="gt_row gt_center"><br></td>
+<td headers="ci_3" class="gt_row gt_center"><br></td>
+<td headers="p.value_3" class="gt_row gt_center"><br></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">caregiving_hours_tens</td>
+<td headers="estimate_1" class="gt_row gt_center"><br></td>
+<td headers="ci_1" class="gt_row gt_center"><br></td>
+<td headers="p.value_1" class="gt_row gt_center"><br></td>
+<td headers="estimate_2" class="gt_row gt_center">1.04</td>
+<td headers="ci_2" class="gt_row gt_center">1.00, 1.08</td>
+<td headers="p.value_2" class="gt_row gt_center">0.066</td>
 <td headers="estimate_3" class="gt_row gt_center"><br></td>
 <td headers="ci_3" class="gt_row gt_center"><br></td>
 <td headers="p.value_3" class="gt_row gt_center"><br></td></tr>
@@ -3491,32 +3460,42 @@ Imputed Demographics
 <td headers="estimate_1" class="gt_row gt_center"><br></td>
 <td headers="ci_1" class="gt_row gt_center"><br></td>
 <td headers="p.value_1" class="gt_row gt_center"><br></td>
-<td headers="estimate_2" class="gt_row gt_center">0.88</td>
-<td headers="ci_2" class="gt_row gt_center">0.70, 1.11</td>
-<td headers="p.value_2" class="gt_row gt_center">0.3</td>
+<td headers="estimate_2" class="gt_row gt_center">0.89</td>
+<td headers="ci_2" class="gt_row gt_center">0.70, 1.14</td>
+<td headers="p.value_2" class="gt_row gt_center">0.4</td>
 <td headers="estimate_3" class="gt_row gt_center"><br></td>
 <td headers="ci_3" class="gt_row gt_center"><br></td>
 <td headers="p.value_3" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">units_four</td>
+    <tr><td headers="label" class="gt_row gt_left">firstgen</td>
 <td headers="estimate_1" class="gt_row gt_center"><br></td>
 <td headers="ci_1" class="gt_row gt_center"><br></td>
 <td headers="p.value_1" class="gt_row gt_center"><br></td>
-<td headers="estimate_2" class="gt_row gt_center">0.91</td>
-<td headers="ci_2" class="gt_row gt_center">0.83, 1.01</td>
-<td headers="p.value_2" class="gt_row gt_center">0.071</td>
+<td headers="estimate_2" class="gt_row gt_center"><br></td>
+<td headers="ci_2" class="gt_row gt_center"><br></td>
+<td headers="p.value_2" class="gt_row gt_center"><br></td>
 <td headers="estimate_3" class="gt_row gt_center"><br></td>
 <td headers="ci_3" class="gt_row gt_center"><br></td>
 <td headers="p.value_3" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">caregiving_hours_tens</td>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;No</td>
 <td headers="estimate_1" class="gt_row gt_center"><br></td>
 <td headers="ci_1" class="gt_row gt_center"><br></td>
 <td headers="p.value_1" class="gt_row gt_center"><br></td>
-<td headers="estimate_2" class="gt_row gt_center">1.04</td>
-<td headers="ci_2" class="gt_row gt_center">1.00, 1.09</td>
-<td headers="p.value_2" class="gt_row gt_center">0.069</td>
-<td headers="estimate_3" class="gt_row gt_center"><br></td>
-<td headers="ci_3" class="gt_row gt_center"><br></td>
+<td headers="estimate_2" class="gt_row gt_center"><br></td>
+<td headers="ci_2" class="gt_row gt_center"><br></td>
+<td headers="p.value_2" class="gt_row gt_center"><br></td>
+<td headers="estimate_3" class="gt_row gt_center">—</td>
+<td headers="ci_3" class="gt_row gt_center">—</td>
 <td headers="p.value_3" class="gt_row gt_center"><br></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Yes</td>
+<td headers="estimate_1" class="gt_row gt_center"><br></td>
+<td headers="ci_1" class="gt_row gt_center"><br></td>
+<td headers="p.value_1" class="gt_row gt_center"><br></td>
+<td headers="estimate_2" class="gt_row gt_center"><br></td>
+<td headers="ci_2" class="gt_row gt_center"><br></td>
+<td headers="p.value_2" class="gt_row gt_center"><br></td>
+<td headers="estimate_3" class="gt_row gt_center">0.76</td>
+<td headers="ci_3" class="gt_row gt_center">0.46, 1.26</td>
+<td headers="p.value_3" class="gt_row gt_center">0.3</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">

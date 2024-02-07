@@ -32,11 +32,11 @@ bns_combined_imputed_df <- complete(bns_imputed_mids, fill = 3)
 
 ```{r}
 
-ordinal.mod1 <-glm(ff_cat1~SNAP3 + Cohort + gender + race_eth + age + physical_activity + storage_room + kitchen_access + health_conscious + cooking_confident + food_insecure_2item + paid_work_hours_tens + living_with_family + homelessness_year, data = bns_combined_imputed_df, family = "binomial")
+ordinal.mod1 <-glm(ff_cat1~SNAP3 + Cohort + gender + race_eth + age + physical_activity + storage_room + health_conscious + living_with_family + cooking_confident + food_insecure_2item + paid_work_hours_tens + homelessness_year, data = bns_combined_imputed_df, family = "binomial")
 
-ordinal.mod2 <-glm(ff_cat2~SNAP3 + Cohort + gender + race_eth + age + physical_activity + storage_room + kitchen_access + health_conscious + cooking_confident + food_insecure_2item + paid_work_hours_tens + living_with_family + homelessness_year, data = bns_combined_imputed_df, family = "binomial")
+ordinal.mod2 <-glm(ff_cat2~SNAP3 + Cohort + gender + race_eth + age + physical_activity + storage_room + health_conscious + living_with_family + cooking_confident + food_insecure_2item + paid_work_hours_tens + homelessness_year, data = bns_combined_imputed_df, family = "binomial")
 
-ordinal.mod3 <-glm(ff_cat3~SNAP3 + Cohort + gender + race_eth + age + physical_activity + storage_room + kitchen_access + health_conscious + cooking_confident + food_insecure_2item + paid_work_hours_tens + living_with_family + homelessness_year, data = bns_combined_imputed_df, family = "binomial")
+ordinal.mod3 <-glm(ff_cat3~SNAP3 + Cohort + gender + race_eth + age + physical_activity + storage_room + health_conscious + living_with_family + cooking_confident + food_insecure_2item + paid_work_hours_tens + homelessness_year, data = bns_combined_imputed_df, family = "binomial")
 
 
 ordinal.mod1 <- tidy(ordinal.mod1) %>%
@@ -60,18 +60,20 @@ dwplot(models) + geom_vline(xintercept = 1,
 
 ```
 
+> In almost all variables, confidence intervals overlapped between stratified models and estimates were similar, meaning there were no major differences between levels and an ordinal regression is appropriate. 
+
 ## Compare AIC and BIC
 
 ```{r}
 
-linear.model <- lm(ff_numeric~SNAP3 + Cohort + gender + race_eth + age + physical_activity + storage_room + kitchen_access + health_conscious + cooking_confident + food_insecure_2item + paid_work_hours_tens + living_with_family + homelessness_year, data = bns_combined_imputed_df)
+linear.model <- lm(ff_numeric~SNAP3 + Cohort + gender + race_eth + age + physical_activity + storage_room + health_conscious + living_with_family + cooking_confident + food_insecure_2item + paid_work_hours_tens + homelessness_year, data = bns_combined_imputed_df)
 
 
-poisson.model <- glm(floor(ff_numeric)~SNAP3 + Cohort + gender + race_eth + age + physical_activity + storage_room + kitchen_access + health_conscious + cooking_confident + food_insecure_2item + paid_work_hours_tens + living_with_family + homelessness_year, data = bns_combined_imputed_df, family = "poisson")
+poisson.model <- glm(floor(ff_numeric)~SNAP3 + Cohort + gender + race_eth + age + physical_activity + storage_room + health_conscious + living_with_family + cooking_confident + food_insecure_2item + paid_work_hours_tens + homelessness_year, data = bns_combined_imputed_df, family = "poisson")
 
-log.model <- glm(log(ff_numeric + 0.01)~SNAP3 + Cohort + gender + race_eth + age + physical_activity + storage_room + kitchen_access + health_conscious + cooking_confident + food_insecure_2item + paid_work_hours_tens + living_with_family + homelessness_year, data = bns_combined_imputed_df)
+log.model <- glm(log(ff_numeric + 0.01)~SNAP3 + Cohort + gender + race_eth + age + physical_activity + storage_room + health_conscious + living_with_family + cooking_confident + food_insecure_2item + paid_work_hours_tens + homelessness_year, data = bns_combined_imputed_df)
 
-ordinal.mod <- MASS::polr(ff_cat~SNAP3 + Cohort + gender + race_eth + age + physical_activity + storage_room + kitchen_access + health_conscious + cooking_confident + food_insecure_2item + paid_work_hours_tens + living_with_family + homelessness_year, data = bns_combined_imputed_df, Hess=TRUE)
+ordinal.mod <- MASS::polr(ff_cat~SNAP3 + Cohort + gender + race_eth + age + physical_activity + storage_room + health_conscious + living_with_family + cooking_confident + food_insecure_2item + paid_work_hours_tens + homelessness_year, data = bns_combined_imputed_df, Hess=TRUE)
 
 cat("AIC for Poisson Model:", AIC(poisson.model))
 
@@ -93,10 +95,12 @@ cat("BIC for Ordinal Model:", BIC(ordinal.mod))
 
 ```
 
+> Although AIC and BIC are computed differently between model types, the ordinal model had far lower values, justifying the use of an ordinal regression
+
 ## Model Accuracy
 
 ```{r}
-ff.ordinal.mod2 <- MASS::polr(ff_cat~SNAP3 + Cohort + gender + race_eth + age + physical_activity + storage_room + kitchen_access + health_conscious + cooking_confident + food_insecure_2item + paid_work_hours_tens + living_with_family + homelessness_year, data = bns_combined_imputed_df, Hess=TRUE)
+ff.ordinal.mod2 <- MASS::polr(ff_cat~SNAP3 + Cohort + gender + race_eth + age + physical_activity + storage_room + health_conscious + living_with_family + cooking_confident + food_insecure_2item + paid_work_hours_tens + homelessness_year, data = bns_combined_imputed_df, Hess=TRUE)
 
 preds_ff <- augment(ff.ordinal.mod2, type = "class")
 conf_mat(preds_ff, truth = ff_cat, estimate = .fitted)
@@ -104,16 +108,20 @@ accuracy(preds_ff, truth = ff_cat, estimate = .fitted)
 
 ```
 
+> This model had 56% accuracy
+
 ## Colinearity
 
 ```{r}
 
 # Check VIF of a linear model
-linear.model <- lm(ff_numeric~SNAP3 + Cohort + gender + race_eth + age + physical_activity + storage_room + kitchen_access + health_conscious + cooking_confident + food_insecure_2item + paid_work_hours_tens + living_with_family + homelessness_year, data = bns_combined_imputed_df)
+linear.model <- lm(ff_numeric~SNAP3 + Cohort + gender + race_eth + age + physical_activity + storage_room + health_conscious + living_with_family + cooking_confident + food_insecure_2item + paid_work_hours_tens + homelessness_year, data = bns_combined_imputed_df)
 
 car::vif(linear.model)
 
 ```
+
+> There were no variables that were highly colinear.
 
 # SSB Model Diagnostics
 
@@ -121,11 +129,11 @@ car::vif(linear.model)
 
 ```{r}
 
-ordinal.mod1 <-glm(ssb_cat1~SNAP3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_access + units_four + paid_work_hours_tens + caregiving_hours_tens + homelessness_year, data = bns_combined_imputed_df, family = "binomial")
+ordinal.mod1 <-glm(ssb_cat1~SNAP3 + Cohort + race_eth + gender + age + units_four + unpaid_work_hours_tens + paid_work_hours_tens + caregiving_hours_tens + health_conscious + storage_access + physical_activity + homelessness_year, data = bns_combined_imputed_df, family = "binomial")
 
-ordinal.mod2 <-glm(ssb_cat2~SNAP3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_access + units_four + paid_work_hours_tens + caregiving_hours_tens + homelessness_year, data = bns_combined_imputed_df, family = "binomial")
+ordinal.mod2 <-glm(ssb_cat2~SNAP3 + Cohort + race_eth + gender + age + units_four + unpaid_work_hours_tens + paid_work_hours_tens + caregiving_hours_tens + health_conscious + storage_access + physical_activity + homelessness_year, data = bns_combined_imputed_df, family = "binomial")
 
-ordinal.mod3 <-glm(ssb_cat3~SNAP3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_access + units_four + paid_work_hours_tens + caregiving_hours_tens + homelessness_year, data = bns_combined_imputed_df, family = "binomial")
+ordinal.mod3 <-glm(ssb_cat3~SNAP3 + Cohort + race_eth + gender + age + units_four + unpaid_work_hours_tens + paid_work_hours_tens + caregiving_hours_tens + health_conscious + storage_access + physical_activity + homelessness_year, data = bns_combined_imputed_df, family = "binomial")
 
 
 ordinal.mod1 <- tidy(ordinal.mod1) %>%
@@ -149,18 +157,20 @@ dwplot(models) + geom_vline(xintercept = 1,
 
 ```
 
+> In almost all variables, confidence intervals overlapped between stratified models and estimates were similar, meaning there were no major differences between levels and an ordinal regression is appropriate. 
+
 ## Compare AIC and BIC
 
 ```{r}
 
-linear.model <- lm(ssb_numeric~SNAP3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_access + units_four + paid_work_hours_tens + caregiving_hours_tens + homelessness_year, data = bns_combined_imputed_df)
+linear.model <- lm(ssb_numeric~SNAP3 + Cohort + race_eth + gender + age + units_four + unpaid_work_hours_tens + paid_work_hours_tens + caregiving_hours_tens + health_conscious + storage_access + physical_activity + homelessness_year, data = bns_combined_imputed_df)
 
 
-poisson.model <- glm(ssb_numeric~SNAP3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_access + units_four + paid_work_hours_tens + caregiving_hours_tens + homelessness_year, data = bns_combined_imputed_df, family = "poisson")
+poisson.model <- glm(ssb_numeric~SNAP3 + Cohort + race_eth + gender + age + units_four + unpaid_work_hours_tens + paid_work_hours_tens + caregiving_hours_tens + health_conscious + storage_access + physical_activity + homelessness_year, data = bns_combined_imputed_df, family = "poisson")
 
-log.model <- glm(log(ssb_numeric + 0.01)~SNAP3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_access + units_four + paid_work_hours_tens + caregiving_hours_tens + homelessness_year, data = bns_combined_imputed_df)
+log.model <- glm(log(ssb_numeric + 0.01)~SNAP3 + Cohort + race_eth + gender + age + units_four + unpaid_work_hours_tens + paid_work_hours_tens + caregiving_hours_tens + health_conscious + storage_access + physical_activity + homelessness_year, data = bns_combined_imputed_df)
 
-ordinal.mod <- MASS::polr(ff_cat~SNAP3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_access + units_four + paid_work_hours_tens + caregiving_hours_tens + homelessness_year, data = bns_combined_imputed_df, Hess=TRUE)
+ordinal.mod <- MASS::polr(ff_cat~SNAP3 + Cohort + race_eth + gender + age + units_four + unpaid_work_hours_tens + paid_work_hours_tens + caregiving_hours_tens + health_conscious + storage_access + physical_activity + homelessness_year, data = bns_combined_imputed_df, Hess=TRUE)
 
 
 cat("AIC for Poisson Model:", AIC(poisson.model))
@@ -184,12 +194,14 @@ cat("BIC for Ordinal Model:", BIC(ordinal.mod))
 
 ```
 
+> Although AIC and BIC are computed differently between model types, the ordinal model had far lower values, justifying the use of an ordinal regression
+
 ## Model Accuracy
 
 ```{r}
 
 
-ssb.ordinal.mod2 <- MASS::polr(ssb_cat~SNAP3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_access + units_four + paid_work_hours_tens + caregiving_hours_tens + homelessness_year, data = bns_combined_imputed_df, Hess=TRUE)
+ssb.ordinal.mod2 <- MASS::polr(ssb_cat~SNAP3 + Cohort + race_eth + gender + age + units_four + unpaid_work_hours_tens + paid_work_hours_tens + caregiving_hours_tens + health_conscious + storage_access + physical_activity + homelessness_year, data = bns_combined_imputed_df, Hess=TRUE)
 
 preds_SSB <- augment(ssb.ordinal.mod2, type = "class")
 conf_mat(preds_SSB, truth = ssb_cat, estimate = .fitted)
@@ -199,17 +211,21 @@ accuracy(preds_SSB, truth = ssb_cat, estimate = .fitted)
 
 ```
 
+> The SSB model had 42% accuracy
+
 ## Colinearity
 
 ```{r}
 
 # Check VIF of a linear model
-linear.model <- lm(ssb_numeric~SNAP3 + Cohort + gender + race_eth + age + physical_activity + health_conscious + storage_access + units_four + paid_work_hours_tens + caregiving_hours_tens + homelessness_year, data = bns_combined_imputed_df)
+linear.model <- lm(ssb_numeric~SNAP3 + Cohort + race_eth + gender + age + units_four + unpaid_work_hours_tens + paid_work_hours_tens + caregiving_hours_tens + health_conscious + storage_access + physical_activity + homelessness_year, data = bns_combined_imputed_df)
 
 car::vif(linear.model)
 
 
 ```
+
+> There were no variables that were highly colinear.
 
 # F&V Model Diagnostics
 
@@ -217,11 +233,11 @@ car::vif(linear.model)
 
 ```{r}
 
-imp_one_vs_zero <- with(bns_imputed_mids, glm(q77_one_vs_zero~SNAP3 + Cohort + gender + race_eth + age + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item, family = "binomial"))
+imp_one_vs_zero <- with(bns_imputed_mids, glm(q77_one_vs_zero~SNAP3 + Cohort + gender + race_eth + age  + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item + firstgen, family = "binomial"))
 
 
 
-imp_one_vs_three_or_more <- with(bns_imputed_mids, glm(q77_one_vs_three_or_more~SNAP3 + Cohort + gender + race_eth + age + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item, family = "binomial"))
+imp_one_vs_three_or_more <- with(bns_imputed_mids, glm(q77_one_vs_three_or_more~SNAP3 + Cohort + gender + race_eth + age  + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item + firstgen, family = "binomial"))
 
 
 imp_fv1_model_tidy <- pool(imp_one_vs_zero) |> summary() %>%
@@ -244,18 +260,21 @@ dwplot(FV2_models) + geom_vline(xintercept = 1,
 
 ```
 
+> In almost all variables, confidence intervals overlapped between stratified models and estimates were similar, meaning there were no major differences between levels and an ordinal regression is appropriate. 
+
+
 ## Compare AIC and BIC
 
 ```{r}
 
-linear.model <- lm(q77_numeric~SNAP3 + Cohort + gender + race_eth + age + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item, data = bns_combined_imputed_df)
+linear.model <- lm(q77_numeric~SNAP3 + Cohort + gender + race_eth + age  + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item + firstgen, data = bns_combined_imputed_df)
 
 
-poisson.model <- glm(floor(q77_numeric)~SNAP3 + Cohort + gender + race_eth + age + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item, data = bns_combined_imputed_df, family = "poisson")
+poisson.model <- glm(floor(q77_numeric)~SNAP3 + Cohort + gender + race_eth + age  + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item + firstgen, data = bns_combined_imputed_df, family = "poisson")
 
-log.model <- glm(log(q77_numeric + 0.01)~SNAP3 + Cohort + gender + race_eth + age + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item, data = bns_combined_imputed_df)
+log.model <- glm(log(q77_numeric + 0.01)~SNAP3 + Cohort + gender + race_eth + age  + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item + firstgen, data = bns_combined_imputed_df)
 
-ordinal.mod <- MASS::polr(fruits3~SNAP3 + Cohort + gender + race_eth + age + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item, data = bns_combined_imputed_df, Hess=TRUE)
+ordinal.mod <- MASS::polr(fruits3~SNAP3 + Cohort + gender + race_eth + age  + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item + firstgen, data = bns_combined_imputed_df, Hess=TRUE)
 
 cat("AIC for Poisson Model:", AIC(poisson.model))
 
@@ -276,11 +295,13 @@ cat("BIC for Ordinal Model:", BIC(ordinal.mod))
 
 ```
 
+> Although AIC and BIC are computed differently between model types, the ordinal model had far lower values, justifying the use of an ordinal regression
+
 ## Model Accuracy
 
 ```{r}
 
-FV.ordinal.mod2 <- MASS::polr(fruits3~SNAP3 + Cohort + gender + race_eth + age + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item, data = bns_combined_imputed_df, Hess=TRUE)
+FV.ordinal.mod2 <- MASS::polr(fruits3~SNAP3 + Cohort + gender + race_eth + age  + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item + firstgen, data = bns_combined_imputed_df, Hess=TRUE)
 
 preds_FV <- augment(FV.ordinal.mod2, type = "class")
 conf_mat(preds_FV, truth = fruits3, estimate = .fitted)
@@ -288,14 +309,19 @@ accuracy(preds_FV, truth = fruits3, estimate = .fitted)
 
 ```
 
+> This model had a 72% accuracy
+
 ## Colinearity
 
 ```{r}
 
 # Check VIF of a linear model
-linear.model <- lm(q77_numeric~SNAP3 + Cohort + gender + race_eth + age + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item, data = bns_combined_imputed_df)
+linear.model <- lm(q77_numeric~SNAP3 + Cohort + gender + race_eth + age  + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item + firstgen, data = bns_combined_imputed_df)
 
 car::vif(linear.model)
 
 ```
+
+> There were no variables that were highly colinear.
+
 :::
