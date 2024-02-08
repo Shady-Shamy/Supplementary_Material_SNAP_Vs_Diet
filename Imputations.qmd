@@ -21,7 +21,7 @@ library(gtsummary)
 library(dplyr)
 
 
-load("clean_data/bns_combined.Rdata")
+load(here::here("clean_data/bns_combined.Rdata"))
 
 
 ```
@@ -48,7 +48,7 @@ vector.methods <- c("polyreg", "polyreg", "logreg", "pmm", "logreg", "logreg", "
 
 # saveRDS(imp_bns_combined_raw_mids, file ="clean_data/imp_bns_combined_raw_mids.RData")
 
-imp_bns_combined_raw_mids <- readRDS("clean_data/imp_bns_combined_raw_mids.RData")
+imp_bns_combined_raw_mids <- readRDS(here::here("clean_data/imp_bns_combined_raw_mids.RData"))
 
 
 ```
@@ -201,7 +201,7 @@ imp_bns_combined_long$school2 <- recode(imp_bns_combined_long$school,
 # saveRDS(imp_bns_combined_clean_mids, file = "clean_data/imp_bns_combined_clean_mids.RData")
 
 
-imp_bns_combined_clean_mids <- readRDS("clean_data/imp_bns_combined_clean_mids.RData")
+imp_bns_combined_clean_mids <- readRDS(here::here("clean_data/imp_bns_combined_clean_mids.RData"))
 
 
 

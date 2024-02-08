@@ -188,7 +188,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <blockquote class="blockquote">
-<p>This page shows all steps taken for variable selection. Potentially relevant variables from the survey were identified based on a theoretical approach and previous qualitative studies among college students. A LASSO regression was first used to identify which variables are relevant to each model. A ten-fold cross validation was used to determine the minimum lambda value. General linear regression models were then fit for each dependent variable including all potential covariates using a LASSO penalty. Academic level was not included as a potential covariate since the pilot 2 cohort included no freshmen and sophomores.</p>
+<p>This page shows all steps taken for variable selection. Potentially relevant variables from the survey were identified based on a theoretical approach and previous qualitative studies among college students. A LASSO regression was first used to identify which variables are relevant to each model. A ten-fold cross validation was used to determine the minimum lambda value (the optimum level of regularization). General linear regression models were then fit for each dependent variable including all potential covariates using the optimum level of regularization. Academic level was not included as a potential covariate since the pilot 2 cohort included no freshmen and sophomores.</p>
 </blockquote>
 <blockquote class="blockquote">
 <p>Age, gender, and race/ethnicity were included as covariates in all models regardless of the LASSO regression results due to previous literature indicating associations with diet outcomes. Cohort was also included in all models to control for differences between the two cohorts. Covariates with high p-values were then removed from the models if removing them had no major impact on the results, to help prevent overfitting the models.</p>
@@ -1174,7 +1174,7 @@ homelessness_year    1.093132  1        1.045530</code></pre>
 </div>
 </div>
 <blockquote class="blockquote">
-<p>Kitchen Access had a high p value in the full model and can be removed without changing any results. No other covariates seemed like they can be removed.</p>
+<p>Kitchen Access had a high p value in the full model and can be removed without changing any results. No other covariates seemed like they can be removed. In the final fast food model, covariates will include cohort, gender, race/ethnicity, age, physical activity, storage room, health consciousness, living with family, cooking confidence, food insecurity, paid work hours, and homelessness in the past year.</p>
 </blockquote>
 </section>
 </section>
@@ -5970,7 +5970,7 @@ homelessness_year      1.131541  1        1.063739</code></pre>
 </div>
 </div>
 <blockquote class="blockquote">
-<p>Living with family had a high p value in the full model and can be removed without changing any results. No other covariates seemed like they can be removed.</p>
+<p>Living with family had a high p value in the full model and can be removed without changing any results. No other covariates seemed like they can be removed. In the final SSB model, covariates will include cohort, gender, race/ethnicity, age, units, unpaid work hours, paid work hours, caregiving hours, health consciousness, storage access, physical activity, and homelessness in the past year.</p>
 </blockquote>
 </section>
 </section>
@@ -6621,7 +6621,7 @@ firstgen            1.027756  1        1.013783</code></pre>
 </div>
 </div>
 <blockquote class="blockquote">
-<p>No variables in the F&amp;V model seemed like they can be removed</p>
+<p>No variables in the F&amp;V model seemed like they can be removed In the final F&amp;V model, covariates will include cohort, gender, race/ethnicity, age, health consciousness, cooking confidence, physical activity, storage room, food insecurity, and firstgenarational status.</p>
 </blockquote>
 </section>
 </div>

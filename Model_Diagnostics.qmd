@@ -16,7 +16,7 @@ library(dplyr)
 library(tidymodels)
 library(dotwhisker)
 
-bns_imputed_mids <- readRDS("clean_data/imp_bns_combined_clean_mids.RData")
+bns_imputed_mids <- readRDS(here::here("clean_data/imp_bns_combined_clean_mids.RData"))
 
 
 
@@ -60,7 +60,7 @@ dwplot(models) + geom_vline(xintercept = 1,
 
 ```
 
-> In almost all variables, confidence intervals overlapped between stratified models and estimates were similar, meaning there were no major differences between levels and an ordinal regression is appropriate. 
+> In almost all variables, confidence intervals overlapped between stratified models and estimates were similar, meaning there were no major differences between levels and an ordinal regression is appropriate.
 
 ## Compare AIC and BIC
 
@@ -157,7 +157,7 @@ dwplot(models) + geom_vline(xintercept = 1,
 
 ```
 
-> In almost all variables, confidence intervals overlapped between stratified models and estimates were similar, meaning there were no major differences between levels and an ordinal regression is appropriate. 
+> In almost all variables, confidence intervals overlapped between stratified models and estimates were similar, meaning there were no major differences between levels and an ordinal regression is appropriate.
 
 ## Compare AIC and BIC
 
@@ -260,8 +260,7 @@ dwplot(FV2_models) + geom_vline(xintercept = 1,
 
 ```
 
-> In almost all variables, confidence intervals overlapped between stratified models and estimates were similar, meaning there were no major differences between levels and an ordinal regression is appropriate. 
-
+> In almost all variables, confidence intervals overlapped between stratified models and estimates were similar, meaning there were no major differences between levels and an ordinal regression is appropriate.
 
 ## Compare AIC and BIC
 
@@ -323,5 +322,4 @@ car::vif(linear.model)
 ```
 
 > There were no variables that were highly colinear.
-
 :::

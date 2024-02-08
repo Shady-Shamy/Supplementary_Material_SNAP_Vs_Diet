@@ -15,7 +15,7 @@ library(dplyr)
 library(mice)
 library(gtsummary)
 
-bns_imputed_mids <- readRDS("clean_data/imp_bns_combined_clean_mids.RData")
+bns_imputed_mids <- readRDS(here::here("clean_data/imp_bns_combined_clean_mids.RData"))
 
 bns_combined_imputed_df <- complete(bns_imputed_mids, fill = 3)
 
