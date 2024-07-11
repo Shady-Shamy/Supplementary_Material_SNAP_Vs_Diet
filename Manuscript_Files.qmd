@@ -196,6 +196,21 @@ p1
 
 ```
 
+# Table 2
+
+```{r}
+
+
+
+bns_combined_imputed_df %>% select(SNAP3, fruits3, ssb_cat, ff_cat) %>%
+  tbl_summary(by = SNAP3, statistic = list(
+      all_continuous() ~ "Mean: {mean}, Median: {median}, SD: {sd}",
+      all_categorical() ~ "{n} ({p}%)"),
+      missing_text= "Missing (n)")
+
+
+```
+
 # Ordinal Regression Models
 
 ## Table 2: Fast Food Ordinal
@@ -242,3 +257,4 @@ FV.ordinal.mod
 tbl_merge(tbls = list(ff.ordinal.mod, ssb.ordinal.mod, FV.ordinal.mod), tab_spanner = c("**Fast Food Model**", "**SSB Model**", "**F&V Model**"))
 
 ```
+

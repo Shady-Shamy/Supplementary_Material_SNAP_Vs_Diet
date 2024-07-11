@@ -22,7 +22,9 @@ website:
           - href: Campus_Type_Analysis.qmd
             text: Campus Type Analysis              
       - href: Manuscript_Files.qmd
-        text: Manuscript Files    
+        text: Manuscript Files
+      - href: Statewide_and_Pilot2_Comparison.qmd
+        text: Statewide and Pilot 2 Comparison        
        
 
 format:
@@ -30,6 +32,4 @@ format:
     theme: sandstone
     css: styles.css
     toc: true
-
-editor: visual
 

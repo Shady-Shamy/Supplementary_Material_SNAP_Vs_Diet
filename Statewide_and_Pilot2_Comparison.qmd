@@ -1,0 +1,224 @@
+---
+title: "Statewide and Pilot 2 Comparison"
+format:
+  html:
+    code-fold: true
+    code-summary: "Show the code"
+---
+
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(error = FALSE,warning = FALSE,message = FALSE,echo = TRUE)
+
+library(gtsummary)
+library(performance)
+library(mice)
+library(kableExtra)
+library(dotwhisker)
+library(ggplot2)
+library(dplyr)
+library(gridExtra)
+library(grid)
+library(tidymodels)
+
+
+bns_imputed_mids <- readRDS(here::here("clean_data/imp_bns_combined_clean_mids.RData"))
+
+bns_combined_imputed_df <- complete(bns_imputed_mids, fill = 3)
+
+load("clean_data/bns_combined.Rdata")
+
+chc.palette <- c("#B1D238", "#5782B0", "#FF914D")
+```
+
+
+
+
+> Values are based on Non exponentiated Betas
+
+
+```{r, fig.width= 9}
+bns_imputed_mids_sw <- bns_imputed_mids %>% filter(Cohort == "Statewide")
+
+
+bns_imputed_mids_sw2 <- bns_imputed_mids %>% filter(Cohort == "Statewide",
+                                                   school2 == "CSU",
+                                                   academic_level == "Junior" | academic_level == "Senior")
+
+
+bns_imputed_mids_p2 <- bns_imputed_mids %>% filter(Cohort == "Pilot 2")
+
+
+```
+
+
+## Fast Food Ordinal
+
+
+
+```{r}
+
+
+
+ff.ordinal.mod.p2 <- with(bns_imputed_mids_p2, MASS::polr(ff_cat~SNAP3 + gender + race_eth + age + physical_activity + storage_room + health_conscious + living_with_family + cooking_confident + food_insecure_2item + paid_work_hours_tens + homelessness_year, Hess=TRUE))
+
+ff.ordinal.mod.sw <- with(bns_imputed_mids_sw, MASS::polr(ff_cat~SNAP3 + gender + race_eth + age + physical_activity + storage_room + health_conscious + living_with_family + cooking_confident + food_insecure_2item + paid_work_hours_tens + homelessness_year, Hess=TRUE))
+
+ff.ordinal.mod.sw2 <- with(bns_imputed_mids_sw2, MASS::polr(ff_cat~SNAP3 + gender + race_eth + age + physical_activity + storage_room + health_conscious + living_with_family + cooking_confident + food_insecure_2item + paid_work_hours_tens + homelessness_year, Hess=TRUE))
+
+
+```
+
+
+
+```{r}
+
+
+
+ff.ordinal.mod.p2.tidy <- pool(ff.ordinal.mod.p2) |> summary() %>%
+  mutate(model = "Pilot 2 Only") %>% select(-df)
+
+ff.ordinal.mod.sw.tidy <- pool(ff.ordinal.mod.sw) |> summary() %>%
+  mutate(model = "Statewide Only") %>% select(-df)
+
+ff.ordinal.mod.sw2.tidy <- pool(ff.ordinal.mod.sw2) |> summary() %>%
+  mutate(model = "Statewide CSU/Juniors and Seniors") %>% select(-df)
+
+
+ff_models <- bind_rows(ff.ordinal.mod.p2.tidy, ff.ordinal.mod.sw.tidy, ff.ordinal.mod.sw2.tidy)
+
+ff_models <- ff_models[-c(17:19, 36:38, 55:57), ]
+
+dwplot(ff_models) + geom_vline(xintercept = 0,
+               colour = "black",
+               linetype = 1) + xlab("Beta and SE") + 
+  theme(legend.position='top')  + guides(color = guide_legend(title = ""))
+
+
+
+
+
+
+```
+
+
+
+
+
+
+
+## SSB Ordinal
+
+```{r}
+
+
+ssb.ordinal.mod.p2 <- with(bns_imputed_mids_p2, MASS::polr(ssb_cat~SNAP3 + race_eth + gender + age + units_four + unpaid_work_hours_tens + paid_work_hours_tens + caregiving_hours_tens + health_conscious + storage_access + physical_activity + homelessness_year, Hess=TRUE))
+
+ssb.ordinal.mod.sw <- with(bns_imputed_mids_sw, MASS::polr(ssb_cat~SNAP3 + race_eth + gender + age + units_four + unpaid_work_hours_tens + paid_work_hours_tens + caregiving_hours_tens + health_conscious + storage_access + physical_activity + homelessness_year, Hess=TRUE))
+
+
+ssb.ordinal.mod.sw2 <- with(bns_imputed_mids_sw2, MASS::polr(ssb_cat~SNAP3 + race_eth + gender + age + units_four + unpaid_work_hours_tens + paid_work_hours_tens + caregiving_hours_tens + health_conscious + storage_access + physical_activity + homelessness_year, Hess=TRUE))
+
+
+# tbl_merge(tbls = list(ssb.ordinal.mod, ssb.ordinal.mod.p2, ssb.ordinal.mod.sw, ssb.ordinal.mod.sw2), tab_spanner = c("**Statewide  & Pilot 2**", "**Pilot 2 Only**", "**Statewide Data Only**", "**Statewide Data Only (CSU, Juniors, and Seniors only)**"))
+# 
+
+
+```
+
+
+```{r}
+
+
+ssb.ordinal.mod.p2.tidy <- pool(ssb.ordinal.mod.p2) |> summary() %>%
+  mutate(model = "Pilot 2 Only") %>% select(-df)
+
+ssb.ordinal.mod.sw.tidy <- pool(ssb.ordinal.mod.sw) |> summary() %>%
+  mutate(model = "Statewide Only") %>% select(-df)
+
+ssb.ordinal.mod.sw2.tidy <- pool(ssb.ordinal.mod.sw2) |> summary() %>%
+  mutate(model = "Statewide CSU/Juniors and Seniors") %>% select(-df)
+
+
+ssb_models <- bind_rows(ssb.ordinal.mod.p2.tidy, ssb.ordinal.mod.sw.tidy, ssb.ordinal.mod.sw2.tidy)
+
+ssb_models <- ssb_models[-c(17:19, 36:38, 55:57), ]
+
+dwplot(ssb_models) + geom_vline(xintercept = 0,
+               colour = "black",
+               linetype = 1) + xlab("Beta and SE") + 
+  theme(legend.position='top') + guides(color = guide_legend(title = ""))
+
+
+```
+
+
+
+
+
+
+## F&V Ordinal
+
+```{r}
+
+
+FV.ordinal.mod.p2 <- with(bns_imputed_mids_p2, MASS::polr(fruits3~SNAP3 + gender + race_eth + age  + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item + firstgen, Hess=TRUE))
+
+FV.ordinal.mod.sw <- with(bns_imputed_mids_sw, MASS::polr(fruits3~SNAP3 + gender + race_eth + age  + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item + firstgen, Hess=TRUE))
+
+FV.ordinal.mod.sw2 <- with(bns_imputed_mids_sw2, MASS::polr(fruits3~SNAP3 + gender + race_eth + age  + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item + firstgen, Hess=TRUE))
+
+
+
+# tbl_merge(tbls = list(FV.ordinal.mod, FV.ordinal.mod.p2, FV.ordinal.mod.sw, FV.ordinal.mod.sw2), tab_spanner = c("**Statewide & Pilot 2**", "**Pilot 2 Only**", "**Statewide Data Only**",  "**Statewide Data Only (CSU, Juniors, and Seniors only)**"))
+
+
+
+
+```
+
+
+
+
+```{r}
+
+
+FV.ordinal.mod.p2.tidy <- pool(FV.ordinal.mod.p2) |> summary() %>%
+  mutate(model = "Pilot 2 Only",
+         estimate = exp(estimate),
+         std.error = exp(std.error)) %>% select(-df)
+
+FV.ordinal.mod.sw.tidy <- pool(FV.ordinal.mod.sw) |> summary() %>%
+  mutate(model = "Statewide Only") %>% select(-df)
+
+FV.ordinal.mod.sw2.tidy <- pool(FV.ordinal.mod.sw2) |> summary() %>%
+  mutate(model = "Statewide CSU/Juniors and Seniors") %>% select(-df)
+
+
+FV_models <- bind_rows(FV.ordinal.mod.p2.tidy, FV.ordinal.mod.sw.tidy, FV.ordinal.mod.sw2.tidy)
+
+FV_models <- FV_models[-c(15:16, 31:32, 47:48), ]
+
+
+dwplot(FV_models) + geom_vline(xintercept = 0,
+               colour = "black",
+               linetype = 1) + xlab("Beta and SE")  + 
+  theme(legend.position='top') + guides(color = guide_legend(title = ""))
+
+
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
