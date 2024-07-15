@@ -24,7 +24,7 @@ website:
       - href: Manuscript_Files.qmd
         text: Manuscript Files
       - href: Statewide_and_Pilot2_Comparison.qmd
-        text: 'Cohort Comparison'        
+        text: 'Cohort Comparison'         
        
 
 format:
