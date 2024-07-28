@@ -34,16 +34,17 @@ chc.palette <- c("#B1D238", "#5782B0", "#FF914D")
 
 
 
-> Values are based on Non exponentiated Betas
+> This page shows the comparison between the ordinal models of the statewide cohort and the second pilot cohort when analyzed separately. An additional model was also compared including only CSU juniors and seniors from the statewide cohort (to more closely match the second pilot cohort). Overall, the statewide and second pilot study displayed similar results as seen with the considerable overlap between the confidence intervals in all comparisons, however there were some differences between a few variables. Wide confidence intervals were seen in the second pilot study which can be explained by uncertainty from the lower sample size. The decision was made to include both cohorts in the analysis for the manuscript and to control for differences between cohorts.
 
 
 ```{r}
 bns_imputed_mids_sw <- bns_imputed_mids %>% filter(Cohort == "Statewide")
 
 
-bns_imputed_mids_sw2 <- bns_imputed_mids %>% filter(Cohort == "Statewide" &
-                                                   school2 == "CSU" &
+bns_imputed_mids_sw2 <- bns_imputed_mids %>% filter(Cohort == "Statewide",
+                                                   school2 == "CSU",
                                                    academic_level == "Junior" | academic_level == "Senior")
+
 
 
 bns_imputed_mids_p2 <- bns_imputed_mids %>% filter(Cohort == "Pilot 2")
@@ -95,7 +96,7 @@ ff_models <- ff_models[-c(17:19, 36:38, 55:57, 75:77), ]
 
 dwplot(ff_models) + geom_vline(xintercept = 0,
                colour = "black",
-               linetype = 1) + xlab("Beta and SE") + 
+               linetype = 1) + xlab("Beta and CI") + 
   theme(legend.position='top')  + guides(colour = guide_legend(nrow = 2, title = ""))
 
 
@@ -115,9 +116,9 @@ dwplot(ff_models) + geom_vline(xintercept = 0,
 
 ```{r}
 
-ssb.ordinal.mod <- with(bns_imputed_mids, MASS::polr(ssb_cat~SNAP3 + Cohort + race_eth + gender + age + units_four + unpaid_work_hours_tens + paid_work_hours_tens + caregiving_hours_tens + health_conscious + storage_access + physical_activity + homelessness_year, Hess=TRUE))
+ssb.ordinal.mod <- with(bns_imputed_mids, MASS::polr(ssb_cat~SNAP3 + Cohort + race_eth + gender + age + units_four + unpaid_work_hours_tens + paid_work_hours_tens + caregiving_hours_tens + health_conscious + storage_access + physical_activity + homelessness_year, Hess=TRUE)) 
 
-ssb.ordinal.mod.p2 <- with(bns_imputed_mids_p2, MASS::polr(ssb_cat~SNAP3 + race_eth + gender + age + units_four + unpaid_work_hours_tens + paid_work_hours_tens + caregiving_hours_tens + health_conscious + storage_access + physical_activity + homelessness_year, Hess=TRUE))
+ssb.ordinal.mod.p2 <- with(bns_imputed_mids_p2, MASS::polr(ssb_cat~SNAP3 + race_eth + gender + age + units_four + unpaid_work_hours_tens + paid_work_hours_tens + caregiving_hours_tens + health_conscious + storage_access + physical_activity + homelessness_year, Hess=TRUE))  
 
 ssb.ordinal.mod.sw <- with(bns_imputed_mids_sw, MASS::polr(ssb_cat~SNAP3 + race_eth + gender + age + units_four + unpaid_work_hours_tens + paid_work_hours_tens + caregiving_hours_tens + health_conscious + storage_access + physical_activity + homelessness_year, Hess=TRUE))
 
@@ -153,7 +154,7 @@ ssb_models <- ssb_models[-c(17:19, 36:38, 55:57, 75:77), ]
 
 dwplot(ssb_models) + geom_vline(xintercept = 0,
                colour = "black",
-               linetype = 1) + xlab("Beta and SE") + 
+               linetype = 1) + xlab("Beta and CI") + 
   theme(legend.position='top') + guides(colour = guide_legend(nrow = 2, title = ""))
 
 
@@ -206,9 +207,9 @@ FV_models <- bind_rows(FV.ordinal.mod.p2.tidy, FV.ordinal.mod.sw.tidy, FV.ordina
 FV_models <- FV_models[-c(15:16, 31:32, 47:48, 64:65), ]
 
 
-dwplot(FV_models) + geom_vline(xintercept = 0,
+dwplot(FV_models, est.type = "odds") + geom_vline(xintercept = 0,
                colour = "black",
-               linetype = 1) + xlab("Beta and SE")  + 
+               linetype = 1) + xlab("Beta and CI")  + 
   theme(legend.position='top') + guides(colour = guide_legend(nrow = 2, title = ""))
 
 

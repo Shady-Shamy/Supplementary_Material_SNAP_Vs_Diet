@@ -6,27 +6,31 @@ format:
     code-summary: "Show the code"
 ---
 
-> This page shows all steps taken for the imputation process. Imputations were conducted using the MICE R package using an M of 5 and 30 maximum iterations. All potential covariates were included in the imputations. Variables used to create derived variables were not included in the imputations due to too much collinearity with the derived variable causing convergence not to be reached. Some data management was performed to dichotomize variables, change reference values, and create variables used for testing different model types. Models using imputed data were compared to models using non-imputed data.
+> This page shows all steps taken for the imputation process. Imputations were conducted using the MICE R package using an M of 5 and 30 maximum iterations. All potential covariates were included in the imputations. Variables used to create derived variables were not included in the imputations due to too much collinearity with the derived variable causing convergence not to be reached. Some data management was performed after imputations to dichotomize variables, change reference values, and create variables used for testing different model types. Models using imputed data were compared to models using non-imputed data.
 
 ::: panel-tabset
+
+# Imputations
+
 ```{r}
 knitr::opts_chunk$set(error = FALSE,warning = FALSE,message = FALSE,echo = TRUE)
 
+suppressPackageStartupMessages({
 
 library(mice)
 library(forestplot)
 library(dotwhisker)
 library(tidyr)
 library(gtsummary)
-library(dplyr)
-
+library(dplyr)}
+)
 
 load(here::here("clean_data/bns_combined.Rdata"))
 
 
 ```
 
-```{r, include=FALSE}
+```{r}
 
 
 variables_of_interest <- bns_combined %>% select(q46_1, race_eth, eth_hispanic, age, cooking_confident, living_with_family, food_insecure_2item, health_conscious, storage_access, storage_room, kitchen_access, ff_cat, ssb_cat, fruits3, household_size, paid_work_hours, unpaid_work_hours, units, caregiving_hours, school, physical_activity, SNAP_eligible, firstgen, academic_level, housing_insecure, homelessness_year, q7)
@@ -243,7 +247,7 @@ ssb_models <- bind_rows(original_ssb_model_tidy , imp_ssb_model_tidy)
 
 dwplot(ssb_models) + geom_vline(xintercept = 0,
                colour = "black",
-               linetype = 1)
+               linetype = 1) + xlab("Beta and CI")
 
 
 ```
@@ -270,7 +274,7 @@ ff_models <- bind_rows(original_ff_model_tidy , imp_ff_model_tidy)
 
 dwplot(ff_models) + geom_vline(xintercept = 0,
                colour = "black",
-               linetype = 1)
+               linetype = 1) + xlab("Beta and CI")
 
 
 
@@ -297,7 +301,7 @@ FV_models <- bind_rows(original_FV_model_tidy , imp_FV_model_tidy)
 
 dwplot(FV_models)  + geom_vline(xintercept = 0,
                colour = "black",
-               linetype = 1)
+               linetype = 1) + xlab("Beta and CI")
 
 
 

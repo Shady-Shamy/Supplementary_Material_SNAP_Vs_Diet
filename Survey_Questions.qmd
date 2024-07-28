@@ -6,7 +6,7 @@ cv:
   pdf: "Survey Questions Used.pdf"
 ---
 
-> All survey questions related to any variables and covariates used in data analysis are shown on this page. Note: There were other questions included in the survey that are not displayed here. Some questions also had skip logic that is also not shown in this file. 
+> All survey questions related to any variables and covariates used in data analysis are shown on this page. Please note, there were other questions included in the survey that are not displayed here. Additionally, some questions had skip logic that is also not shown in this file. 
 
 ```{css, echo=FALSE}
 #title-block-header .description {

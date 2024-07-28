@@ -147,15 +147,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="./Campus_Type_Analysis.html" rel="" target="">
  <span class="dropdown-text">Campus Type Analysis</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./Statewide_and_Pilot2_Comparison.html" rel="" target="">
+ <span class="dropdown-text">Cohort Comparison</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="./Manuscript_Files.html" rel="" target="">
  <span class="menu-text">Manuscript Files</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./Statewide_and_Pilot2_Comparison.html" rel="" target="">
- <span class="menu-text">Cohort Comparison</span></a>
   </li>  
 </ul>
             <div class="quarto-navbar-tools ms-auto">
@@ -192,122 +192,119 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <blockquote class="blockquote">
-<p>This page shows all procedures used to choose the best fitting model. The BIC and AIC of a Poisson, linear, log transformation, and an ordinal regression model were compared. The ordinal regression models fit the best and had the lowest AICs and BICs. To ensure that there were no major differences in results across the different levels of the dependent variables, stratified logistic regressions were fitted and compared. All results appeared to stay consistent across the different levels, justifying the use of an ordinal regression model.</p>
+<p>This page shows all procedures used to choose the best fitting model. The BIC and AIC of a Poisson, linear, log transformation, and an ordinal regression model were compared. The ordinal regression models fit the best and had the lowest AICs and BICs. To ensure that there were no major differences in results across the different levels of the dependent variables, stratified logistic regressions were fitted and compared. In the stratified logistic regressions, results stayed rather consistent across the different levels, justifying the use of an ordinal regression model.</p>
 </blockquote>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Fast Food Model Diagnostic</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">SSB Model Diagnostics</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">F&amp;V Model Diagnostics</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<section id="stratified-logistic-regressions" class="level2">
-<h2 class="anchored" data-anchor-id="stratified-logistic-regressions">Stratified Logistic Regressions</h2>
-<div class="cell">
-<details>
-<summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ordinal.mod1 <span class="ot">&lt;-</span><span class="fu">glm</span>(ff_cat1<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> health_conscious <span class="sc">+</span> living_with_family <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df, <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>ordinal.mod2 <span class="ot">&lt;-</span><span class="fu">glm</span>(ff_cat2<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> health_conscious <span class="sc">+</span> living_with_family <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df, <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>ordinal.mod3 <span class="ot">&lt;-</span><span class="fu">glm</span>(ff_cat3<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> health_conscious <span class="sc">+</span> living_with_family <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df, <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>ordinal.mod1 <span class="ot">&lt;-</span> <span class="fu">tidy</span>(ordinal.mod1) <span class="sc">%&gt;%</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">"1-2 Vs Zero"</span>,</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">estimate =</span> <span class="fu">exp</span>(estimate))</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>ordinal.mod2 <span class="ot">&lt;-</span> <span class="fu">tidy</span>(ordinal.mod2) <span class="sc">%&gt;%</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">"3-4 Vs 1-2"</span>,</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">estimate =</span> <span class="fu">exp</span>(estimate))</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>ordinal.mod3 <span class="ot">&lt;-</span> <span class="fu">tidy</span>(ordinal.mod3) <span class="sc">%&gt;%</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">"5 or more Vs 3-4"</span>,</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">estimate =</span> <span class="fu">exp</span>(estimate))</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>models <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(ordinal.mod1, ordinal.mod2, ordinal.mod3)</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="fu">dwplot</span>(models) <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">1</span>,</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>               <span class="at">colour =</span> <span class="st">"grey60"</span>,</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>               <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>                <span class="fu">xlab</span>(<span class="st">"Odds Ratio"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<p><img src="Model_Diagnostics_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<blockquote class="blockquote">
-<p>In almost all variables, confidence intervals overlapped between stratified models and estimates were similar, meaning there were no major differences between levels and an ordinal regression is appropriate.</p>
-</blockquote>
-</section>
 <section id="compare-aic-and-bic" class="level2">
 <h2 class="anchored" data-anchor-id="compare-aic-and-bic">Compare AIC and BIC</h2>
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>linear.model <span class="ot">&lt;-</span> <span class="fu">lm</span>(ff_numeric<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> health_conscious <span class="sc">+</span> living_with_family <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>poisson.model <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="fu">floor</span>(ff_numeric)<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> health_conscious <span class="sc">+</span> living_with_family <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df, <span class="at">family =</span> <span class="st">"poisson"</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>log.model <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="fu">log</span>(ff_numeric <span class="sc">+</span> <span class="fl">0.01</span>)<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> health_conscious <span class="sc">+</span> living_with_family <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>ordinal.mod <span class="ot">&lt;-</span> MASS<span class="sc">::</span><span class="fu">polr</span>(ff_cat<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> health_conscious <span class="sc">+</span> living_with_family <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df, <span class="at">Hess=</span><span class="cn">TRUE</span>)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"AIC for Poisson Model:"</span>, <span class="fu">AIC</span>(poisson.model))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>linear.model <span class="ot">&lt;-</span> <span class="fu">lm</span>(ff_numeric<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> health_conscious <span class="sc">+</span> living_with_family <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>poisson.model <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="fu">floor</span>(ff_numeric)<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> health_conscious <span class="sc">+</span> living_with_family <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df, <span class="at">family =</span> <span class="st">"poisson"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>log.model <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="fu">log</span>(ff_numeric <span class="sc">+</span> <span class="fl">0.01</span>)<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> health_conscious <span class="sc">+</span> living_with_family <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>ordinal.mod <span class="ot">&lt;-</span> MASS<span class="sc">::</span><span class="fu">polr</span>(ff_cat<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> health_conscious <span class="sc">+</span> living_with_family <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df, <span class="at">Hess=</span><span class="cn">TRUE</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"AIC for Poisson Model:"</span>, <span class="fu">AIC</span>(poisson.model))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>AIC for Poisson Model: 7433.829</code></pre>
 </div>
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"AIC for Linear Model:"</span>, <span class="fu">AIC</span>(linear.model))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"AIC for Linear Model:"</span>, <span class="fu">AIC</span>(linear.model))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>AIC for Linear Model: 8090.405</code></pre>
 </div>
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"AIC for Log Transformation Model:"</span>, <span class="fu">AIC</span>(log.model))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"AIC for Log Transformation Model:"</span>, <span class="fu">AIC</span>(log.model))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>AIC for Log Transformation Model: 9556.535</code></pre>
 </div>
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"AIC for Ordinal Model:"</span>, <span class="fu">AIC</span>(ordinal.mod))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"AIC for Ordinal Model:"</span>, <span class="fu">AIC</span>(ordinal.mod))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>AIC for Ordinal Model: 5226.873</code></pre>
 </div>
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"BIC for Poisson Model:"</span>, <span class="fu">BIC</span>(poisson.model))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"BIC for Poisson Model:"</span>, <span class="fu">BIC</span>(poisson.model))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>BIC for Poisson Model: 7537.64</code></pre>
 </div>
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"BIC for Linear Model:"</span>, <span class="fu">BIC</span>(linear.model))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"BIC for Linear Model:"</span>, <span class="fu">BIC</span>(linear.model))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>BIC for Linear Model: 8199.983</code></pre>
 </div>
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"BIC for Log Transformation Model:"</span>, <span class="fu">BIC</span>(log.model))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"BIC for Log Transformation Model:"</span>, <span class="fu">BIC</span>(log.model))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>BIC for Log Transformation Model: 9666.113</code></pre>
 </div>
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"BIC for Ordinal Model:"</span>, <span class="fu">BIC</span>(ordinal.mod))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"BIC for Ordinal Model:"</span>, <span class="fu">BIC</span>(ordinal.mod))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>BIC for Ordinal Model: 5342.218</code></pre>
 </div>
 </div>
 <blockquote class="blockquote">
-<p>Although AIC and BIC are computed differently between model types, the ordinal model had far lower values, justifying the use of an ordinal regression</p>
+<p>Although AIC and BIC are computed differently between model types, the ordinal model had far lower values, justifying the use of an ordinal regression.</p>
+</blockquote>
+</section>
+<section id="stratified-logistic-regressions" class="level2">
+<h2 class="anchored" data-anchor-id="stratified-logistic-regressions">Stratified Logistic Regressions</h2>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>ordinal.mod1 <span class="ot">&lt;-</span><span class="fu">glm</span>(ff_cat1<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> health_conscious <span class="sc">+</span> living_with_family <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df, <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>ordinal.mod2 <span class="ot">&lt;-</span><span class="fu">glm</span>(ff_cat2<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> health_conscious <span class="sc">+</span> living_with_family <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df, <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>ordinal.mod3 <span class="ot">&lt;-</span><span class="fu">glm</span>(ff_cat3<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> health_conscious <span class="sc">+</span> living_with_family <span class="sc">+</span> cooking_confident <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df, <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>ordinal.mod1 <span class="ot">&lt;-</span> <span class="fu">tidy</span>(ordinal.mod1) <span class="sc">%&gt;%</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">"1-2 Vs Zero"</span>)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>ordinal.mod2 <span class="ot">&lt;-</span> <span class="fu">tidy</span>(ordinal.mod2) <span class="sc">%&gt;%</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">"3-4 Vs 1-2"</span>)</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>ordinal.mod3 <span class="ot">&lt;-</span> <span class="fu">tidy</span>(ordinal.mod3) <span class="sc">%&gt;%</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">"5 or more Vs 3-4"</span>)</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>models <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(ordinal.mod1, ordinal.mod2, ordinal.mod3)</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="fu">dwplot</span>(models) <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>,</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>               <span class="at">colour =</span> <span class="st">"grey60"</span>,</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>               <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>                <span class="fu">xlab</span>(<span class="st">"Beta and CI"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Model_Diagnostics_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>In almost all variables, confidence intervals overlapped between stratified models, and estimates were similar, meaning there were no major differences between levels and an ordinal regression was appropriate.</p>
 </blockquote>
 </section>
 <section id="model-accuracy" class="level2">
@@ -346,7 +343,7 @@ Prediction                 5 or more times per week
 </div>
 </div>
 <blockquote class="blockquote">
-<p>This model had 56% accuracy</p>
+<p>This model had 56% accuracy.</p>
 </blockquote>
 </section>
 <section id="colinearity" class="level2">
@@ -382,110 +379,71 @@ homelessness_year    1.068939  1        1.033895</code></pre>
 </section>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<section id="stratified-logistic-reg" class="level2">
-<h2 class="anchored" data-anchor-id="stratified-logistic-reg">Stratified Logistic Reg</h2>
-<div class="cell">
-<details>
-<summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>ordinal.mod1 <span class="ot">&lt;-</span><span class="fu">glm</span>(ssb_cat1<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> race_eth <span class="sc">+</span> gender <span class="sc">+</span> age <span class="sc">+</span> units_four <span class="sc">+</span> unpaid_work_hours_tens <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_access <span class="sc">+</span> physical_activity <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df, <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>ordinal.mod2 <span class="ot">&lt;-</span><span class="fu">glm</span>(ssb_cat2<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> race_eth <span class="sc">+</span> gender <span class="sc">+</span> age <span class="sc">+</span> units_four <span class="sc">+</span> unpaid_work_hours_tens <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_access <span class="sc">+</span> physical_activity <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df, <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>ordinal.mod3 <span class="ot">&lt;-</span><span class="fu">glm</span>(ssb_cat3<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> race_eth <span class="sc">+</span> gender <span class="sc">+</span> age <span class="sc">+</span> units_four <span class="sc">+</span> unpaid_work_hours_tens <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_access <span class="sc">+</span> physical_activity <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df, <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>ordinal.mod1 <span class="ot">&lt;-</span> <span class="fu">tidy</span>(ordinal.mod1) <span class="sc">%&gt;%</span></span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">"1-8 ounces Vs Zero"</span>,</span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">estimate =</span> <span class="fu">exp</span>(estimate))</span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>ordinal.mod2 <span class="ot">&lt;-</span> <span class="fu">tidy</span>(ordinal.mod2) <span class="sc">%&gt;%</span></span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">"9-16 ounces Vs 1-8"</span>,</span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>          <span class="at">estimate =</span> <span class="fu">exp</span>(estimate))</span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>ordinal.mod3 <span class="ot">&lt;-</span> <span class="fu">tidy</span>(ordinal.mod3) <span class="sc">%&gt;%</span></span>
-<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">"17 or more ounces Vs 9-16"</span>,</span>
-<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>          <span class="at">estimate =</span> <span class="fu">exp</span>(estimate))</span>
-<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>models <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(ordinal.mod1, ordinal.mod2, ordinal.mod3)</span>
-<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a><span class="fu">dwplot</span>(models) <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">1</span>,</span>
-<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>               <span class="at">colour =</span> <span class="st">"grey60"</span>,</span>
-<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>               <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>                <span class="fu">xlab</span>(<span class="st">"Odds Ratio"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<p><img src="Model_Diagnostics_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<blockquote class="blockquote">
-<p>In almost all variables, confidence intervals overlapped between stratified models and estimates were similar, meaning there were no major differences between levels and an ordinal regression is appropriate.</p>
-</blockquote>
-</section>
 <section id="compare-aic-and-bic-1" class="level2">
 <h2 class="anchored" data-anchor-id="compare-aic-and-bic-1">Compare AIC and BIC</h2>
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>linear.model <span class="ot">&lt;-</span> <span class="fu">lm</span>(ssb_numeric<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> race_eth <span class="sc">+</span> gender <span class="sc">+</span> age <span class="sc">+</span> units_four <span class="sc">+</span> unpaid_work_hours_tens <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_access <span class="sc">+</span> physical_activity <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df)</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>poisson.model <span class="ot">&lt;-</span> <span class="fu">glm</span>(ssb_numeric<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> race_eth <span class="sc">+</span> gender <span class="sc">+</span> age <span class="sc">+</span> units_four <span class="sc">+</span> unpaid_work_hours_tens <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_access <span class="sc">+</span> physical_activity <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df, <span class="at">family =</span> <span class="st">"poisson"</span>)</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>log.model <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="fu">log</span>(ssb_numeric <span class="sc">+</span> <span class="fl">0.01</span>)<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> race_eth <span class="sc">+</span> gender <span class="sc">+</span> age <span class="sc">+</span> units_four <span class="sc">+</span> unpaid_work_hours_tens <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_access <span class="sc">+</span> physical_activity <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df)</span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>ordinal.mod <span class="ot">&lt;-</span> MASS<span class="sc">::</span><span class="fu">polr</span>(ff_cat<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> race_eth <span class="sc">+</span> gender <span class="sc">+</span> age <span class="sc">+</span> units_four <span class="sc">+</span> unpaid_work_hours_tens <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_access <span class="sc">+</span> physical_activity <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df, <span class="at">Hess=</span><span class="cn">TRUE</span>)</span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"AIC for Poisson Model:"</span>, <span class="fu">AIC</span>(poisson.model))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>linear.model <span class="ot">&lt;-</span> <span class="fu">lm</span>(ssb_numeric<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> race_eth <span class="sc">+</span> gender <span class="sc">+</span> age <span class="sc">+</span> units_four <span class="sc">+</span> unpaid_work_hours_tens <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_access <span class="sc">+</span> physical_activity <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>poisson.model <span class="ot">&lt;-</span> <span class="fu">glm</span>(ssb_numeric<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> race_eth <span class="sc">+</span> gender <span class="sc">+</span> age <span class="sc">+</span> units_four <span class="sc">+</span> unpaid_work_hours_tens <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_access <span class="sc">+</span> physical_activity <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df, <span class="at">family =</span> <span class="st">"poisson"</span>)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>log.model <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="fu">log</span>(ssb_numeric <span class="sc">+</span> <span class="fl">0.01</span>)<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> race_eth <span class="sc">+</span> gender <span class="sc">+</span> age <span class="sc">+</span> units_four <span class="sc">+</span> unpaid_work_hours_tens <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_access <span class="sc">+</span> physical_activity <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df)</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>ordinal.mod <span class="ot">&lt;-</span> MASS<span class="sc">::</span><span class="fu">polr</span>(ff_cat<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> race_eth <span class="sc">+</span> gender <span class="sc">+</span> age <span class="sc">+</span> units_four <span class="sc">+</span> unpaid_work_hours_tens <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_access <span class="sc">+</span> physical_activity <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df, <span class="at">Hess=</span><span class="cn">TRUE</span>)</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"AIC for Poisson Model:"</span>, <span class="fu">AIC</span>(poisson.model))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>AIC for Poisson Model: 20881.32</code></pre>
 </div>
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"AIC for Linear Model:"</span>, <span class="fu">AIC</span>(linear.model))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"AIC for Linear Model:"</span>, <span class="fu">AIC</span>(linear.model))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>AIC for Linear Model: 14756.35</code></pre>
 </div>
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"AIC for Log Transformation Model:"</span>, <span class="fu">AIC</span>(log.model))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"AIC for Log Transformation Model:"</span>, <span class="fu">AIC</span>(log.model))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>AIC for Log Transformation Model: 11626.17</code></pre>
 </div>
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"AIC for Ordinal Model:"</span>, <span class="fu">AIC</span>(ordinal.mod))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"AIC for Ordinal Model:"</span>, <span class="fu">AIC</span>(ordinal.mod))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>AIC for Ordinal Model: 5240.351</code></pre>
 </div>
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"BIC for Poisson Model:"</span>, <span class="fu">BIC</span>(poisson.model))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"BIC for Poisson Model:"</span>, <span class="fu">BIC</span>(poisson.model))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>BIC for Poisson Model: 20985.13</code></pre>
 </div>
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"BIC for Linear Model:"</span>, <span class="fu">BIC</span>(linear.model))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"BIC for Linear Model:"</span>, <span class="fu">BIC</span>(linear.model))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>BIC for Linear Model: 14865.93</code></pre>
 </div>
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"BIC for Log Transformation Model:"</span>, <span class="fu">BIC</span>(log.model))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"BIC for Log Transformation Model:"</span>, <span class="fu">BIC</span>(log.model))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>BIC for Log Transformation Model: 11735.75</code></pre>
 </div>
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"BIC for Ordinal Model:"</span>, <span class="fu">BIC</span>(ordinal.mod))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"BIC for Ordinal Model:"</span>, <span class="fu">BIC</span>(ordinal.mod))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>BIC for Ordinal Model: 5355.696</code></pre>
@@ -493,6 +451,42 @@ homelessness_year    1.068939  1        1.033895</code></pre>
 </div>
 <blockquote class="blockquote">
 <p>Although AIC and BIC are computed differently between model types, the ordinal model had far lower values, justifying the use of an ordinal regression</p>
+</blockquote>
+</section>
+<section id="stratified-logistic-reg" class="level2">
+<h2 class="anchored" data-anchor-id="stratified-logistic-reg">Stratified Logistic Reg</h2>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>ordinal.mod1 <span class="ot">&lt;-</span><span class="fu">glm</span>(ssb_cat1<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> race_eth <span class="sc">+</span> gender <span class="sc">+</span> age <span class="sc">+</span> units_four <span class="sc">+</span> unpaid_work_hours_tens <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_access <span class="sc">+</span> physical_activity <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df, <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>ordinal.mod2 <span class="ot">&lt;-</span><span class="fu">glm</span>(ssb_cat2<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> race_eth <span class="sc">+</span> gender <span class="sc">+</span> age <span class="sc">+</span> units_four <span class="sc">+</span> unpaid_work_hours_tens <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_access <span class="sc">+</span> physical_activity <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df, <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>ordinal.mod3 <span class="ot">&lt;-</span><span class="fu">glm</span>(ssb_cat3<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> race_eth <span class="sc">+</span> gender <span class="sc">+</span> age <span class="sc">+</span> units_four <span class="sc">+</span> unpaid_work_hours_tens <span class="sc">+</span> paid_work_hours_tens <span class="sc">+</span> caregiving_hours_tens <span class="sc">+</span> health_conscious <span class="sc">+</span> storage_access <span class="sc">+</span> physical_activity <span class="sc">+</span> homelessness_year, <span class="at">data =</span> bns_combined_imputed_df, <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>ordinal.mod1 <span class="ot">&lt;-</span> <span class="fu">tidy</span>(ordinal.mod1) <span class="sc">%&gt;%</span></span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">"1-8 ounces Vs Zero"</span>)</span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>ordinal.mod2 <span class="ot">&lt;-</span> <span class="fu">tidy</span>(ordinal.mod2) <span class="sc">%&gt;%</span></span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">"9-16 ounces Vs 1-8"</span>)</span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a>ordinal.mod3 <span class="ot">&lt;-</span> <span class="fu">tidy</span>(ordinal.mod3) <span class="sc">%&gt;%</span></span>
+<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">"17 or more ounces Vs 9-16"</span>)</span>
+<span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-17"><a href="#cb40-17" aria-hidden="true" tabindex="-1"></a>models <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(ordinal.mod1, ordinal.mod2, ordinal.mod3)</span>
+<span id="cb40-18"><a href="#cb40-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-19"><a href="#cb40-19" aria-hidden="true" tabindex="-1"></a><span class="fu">dwplot</span>(models) <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>,</span>
+<span id="cb40-20"><a href="#cb40-20" aria-hidden="true" tabindex="-1"></a>               <span class="at">colour =</span> <span class="st">"grey60"</span>,</span>
+<span id="cb40-21"><a href="#cb40-21" aria-hidden="true" tabindex="-1"></a>               <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb40-22"><a href="#cb40-22" aria-hidden="true" tabindex="-1"></a>                <span class="fu">xlab</span>(<span class="st">"Beta and CI"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Model_Diagnostics_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>In almost all variables, confidence intervals overlapped between stratified models, and estimates were similar, meaning there were no major differences between levels and an ordinal regression was appropriate.</p>
 </blockquote>
 </section>
 <section id="model-accuracy-1" class="level2">
@@ -508,8 +502,8 @@ homelessness_year    1.068939  1        1.033895</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>                   Truth
 Prediction          Zero 1-8 ounces 9-16 ounces 17 or more ounces
-  Zero               473        330         124                74
-  1-8 ounces         396        518         269               175
+  Zero               473        330         125                74
+  1-8 ounces         396        518         268               175
   9-16 ounces          0          0           0                 0
   17 or more ounces    0          1           1                 1</code></pre>
 </div>
@@ -525,7 +519,7 @@ Prediction          Zero 1-8 ounces 9-16 ounces 17 or more ounces
 </div>
 </div>
 <blockquote class="blockquote">
-<p>The SSB model had 42% accuracy</p>
+<p>The SSB model had 42% accuracy.</p>
 </blockquote>
 </section>
 <section id="colinearity-1" class="level2">
@@ -561,115 +555,113 @@ homelessness_year      1.057032  1        1.028121</code></pre>
 </section>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<section id="stratified-logistic-regressions-1" class="level2">
-<h2 class="anchored" data-anchor-id="stratified-logistic-regressions-1">Stratified Logistic Regressions</h2>
-<div class="cell">
-<details>
-<summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>imp_one_vs_zero <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, <span class="fu">glm</span>(q77_one_vs_zero<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age  <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> firstgen, <span class="at">family =</span> <span class="st">"binomial"</span>))</span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>imp_one_vs_three_or_more <span class="ot">&lt;-</span> <span class="fu">with</span>(bns_imputed_mids, <span class="fu">glm</span>(q77_one_vs_three_or_more<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age  <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> firstgen, <span class="at">family =</span> <span class="st">"binomial"</span>))</span>
-<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>imp_fv1_model_tidy <span class="ot">&lt;-</span> <span class="fu">pool</span>(imp_one_vs_zero) <span class="sc">|&gt;</span> <span class="fu">summary</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">"1-2 F&amp;V Vs Zero"</span>,</span>
-<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">estimate =</span> <span class="fu">exp</span>(estimate)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>df)</span>
-<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a>imp_fv2_model_tidy <span class="ot">&lt;-</span> <span class="fu">pool</span>(imp_one_vs_three_or_more) <span class="sc">|&gt;</span> <span class="fu">summary</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">"3 or More F&amp;V Vs 1-2"</span>,</span>
-<span id="cb47-15"><a href="#cb47-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">estimate =</span> <span class="fu">exp</span>(estimate)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>df)</span>
-<span id="cb47-16"><a href="#cb47-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-17"><a href="#cb47-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-18"><a href="#cb47-18" aria-hidden="true" tabindex="-1"></a>FV2_models <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(imp_fv1_model_tidy, imp_fv2_model_tidy)</span>
-<span id="cb47-19"><a href="#cb47-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-20"><a href="#cb47-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-21"><a href="#cb47-21" aria-hidden="true" tabindex="-1"></a><span class="fu">dwplot</span>(FV2_models) <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">1</span>,</span>
-<span id="cb47-22"><a href="#cb47-22" aria-hidden="true" tabindex="-1"></a>               <span class="at">colour =</span> <span class="st">"grey60"</span>,</span>
-<span id="cb47-23"><a href="#cb47-23" aria-hidden="true" tabindex="-1"></a>               <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb47-24"><a href="#cb47-24" aria-hidden="true" tabindex="-1"></a>                <span class="fu">xlab</span>(<span class="st">"Odds Ratio"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<p><img src="Model_Diagnostics_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<blockquote class="blockquote">
-<p>In almost all variables, confidence intervals overlapped between stratified models and estimates were similar, meaning there were no major differences between levels and an ordinal regression is appropriate.</p>
-</blockquote>
-</section>
 <section id="compare-aic-and-bic-2" class="level2">
 <h2 class="anchored" data-anchor-id="compare-aic-and-bic-2">Compare AIC and BIC</h2>
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>linear.model <span class="ot">&lt;-</span> <span class="fu">lm</span>(q77_numeric<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age  <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> firstgen, <span class="at">data =</span> bns_combined_imputed_df)</span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>poisson.model <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="fu">floor</span>(q77_numeric)<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age  <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> firstgen, <span class="at">data =</span> bns_combined_imputed_df, <span class="at">family =</span> <span class="st">"poisson"</span>)</span>
-<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>log.model <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="fu">log</span>(q77_numeric <span class="sc">+</span> <span class="fl">0.01</span>)<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age  <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> firstgen, <span class="at">data =</span> bns_combined_imputed_df)</span>
-<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>ordinal.mod <span class="ot">&lt;-</span> MASS<span class="sc">::</span><span class="fu">polr</span>(fruits3<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age  <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> firstgen, <span class="at">data =</span> bns_combined_imputed_df, <span class="at">Hess=</span><span class="cn">TRUE</span>)</span>
-<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"AIC for Poisson Model:"</span>, <span class="fu">AIC</span>(poisson.model))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>linear.model <span class="ot">&lt;-</span> <span class="fu">lm</span>(q77_numeric<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age  <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> firstgen, <span class="at">data =</span> bns_combined_imputed_df)</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>poisson.model <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="fu">floor</span>(q77_numeric)<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age  <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> firstgen, <span class="at">data =</span> bns_combined_imputed_df, <span class="at">family =</span> <span class="st">"poisson"</span>)</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>log.model <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="fu">log</span>(q77_numeric <span class="sc">+</span> <span class="fl">0.01</span>)<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age  <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> firstgen, <span class="at">data =</span> bns_combined_imputed_df)</span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>ordinal.mod <span class="ot">&lt;-</span> MASS<span class="sc">::</span><span class="fu">polr</span>(fruits3<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age  <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> firstgen, <span class="at">data =</span> bns_combined_imputed_df, <span class="at">Hess=</span><span class="cn">TRUE</span>)</span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"AIC for Poisson Model:"</span>, <span class="fu">AIC</span>(poisson.model))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>AIC for Poisson Model: 5835.612</code></pre>
 </div>
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"AIC for Linear Model:"</span>, <span class="fu">AIC</span>(linear.model))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"AIC for Linear Model:"</span>, <span class="fu">AIC</span>(linear.model))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>AIC for Linear Model: 5696.606</code></pre>
 </div>
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"AIC for Log Transformation Model:"</span>, <span class="fu">AIC</span>(log.model))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"AIC for Log Transformation Model:"</span>, <span class="fu">AIC</span>(log.model))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>AIC for Log Transformation Model: 8913.888</code></pre>
 </div>
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"AIC for Ordinal Model:"</span>, <span class="fu">AIC</span>(ordinal.mod))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"AIC for Ordinal Model:"</span>, <span class="fu">AIC</span>(ordinal.mod))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>AIC for Ordinal Model: 3506.184</code></pre>
 </div>
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"BIC for Poisson Model:"</span>, <span class="fu">BIC</span>(poisson.model))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"BIC for Poisson Model:"</span>, <span class="fu">BIC</span>(poisson.model))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>BIC for Poisson Model: 5927.888</code></pre>
 </div>
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"BIC for Linear Model:"</span>, <span class="fu">BIC</span>(linear.model))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"BIC for Linear Model:"</span>, <span class="fu">BIC</span>(linear.model))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>BIC for Linear Model: 5794.649</code></pre>
 </div>
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"BIC for Log Transformation Model:"</span>, <span class="fu">BIC</span>(log.model))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"BIC for Log Transformation Model:"</span>, <span class="fu">BIC</span>(log.model))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>BIC for Log Transformation Model: 9011.932</code></pre>
 </div>
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"BIC for Ordinal Model:"</span>, <span class="fu">BIC</span>(ordinal.mod))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"BIC for Ordinal Model:"</span>, <span class="fu">BIC</span>(ordinal.mod))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>BIC for Ordinal Model: 3604.228</code></pre>
 </div>
 </div>
 <blockquote class="blockquote">
-<p>Although AIC and BIC are computed differently between model types, the ordinal model had far lower values, justifying the use of an ordinal regression</p>
+<p>Although AIC and BIC are computed differently between model types, the ordinal model had far lower values, justifying the use of an ordinal regression.</p>
+</blockquote>
+</section>
+<section id="stratified-logistic-regressions-1" class="level2">
+<h2 class="anchored" data-anchor-id="stratified-logistic-regressions-1">Stratified Logistic Regressions</h2>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>FV_one_vs_zero <span class="ot">&lt;-</span> <span class="fu">glm</span>(q77_one_vs_zero<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age  <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> firstgen, <span class="at">data =</span> bns_combined_imputed_df, <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a>FV_one_vs_three_or_more <span class="ot">&lt;-</span> <span class="fu">glm</span>(q77_one_vs_three_or_more<span class="sc">~</span>SNAP3 <span class="sc">+</span> Cohort <span class="sc">+</span> gender <span class="sc">+</span> race_eth <span class="sc">+</span> age  <span class="sc">+</span> health_conscious <span class="sc">+</span> cooking_confident <span class="sc">+</span> physical_activity <span class="sc">+</span> storage_room <span class="sc">+</span> food_insecure_2item <span class="sc">+</span> firstgen, <span class="at">data =</span> bns_combined_imputed_df, <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
+<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-8"><a href="#cb63-8" aria-hidden="true" tabindex="-1"></a>fv1_model_tidy <span class="ot">&lt;-</span> <span class="fu">tidy</span>(FV_one_vs_zero) <span class="sc">%&gt;%</span></span>
+<span id="cb63-9"><a href="#cb63-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">"1-2 F&amp;V Vs Zero"</span>)</span>
+<span id="cb63-10"><a href="#cb63-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-11"><a href="#cb63-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-12"><a href="#cb63-12" aria-hidden="true" tabindex="-1"></a>fv2_model_tidy <span class="ot">&lt;-</span> <span class="fu">tidy</span>(FV_one_vs_three_or_more) <span class="sc">%&gt;%</span></span>
+<span id="cb63-13"><a href="#cb63-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">"3 or More F&amp;V Vs 1-2"</span>) </span>
+<span id="cb63-14"><a href="#cb63-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-15"><a href="#cb63-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-16"><a href="#cb63-16" aria-hidden="true" tabindex="-1"></a>FV2_models <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(fv1_model_tidy, fv2_model_tidy)</span>
+<span id="cb63-17"><a href="#cb63-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-18"><a href="#cb63-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-19"><a href="#cb63-19" aria-hidden="true" tabindex="-1"></a><span class="fu">dwplot</span>(FV2_models) <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>,</span>
+<span id="cb63-20"><a href="#cb63-20" aria-hidden="true" tabindex="-1"></a>               <span class="at">colour =</span> <span class="st">"grey60"</span>,</span>
+<span id="cb63-21"><a href="#cb63-21" aria-hidden="true" tabindex="-1"></a>               <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb63-22"><a href="#cb63-22" aria-hidden="true" tabindex="-1"></a>                <span class="fu">xlab</span>(<span class="st">"Beta and CI"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Model_Diagnostics_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>In most variables, confidence intervals overlapped between stratified models, and estimates were similar, meaning there were no major differences between levels and an ordinal regression is appropriate. However, there were some notable differences between levels such as with likely eligible non-recipients, food insecure students, and first-generation students.</p>
 </blockquote>
 </section>
 <section id="model-accuracy-2" class="level2">
@@ -701,7 +693,7 @@ Prediction     0  1-2 3 or more
 </div>
 </div>
 <blockquote class="blockquote">
-<p>This model had a 72% accuracy</p>
+<p>This model had a 72% accuracy.</p>
 </blockquote>
 </section>
 <section id="colinearity-2" class="level2">

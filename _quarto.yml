@@ -20,11 +20,12 @@ website:
           - href: Model_Diagnostics.qmd
             text: Model Diagnostics 
           - href: Campus_Type_Analysis.qmd
-            text: Campus Type Analysis              
+            text: Campus Type Analysis
+          - href: Statewide_and_Pilot2_Comparison.qmd
+            text: 'Cohort Comparison' 
       - href: Manuscript_Files.qmd
         text: Manuscript Files
-      - href: Statewide_and_Pilot2_Comparison.qmd
-        text: 'Cohort Comparison'         
+        
        
 
 format:

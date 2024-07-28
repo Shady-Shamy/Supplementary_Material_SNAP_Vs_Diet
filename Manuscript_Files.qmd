@@ -6,7 +6,7 @@ format:
     code-summary: "Show the code"
 ---
 
-> This page shows all graphs and tables used in the manuscript along with the code used. Additional univariate frequencies of covariates not shown in the manuscript are shown in the demographics table.
+> This page shows all tables used in the manuscript along with all code used to generate the tables. Additional univariate frequencies of covariates not shown in the manuscript are shown in the demographics table.
 
 ```{r, include=FALSE}
 knitr::opts_chunk$set(error = FALSE,warning = FALSE,message = FALSE,echo = TRUE)
@@ -44,9 +44,8 @@ figure_labels <- c("SNAP Recipient" = "SNAP Recipients (n = 670)",
 
 ```
 
-# Frequency Statistics
 
-## Table 1: Demographic Information:
+## Table 1. Demographic Information.
 
 ```{r, echo=FALSE}
 bns_combined$school2 <- recode(bns_combined$school,
@@ -116,10 +115,11 @@ tbl_merge(tbls = list(cc, imp),
 
 ```
 
+
+
+```{r, include=FALSE}
+
 ## Figure 2: Fast Food Vs SNAP
-
-```{r}
-
 
 bns_combined_imputed_df$ff_cat2 <- recode(bns_combined_imputed_df$ff_cat,
                                           "Zero" = "Zero",
@@ -146,11 +146,11 @@ p2
 
 ```
 
+
+
+```{r, include=FALSE}
+
 ## Figure 3: SSB Vs SNAP
-
-```{r}
-
-
 
 p3 <- bns_combined_imputed_df %>% select(ssb_cat, SNAP3) %>% na.omit() %>% ggplot(aes(x= ssb_cat,  group=SNAP3)) + 
     geom_bar(aes(y = ..prop.., fill = factor(SNAP3)), stat="count",
@@ -173,9 +173,11 @@ p3
 
 ```
 
-## Figure 4: F&V Vs SNAP
 
-```{r}
+
+```{r, include=FALSE}
+
+## Figure 4: F&V Vs SNAP
 
 p1 <- bns_combined_imputed_df %>% select(fruits3, SNAP3) %>% na.omit() %>% ggplot(aes(x= fruits3,  group=SNAP3)) + 
     geom_bar(aes(y = ..prop.., fill = factor(SNAP3)), stat="count",
@@ -196,7 +198,7 @@ p1
 
 ```
 
-# Table 2
+## Table 2. Student Dietary Intake. 
 
 ```{r}
 
@@ -211,9 +213,8 @@ bns_combined_imputed_df %>% select(SNAP3, fruits3, ssb_cat, ff_cat) %>%
 
 ```
 
-# Ordinal Regression Models
 
-## Table 2: Fast Food Ordinal
+## Table 3. Fast food Ordinal Regression Model. 
 
 ```{r}
 
@@ -224,7 +225,7 @@ ff.ordinal.mod
 
 ```
 
-## Table 3: SSB Ordinal
+## Table 4. SSB Ordinal Regression Model. 
 
 ```{r}
 
@@ -238,7 +239,7 @@ ssb.ordinal.mod
 
 ```
 
-## Table 4: F&V Ordinal
+## Table 5. F&V Ordinal Regression Model. 
 
 ```{r}
 

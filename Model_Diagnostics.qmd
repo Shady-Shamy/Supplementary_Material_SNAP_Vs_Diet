@@ -6,7 +6,7 @@ format:
     code-summary: "Show the code"
 ---
 
-> This page shows all procedures used to choose the best fitting model. The BIC and AIC of a Poisson, linear, log transformation, and an ordinal regression model were compared. The ordinal regression models fit the best and had the lowest AICs and BICs. To ensure that there were no major differences in results across the different levels of the dependent variables, stratified logistic regressions were fitted and compared. All results appeared to stay consistent across the different levels, justifying the use of an ordinal regression model.
+> This page shows all procedures used to choose the best fitting model. The BIC and AIC of a Poisson, linear, log transformation, and an ordinal regression model were compared. The ordinal regression models fit the best and had the lowest AICs and BICs. To ensure that there were no major differences in results across the different levels of the dependent variables, stratified logistic regressions were fitted and compared. In the stratified logistic regressions, results stayed rather consistent across the different levels, justifying the use of an ordinal regression model.
 
 ```{r, include=FALSE}
 knitr::opts_chunk$set(error = FALSE,warning = FALSE,message = FALSE,echo = TRUE)
@@ -28,39 +28,6 @@ bns_combined_imputed_df <- complete(bns_imputed_mids, fill = 3)
 ::: panel-tabset
 # Fast Food Model Diagnostic
 
-## Stratified Logistic Regressions
-
-```{r}
-
-ordinal.mod1 <-glm(ff_cat1~SNAP3 + Cohort + gender + race_eth + age + physical_activity + storage_room + health_conscious + living_with_family + cooking_confident + food_insecure_2item + paid_work_hours_tens + homelessness_year, data = bns_combined_imputed_df, family = "binomial")
-
-ordinal.mod2 <-glm(ff_cat2~SNAP3 + Cohort + gender + race_eth + age + physical_activity + storage_room + health_conscious + living_with_family + cooking_confident + food_insecure_2item + paid_work_hours_tens + homelessness_year, data = bns_combined_imputed_df, family = "binomial")
-
-ordinal.mod3 <-glm(ff_cat3~SNAP3 + Cohort + gender + race_eth + age + physical_activity + storage_room + health_conscious + living_with_family + cooking_confident + food_insecure_2item + paid_work_hours_tens + homelessness_year, data = bns_combined_imputed_df, family = "binomial")
-
-
-ordinal.mod1 <- tidy(ordinal.mod1) %>%
-  mutate(model = "1-2 Vs Zero",
-         estimate = exp(estimate))
-
-ordinal.mod2 <- tidy(ordinal.mod2) %>%
-  mutate(model = "3-4 Vs 1-2",
-         estimate = exp(estimate))
-
-ordinal.mod3 <- tidy(ordinal.mod3) %>%
-  mutate(model = "5 or more Vs 3-4",
-         estimate = exp(estimate))
-
-models <- bind_rows(ordinal.mod1, ordinal.mod2, ordinal.mod3)
-
-dwplot(models) + geom_vline(xintercept = 1,
-               colour = "grey60",
-               linetype = 2) +
-                xlab("Odds Ratio")
-
-```
-
-> In almost all variables, confidence intervals overlapped between stratified models and estimates were similar, meaning there were no major differences between levels and an ordinal regression is appropriate.
 
 ## Compare AIC and BIC
 
@@ -95,7 +62,44 @@ cat("BIC for Ordinal Model:", BIC(ordinal.mod))
 
 ```
 
-> Although AIC and BIC are computed differently between model types, the ordinal model had far lower values, justifying the use of an ordinal regression
+> Although AIC and BIC are computed differently between model types, the ordinal model had far lower values, justifying the use of an ordinal regression.
+
+
+
+
+## Stratified Logistic Regressions
+
+
+```{r}
+
+ordinal.mod1 <-glm(ff_cat1~SNAP3 + Cohort + gender + race_eth + age + physical_activity + storage_room + health_conscious + living_with_family + cooking_confident + food_insecure_2item + paid_work_hours_tens + homelessness_year, data = bns_combined_imputed_df, family = "binomial")
+
+ordinal.mod2 <-glm(ff_cat2~SNAP3 + Cohort + gender + race_eth + age + physical_activity + storage_room + health_conscious + living_with_family + cooking_confident + food_insecure_2item + paid_work_hours_tens + homelessness_year, data = bns_combined_imputed_df, family = "binomial")
+
+ordinal.mod3 <-glm(ff_cat3~SNAP3 + Cohort + gender + race_eth + age + physical_activity + storage_room + health_conscious + living_with_family + cooking_confident + food_insecure_2item + paid_work_hours_tens + homelessness_year, data = bns_combined_imputed_df, family = "binomial")
+
+
+ordinal.mod1 <- tidy(ordinal.mod1) %>%
+  mutate(model = "1-2 Vs Zero")
+
+ordinal.mod2 <- tidy(ordinal.mod2) %>%
+  mutate(model = "3-4 Vs 1-2")
+
+ordinal.mod3 <- tidy(ordinal.mod3) %>%
+  mutate(model = "5 or more Vs 3-4")
+
+models <- bind_rows(ordinal.mod1, ordinal.mod2, ordinal.mod3)
+
+dwplot(models) + geom_vline(xintercept = 0,
+               colour = "grey60",
+               linetype = 2) +
+                xlab("Beta and CI")
+
+```
+
+> In almost all variables, confidence intervals overlapped between stratified models, and estimates were similar, meaning there were no major differences between levels and an ordinal regression was appropriate.
+
+
 
 ## Model Accuracy
 
@@ -108,7 +112,7 @@ accuracy(preds_ff, truth = ff_cat, estimate = .fitted)
 
 ```
 
-> This model had 56% accuracy
+> This model had 56% accuracy.
 
 ## Colinearity
 
@@ -125,39 +129,7 @@ car::vif(linear.model)
 
 # SSB Model Diagnostics
 
-## Stratified Logistic Reg
 
-```{r}
-
-ordinal.mod1 <-glm(ssb_cat1~SNAP3 + Cohort + race_eth + gender + age + units_four + unpaid_work_hours_tens + paid_work_hours_tens + caregiving_hours_tens + health_conscious + storage_access + physical_activity + homelessness_year, data = bns_combined_imputed_df, family = "binomial")
-
-ordinal.mod2 <-glm(ssb_cat2~SNAP3 + Cohort + race_eth + gender + age + units_four + unpaid_work_hours_tens + paid_work_hours_tens + caregiving_hours_tens + health_conscious + storage_access + physical_activity + homelessness_year, data = bns_combined_imputed_df, family = "binomial")
-
-ordinal.mod3 <-glm(ssb_cat3~SNAP3 + Cohort + race_eth + gender + age + units_four + unpaid_work_hours_tens + paid_work_hours_tens + caregiving_hours_tens + health_conscious + storage_access + physical_activity + homelessness_year, data = bns_combined_imputed_df, family = "binomial")
-
-
-ordinal.mod1 <- tidy(ordinal.mod1) %>%
-  mutate(model = "1-8 ounces Vs Zero",
-          estimate = exp(estimate))
-
-ordinal.mod2 <- tidy(ordinal.mod2) %>%
-  mutate(model = "9-16 ounces Vs 1-8",
-          estimate = exp(estimate))
-
-ordinal.mod3 <- tidy(ordinal.mod3) %>%
-  mutate(model = "17 or more ounces Vs 9-16",
-          estimate = exp(estimate))
-
-models <- bind_rows(ordinal.mod1, ordinal.mod2, ordinal.mod3)
-
-dwplot(models) + geom_vline(xintercept = 1,
-               colour = "grey60",
-               linetype = 2) +
-                xlab("Odds Ratio")
-
-```
-
-> In almost all variables, confidence intervals overlapped between stratified models and estimates were similar, meaning there were no major differences between levels and an ordinal regression is appropriate.
 
 ## Compare AIC and BIC
 
@@ -196,6 +168,39 @@ cat("BIC for Ordinal Model:", BIC(ordinal.mod))
 
 > Although AIC and BIC are computed differently between model types, the ordinal model had far lower values, justifying the use of an ordinal regression
 
+
+## Stratified Logistic Reg
+
+```{r}
+
+ordinal.mod1 <-glm(ssb_cat1~SNAP3 + Cohort + race_eth + gender + age + units_four + unpaid_work_hours_tens + paid_work_hours_tens + caregiving_hours_tens + health_conscious + storage_access + physical_activity + homelessness_year, data = bns_combined_imputed_df, family = "binomial")
+
+ordinal.mod2 <-glm(ssb_cat2~SNAP3 + Cohort + race_eth + gender + age + units_four + unpaid_work_hours_tens + paid_work_hours_tens + caregiving_hours_tens + health_conscious + storage_access + physical_activity + homelessness_year, data = bns_combined_imputed_df, family = "binomial")
+
+ordinal.mod3 <-glm(ssb_cat3~SNAP3 + Cohort + race_eth + gender + age + units_four + unpaid_work_hours_tens + paid_work_hours_tens + caregiving_hours_tens + health_conscious + storage_access + physical_activity + homelessness_year, data = bns_combined_imputed_df, family = "binomial")
+
+
+ordinal.mod1 <- tidy(ordinal.mod1) %>%
+  mutate(model = "1-8 ounces Vs Zero")
+
+ordinal.mod2 <- tidy(ordinal.mod2) %>%
+  mutate(model = "9-16 ounces Vs 1-8")
+
+ordinal.mod3 <- tidy(ordinal.mod3) %>%
+  mutate(model = "17 or more ounces Vs 9-16")
+
+models <- bind_rows(ordinal.mod1, ordinal.mod2, ordinal.mod3)
+
+dwplot(models) + geom_vline(xintercept = 0,
+               colour = "grey60",
+               linetype = 2) +
+                xlab("Beta and CI")
+
+```
+
+> In almost all variables, confidence intervals overlapped between stratified models, and estimates were similar, meaning there were no major differences between levels and an ordinal regression was appropriate.
+
+
 ## Model Accuracy
 
 ```{r}
@@ -211,7 +216,7 @@ accuracy(preds_SSB, truth = ssb_cat, estimate = .fitted)
 
 ```
 
-> The SSB model had 42% accuracy
+> The SSB model had 42% accuracy.
 
 ## Colinearity
 
@@ -229,38 +234,6 @@ car::vif(linear.model)
 
 # F&V Model Diagnostics
 
-## Stratified Logistic Regressions
-
-```{r}
-
-imp_one_vs_zero <- with(bns_imputed_mids, glm(q77_one_vs_zero~SNAP3 + Cohort + gender + race_eth + age  + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item + firstgen, family = "binomial"))
-
-
-
-imp_one_vs_three_or_more <- with(bns_imputed_mids, glm(q77_one_vs_three_or_more~SNAP3 + Cohort + gender + race_eth + age  + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item + firstgen, family = "binomial"))
-
-
-imp_fv1_model_tidy <- pool(imp_one_vs_zero) |> summary() %>%
-  mutate(model = "1-2 F&V Vs Zero",
-         estimate = exp(estimate)) %>% select(-df)
-
-
-imp_fv2_model_tidy <- pool(imp_one_vs_three_or_more) |> summary() %>%
-  mutate(model = "3 or More F&V Vs 1-2",
-         estimate = exp(estimate)) %>% select(-df)
-
-
-FV2_models <- bind_rows(imp_fv1_model_tidy, imp_fv2_model_tidy)
-
-
-dwplot(FV2_models) + geom_vline(xintercept = 1,
-               colour = "grey60",
-               linetype = 2) +
-                xlab("Odds Ratio")
-
-```
-
-> In almost all variables, confidence intervals overlapped between stratified models and estimates were similar, meaning there were no major differences between levels and an ordinal regression is appropriate.
 
 ## Compare AIC and BIC
 
@@ -294,7 +267,40 @@ cat("BIC for Ordinal Model:", BIC(ordinal.mod))
 
 ```
 
-> Although AIC and BIC are computed differently between model types, the ordinal model had far lower values, justifying the use of an ordinal regression
+> Although AIC and BIC are computed differently between model types, the ordinal model had far lower values, justifying the use of an ordinal regression.
+
+
+## Stratified Logistic Regressions
+
+```{r}
+
+FV_one_vs_zero <- glm(q77_one_vs_zero~SNAP3 + Cohort + gender + race_eth + age  + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item + firstgen, data = bns_combined_imputed_df, family = "binomial")
+
+
+
+FV_one_vs_three_or_more <- glm(q77_one_vs_three_or_more~SNAP3 + Cohort + gender + race_eth + age  + health_conscious + cooking_confident + physical_activity + storage_room + food_insecure_2item + firstgen, data = bns_combined_imputed_df, family = "binomial")
+
+
+fv1_model_tidy <- tidy(FV_one_vs_zero) %>%
+  mutate(model = "1-2 F&V Vs Zero")
+
+
+fv2_model_tidy <- tidy(FV_one_vs_three_or_more) %>%
+  mutate(model = "3 or More F&V Vs 1-2") 
+
+
+FV2_models <- bind_rows(fv1_model_tidy, fv2_model_tidy)
+
+
+dwplot(FV2_models) + geom_vline(xintercept = 0,
+               colour = "grey60",
+               linetype = 2) +
+                xlab("Beta and CI")
+
+```
+
+> In most variables, confidence intervals overlapped between stratified models, and estimates were similar, meaning there were no major differences between levels and an ordinal regression is appropriate. However, there were some notable differences between levels such as with likely eligible non-recipients, food insecure students, and first-generation students. 
+
 
 ## Model Accuracy
 
@@ -308,7 +314,7 @@ accuracy(preds_FV, truth = fruits3, estimate = .fitted)
 
 ```
 
-> This model had a 72% accuracy
+> This model had a 72% accuracy.
 
 ## Colinearity
 
@@ -322,4 +328,5 @@ car::vif(linear.model)
 ```
 
 > There were no variables that were highly colinear.
+
 :::
