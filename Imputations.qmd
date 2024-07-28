@@ -227,7 +227,7 @@ plot(imp_bns_combined_raw_mids, c("q46_1", "fruits3", "ff_cat", "ssb_cat", "race
 
 ## Compare SSB Non-Imputed and Imputed Models
 
-```{r}
+```{r, fig.height=5}
 
 
 original_ssb_model <- MASS::polr(ssb_cat~SNAP3 + Cohort + race_eth + gender + age + units_four + unpaid_work_hours_tens + paid_work_hours_tens + caregiving_hours_tens + health_conscious + storage_access + physical_activity + homelessness_year, data = bns_combined, Hess=TRUE)
@@ -254,7 +254,7 @@ dwplot(ssb_models) + geom_vline(xintercept = 0,
 
 ## Compare Fast Food Non-imputed and Imputed Models
 
-```{r}
+```{r, fig.height=5}
 
 
 original_ff_model <- MASS::polr(ff_cat~SNAP3 + Cohort + gender + race_eth + age + physical_activity + storage_room + kitchen_access + health_conscious + living_with_family + cooking_confident + food_insecure_2item + paid_work_hours_tens + homelessness_year, data = bns_combined, Hess=TRUE)
@@ -282,7 +282,7 @@ dwplot(ff_models) + geom_vline(xintercept = 0,
 
 ## Compare F&V Non-Imputed and Imputed Models
 
-```{r}
+```{r, fig.height=5}
 
 
 
