@@ -8,6 +8,7 @@ format:
 
 > Significant associations were found between the campus type (CSU, UC, and CCC) and dependent variables at the bivariate level. However, after controlling for other covariates, there were no more significant associations. Due to the Pilot 2 cohort not including any UC or CCC campuses, both cohort and campus type were not included as covariates. Because significant associations were found between cohort and fast food intake as well as cohort and SSB intake after controlling for covariates, cohort was included in all final models over campus type. All other associations stay the same regardless of which covariate was included. Below, are the models with campus type as a covariate. 
 
+
 ```{r, include=FALSE}
 knitr::opts_chunk$set(error = FALSE,warning = FALSE,message = FALSE,echo = TRUE)
 
