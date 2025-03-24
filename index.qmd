@@ -2,7 +2,7 @@
 title: "Summary"
 ---
 
-> This site serves as a reference to all code and supplementary material used for the manuscript titled "A Cross-Sectional Study on the Associations Between SNAP Participation and Diet Quality Among California College Students."
+> This site serves as a reference to all code and supplementary material used for the manuscript titled "A Cross-Sectional Study on the Associations Between SNAP Participation and Diet Quality Among California College Students." 
 
 > College students in the United States have low quality diets consisting of frequent fast food intake, high sugar sweetened beverage (SSB) intake, and low fruit and vegetable (F&V) intake. Having a low income is one of the most prominent predictors of a low-quality diet, causing difficulties for low-income students to maintain a healthy diet in addition to the many other barriers to healthy eating that students face. Many low-income students are likely eligible to participate in the Supplemental Nutrition Assistance Program (SNAP), however, only an estimated 18% of likely eligible students in California are participating. This study analyzes the associations between SNAP use and fast food, SSB, and F&V intake among California college students.
 
